@@ -109,15 +109,16 @@
 }
 %
 \institute{
-Frankfurt University of Applied Sciences\\
-(1971-2014: Fachhochschule Frankfurt am Main)\\
-Nibelungenplatz 1\\
-D-60318 Frankfurt am Main\\
+  Frankfurt University of Applied Sciences\\
+  (1971-2014: Fachhochschule Frankfurt am Main)\\
+  Nibelungenplatz 1\\
+  D-60318 Frankfurt am Main\\
 }
 
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
+  LowTech GMmBH is a wooden furniture retailer that went public with an online store several years ago. To do so they implemented an on-premise solution. Which not only drives the online store, but all the auxiliary applications i.e. warehouse, customer service, finance and HR software. As demand increases, they are looking to modernize the current infrastructure using a private cloud. This document provides an in depth analysis of of the current infrastructure, including energy consumption metrics, the proposed roadmap and technologies to perform the technical transformation, and finally, a list of potential benefits of the approach, including a simple cost analysis.  
 
 \end{abstract}
 
@@ -188,11 +189,11 @@ There is the \emph{separating stroke}, which is used as a separator when separat
 The second variant is the \emph{thought stroke} --. This is often used to indicate distance or time. It is realized with two dashes (\verb!--!). There should be spaces before and after this dash.
 
 In the English-speaking world, the \emph{longer
-dash} ---. It is realized with three dashes (\verb!---!). It is usually connected to the preceding and following text passages without spaces. This stylistic device is rather unusual in German.
+  dash} ---. It is realized with three dashes (\verb!---!). It is usually connected to the preceding and following text passages without spaces. This stylistic device is rather unusual in German.
 
 \subsection{Source code}
 
-The \verb!lstlisting! environment is recommended for setting source code. Beforehand, the author uses the command \verb!\lstset! to define the type of source code and how it should be formatted. Listing~\ref{QuellcodeBeispielNr1} contains a shell script with an example of source code. Each source code should have a signature (description). For syntax highlighting to work correctly, the author must specify the programming language with the keyword \verb!language! 
+The \verb!lstlisting! environment is recommended for setting source code. Beforehand, the author uses the command \verb!\lstset! to define the type of source code and how it should be formatted. Listing~\ref{QuellcodeBeispielNr1} contains a shell script with an example of source code. Each source code should have a signature (description). For syntax highlighting to work correctly, the author must specify the programming language with the keyword \verb!language!
 
 
 \lstset{
@@ -219,7 +220,7 @@ showtabs=false,                         % Dont make tabls visible
 columns=fixed,                          % Column format
 morekeywords={},                        % Specific keywords}
 literate=%
-{Ö}{{\"O}}1
+  {Ö}{{\"O}}1
 {Ä}{{\"A}}1
 {Ü}{{\"U}}1
 {ö}{{\"o}}1
@@ -262,39 +263,39 @@ echo "$OPERAND1 $OPERATOR $OPERAND2 = $RESULT"
 \subsection{Lists and enumerations}
 
 \begin{itemize}
-\item Lists are often very helpful for structuring text. \item Lists can also be used to summarize text.
-\item Lists are made with the \texttt{itemize} environment.
-\begin{itemize}
-\item Nested listings are also no problem.
-\begin{itemize}
-\item You can nest up to four levels.
-\begin{itemize}
-\item But more than two levels almost never looks good.
-\end{itemize}
-\end{itemize}
-\end{itemize}
+  \item Lists are often very helpful for structuring text. \item Lists can also be used to summarize text.
+  \item Lists are made with the \texttt{itemize} environment.
+        \begin{itemize}
+          \item Nested listings are also no problem.
+                \begin{itemize}
+                  \item You can nest up to four levels.
+                        \begin{itemize}
+                          \item But more than two levels almost never looks good.
+                        \end{itemize}
+                \end{itemize}
+        \end{itemize}
 \end{itemize}
 
 \begin{enumerate}
-\item There are of course also enumerations in \LaTeX.
-\item Enumerations are made with the \texttt{enumerate} environment.
-\begin{enumerate}
-\item These can also be nested as desired.
-\end{enumerate}
-\item You can of course also use\dots
-\begin{itemize}
-\item lists and
-\item Enumerations can be nested as desired.
-\end{itemize}
+  \item There are of course also enumerations in \LaTeX.
+  \item Enumerations are made with the \texttt{enumerate} environment.
+        \begin{enumerate}
+          \item These can also be nested as desired.
+        \end{enumerate}
+  \item You can of course also use\dots
+        \begin{itemize}
+          \item lists and
+          \item Enumerations can be nested as desired.
+        \end{itemize}
 \end{enumerate}
 
 \subsection{Colors in texts}
 
 \textcolor{blue}{colors} should be used here \textcolor{red}{not} or only in \textcolor{green}{appropriate} (rare!) cases. The reasons are:
 \begin{itemize}
-\item \textcolor{red}{colored} \textcolor{green}{texts} \textcolor{blue}{heavy} \textcolor{yellow}{that} \textcolor{magenta}{reading} \textcolor{cyan}{significant}.
-\item A color printer is not available everywhere.
-\item Not all color printers produce the same result.
+  \item \textcolor{red}{colored} \textcolor{green}{texts} \textcolor{blue}{heavy} \textcolor{yellow}{that} \textcolor{magenta}{reading} \textcolor{cyan}{significant}.
+  \item A color printer is not available everywhere.
+  \item Not all color printers produce the same result.
 \end{itemize}
 
 \subsection{Citation}
@@ -302,7 +303,7 @@ echo "$OPERAND1 $OPERATOR $OPERAND2 = $RESULT"
 Quotations can be helpful. If you copy texts word-for-word, make this clear with indentations and indicate the source. The \texttt{quotation} environment is available for quotations. Here is a suitable quote from Donald~E. Knuth, the developer of \TeX:
 
 \begin{quotation}
-Science is knowledge which we understand so well that we can teach it to a computer; and if we don't fully understand something, it is an art to deal with it.~\cite{Knuth1974}
+  Science is knowledge which we understand so well that we can teach it to a computer; and if we don't fully understand something, it is an art to deal with it.~\cite{Knuth1974}
 \end{quotation}
 
 
@@ -321,21 +322,21 @@ If possible, insert illustrations as vector graphics. This is particularly easy 
 Each figure requires a caption with a unique number and must be referenced in the text (see figure~\ref{Penguin_image_label}. 
 
 \begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=4cm]{images/Pinguin}
-\caption{Caption of figure~\ref{Penguin_image_label}}
-\label{Penguin_image_label} % A unique label.
-\end{center}
+  \begin{center}
+    \includegraphics[width=4cm]{images/Pinguin}
+    \caption{Caption of figure~\ref{Penguin_image_label}}
+    \label{Penguin_image_label} % A unique label.
+  \end{center}
 \end{figure}
 
 Rotating images is easy with the parameter \texttt{angle=<angle>}. Figure~\ref{Penguin_image_rotated_label} has been rotated by 270 degrees.
 
 \begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=4cm,angle=270]{images/Pinguin}
-\caption{caption of figure~\ref{Penguin_image_rotated_label}}
-\label{Penguin_image_rotated_label} % A unique label.
-\end{center}
+  \begin{center}
+    \includegraphics[width=4cm,angle=270]{images/Pinguin}
+    \caption{caption of figure~\ref{Penguin_image_rotated_label}}
+    \label{Penguin_image_rotated_label} % A unique label.
+  \end{center}
 \end{figure}
 
 If an image should be as wide as the text field, this can be easily achieved with \verb!width=\textwidth!
@@ -347,36 +348,36 @@ If an image should be as wide as the text field, this can be easily achieved wit
 Each table requires a table heading with a unique number and must be referenced in the text.
 
 \begin{table}
-\centering
-\caption{A simple table}
-\label{Simple_Table_Label}
-\begin{tabular}{clcr}
-\hline\noalign{\smallskip}
-  \textbf{line} & \textbf{left-aligned} & \textbf{centered} & \textbf{right-aligned} \\
-\noalign{\smallskip}
-\hline
-\noalign{\smallskip}
-  1 & line 1 & line 1 & line 1 \\ \hline
-  2 & line 2 & line 2 & line 2 \\ \hline
-  3 & line 3 & line 3 & line 3 \\ \hline
-\hline
-\end{tabular}
+  \centering
+  \caption{A simple table}
+  \label{Simple_Table_Label}
+  \begin{tabular}{clcr}
+    \hline\noalign{\smallskip}
+    \textbf{line} & \textbf{left-aligned} & \textbf{centered} & \textbf{right-aligned} \\
+    \noalign{\smallskip}
+    \hline
+    \noalign{\smallskip}
+    1             & line 1                & line 1            & line 1                 \\ \hline
+    2             & line 2                & line 2            & line 2                 \\ \hline
+    3             & line 3                & line 3            & line 3                 \\ \hline
+    \hline
+  \end{tabular}
 \end{table}
 
 Classically, tables look more like Table~\ref{Standard_Table_Label}, with vertical and horizontal separators at all field boundaries. The result is of course correct, but does not look as elegant as Table~\ref{Simple_Table_Label}.
 
 
 \begin{table}
-\centering
-\caption{A table in classic layout}\label{Standard_Table_Label}
-\begin{tabular}{|c|l|c|r|}
-\hline
-  \textbf{line} & \textbf{Left-aligned} & \textbf{Centered} & \textbf{Right-aligned} \\
-\hline
-  1 & line 1 & line 1 & line 1 \\ \hline
-  2 & line 2 & line 2 & line 2 \\ \hline
-  3 & line 3 & line 3 & line 3 \\ \hline
-\end{tabular}
+  \centering
+  \caption{A table in classic layout}\label{Standard_Table_Label}
+  \begin{tabular}{|c|l|c|r|}
+    \hline
+    \textbf{line} & \textbf{Left-aligned} & \textbf{Centered} & \textbf{Right-aligned} \\
+    \hline
+    1             & line 1                & line 1            & line 1                 \\ \hline
+    2             & line 2                & line 2            & line 2                 \\ \hline
+    3             & line 3                & line 3            & line 3                 \\ \hline
+  \end{tabular}
 \end{table}
 
 
@@ -436,27 +437,27 @@ The conclusion contains a summary of the document. A kind of conclusion. Here, t
 % ---- Bibliography ----
 
 \begin{thebibliography}{5}
-
-\bibitem{SpringerWeb}
-Information for Authors of Springer Computer Science Proceedings. Springer. 2017\\
-\url{http://www.springer.com/gp/computer-science/lncs/conference-proceedings-guidelines}
-\bibitem{Knuth1974}
-Knuth, Donald~E. \textsl{Computer Programming as an Art}. Communications of the ACM 17 (12). December 1974. S.667-673\\
-\url{https://dl.acm.org/doi/pdf/10.1145/1283920.1283929}
-\bibitem{LaTeXWeb}
-\LaTeX\ -- A document preparation system.
-\url{http://www.latex-project.org}
-\bibitem{LaTeXKopka1}
-Kopka, Helmut. \textsl{\LaTeX, Band 1: Einführung}. Pearson. 2005
-\bibitem{LaTeXKopka2}
-Kopka, Helmut. \textsl{\LaTeX, Band 2: Ergänzungen}. Pearson. 2002
-\bibitem{LaTeXKopka3}
-Kopka, Helmut. \textsl{\LaTeX, Band 3: Erweiterungen}. Pearson. 2002
-\bibitem{LaTeXBegleiter}
-Mittelbach, Frank und Goossens, Michel. \textsl{Der LaTeX-Begleiter}. Pearson. 2005
-\bibitem{LaTeXWissenschaftlich}
-Schlosser, Joachim. \textsl{Wissenschaftliche Arbeiten schreiben mit LaTeX: Leitfaden für Einsteiger}. Mitp-Verlag. 2008
-\bibitem{LaTeXSchnelleinsteiger}
-Willms, Roland. \textsl{\LaTeX: Für Schnelleinsteiger}. Franzis. 2006
+  
+  \bibitem{SpringerWeb}
+  Information for Authors of Springer Computer Science Proceedings. Springer. 2017\\
+  \url{http://www.springer.com/gp/computer-science/lncs/conference-proceedings-guidelines}
+  \bibitem{Knuth1974}
+  Knuth, Donald~E. \textsl{Computer Programming as an Art}. Communications of the ACM 17 (12). December 1974. S.667-673\\
+  \url{https://dl.acm.org/doi/pdf/10.1145/1283920.1283929}
+  \bibitem{LaTeXWeb}
+  \LaTeX\ -- A document preparation system.
+  \url{http://www.latex-project.org}
+  \bibitem{LaTeXKopka1}
+  Kopka, Helmut. \textsl{\LaTeX, Band 1: Einführung}. Pearson. 2005
+  \bibitem{LaTeXKopka2}
+  Kopka, Helmut. \textsl{\LaTeX, Band 2: Ergänzungen}. Pearson. 2002
+  \bibitem{LaTeXKopka3}
+  Kopka, Helmut. \textsl{\LaTeX, Band 3: Erweiterungen}. Pearson. 2002
+  \bibitem{LaTeXBegleiter}
+  Mittelbach, Frank und Goossens, Michel. \textsl{Der LaTeX-Begleiter}. Pearson. 2005
+  \bibitem{LaTeXWissenschaftlich}
+  Schlosser, Joachim. \textsl{Wissenschaftliche Arbeiten schreiben mit LaTeX: Leitfaden für Einsteiger}. Mitp-Verlag. 2008
+  \bibitem{LaTeXSchnelleinsteiger}
+  Willms, Roland. \textsl{\LaTeX: Für Schnelleinsteiger}. Franzis. 2006
 \end{thebibliography}
 \end{document}
