@@ -130,8 +130,6 @@ followed by a detailed transformation roadmap of future-ready modern infrastruct
 This analysis will serve as a foundational step for subsequent project phases, ensuring that \textit{LowTech GmbH} is well-equipped to meet future requirements and challenges.
 \end{abstract}
 
-This is where the introduction (the prologue or foreword) comes in. The introduction should also be short and concise. The reader should be prepared for the text that follows. Of course, the introduction should also be formulated in an interesting way.
-
 \section{Overview of the problem}
 
 
@@ -140,16 +138,64 @@ This is where the introduction (the prologue or foreword) comes in. The introduc
 \section{Objectives of the technological transformation}
 
 
-\section{Assessment of the current (As-is) infrastructure}
-According to NIST definition of cloud computing is given as ``Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared
-pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that
-can be rapidly provisioned and released with minimal management effort or service provider interaction'' \cite{mell2011nist}.
+\section{Assessment of the current (as-is) infrastructure}
 
 \subsection{Current traffic and usage}
 
-\subsection{Scalability, availability and security analysis}
+\subsection{Scalability, Availability and Security Analysis}
+According to NIST definition of cloud computing is given as ``Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared
+pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that
+can be rapidly provisioned and released with minimal management effort or service provider interaction.'' \cite{mell2011nist}
+
+As \textit{LowTech GmbH} is based on Legacy IT infrastructure and currently lacking \textit{NIST five
+essential characteristics} such as On-demand self-service, Broad network access,Resource pooling,Rapid elasticity and Measured service.
+
+\subsubsection*{Elasticity / Scalability}
+
+\begin{itemize}
+  \item \textbf{Fixed Hardware \& Inflexible Infrastructure}:
+  \\
+  Current infrastructure consists of 7 on-premises servers housed in a single 19-inch rack, 
+  along with 17 clients and 19 laptops all with predetermined, static configurations. 
+  Moreover, the physical constraints of the on-premises setup, with no additional space for expansion, severely limit scaling options. 
+  This inflexibility makes it challenging to accommodate growth or adapt to changing business needs.
+ \\
+  \item \textbf{Absence of Resource Utilization/pooling}:
+  \\ 
+  There's no apparent way to quickly scale resources up or down based on demand or user traffic fluctuation in the current infrastructure. 
+  Each application typically runs on a dedicated server with fixed resources. 
+  This approach leads to inefficient resource utilization, as some servers may be underutilized while others are overloaded which may lead to performance issues during peak times or resource waste during low-demand periods due to no dynamic resource allocation.
+ \\
+  \item \textbf{Manual Processes \& High Cost}:
+  \\ 
+  Any changes in capacity would likely require manual hardware upgrades or replacements including hardware installation,
+  and configuration, making the process time-consuming and potentially leading to downtime.
+  Replacement of hardware is not only tedious but also financially burdensome due to high costs of new hardware.
+
+\end{itemize}
+
+\subsubsection*{Availability}
+\begin{itemize}
+  \item \textbf{Obsolate Hardware/OS \& Runtime Environments}: 
+  \\
+  Many components of the current infrastructure is based on very old hardware and outdated operating systems such as 
+  Windows XP SP3 (Finance clients), Windows 7 SP3 (HR clients and Customer Service laptops), Debian 5.0 Lenny (Warehouse clients and server),
+  Ubuntu 16.04 LTS (Sales CRM Storage server) etc. Several applications are running on outdated software versions such as Java 1.7/1.8, 
+  MySQL 5.5/5.7, PHP 5.3 and Firefox 3.6 etc. which makes this whole infrastructure more susceptible to failure.
+  \\
+  \item \textbf{Lack of Redundancy and Backup Mechanism}:
+  \\ 
+  There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
+  \\
+  \item \textbf{Manual Maintainance}: 
+  \\It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations. 
+  This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
+  \\
+\end{itemize}
+\subsubsection*{Security}
 
 \subsection{Energy consumption and approximate cost}
+
 Energy consumption calculation for the as-in infrastructure of Low Tech GmbH is as follows : 
 
 \begin{table}[htbp]
@@ -185,11 +231,6 @@ According to Eurostat published data of electricity prices for non-household con
 
 
 \textbf{Total Cost for Energy Consumption (Annual)} : 151,548 KWh x 0.3244 \EUR{} = 49,162.17 \EUR{}
-
-
-
-
-
 
 
 \section{Client Requirements}
