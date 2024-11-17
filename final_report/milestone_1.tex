@@ -15,7 +15,9 @@
 \usepackage{graphicx}
 \usepackage{amssymb}   % AMS-Sonderzeichen
 \usepackage{tabularx}  % Für tabularx und newcolumntype
-% \usepackage[paper=a4paper,left=30mm,right=30mm,top=30mm,bottom=30mm]{geometry}
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{array}
+\usepackage{makecell}
 \usepackage{color}
 \usepackage{ragged2e}
 \usepackage{ifpdf}
@@ -29,7 +31,10 @@
 \usepackage{lmodern}
 \selectlanguage{english}
 \usepackage{fancyhdr}
+\usepackage{url}
 \pagestyle{fancy}
+\usepackage{marvosym}
+
 %
 
 \ifpdf
@@ -96,16 +101,16 @@
   \texttt{wladymir.brborich-herrera@stud.fra-uas.de}
   \and\\ 
   Vishwaben Pareshbhai Kakadiya\\
-  \texttt{}
+  \texttt{vishwaben.kakadiya@stud.fra-uas.de}
   \and\\
-  Hellyben Bhaveshkumar Shah\\
-  \texttt{}
+  Hellyben Bhaveshkumar Shah (1476905)\\
+  \texttt{hellyben.shah@stud.fra-uas.de}
   \and\\
   Priyanka Dilipbhai Vadiwala\\
-  \texttt{}
+  \texttt{priyanka.vadiwala@stud.fra-uas.de}
   \and\\
   Heer Rakeshkumar Vankawala\\
-  \texttt{}
+  \texttt{heer.vankawala@stud.fra-uas.de}
 }
 %
 \institute{
@@ -132,11 +137,47 @@ This is where the introduction (the prologue or foreword) comes in. The introduc
 \section{Objectives of the technological transformation}
 
 
-\section{Assessment of the current infrastructure}
+\section{Assessment of the current (As-is) infrastructure}
 
 \subsection{Current traffic and usage}
 
-\subsection{Approximate energy consumption}
+\subsection{Energy consumption and approximate cost}
+Energy consumption calculation for the as-in infrastructure of Low Tech GmbH is as follows : 
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Departments} & \textbf{Server} & \textbf{Client} & \textbf{Laptop} & \textbf{Total Power} & \textbf{Annual Energy}  \\
+ & \textbf{ (Qty x Power) } & \textbf{ (Qty x Power) } & \textbf{ (Qty x Power) } & \textbf{ Consumption } & \textbf{ Consumption(KWh) } \\
+\hline
+Finance & 1 x 1000W & 4 x 500W & - & 3000W & 26,280 \\
+\hline
+HR & 1 x 1000W & 3 x 500W & - & 2500W & 21,900 \\
+\hline
+Warehouse & 1 x 1000W & 10 x 500W & - & 6000W & 52,560 \\
+\hline
+Sales & \makecell{1 x 1000W \\ 1 x 1200W} & - & 10 x 50W & 2700W & 23,652 \\
+\hline
+Operations & 1 x 1200W & - & 4 x 50W & 1400W & 12,264\\
+\hline
+Customer Service & - & - & 5 x 100W & 500W & 4,380 \\
+\hline
+Webshop & 1 x 1200W & - & - & 1200W & 10,512\\
+\hline
+\end{tabular}
+\caption{Power Consumption by Department and Device Type}
+\label{tab:power_consumption}
+\end{table}
+
+\textbf{Total Energy Consumption (Annual)} : 151,548 KWh (151.548 MWh)
+
+According to Eurostat published data of electricity prices for non-household consumers, Low Tech GmbH falls under the annual energy consumption band 
+`IB (20 MWh to 499 MWh)' with energy price 0.3244 \EUR{} per KWh.
+
+
+\textbf{Total Cost for Energy Consumption (Annual)} : 151,548 KWh x 0.3244 \EUR{} = 49,162.17 \EUR{}
+
 
 \subsection{Scalability, availability and security analysis}
 
@@ -173,26 +214,14 @@ This is where the introduction (the prologue or foreword) comes in. The introduc
 
 \begin{thebibliography}{5}
   
-  \bibitem{SpringerWeb}
-  Information for Authors of Springer Computer Science Proceedings. Springer. 2017\\
-  \url{http://www.springer.com/gp/computer-science/lncs/conference-proceedings-guidelines}
-  \bibitem{Knuth1974}
-  Knuth, Donald~E. \textsl{Computer Programming as an Art}. Communications of the ACM 17 (12). December 1974. S.667-673\\
-  \url{https://dl.acm.org/doi/pdf/10.1145/1283920.1283929}
-  \bibitem{LaTeXWeb}
-  \LaTeX\ -- A document preparation system.
-  \url{http://www.latex-project.org}
-  \bibitem{LaTeXKopka1}
-  Kopka, Helmut. \textsl{\LaTeX, Band 1: Einführung}. Pearson. 2005
-  \bibitem{LaTeXKopka2}
-  Kopka, Helmut. \textsl{\LaTeX, Band 2: Ergänzungen}. Pearson. 2002
-  \bibitem{LaTeXKopka3}
-  Kopka, Helmut. \textsl{\LaTeX, Band 3: Erweiterungen}. Pearson. 2002
-  \bibitem{LaTeXBegleiter}
-  Mittelbach, Frank und Goossens, Michel. \textsl{Der LaTeX-Begleiter}. Pearson. 2005
-  \bibitem{LaTeXWissenschaftlich}
-  Schlosser, Joachim. \textsl{Wissenschaftliche Arbeiten schreiben mit LaTeX: Leitfaden für Einsteiger}. Mitp-Verlag. 2008
-  \bibitem{LaTeXSchnelleinsteiger}
-  Willms, Roland. \textsl{\LaTeX: Für Schnelleinsteiger}. Franzis. 2006
+  \bibitem{eurostat2023}
+Eurostat. (2023). \textit{Electricity prices for non-household consumers - bi-annual data (from 2007 onwards)}. Retrieved November 16, 2023, from \url{https://ec.europa.eu/eurostat/databrowser/view/nrg_pc_205__custom_13581723/default/table?lang=en}
+
+\bibitem{mell2011nist}
+Mell, P. and Grance, T. (2011).
+\emph{The NIST definition of cloud computing}.
+National Institute of Standards and Technology, Special Publication 800-145, Gaithersburg, MD.
+\url{https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf} 
+
 \end{thebibliography}
 \end{document}
