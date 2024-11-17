@@ -33,7 +33,7 @@
 \usepackage{fancyhdr}
 \usepackage{url}
 \pagestyle{fancy}
-\usepackage{marvosym}
+
 
 %
 
@@ -123,8 +123,11 @@
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
-  LowTech GMmBH is a wooden furniture retailer that went public with an online store several years ago. To do so they implemented an on-premise solution. Which not only drives the online store, but all the auxiliary applications i.e. warehouse, customer service, finance and HR software. As demand increases, they are looking to modernize the current infrastructure using a private cloud. This document provides an in depth analysis of of the current infrastructure, including energy consumption metrics, the proposed roadmap and technologies to perform the technical transformation, and finally, a list of potential benefits of the approach, including a simple cost analysis.
-  
+In this report, we as consultants from \textit{Awesome Cloud AG} present a technical transformation analysis aimed at modernizing the infrastructure of \textit{LowTech GmbH}, 
+a small to medium-sized enterprise specializing in wooden furniture production. 
+The analysis includes a critical assessment of the current infrastructure, energy consumption calculation for the existing setup 
+followed by a detailed transformation roadmap of future-ready modern infrastructure and explanations of enhancements in scalability, availability, and security compared to current infrastructure. 
+This analysis will serve as a foundational step for subsequent project phases, ensuring that \textit{LowTech GmbH} is well-equipped to meet future requirements and challenges.
 \end{abstract}
 
 This is where the introduction (the prologue or foreword) comes in. The introduction should also be short and concise. The reader should be prepared for the text that follows. Of course, the introduction should also be formulated in an interesting way.
@@ -138,8 +141,13 @@ This is where the introduction (the prologue or foreword) comes in. The introduc
 
 
 \section{Assessment of the current (As-is) infrastructure}
+According to NIST definition of cloud computing is given as ``Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared
+pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that
+can be rapidly provisioned and released with minimal management effort or service provider interaction'' \cite{mell2011nist}.
 
 \subsection{Current traffic and usage}
+
+\subsection{Scalability, availability and security analysis}
 
 \subsection{Energy consumption and approximate cost}
 Energy consumption calculation for the as-in infrastructure of Low Tech GmbH is as follows : 
@@ -172,14 +180,14 @@ Webshop & 1 x 1200W & - & - & 1200W & 10,512\\
 
 \textbf{Total Energy Consumption (Annual)} : 151,548 KWh (151.548 MWh)
 
-According to Eurostat published data of electricity prices for non-household consumers, Low Tech GmbH falls under the annual energy consumption band 
+According to Eurostat published data of electricity prices for non-household consumers \cite{eurostat2023}, Low Tech GmbH falls under the annual energy consumption band 
 `IB (20 MWh to 499 MWh)' with energy price 0.3244 \EUR{} per KWh.
 
 
 \textbf{Total Cost for Energy Consumption (Annual)} : 151,548 KWh x 0.3244 \EUR{} = 49,162.17 \EUR{}
 
 
-\subsection{Scalability, availability and security analysis}
+
 
 
 
