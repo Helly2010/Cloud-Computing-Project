@@ -192,8 +192,25 @@ essential characteristics} such as On-demand self-service, Broad network access,
   This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
   \\
 \end{itemize}
-\subsubsection*{Security}
 
+\subsubsection*{Security}
+\begin{itemize}
+  \item \textbf{Basic Windows Firewall and pSense}: 
+  \\
+  Many components of the current infrastructure is based on very old hardware and outdated operating systems such as 
+  Windows XP SP3 (Finance clients), Windows 7 SP3 (HR clients and Customer Service laptops), Debian 5.0 Lenny (Warehouse clients and server),
+  Ubuntu 16.04 LTS (Sales CRM Storage server) etc. Several applications are running on outdated software versions such as Java 1.7/1.8, 
+  MySQL 5.5/5.7, PHP 5.3 and Firefox 3.6 etc. which makes this whole infrastructure more susceptible to failure.
+  \\
+  \item \textbf{Lack of Redundancy and Backup Mechanism}:
+  \\ 
+  There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
+  \\
+  \item \textbf{Manual Maintainance}: 
+  \\It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations. 
+  This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
+  \\
+\end{itemize}
 \subsection{Energy consumption and approximate cost}
 
 Energy consumption calculation for the as-in infrastructure of Low Tech GmbH is as follows : 
