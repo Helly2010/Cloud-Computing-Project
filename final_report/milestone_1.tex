@@ -123,11 +123,11 @@
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
-In this report, we as consultants from \textit{Awesome Cloud AG} present a technical transformation analysis aimed at modernizing the infrastructure of \textit{LowTech GmbH}, 
-a small to medium-sized enterprise specializing in wooden furniture production. 
-The analysis includes a critical assessment of the current infrastructure, energy consumption calculation for the existing setup 
-followed by a detailed transformation roadmap of future-ready modern infrastructure and explanations of enhancements in scalability, availability, and security compared to current infrastructure. 
-This analysis will serve as a foundational step for subsequent project phases, ensuring that \textit{LowTech GmbH} is well-equipped to meet future requirements and challenges.
+  In this report, we as consultants from \textit{Awesome Cloud AG} present a technical transformation analysis aimed at modernizing the infrastructure of \textit{LowTech GmbH}, 
+  a small to medium-sized enterprise specializing in wooden furniture production. 
+  The analysis includes a critical assessment of the current infrastructure, energy consumption calculation for the existing setup 
+  followed by a detailed transformation roadmap of future-ready modern infrastructure and explanations of enhancements in scalability, availability, and security compared to current infrastructure. 
+  This analysis will serve as a foundational step for subsequent project phases, ensuring that \textit{LowTech GmbH} is well-equipped to meet future requirements and challenges.
 \end{abstract}
 
 This is where the introduction (the prologue or foreword) comes in. The introduction should also be short and concise. The reader should be prepared for the text that follows. Of course, the introduction should also be formulated in an interesting way.
@@ -153,97 +153,97 @@ pool of configurable computing resources (e.g., networks, servers, storage, appl
 can be rapidly provisioned and released with minimal management effort or service provider interaction.'' \cite{mell2011nist}
 
 As \textit{LowTech GmbH} is based on Legacy IT infrastructure and currently lacking \textit{NIST five
-essential characteristics} such as On-demand self-service, Broad network access,Resource pooling,Rapid elasticity and Measured service.
+  essential characteristics} such as On-demand self-service, Broad network access,Resource pooling,Rapid elasticity and Measured service.
 
 \subsubsection*{Elasticity / Scalability}
 
 \begin{itemize}
   \item \textbf{Fixed Hardware \& Inflexible Infrastructure}:
-  \\
-  Current infrastructure consists of 7 on-premises servers housed in a single 19-inch rack, 
-  along with 17 clients and 19 laptops all with predetermined, static configurations. 
-  Moreover, the physical constraints of the on-premises setup, with no additional space for expansion, severely limit scaling options. 
-  This inflexibility makes it challenging to accommodate growth or adapt to changing business needs.
- \\
+        \\
+        Current infrastructure consists of 7 on-premises servers housed in a single 19-inch rack, 
+        along with 17 clients and 19 laptops all with predetermined, static configurations. 
+        Moreover, the physical constraints of the on-premises setup, with no additional space for expansion, severely limit scaling options. 
+        This inflexibility makes it challenging to accommodate growth or adapt to changing business needs.
+        \\
   \item \textbf{Absence of Resource Utilization/pooling}:
-  \\ 
-  There's no apparent way to quickly scale resources up or down based on demand or user traffic fluctuation in the current infrastructure. 
-  Each application typically runs on a dedicated server with fixed resources. 
-  This approach leads to inefficient resource utilization, as some servers may be underutilized while others are overloaded which may lead to performance issues during peak times or resource waste during low-demand periods due to no dynamic resource allocation.
- \\
+        \\ 
+        There's no apparent way to quickly scale resources up or down based on demand or user traffic fluctuation in the current infrastructure. 
+        Each application typically runs on a dedicated server with fixed resources. 
+        This approach leads to inefficient resource utilization, as some servers may be underutilized while others are overloaded which may lead to performance issues during peak times or resource waste during low-demand periods due to no dynamic resource allocation.
+        \\
   \item \textbf{Manual Processes \& High Cost}:
-  \\ 
-  Any changes in capacity would likely require manual hardware upgrades or replacements including hardware installation,
-  and configuration, making the process time-consuming and potentially leading to downtime.
-  Replacement of hardware is not only tedious but also financially burdensome due to high costs of new hardware.
-
+        \\ 
+        Any changes in capacity would likely require manual hardware upgrades or replacements including hardware installation,
+        and configuration, making the process time-consuming and potentially leading to downtime.
+        Replacement of hardware is not only tedious but also financially burdensome due to high costs of new hardware.
+        
 \end{itemize}
 
 \subsubsection*{Availability}
 \begin{itemize}
-  \item \textbf{Obsolate Hardware/OS \& Runtime Environments}: 
-  \\
-  Many components of the current infrastructure is based on very old hardware and outdated operating systems such as 
-  Windows XP SP3 (Finance clients), Windows 7 SP3 (HR clients and Customer Service laptops), Debian 5.0 Lenny (Warehouse clients and server),
-  Ubuntu 16.04 LTS (Sales CRM Storage server) etc. Several applications are running on outdated software versions such as Java 1.7/1.8, 
-  MySQL 5.5/5.7, PHP 5.3 and Firefox 3.6 etc. which makes this whole infrastructure more susceptible to failure.
-  \\
+  \item \textbf{Obsolate Hardware/OS \& Runtime Environments}:
+        \\
+        Many components of the current infrastructure is based on very old hardware and outdated operating systems such as 
+        Windows XP SP3 (Finance clients), Windows 7 SP3 (HR clients and Customer Service laptops), Debian 5.0 Lenny (Warehouse clients and server),
+        Ubuntu 16.04 LTS (Sales CRM Storage server) etc. Several applications are running on outdated software versions such as Java 1.7/1.8, 
+        MySQL 5.5/5.7, PHP 5.3 and Firefox 3.6 etc. which makes this whole infrastructure more susceptible to failure.
+        \\
   \item \textbf{Lack of Redundancy and Backup Mechanism}:
-  \\ 
-  There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
-  \\
-  \item \textbf{Manual Maintainance}: 
-  \\It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations. 
-  This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
-  \\
+        \\ 
+        There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
+        \\
+  \item \textbf{Manual Maintainance}:
+        \\It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations. 
+        This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
+        \\
 \end{itemize}
 
 \subsubsection*{Security}
 \begin{itemize}
-  \item \textbf{Basic Windows Firewall and pSense}: 
-  \\
-  Many components of the current infrastructure is based on very old hardware and outdated operating systems such as 
-  Windows XP SP3 (Finance clients), Windows 7 SP3 (HR clients and Customer Service laptops), Debian 5.0 Lenny (Warehouse clients and server),
-  Ubuntu 16.04 LTS (Sales CRM Storage server) etc. Several applications are running on outdated software versions such as Java 1.7/1.8, 
-  MySQL 5.5/5.7, PHP 5.3 and Firefox 3.6 etc. which makes this whole infrastructure more susceptible to failure.
-  \\
+  \item \textbf{Basic Windows Firewall and pSense}:
+        \\
+        Many components of the current infrastructure is based on very old hardware and outdated operating systems such as 
+        Windows XP SP3 (Finance clients), Windows 7 SP3 (HR clients and Customer Service laptops), Debian 5.0 Lenny (Warehouse clients and server),
+        Ubuntu 16.04 LTS (Sales CRM Storage server) etc. Several applications are running on outdated software versions such as Java 1.7/1.8, 
+        MySQL 5.5/5.7, PHP 5.3 and Firefox 3.6 etc. which makes this whole infrastructure more susceptible to failure.
+        \\
   \item \textbf{Lack of Redundancy and Backup Mechanism}:
-  \\ 
-  There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
-  \\
-  \item \textbf{Manual Maintainance}: 
-  \\It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations. 
-  This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
-  \\
+        \\ 
+        There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
+        \\
+  \item \textbf{Manual Maintainance}:
+        \\It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations. 
+        This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
+        \\
 \end{itemize}
 \subsection{Energy consumption and approximate cost}
 
 Energy consumption calculation for the as-in infrastructure of Low Tech GmbH is as follows : 
 
 \begin{table}[htbp]
-\centering
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Departments} & \textbf{Server} & \textbf{Client} & \textbf{Laptop} & \textbf{Total Power} & \textbf{Annual Energy}  \\
- & \textbf{ (Qty x Power) } & \textbf{ (Qty x Power) } & \textbf{ (Qty x Power) } & \textbf{ Consumption } & \textbf{ Consumption(KWh) } \\
-\hline
-Finance & 1 x 1000W & 4 x 500W & - & 3000W & 26,280 \\
-\hline
-HR & 1 x 1000W & 3 x 500W & - & 2500W & 21,900 \\
-\hline
-Warehouse & 1 x 1000W & 10 x 500W & - & 6000W & 52,560 \\
-\hline
-Sales & \makecell{1 x 1000W \\ 1 x 1200W} & - & 10 x 50W & 2700W & 23,652 \\
-\hline
-Operations & 1 x 1200W & - & 4 x 50W & 1400W & 12,264\\
-\hline
-Customer Service & - & - & 5 x 100W & 500W & 4,380 \\
-\hline
-Webshop & 1 x 1200W & - & - & 1200W & 10,512\\
-\hline
-\end{tabular}
-\caption{Power Consumption by Department and Device Type}
-\label{tab:power_consumption}
+  \centering
+  \begin{tabular}{|l|c|c|c|c|c|}
+    \hline
+    \textbf{Departments} & \textbf{Server}          & \textbf{Client}          & \textbf{Laptop}          & \textbf{Total Power}   & \textbf{Annual Energy}      \\
+                         & \textbf{ (Qty x Power) } & \textbf{ (Qty x Power) } & \textbf{ (Qty x Power) } & \textbf{ Consumption } & \textbf{ Consumption(KWh) } \\
+    \hline
+    Finance              & 1 x 1000W                & 4 x 500W                 & -                        & 3000W                  & 26,280                      \\
+    \hline
+    HR                   & 1 x 1000W                & 3 x 500W                 & -                        & 2500W                  & 21,900                      \\
+    \hline
+    Warehouse            & 1 x 1000W                & 10 x 500W                & -                        & 6000W                  & 52,560                      \\
+    \hline
+    Sales                & \makecell{1 x 1000W                                                                                                                   \\ 1 x 1200W} & - & 10 x 50W & 2700W & 23,652 \\
+    \hline
+    Operations           & 1 x 1200W                & -                        & 4 x 50W                  & 1400W                  & 12,264                      \\
+    \hline
+    Customer Service     & -                        & -                        & 5 x 100W                 & 500W                   & 4,380                       \\
+    \hline
+    Webshop              & 1 x 1200W                & -                        & -                        & 1200W                  & 10,512                      \\
+    \hline
+  \end{tabular}
+  \caption{Power Consumption by Department and Device Type}
+  \label{tab:power_consumption}
 \end{table}
 
 \textbf{Total Energy Consumption (Annual)} : 151,548 KWh (151.548 MWh)
@@ -308,6 +308,8 @@ To perform a successful migration to a private cloud context we have analyzed th
   \end{center}
 \end{figure}
 
+Note: We could use one VM and Docker to run most of the database instances as containers, making it easier to install or upgrade versions. Nevertheless, some of the tools are difficult to dockerize (SQLServer 2012) and, we want to have isolation between departments, preventing a single point of failure for all our database infrastructure. 
+
 \section{Roadmap}
 
 The technological transformation roadmap is divided in four phases:
@@ -319,15 +321,15 @@ The technological transformation roadmap is divided in four phases:
 \end{itemize}
 
 \subsection{Assessment}
-This is one of the most critical steps, given that we need to establish a baseline of performance, and cost of the current infrastructure. During this stage we are going to execute the following tasks:
+This is the most critical step. We need to establish a baseline of performance, and cost of the current infrastructure. During this stage we are going to execute the following tasks:
 
 \begin{itemize}
 
   \item Review the current infrastructure in terms of performance, data requirements, availability and security. Establishing baseline metrics we then have some rough idea of the areas we want to pay attention, and  at the end, the total impact that the migration had. We have some rough figures provided by the client, but these are not enough to actually guide development.
   \item Check the current applications, to define a migration approach, if they can be migrated, changed, or improved in a way that makes the transition process easier. Given the initial requirements, we can assume that the applications are not actively being developed, so modernization is not an approach we can consider at that level.
   \item Identify the level of effort per department/application/domain to make the migration, this metrics will guide the order of the execution. This is to reduce the impact of the migration in the business operation. Naturally there will be usage patterns more friendly to upgrade and intervention.
-  \item Assess the budget and space constraints for new hardware, or to rent such services. A preliminary review points to renting server space as the most appropriate solution. Given that to achieve the availability metrics required by the customer will require a great investment in provisioning, modernizing and validating the current server location. Not only in technological terms, but also physical security, thermal management, internet bandwidth and energy provisioning.
-  \item Spec the hardware after evaluating the usage pattern and metrics. We want to not only get parity to the current hardware but have space to grow.
+  \item Assess the budget and space constraints for new hardware, or to rent such services. A preliminary review points to renting server space as the most appropriate solution. To achieve the availability metrics required by the customer will require a great investment in provisioning, modernizing and validating the current server location. Not only in technological terms, but also: physical security, thermal management, internet bandwidth and energy provisioning.
+  \item Spec the hardware after evaluating the usage pattern and metrics. We want to, not only get parity to the current hardware but have space to grow.
 \end{itemize}
 
 \subsection{Design}
@@ -350,12 +352,13 @@ In this step we perform the following tasks:
 
   \item  Talk with server space providers, we need to stablish a contract and negotiate price and SLOs based on the server requirements
   \item Gather all the installation information, binaries, licenses and documentation for all applications.
-  \item Configure a development environment to upload al artifacts such as configuration files and container images.
+  \item Configure a development environment to upload all artifacts such as configuration files and container images.
   \item Create Ansible configuration files for each application, to automate the installation and replication process.
   \item Develop scripts to automate application functionality and load testing. To determine if the configurations will be on par or better than the current infrastructure.
   \item  Provision and install the private cloud management software, including the networking configuration
   \item  Configure the storage
   \item Create the virtual machines for the base hosts
+  \item Configure Prometheus to monitor the virtual machine installations
   \item Establish the network links between the different virtual domains
   \item Install all database servers
   \item Develop a migration process to replicate the current data into the new database servers.
@@ -378,15 +381,15 @@ In this step we perform the following tasks:
 \subsection{Optimization}
 
 \begin{itemize}
-  \item Instrument and measure the performance of the system and create an assessment report of the migration.
+  \item Measure the performance of the system using Prometheus metrics and create an assessment report of the migration.
         
   \item Create documentation regarding the new deployment process, provisioning and scaling.
         
-  \item Assess the infrastructure, and check future improvement plans.
+  \item Assess potential improvement areas, and stablish follow up tasks if needed.
         
-  \item Once we have the virtualized applications, we could start thinking into improving elasticity by enabling either ProxMox autoscaling (Which provides additional resources to VMs on the fly) or instal an orchestrator that will create new virtual machines and load balance them.
+  \item Once we have the virtualized applications, we could start thinking into improving elasticity by enabling either ProxMox autoscaling (Which provides additional resources to VMs on the fly) or install an orchestrator that will create new virtual machines and load balance them.
         
-  \item During optimization we need to also allocate time, for training and documentation of the different processes on how to scale, deploy and provision new services.
+  \item During optimization we need to also allocate time for training, and documenting the different processes such as: how to scale, deploy and provision new services.
 \end{itemize}
 
 \section{Operation considerations}
