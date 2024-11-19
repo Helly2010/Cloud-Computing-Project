@@ -150,8 +150,116 @@ The main high level objective is to migrate the current infrastructure into a pr
 
 \subsection{Scalability, availability and security analysis}
 
+\section{Assessment of the current (as-is) infrastructure}
+
+\subsection{Current traffic and usage}
+
+\subsection{Scalability, Availability and Security Analysis}
+According to NIST definition of cloud computing is given as ``Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared
+pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that
+can be rapidly provisioned and released with minimal management effort or service provider interaction.'' \cite{mell2011nist}
+
+As \textit{LowTech GmbH} is based on Legacy IT infrastructure and currently lacking \textit{NIST five
+essential characteristics} such as On-demand self-service, Broad network access,Resource pooling,Rapid elasticity and Measured service.
+
+\subsubsection*{Elasticity / Scalability}
+
+\begin{itemize}
+  \item \textbf{Fixed Hardware \& Inflexible Infrastructure}:
+  \\
+  Current infrastructure consists of 7 on-premises servers housed in a single 19-inch rack, 
+  along with 17 clients and 19 laptops all with predetermined, static configurations. 
+  Moreover, the physical constraints of the on-premises setup, with no additional space for expansion, severely limit scaling options. 
+  This inflexibility makes it challenging to accommodate growth or adapt to changing business needs.
+ \\
+  \item \textbf{Absence of Resource Utilization/pooling}:
+  \\ 
+  There's no apparent way to quickly scale resources up or down based on demand or user traffic fluctuation in the current infrastructure. 
+  Each application typically runs on a dedicated server with fixed resources. 
+  This approach leads to inefficient resource utilization, as some servers may be underutilized while others are overloaded which may lead to performance issues during peak times or resource waste during low-demand periods due to no dynamic resource allocation.
+ \\
+  \item \textbf{Manual Processes \& High Cost}:
+  \\ 
+  Any changes in capacity would likely require manual hardware upgrades or replacements including hardware installation,
+  and configuration, making the process time-consuming and potentially leading to downtime.
+  Replacement of hardware is not only tedious but also financially burdensome due to high costs of new hardware.
+
+\end{itemize}
+
+\subsubsection*{Availability}
+\begin{itemize}
+  \item \textbf{Obsolate Hardware/OS \& Runtime Environments}: 
+  \\
+  Many components of the current infrastructure is based on very old hardware and outdated operating systems such as 
+  Windows XP SP3 (Finance clients), Windows 7 SP3 (HR clients and Customer Service laptops), Debian 5.0 Lenny (Warehouse clients and server),
+  Ubuntu 16.04 LTS (Sales CRM Storage server) etc. Several applications are running on outdated software versions such as Java 1.7/1.8, 
+  MySQL 5.5/5.7, PHP 5.3 and Firefox 3.6 etc. which makes this whole infrastructure more susceptible to failure.
+  \\
+  \item \textbf{Lack of Redundancy and Backup Mechanism}:
+  \\ 
+  There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
+  \\
+  \item \textbf{Manual Maintainance}: 
+  \\It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations. 
+  This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
+  \\
+\end{itemize}
+
+\subsubsection*{Security}
+\begin{itemize}
+  \item \textbf{Basic Windows Firewall and pSense}: 
+  \\
+  Many components of the current infrastructure is based on very old hardware and outdated operating systems such as 
+  Windows XP SP3 (Finance clients), Windows 7 SP3 (HR clients and Customer Service laptops), Debian 5.0 Lenny (Warehouse clients and server),
+  Ubuntu 16.04 LTS (Sales CRM Storage server) etc. Several applications are running on outdated software versions such as Java 1.7/1.8, 
+  MySQL 5.5/5.7, PHP 5.3 and Firefox 3.6 etc. which makes this whole infrastructure more susceptible to failure.
+  \\
+  \item \textbf{Lack of Redundancy and Backup Mechanism}:
+  \\ 
+  There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
+  \\
+  \item \textbf{Manual Maintainance}: 
+  \\It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations. 
+  This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
+  \\
+\end{itemize}
+\subsection{Energy consumption and approximate cost}
+
+Energy consumption calculation for the as-in infrastructure of Low Tech GmbH is as follows : 
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Departments} & \textbf{Server} & \textbf{Client} & \textbf{Laptop} & \textbf{Total Power} & \textbf{Annual Energy}  \\
+ & \textbf{ (Qty x Power) } & \textbf{ (Qty x Power) } & \textbf{ (Qty x Power) } & \textbf{ Consumption } & \textbf{ Consumption(KWh) } \\
+\hline
+Finance & 1 x 1000W & 4 x 500W & - & 3000W & 26,280 \\
+\hline
+HR & 1 x 1000W & 3 x 500W & - & 2500W & 21,900 \\
+\hline
+Warehouse & 1 x 1000W & 10 x 500W & - & 6000W & 52,560 \\
+\hline
+Sales & \makecell{1 x 1000W \\ 1 x 1200W} & - & 10 x 50W & 2700W & 23,652 \\
+\hline
+Operations & 1 x 1200W & - & 4 x 50W & 1400W & 12,264\\
+\hline
+Customer Service & - & - & 5 x 100W & 500W & 4,380 \\
+\hline
+Webshop & 1 x 1200W & - & - & 1200W & 10,512\\
+\hline
+\end{tabular}
+\caption{Power Consumption by Department and Device Type}
+\label{tab:power_consumption}
+\end{table}
+
+\textbf{Total Energy Consumption (Annual)} : 151,548 KWh (151.548 MWh)
+
+According to Eurostat published data of electricity prices for non-household consumers \cite{eurostat2023}, Low Tech GmbH falls under the annual energy consumption band 
+`IB (20 MWh to 499 MWh)' with energy price 0.3244 \EUR{} per KWh.
 
 
+\textbf{Total Cost for Energy Consumption (Annual)} : 151,548 KWh x 0.3244 \EUR{} = 49,162.17 \EUR{}
 
 \section{Client Requirements}
 
