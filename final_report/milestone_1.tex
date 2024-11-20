@@ -108,9 +108,10 @@
   Hellyben Bhaveshkumar Shah (1476905)\\
   \texttt{hellyben.shah@stud.fra-uas.de}
   \and\\
-  Heer Rakeshkumar Vankawala (1449039)\\
+  Heer Rakeshkumar Vankawala (1449039
+  )\\
   \texttt{heer.vankawala@stud.fra-uas.de}
-  \and\\
+  \and\\S
   Priyanka Dilipbhai Vadiwala\\
   \texttt{priyanka.vadiwala@stud.fra-uas.de}
 }
@@ -407,6 +408,103 @@ In this step we perform the following tasks:
 \section{Operation considerations}
 
 After preparing this technological transformation proposal it is important to remark that it will require an important level of effort to migrate the current infrastructure to a private cloud context. But we are not getting the entire benefit of a cloud application. It is to be determined if the applications will scale well horizontally, and if the load (particularly from the Webshop) increases, it will be costly to provision and configure more hardware. Moreover, it is still required to have skilled developers and infrastructure people dedicated to maintaining the health of the deployment.  
+
+\section{Assessment of the (to-be) infrastructure}
+
+\subsection{Improvements on Scalability}
+
+\subsubsection{Elasticity and Resource Pooling via Virtualization:}
+Use VMware vSphere and vSAN to enable dynamic resource pooling, which effectively distributes computing and storage resources.
+
+\textbf{Benefits:}
+\begin{itemize}
+    \item Automatic scaling based on workloads ensures optimum resource utilization.
+    \item Reduces overprovisioning by dynamically allocating resources to virtual machines as needed.
+\end{itemize}
+
+\subsubsection{Auto-Scaling Capabilities:}
+
+\begin{itemize}
+    \item Deploy Kubernetes for containerized applications (such as CRM and webshops). Kubernetes supports horizontal scalability, which allows more containers to be launched during peak loads. 
+    \item Incorporate Proxmox autoscaling for VMs, which dynamically allocates additional CPU, memory, and storage during peak demand.
+\end{itemize}
+
+\subsubsection{Private Cloud with Centralized Management:}
+
+\begin{itemize}
+    \item Switch to a hyper-converged infrastructure, such as Dell VxRail or Nutanix NX-Series, for smooth scalability within the private cloud. The architecture can accommodate extra nodes without requiring considerable adjustment.
+\end{itemize}
+
+\subsection{Improvements on Availability}
+
+\subsubsection{High Availability Framework:}
+
+\begin{itemize}
+    \item Use VMware HA (High Availability) to ensure that services are restored fast following a breakdown. Combine with vMotion to relocate virtual machines without downtime during maintenance. 
+    \item Use distributed storage technologies such as Ceph to duplicate data across numerous nodes, maintaining availability even when hardware fails.
+\end{itemize}
+
+\subsubsection{Redundant Architectures:}
+
+\begin{itemize}
+    \item Implement active-active clusters for key applications such as CRM and webshop. This guarantees ongoing service even if one node fails. 
+    \item Use load balancers (such as HAProxy) to distribute traffic across many instances of an application.
+\end{itemize}
+
+\subsubsection{Backup and Disaster Recovery:}
+
+\begin{itemize}
+    \item Veeam Backup and Replication automates daily backups and provides fast recovery in the event of a failure. 
+    \item Introduce disaster recovery technologies such as Zerto for real-time VM replication, data integrity, and fast failovers.
+\end{itemize}
+
+\subsubsection{Monitoring and Proactive Maintenance:}
+
+\begin{itemize}
+    \item Implement Prometheus and Grafana for infrastructure monitoring, which will generate real-time warnings for anomalies.
+    \item Use Nagios to do automated health checks on servers and applications, which reduces manual involvement and potential human errors.
+\end{itemize}
+
+\subsection{Improvements on Security}
+
+\subsubsection{Enhanced Perimeter Security:}
+
+\begin{itemize}
+    \item Replace legacy firewalls with Next-Generation Firewalls (NGFW), such as Fortinet FortiGate or Palo Alto Networks, to improve threat detection and prevention. 
+    \item The advantages include application-aware filtering, intrusion prevention, and interaction with threat intelligence feeds.
+\end{itemize}
+
+\subsubsection{Network Segmentation:}
+
+\begin{itemize}
+    \item Create VLANs to separate sensitive systems (finance, HR) from public-facing applications (webshop). This minimizes the attack surface.
+\end{itemize}
+
+\subsubsection{Zero Trust Model:}
+
+\begin{itemize}
+    \item Implement a Zero Trust Architecture (ZTA) with identity providers such as Okta to enforce access restriction and MFA. 
+    \item Secure remote access with Fortinet VPN and extra MFA levels.
+\end{itemize}
+
+\subsubsection{Regular Updates and Patch Management:}
+
+\begin{itemize}
+    \item Transition to latest operating systems such as Windows Server 2022 and Ubuntu 22.04 LTS. 
+    \item Use Ansible to automate updates and fixes across all servers and endpoints, ensuring that vulnerabilities are addressed quickly.
+\end{itemize}
+
+\subsubsection{Centralized Log Management and Analytics:}
+
+\begin{itemize}
+    \item To gather, analyze, and store logs from firewalls, servers, and apps, use Splunk or the ELK Stack (Elasticsearch, Logstash, Kibana). This enables faster incident response and anomaly detection.
+\end{itemize}
+
+\subsubsection{Backup Validation:}
+
+\begin{itemize}
+    \item Integrity checks should be included in Veeam Backup and Replication to verify that backups are free of corruption before restoring.
+\end{itemize}
 
 % ---- Bibliography ----
 
