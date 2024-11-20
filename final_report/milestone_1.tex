@@ -310,7 +310,17 @@ To perform a successful migration to a private cloud context we have analyzed th
   \end{center}
 \end{figure}
 
-Note: We could use one VM and Docker to run most of the database instances as containers, making it easier to install or upgrade versions. Nevertheless, some of the tools are difficult to dockerize (SQLServer 2012) and, we want to have isolation between departments, preventing a single point of failure for all our database infrastructure. 
+Note: We could use one VM and Docker to run most of the database instances as containers, making it easier to install or upgrade versions. Nevertheless, some of the tools are difficult to dockerize (SQLServer 2012) and, we want to have isolation between departments, preventing a single point of failure for all our database infrastructure.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=12cm]{diagrams/network_architecture.png}
+    \caption{Network Architecture~\ref{Network_Architecture}}
+    \label{Network_Architecture} % A unique label.
+  \end{center}
+\end{figure}
+
+We subdivide each department into its own network, virtually limiting the access of different clients to their corresponding systems. And only systems can have cross department routes to stablish communication for normal operation. 
 
 \section{Roadmap}
 
