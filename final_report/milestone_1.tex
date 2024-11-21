@@ -108,10 +108,10 @@
   Hellyben Bhaveshkumar Shah (1476905)\\
   \texttt{hellyben.shah@stud.fra-uas.de}
   \and\\
-  Heer Rakeshkumar Vankawala (1449039
-  )\\
+  Heer Rakeshkumar Vankawala (1449039)
+  \\
   \texttt{heer.vankawala@stud.fra-uas.de}
-  \and\\S
+  \and\\
   Priyanka Dilipbhai Vadiwala\\
   \texttt{priyanka.vadiwala@stud.fra-uas.de}
 }
@@ -205,18 +205,18 @@ essential characteristics} such as On-demand self-service, Broad network access,
 
 \subsubsection*{Security}
 \begin{itemize}
-  \item \textbf{Basic Windows Firewall and pSense}:
+  \item \textbf{Basic Windows Firewall}:
         \\
-        It provides minimal outward traffic control, which may allow malware to interact easily.
+        It provides minimal outward traffic control, which may allow malware to interact easily. 
+        Without additional tools, centralized administration is impossible to maintain consistent security rules across all 36 client devices (17 clients and 19 laptops).
+        It lacks advanced threat protection features, leaving the system vulnerable to sophisticated attacks.
         \\
-  \item \textbf{Lack of Redundancy and Backup Mechanism}:
+  \item \textbf{pfSense for Network Packet Filtering}:
         \\ 
-        There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
+        There are no built-in antivirus features, which could let malicious payloads get through. Its effectiveness heavily relies on proper configuration, which may be challenging without dedicated IT staff.
+        Moreover, advanced intrusion detection requires additional setup and maintenance.
         \\
-  \item \textbf{Manual Maintainance}:
-        \\It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations. 
-        This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
-        \\
+ 
 \end{itemize}
 \subsection{Energy consumption and approximate cost}
 
@@ -290,16 +290,6 @@ According to Eurostat published data of electricity prices for non-household con
 
 To perform a successful migration to a private cloud context we have analyzed the baseline performance of the current system, as well as the technologies used. Based on the client requirements, we have selected technologies and established a roadmap to perform this task.   
 
-\subsection{Selected technologies}
-
-\begin{itemize}
-  \item Virtualization engine
-  \item Storage arrangement
-  \item 
-\end{itemize}
-
-\newpage
-
 \subsection{Architecture}
 
 \begin{figure}[htbp]
@@ -361,8 +351,8 @@ In this step we perform the following tasks:
   \item Configure a development environment to upload all artifacts such as configuration files and container images.
   \item Create Ansible configuration files for each application, to automate the installation and replication process.
   \item Develop scripts to automate application functionality and load testing. To determine if the configurations will be on par or better than the current infrastructure.
-  \item  Provision and install the private cloud management software, including the networking configuration
-  \item  Configure the storage
+  \item Provision and install the private cloud management software, including the networking configuration
+  \item Configure the storage
   \item Create the virtual machines for the base hosts
   \item Configure Prometheus to monitor the virtual machine installations
   \item Establish the network links between the different virtual domains
