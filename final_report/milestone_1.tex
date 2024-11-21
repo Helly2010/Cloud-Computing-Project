@@ -506,6 +506,31 @@ Use VMware vSphere and vSAN to enable dynamic resource pooling, which effectivel
     \item Integrity checks should be included in Veeam Backup and Replication to verify that backups are free of corruption before restoring.
 \end{itemize}
 
+\subsubsection*{Integrating the CIA Triad into Infrastructure Strategy}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|p{3cm}|p{5cm}|p{5cm}|}
+        \hline
+        \textbf{Aspect} & \textbf{Proposed Improvements} & \textbf{Objective} \\ \hline
+        \textbf{Confidentiality} 
+        & - Implement AES-256 encryption for data at rest and TLS 1.3 for data in transit. \newline
+          - Use Role-Based Access Control (RBAC) to enforce least privilege access policies. 
+        & Restrict access to authorized users and secure data in transit/storage. \\ \hline
+        \textbf{Integrity} 
+        & Enable backup integrity checks, SHA-256 hashing, and immutable infrastructure. 
+        & Ensure data accuracy and prevent unauthorized modifications. \\ \hline
+        \textbf{Authenticity} 
+        & Use digital certificates and code-signing to verify systems, users, and updates. 
+        & Validate the legitimacy of data sources and communications. \\ \hline
+        \textbf{Non-Repudiation} 
+        & Implement logging, auditing, and digital signatures to ensure accountability and prevent denial. 
+        & Track and prove actions or transactions without disputes. \\ \hline
+    \end{tabular}
+    \caption{CIA Triad Improvements}
+    \label{tab:cia-triad}
+\end{table}
+
 % ---- Bibliography ----
 
 \begin{thebibliography}{5}
