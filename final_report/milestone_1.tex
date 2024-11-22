@@ -2,9 +2,12 @@
 % the LaTeX macro package from Springer-Verlag
 % for Lecture Notes in Computer Science,
 % version 2.3 for LaTeX2e
-%
+
+
+
 \documentclass{llncs}
-%
+
+
 \usepackage{ngerman}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -13,6 +16,7 @@
 \usepackage{rotating}
 \usepackage{verbatim}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{amssymb}   % AMS-Sonderzeichen
 \usepackage{tabularx}  % Für tabularx und newcolumntype
 \usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
@@ -33,8 +37,16 @@
 \usepackage{fancyhdr}
 \usepackage{url}
 \usepackage{caption}
-\captionsetup[table]{skip=10pt} % Adjust the value of '10pt' as needed
+\usepackage{float}
+\setlength{\abovecaptionskip}{0pt} % Reduce space above the caption
+\setlength{\belowcaptionskip}{0pt} % Space between caption and table
+\captionsetup[table]{skip=5pt} % Adjust the value of '10pt' as needed
 \pagestyle{fancy}
+% Reduce space between float and surrounding text
+\setlength{\textfloatsep}{0pt}
+\setlength{\floatsep}{0pt}
+\setlength{\intextsep}{0pt}
+
 
 
 %
@@ -270,22 +282,213 @@ According to Eurostat published data of electricity prices for non-household con
 \section{Assessment of Potential Technological Components}
 
 \subsection{Hardware}
+\vspace{-10pt}
+\begin{table}[H]
+  \setlength{\tabcolsep}{5pt} % Adjust column spacing
+  \renewcommand{\arraystretch}{1.2} % Adjust row spacing
+  \centering
+  \begin{tabular}{|p{3cm}|p{8cm}|p{4cm}|}
+  \hline
+  \textbf{Component} & \textbf{Details} & \textbf{Options} \\
+  \hline
+  \textbf{Compute and Storage} & 
+  A hyper-converged infrastructure (HCI) combining compute, storage, and networking in a single system. & 
+  \textbf{Primary Options:} \newline 
+  - Dell VxRail \newline 
+  - Nutanix NX-Series \newline 
+  \textbf{Alternative:} \newline 
+  - HPE ProLiant DX series \\
+  \hline
+  \textbf{Form Factor} & 
+  1U to 2U rack-mounted nodes that fit into a 19-inch rack. & 
+  \\
+  \hline
+  \textbf{Capabilities} & 
+  High-density storage and compute with built-in redundancy; supports scaling and maintenance. & 
+  \\
+  \hline
+  \textbf{Features} & 
+  Virtualization, software-defined storage (SDS), integrated backup, and disaster recovery. & 
+  \\
+  \hline
+  \textbf{Storage Options} & 
+  & 
+  \\
+  \hline
+  \textbf{All-Flash Array} & 
+  High I/O performance for databases like CRM and Payroll. & 
+  - Pure Storage FlashArray \newline 
+  - Dell EMC PowerStore \\
+  \hline
+  \textbf{Hybrid Storage} & 
+  Mix of SSDs and HDDs to balance performance and cost. & 
+  SSDs for frequently accessed data; HDDs for less critical storage needs. \\
+  \hline
+  \textbf{Backup Appliance} & 
+  Dedicated appliance for securing backups and enabling data restoration. & 
+  - Dell EMC Data Domain \newline 
+  - HPE StoreOnce \\
+  \hline
+  \end{tabular}
+  \caption{Overview of Components and Options}
+  \label{tab:components}
+  \end{table}  
 
-\begin{itemize}
-  \item Provisioning modern hardware locally
-  \item Renting server space
-\end{itemize}
+\subsection{Virtualization and Hypervisor technologies}
+\vspace{-10pt}
+\begin{table}[H]
+  \setlength{\tabcolsep}{5pt} % Adjust column spacing
+  \renewcommand{\arraystretch}{1.2} % Adjust row spacing
+  \centering
+  \begin{tabular}{|p{3.5cm}|p{7cm}|p{4.5cm}|}
+  \hline
+  \textbf{Technology} & \textbf{Features} & \textbf{Advantages/Options} \\
+  \hline
+  
+  \textbf{VMware vSphere} & 
+  Industry-standard hypervisor with advanced features: \newline 
+  - High availability (HA) \newline 
+  - vMotion (for live migrations) \newline 
+  - Distributed Resource Scheduling (DRS). & 
+  Well-suited for HCI setups. \newline 
+  Granular control and easy integration with VMware products such as: \newline 
+  - vSAN (for storage) \newline 
+  - NSX (for networking). \\
+  \hline
+  
+  \textbf{Microsoft Hyper-V on Windows Server 2022} & 
+  Features: \newline 
+  - Replication \newline 
+  - Clustering \newline 
+  - Live migration. & 
+  Cost-effective and works well with Microsoft environments. \newline 
+  Ideal if LowTech GmbH uses Microsoft products. \newline 
+  Supports containers and VMs in the same environment. \\
+  \hline
+  
+  \textbf{Management Tool} & 
+  Centralized management, monitoring, and configuration of virtualized resources. & 
+  Options: \newline 
+  - VMware vCenter \newline 
+  - Microsoft System Center \\
+  \hline
+  
+  \textbf{Containerization Platform} & 
+  Use Kubernetes for managing and orchestrating containers for applications. \newline 
+  Suitable for containerized apps like microservices for webshop or CRM. \newline 
+  Provides flexibility for hybrid cloud migration and easy scaling. & 
+  Options: \newline 
+  - VMware Tanzu \newline 
+  - Red Hat OpenShift \\
+  \hline
+  
+  \end{tabular}
+  \caption{Comparison of Technologies and Features}
+  \label{tab:technologies}
+  \end{table}
+  
+\subsection{Firewall and Network Security}
+\begin{table}[H]
+  \setlength{\tabcolsep}{5pt} % Adjust column spacing
+  \renewcommand{\arraystretch}{1.2} % Adjust row spacing
+  \centering
+  \begin{tabular}{|p{3cm}|p{7cm}|p{5cm}|}
+  \hline
+  \textbf{Technology} & \textbf{Features} & \textbf{Advantages} \\
+  \hline
+  
+  \textbf{Firewall} & 
+  Next-Generation Firewall (NGFW): Fortinet FortiGate or Palo Alto Networks PA-Series. \newline 
+  \textbf{Capabilities:} Packet filtering, intrusion prevention, VPN, application control, and threat intelligence. & 
+  Provides both perimeter and internal segmentation security, which is crucial for sensitive data in CRM and payroll applications. \\
+  \hline
+  
+  & pfSense (Advanced Version): Open-source firewall/router solution with load balancing, failover, and VPN. & 
+  Cost-effective and highly configurable. Suitable for tighter budgets but lacks enterprise-grade features like FortiGate or Palo Alto. \\
+  \hline
+  
+  \textbf{Intrusion Detection/Prevention System (IDS/IPS)} & 
+  Suricata or Snort (for pfSense): Open-source IDS/IPS options that integrate with pfSense. & 
+  Popular open-source options for network intrusion detection and prevention. \\
+  \hline
+  
+  & Cisco Firepower or FortiGate Intrusion Prevention (if using Fortinet or Palo Alto NGFW): Integrated network threat protection. & 
+  Integrated with NGFWs for enhanced threat detection and prevention. \\
+  \hline
+  
+  \textbf{Network Segmentation} & 
+  Use VLANs and/or virtual firewalls to isolate sensitive areas of the network (e.g., HR, Finance, and CRM databases). & 
+  Helps protect critical data by isolating sensitive areas from the public-facing webshop. \\
+  \hline
+  
+  \end{tabular}
+  \caption{Network Security Technologies and Their Advantages}
+  \label{tab:network_security}
+  \end{table}
+  
+\subsection{Backup and Disaster Recovery}
+\begin{table}[H]
+  \setlength{\tabcolsep}{5pt} % Adjust column spacing
+  \renewcommand{\arraystretch}{1.2} % Adjust row spacing
+  \centering
+  \begin{tabular}{|p{3cm}|p{7cm}|p{5cm}|}
+  \hline
+  \textbf{Solution} & \textbf{Features} & \textbf{Advantages} \\
+  \hline
+  
+  \textbf{Backup Solution} & 
+  Veeam Backup \& Replication: Provides comprehensive backup, recovery, and replication for virtual machines, containers, and physical servers. & 
+  Easy integration with VMware and Hyper-V. Supports off-site backups to cloud services and ensures rapid recovery times. \\
+  \hline
+  
+  & Commvault Complete Data Protection: A scalable backup solution for large-scale environments. & 
+  Offers similar features to Veeam with more granular data management. \\
+  \hline
+  
+  \textbf{Disaster Recovery (DR)} & 
+  Zerto: Real-time replication and disaster recovery capabilities. Can replicate VMs between on-premises and cloud environments. & 
+  Enables a future hybrid setup with minimal downtime. \\
+  \hline
+  
+  & VMware Site Recovery Manager (SRM): Automatic failover and failback of VMs in VMware environments. & 
+  Tailored for VMware setups; streamlines disaster recovery processes. \\
+  \hline
+  
+  \end{tabular}
+  \caption{Backup and Disaster Recovery Solutions}
+  \label{tab:backup_dr}
+  \end{table}
 
-\subsection{Virtualization Technologies}
+\subsection{Software Components}
 
+\begin{table}[H]
+\setlength{\tabcolsep}{5pt} % Adjust column spacing
+\renewcommand{\arraystretch}{1.2} % Adjust row spacing
+\centering
+\begin{tabular}{|p{4cm}|p{6cm}|p{5cm}|}
+\hline
+\textbf{Category} & \textbf{Features} & \textbf{Advantages/Options} \\
+\hline
 
-\subsection{Application Components}
+\textbf{Configuration Management} & 
+Ansible: Automates configuration and deployment of applications across servers. Uses playbooks to simplify repetitive tasks. &
+Reduces maintenance efforts and ensures consistency across servers. \\
+\hline
 
-\subsection{Platforms}
+\textbf{DevOps Tools} & 
+GitLab or Jenkins: Tools for CI/CD (Continuous Integration/Continuous Deployment) pipelines. Automates testing and deployment processes. &
+Improves agility and reduces downtime by streamlining application updates. \\
+\hline
 
-\subsection{Security Components}
+\textbf{VPN and Remote Access} & 
+OpenVPN or Fortinet VPN: Provides secure remote access. Enable multi-factor authentication (MFA) for enhanced security. &
+Ensures secure connectivity for remote users while protecting sensitive systems. \\
+\hline
 
-\newpage
+\end{tabular}
+\caption{Other Software Components}
+\label{tab:software_components}
+\end{table}
 \section{Migration to a Private-Cloud Context}
 
 To perform a successful migration to a private cloud context we have analyzed the baseline performance of the current system, as well as the technologies used. Based on the client requirements, we have selected technologies and established a roadmap to perform this task.   
