@@ -276,17 +276,17 @@ According to Eurostat published data of electricity prices for non-household con
   \item Renting server space
 \end{itemize}
 
-\subsection{Virtualization technologies}
+\subsection{Virtualization Technologies}
 
 
-\subsection{Application components}
+\subsection{Application Components}
 
 \subsection{Platforms}
 
-\subsection{Security components}
+\subsection{Security Components}
 
 
-\section{Migration to a private-cloud context}
+\section{Migration to a Private-Cloud Context}
 
 To perform a successful migration to a private cloud context we have analyzed the baseline performance of the current system, as well as the technologies used. Based on the client requirements, we have selected technologies and established a roadmap to perform this task.   
 
@@ -388,88 +388,76 @@ In this step we perform the following tasks:
   \item During optimization we also need to allocate time for training, and documenting the different processes such as: how to scale, deploy and provision new services.
 \end{itemize}
 
-\section{Operation considerations}
+\section{Operation Considerations}
 
 After preparing this technological transformation proposal it is important to remark that it will require an important level of effort to migrate the current infrastructure to a private cloud context. But we are not getting the entire benefit of a cloud application. It is to be determined if the applications will scale well horizontally, and if the load (particularly from the Webshop) increases, it will be costly to provision and configure more hardware. Moreover, it is still required to have skilled developers and infrastructure people dedicated to maintaining the health of the deployment.  
 
-\section{Assessment of the (to-be) infrastructure}
+\section{Assessment of the (to-be) Infrastructure}
 
-\subsection{Improvements on Scalability}
+\subsection{Improvements on Scalability, Availability and Security Analysis}
 
-\subsubsection{Elasticity and Resource Pooling via Virtualization:}
-Use ProxMox to enable dynamic resource pooling, which can be configured to distribute computing and storage resources.
-
-
-\subsubsection{Auto-Scaling Capabilities:}
+\subsubsection*{Scalability}
 
 \begin{itemize}
-  \item We have the potential to incorporate VM autoscaling to create more VMs if applications can scale horizontally.
-  \item Incorporate Proxmox autoscaling for VMs, which dynamically allocates additional CPU, memory, and storage during peak demand.
+  \item \textbf{Elasticity \& Resource Pooling via Virtualization}:
+        \\
+        Use ProxMox to enable dynamic resource pooling, which can be configured to distribute computing and storage resources.
+        \\
+  \item \textbf{Auto-Scaling Capabilities}:
+        \\ 
+        We have the potential to incorporate VM autoscaling to create more VMs if applications can scale horizontally.
+        Incorporate Proxmox autoscaling for VMs, which dynamically allocates additional CPU, memory, and storage during peak demand.
+        \\    
 \end{itemize}
 
+\subsubsection*{Availability}
+\begin{itemize}
+  \item \textbf{High Availability Framework}:
+        \\
+        Moving to a rented server space alone improves our availability by having a dedicated SLO agreement with a provider.
+        Using ZFS we can configure our storage to withstand component level failure.
+        We can easily dedicate storage to make backups of all critical information.
+        \\
+  \item \textbf{Redundant Architectures}:
+        \\ 
+        We have different VM replicas for each server which makes our architecture redundant in nature.
+        Use load balancers (such as HAProxy) to distribute traffic across many instances of an application.
+        \\    
+  \item \textbf{Backup and Disaster Recovery}:
+        \\ 
+        We can enable backup and automatic replication daily to provides fast recovery in the event of a failure.
+        \\ 
+  \item \textbf{Monitoring and Proactive Maintenance}:
+        \\ 
+        Implement Prometheus and Grafana for infrastructure monitoring, which will generate real-time warnings for anomalies.
+        \\ 
+\end{itemize}
 
-\subsection{Improvements on Availability}
-
-\subsubsection{High Availability Framework:}
+\subsubsection*{Security}
 
 \begin{itemize}
-  \item Moving to a rented server space alone improves our availability by having a dedicated SLO agreement with a provider.
-  \item Using ZFS we can configure our storage to withstand component level failure.
-  \item We can easily dedicate storage to make backups of all critical information.
+  \item \textbf{Enhanced Perimeter Security}:
+        \\
+        Replace legacy firewalls with Next-Generation Firewalls (NGFW), such as Fortinet FortiGate or Palo Alto Networks, to improve threat detection and prevention.
+        The advantages include application-aware filtering, intrusion prevention, and interaction with threat intelligence feeds.
+        We can even increase our physical security by renting the server in a dedicated datacenter facility.
+        \\
+  \item \textbf{Network Segmentation}:
+        \\ 
+        Create VLANs to separate sensitive systems (finance, HR) from public-facing applications (webshop). This minimizes the attack surface.
+        \\    
+  \item \textbf{Regular Updates and Patch Management}:
+        \\ 
+        Transition to latest operating systems such as Windows Server 2022 and Ubuntu 22.04 LTS.
+        Use Ansible to automate updates and fixes across all servers and endpoints, ensuring that vulnerabilities are addressed quickly.
+        \\ 
+  \item \textbf{Centralized Log Management and Analytics}:
+        \\ 
+        With the instrumentation of all applications we have a better understanding of the infrastructure demands, and we can make educated decisions when upgrading or improving the infrastructure.
+        \\ 
 \end{itemize}
 
-\subsubsection{Redundant Architectures:}
-
-\begin{itemize}
-  \item We have different VM replicas for each server which makes our architecture redundant in nature.
-  \item Use load balancers (such as HAProxy) to distribute traffic across many instances of an application.
-\end{itemize}
-
-\subsubsection{Backup and Disaster Recovery:}
-
-\begin{itemize}
-  \item We can enable backup and automatic replication daily to provides fast recovery in the event of a failure.
-\end{itemize}
-
-\subsubsection{Monitoring and Proactive Maintenance:}
-
-\begin{itemize}
-  \item Implement Prometheus and Grafana for infrastructure monitoring, which will generate real-time warnings for anomalies.
-        
-\end{itemize}
-
-\subsection{Improvements on Security}
-
-\subsubsection{Enhanced Perimeter Security:}
-
-\begin{itemize}
-  \item Replace legacy firewalls with Next-Generation Firewalls (NGFW), such as Fortinet FortiGate or Palo Alto Networks, to improve threat detection and prevention.
-  \item The advantages include application-aware filtering, intrusion prevention, and interaction with threat intelligence feeds.
-  \item We can even increase our physical security by renting the server in a dedicated datacenter facility.
-\end{itemize}
-
-\subsubsection{Network Segmentation:}
-
-\begin{itemize}
-  \item Create VLANs to separate sensitive systems (finance, HR) from public-facing applications (webshop). This minimizes the attack surface.
-\end{itemize}
-
-
-\subsubsection{Regular Updates and Patch Management:}
-
-\begin{itemize}
-  \item Transition to latest operating systems such as Windows Server 2022 and Ubuntu 22.04 LTS.
-  \item Use Ansible to automate updates and fixes across all servers and endpoints, ensuring that vulnerabilities are addressed quickly.
-\end{itemize}
-
-\subsubsection{Centralized Log Management and Analytics:}
-
-\begin{itemize}
-  \item With the instrumentation of all applications we have a better understanding of the infrastructure demands, and we can make educated decisions when upgrading or improving the infrastructure.
-\end{itemize}
-
-
-\subsubsection{Integrating the CIA Triad into Infrastructure Strategy}
+\subsubsection*{Integrating the CIA Triad into Infrastructure Strategy}
 \phantom{.}
 
 \begin{table}[tbph]
