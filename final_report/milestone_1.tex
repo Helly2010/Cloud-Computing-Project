@@ -277,11 +277,10 @@ According to Eurostat published data of electricity prices for non-household con
   \item Maintenance reduction
   \item High availability of 99.5\%
 \end{itemize}
-
 \section{Assessment of Potential Technological Components}
-
+\vspace{-60pt}
 \subsection{Hardware}
-\vspace{-10pt}
+\vspace{-40pt}
 \begin{table}[H]
   \setlength{\tabcolsep}{5pt} % Adjust column spacing
   \renewcommand{\arraystretch}{1.2} % Adjust row spacing
@@ -334,7 +333,6 @@ According to Eurostat published data of electricity prices for non-household con
   \end{table}  
 
 \subsection{Virtualization and Hypervisor technologies}
-\vspace{-10pt}
 \begin{table}[H]
   \setlength{\tabcolsep}{5pt} % Adjust column spacing
   \renewcommand{\arraystretch}{1.2} % Adjust row spacing
@@ -345,46 +343,36 @@ According to Eurostat published data of electricity prices for non-household con
   \hline
   
   \textbf{VMware vSphere} & 
-  Industry-standard hypervisor with advanced features: \newline 
-  - High availability (HA) \newline 
-  - vMotion (for live migrations) \newline 
-  - Distributed Resource Scheduling (DRS). & 
-  Well-suited for HCI setups. \newline 
-  Granular control and easy integration with VMware products such as: \newline 
-  - vSAN (for storage) \newline 
-  - NSX (for networking). \\
+  - High availability (HA), vMotion (live migrations), and DRS. \newline 
+  - Integration with vSAN (storage) and NSX (networking). & 
+  - Well-suited for HCI setups. \newline 
+  - Option: VMware vCenter. \\
   \hline
   
-  \textbf{Microsoft Hyper-V on Windows Server 2022} & 
-  Features: \newline 
-  - Replication \newline 
-  - Clustering \newline 
-  - Live migration. & 
-  Cost-effective and works well with Microsoft environments. \newline 
-  Ideal if LowTech GmbH uses Microsoft products. \newline 
-  Supports containers and VMs in the same environment. \\
+  \textbf{Microsoft Hyper-V} & 
+  - Replication, Clustering, and Live Migration. \newline 
+  - Supports containers and VMs together. & 
+  - Cost-effective for Microsoft environments. \newline 
+  - Option: Microsoft System Center. \\
   \hline
-  
-  \textbf{Management Tool} & 
-  Centralized management, monitoring, and configuration of virtualized resources. & 
-  Options: \newline 
-  - VMware vCenter \newline 
-  - Microsoft System Center \\
+
+  \textbf{Proxmox VE} & 
+  - Open-source, supports KVM VMs and LXC containers. \newline 
+  - Built-in clustering, ZFS storage, and snapshots. & 
+  - No licensing costs. \newline 
+  - Option: Proxmox VE Web UI. \\
   \hline
   
   \textbf{Containerization Platform} & 
-  Use Kubernetes for managing and orchestrating containers for applications. \newline 
-  Suitable for containerized apps like microservices for webshop or CRM. \newline 
-  Provides flexibility for hybrid cloud migration and easy scaling. & 
-  Options: \newline 
-  - VMware Tanzu \newline 
-  - Red Hat OpenShift \\
+  - Use Kubernetes for container orchestration. \newline 
+  - Flexible for hybrid cloud and scaling. & 
+  - Options: VMware Tanzu, Red Hat OpenShift. \\
   \hline
   
   \end{tabular}
   \caption{Comparison of Technologies and Features}
   \label{tab:technologies}
-  \end{table}
+\end{table}
   
 \subsection{Firewall and Network Security}
 \begin{table}[H]
