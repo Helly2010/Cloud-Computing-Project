@@ -530,6 +530,36 @@ This is the most critical step. We need to establish a baseline of performance, 
   \item Assess the budget and space constraints for new hardware, or to rent such services. A preliminary review points to renting server space as the most appropriate solution. To achieve the availability metrics required by the customer will require a great investment in provisioning, modernizing and validating the current server location. Not only in technological terms, but also: physical security, thermal management, internet bandwidth and energy provisioning.
   \item Spec the hardware after evaluating the usage pattern and metrics. We want to, not only get parity to the current hardware but have space to grow.
 \end{itemize}
+\subsubsection{Rental Cost Calculation}
+\textbf{Option 1: Cloud Rental (Monthly Cost Calculation)}
+\vspace{3pt}
+\begin{table}[H]
+\centering
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{6cm}|>{\raggedleft\arraybackslash}p{3cm}|>{\raggedleft\arraybackslash}p{3cm}|}
+\hline
+\textbf{Component}      & \textbf{Quantity/Details}                          & \textbf{Unit Cost} & \textbf{Total Cost} \\ \hline
+Compute (VMs)           & 12 Medium VMs (8 vCPUs, 32GB RAM, 1TB SSD)         & \$300 per VM/month & \$3,600             \\ \hline
+Storage                 & 6TB Cloud Storage (e.g., Amazon S3/Glacier)        & \$20 per TB/month  & \$120               \\ \hline
+Bandwidth               & 500GB (9000 visits, 250KB payload each)            & \$0.15 per GB      & \$75                \\ \hline
+\textbf{Total Cloud Rental Cost} &                                          &                    & \textbf{\$3,795/month} \\ \hline
+\end{tabular}
+\caption{Cloud Rental Cost Breakdown}
+\end{table}
+
+\textbf{Option 2: Dedicated Rental (Monthly Cost Calculation)}
+\vspace{3pt}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{6cm}|>{\raggedleft\arraybackslash}p{3cm}|>{\raggedleft\arraybackslash}p{3cm}|}
+\hline
+\textbf{Component}      & \textbf{Quantity/Details}                          & \textbf{Unit Cost} & \textbf{Total Cost} \\ \hline
+Dedicated Servers       & 6 Servers (32 vCPUs, 128GB RAM, 2TB SSD)           & \$750 per Server/month & \$4,500         \\ \hline
+Storage                 & 6TB SAN/NAS Storage for CRM and Sales data         & \$125 per TB/month & \$750               \\ \hline
+Bandwidth               & Included in Dedicated Hosting                      & \$0                & \$0                 \\ \hline
+\textbf{Total Dedicated Rental Cost} &                                       &                    & \textbf{\$5,250/month} \\ \hline
+\end{tabular}
+\caption{Dedicated Rental Cost Breakdown}
+\end{table}
 
 \subsection{Design}
 
@@ -681,7 +711,7 @@ In this step we perform the following tasks:
   \label{tab:cia-triad}
 \end{table}
 
-\newpage
+
 
 \section{Operation Considerations}
 
