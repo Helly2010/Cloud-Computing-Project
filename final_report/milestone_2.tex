@@ -1,0 +1,264 @@
+% This is LLNCS.DEM the demonstration file of
+% the LaTeX macro package from Springer-Verlag
+% for Lecture Notes in Computer Science,
+% version 2.3 for LaTeX2e
+
+
+
+\documentclass{llncs}
+
+
+\usepackage{ngerman}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{makeidx}  % allows for indexgeneration
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amssymb}   % AMS-Sonderzeichen
+\usepackage{tabularx}  % Für tabularx und newcolumntype
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{color}
+\usepackage{ragged2e}
+\usepackage{ifpdf}
+% \usepackage{titlesec}
+\usepackage{xcolor}    % Lieber xcolor als color. Dann klappt auch das listings gut mit den Farben
+\usepackage{listings}
+\usepackage{upquote}   % Verändert die Ausgabe der einfachen Anführungszeichen innerhalb von verbatim
+\usepackage{eurosym}   % Euro-Zeichen: \euro
+\usepackage{lastpage}  % \pageref{LastPage} um die Anzahl der Seiten zu erhalten
+% hiermit kann man auch umlaute copy-pasten
+\usepackage{lmodern}
+\selectlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{caption}
+\usepackage{float}
+\setlength{\abovecaptionskip}{0pt} % Reduce space above the caption
+\setlength{\belowcaptionskip}{0pt} % Space between caption and table
+\captionsetup[table]{skip=5pt} % Adjust the value of '10pt' as needed
+\pagestyle{fancy}
+% Reduce space between float and surrounding text
+\setlength{\textfloatsep}{0pt}
+\setlength{\floatsep}{0pt}
+\setlength{\intextsep}{0pt}
+
+
+
+%
+
+\ifpdf
+\pdfinfo{
+   /Author (Wladymir Alexander Brborich Herrera)
+   /Author (Vishwaben Pareshbhai Kakadiya)
+   /Author (Hellyben Bhaveshkumar Shah)
+   /Author (Heer Rakeshkumar Vankawala)
+   /Author (Priyanka Dilipbhai Vadiwala)
+   /Title  (LowTech GMmBH Techincal Transformation Milestone 1)
+   /Subject (Cloud Computing)
+   /Keywords (Cloud Computing, Technical Transformation, Migration)
+}
+\fi
+
+\setlength{\parindent}{0pt}    % Erste Zeile eines Absatzes nicht einrücken
+\parskip2ex                    % Absatzabstand
+\setlength{\itemsep}{0ex plus0.2ex}
+\sloppy                        % Auf jeden Fall die Seitenränder einhalten.
+
+\newcommand{\what}{Milestone 2 : LowTech GMmBH Migration to Azure}
+\newcommand{\who}{Group 23}
+\newcommand{\when}{WiSe 2024-2025}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\lhead[\when]{\who}
+\rhead[\who]{\when}
+\chead[]{}
+\lfoot[Page \thepage\ of \pageref{LastPage}]{\what}
+\rfoot[\what]{Page \thepage\ of \pageref{LastPage}}
+\cfoot[]{}
+\pagestyle{fancy}
+
+
+% Hurenkinder und Schusterjungen komplett verbieten.
+\clubpenalty = 10000 
+\widowpenalty = 10000 
+\displaywidowpenalty = 10000
+% Diese Begriffe bezeichnen den Makel beim Textsatz, wenn eine Seite mit der ersten Zeile eines Absatzes endet (so genannter Schusterjunge) oder eine neue Seite mit der letzten Zeile eines Absatzes beginnt (so genanntes Hurenkind).
+
+
+% Wir definieren ein paar Farben
+\definecolor{Brown}{cmyk}{0,0.81,1,0.60}
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.9}
+\definecolor{FrankfurtBlue}{HTML}{3333b2}
+
+% Hier fängt das Dokument an!
+\begin{document}
+
+%
+% \frontmatter          % for the preliminaries
+%
+% \tableofcontents
+%
+\mainmatter              % start of the contributions
+%
+\title{\what}
+%
+\author{
+    Wladymir Alexander Brborich Herrera (1437876)\\
+    \texttt{wladymir.brborich-herrera@stud.fra-uas.de}
+    \and\\
+    Vishwaben Pareshbhai Kakadiya (1471845)\\
+    \texttt{vishwaben.kakadiya@stud.fra-uas.de}
+    \and\\
+    Hellyben Bhaveshkumar Shah (1476905)\\
+    \texttt{hellyben.shah@stud.fra-uas.de}
+    \and\\
+    Heer Rakeshkumar Vankawala (1449039)
+    \\
+    \texttt{heer.vankawala@stud.fra-uas.de}
+    \and\\
+    Priyanka Dilipbhai Vadiwala (1481466)\\
+    \texttt{priyanka.vadiwala@stud.fra-uas.de}
+}
+%
+\institute{
+    Frankfurt University of Applied Sciences\\
+    (1971-2014: Fachhochschule Frankfurt am Main)\\
+    Nibelungenplatz 1\\
+    D-60318 Frankfurt am Main\\
+}
+
+\maketitle              % typeset the title of the contribution
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{Overview of the Problem}
+
+
+\section{Objectives of the Migration}
+
+\section{Migration Strategy}
+
+\subsection{Finance	Legacy Application}
+
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Finance	SAP PPM}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Finance	SAP ERP}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Finance	SAP IAM}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Finance	SAP ERM}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Production	Reporting Management}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Production, HR	Shift Management}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Supply Management SCM}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Quality Management QM Software}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Warehouse Warehouse Management}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Warehouse Deliforce}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Sales, Operations, Customer Service	CRM}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Sales Lead Management}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Sales Business Analytics}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Sales Tableu (Market Development)}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{HR HR Software}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Facility Management	Facility Management Software}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Several Departments	Office Suite}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+\subsection{Webshop	Website}
+\subsubsection{Cloud Context}
+\subsubsection{Products And Technologies}
+\subsubsection{Service Models}
+
+
+\section{Cost of operations in Microsoft Azure}
+
+\section{Migration Roadmap}
+
+\section{Cloud Architecture}
+
+\section{Standard For a Cloud Native Application}
+
+
+% ---- Bibliography ----
+
+\begin{thebibliography}{5}
+
+   
+
+\end{thebibliography}
+\end{document}
