@@ -58,7 +58,7 @@
    /Author (Hellyben Bhaveshkumar Shah)
    /Author (Heer Rakeshkumar Vankawala)
    /Author (Priyanka Dilipbhai Vadiwala)
-   /Title  (LowTech GMmBH Techincal Transformation Milestone 1)
+   /Title  (LowTech GMmBH Techincal Transformation Milestone 2)
    /Subject (Cloud Computing)
    /Keywords (Cloud Computing, Technical Transformation, Migration)
 }
@@ -312,45 +312,167 @@ It will communicate with other internal applications using Azure Express Route, 
 \end{table}
 
 \subsection{Sales, Operations, Customer Service	CRM}
-\subsubsection{Cloud Context}
-\subsubsection{Products And Technologies}
-\subsubsection{Service Models}
+
+This application is supplied by a third party. It will be installed in a linux virtual machine, using Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
+As all other internal applications, it will only be accessible through the company VPN.\\
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Cloud Context} & \textbf{Products And Technologies}                              & \textbf{Service Models} \\
+        \hline
+        Public Cloud           & Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets & IaaS                    \\
+    \end{tabular}
+    \caption{Quality Management QM Software Deployment Strategy}
+\end{table}
 
 \subsection{Sales Lead Management}
-\subsubsection{Cloud Context}
-\subsubsection{Products And Technologies}
-\subsubsection{Service Models}
+This application will be installed on premise. As other on premise deployments we will automate it with Ansible.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
+        \hline
+        Private Cloud          & ProxMox, Ansible                   & N/A                     \\
+        \hline
+    \end{tabular}
+    \caption{Sales Lead Management Deployment Strategy}
+\end{table}
 
 \subsection{Sales Business Analytics}
-\subsubsection{Cloud Context}
-\subsubsection{Products And Technologies}
-\subsubsection{Service Models}
+This application is supplied by a third party. It will be installed in a linux virtual machine, using Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
+As all other internal applications, it will only be accessible through the company VPN.\\
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Cloud Context} & \textbf{Products And Technologies}                              & \textbf{Service Models} \\
+        \hline
+        Public Cloud           & Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets & IaaS                    \\
+    \end{tabular}
+    \caption{Sales Business Analytics Deployment Strategy}
+\end{table}
 
 \subsection{Sales Tableu (Market Development)}
-\subsubsection{Cloud Context}
-\subsubsection{Products And Technologies}
-\subsubsection{Service Models}
+This application is supplied by a third party. It will be installed in a custom virtual machine, using Azure Tableu Server.
+In this case we are not going to actively enable auto scaling, since we anticipate that te use case does not benefit from adding more instances.
+As other internal applications it will only be accessible through the company VPN.\\
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
+        \hline
+        Public Cloud           & Azure Tableu Server                & IaaS                    \\
+        N/A                    & Tableu Desktop                     & N/A                     \\
+    \end{tabular}
+    \caption{Sales Tableu (Market Development) Deployment Strategy}
+\end{table}
 
 \subsection{HR HR Software}
-\subsubsection{Cloud Context}
-\subsubsection{Products And Technologies}
-\subsubsection{Service Models}
+This application will be newly developed following the standard for new applications.
+To secure all newly developed applications we are going to use Microsoft Entra ID, and make them accessible only with the company VPN.\\
 
-\subsection{Facility Management	Facility Management Software}
-\subsubsection{Cloud Context}
-\subsubsection{Products And Technologies}
-\subsubsection{Service Models}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
+        \hline
+        Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
+        \hline
+        Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
 
-\subsection{Several Departments	Office Suite}
-\subsubsection{Cloud Context}
-\subsubsection{Products And Technologies}
-\subsubsection{Service Models}
+        \hline
+        Public Cloud           & Microsoft Entra ID                 & PaaS                    \\
+        \hline
+        Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
+        \hline
+    \end{tabular}
+    \caption{HR Software Deployment Strategy}
+\end{table}
+
+\subsection{Facility Management Software}
+This is a proprietary application that will be deployed on premises following practices stated for all previous on premise deployments\\
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
+        \hline
+        Private Cloud          & ProxMox, Ansible                   & N/A                     \\
+        \hline
+    \end{tabular}
+    \caption{Facility Management Software Deployment Strategy}
+\end{table}
+
+\subsection{Office Suite}
+In this case, several departments need access to the office suite. We are going to provide them with access to the Microsoft 365 selection of products.
+Each client will have the option to use the office suite in the cloud, or locally on their devices. We will also provide OneDrive access for easy document sharing and collaboration.\\
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
+        \hline
+        Public Cloud           & Microsoft Office 365               & SaaS                    \\
+        \hline
+        Public Cloud           & OneDrive                           & SaaS                    \\
+        \hline
+    \end{tabular}
+    \caption{Office Suite Deployment Strategy}
+\end{table}
 
 \subsection{Webshop	Website}
-\subsubsection{Cloud Context}
-\subsubsection{Products And Technologies}
-\subsubsection{Service Models}
 
+This application will be newly developed following the standard for new applications.
+As a special consideration, this application is the only public facing application which needs to handle customer requests.
+Our standard for newly developed applications enable this critical piece of the business to easily scale and be secured with valid certificates with no extra configurations.\\
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
+        \hline
+        Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
+        \hline
+        Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
+        \hline
+        Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
+        \hline
+    \end{tabular}
+    \caption{Webshop Website Deployment Strategy}
+\end{table}
+
+\subsection{General Considerations}
+
+Importantly, for all newly developed applications we will:
+\begin{itemize}
+    \item Set up a private GitHub repository
+    \item Set up GitHub actions to enable continues integration and continuous deployments in Azure
+    \item Set up an infrastructure folder to hold terraform files. These files will define the infrastructure and will allow for easy repeatability
+    \item Use Microsoft Entra ID in case authentication with the organization is needed
+    \item Use Docker to package the applicaation with containers that will be deployed in Azure App Service in case of the backend, and Azure Static Web Apps in case of the frontend
+\end{itemize}
+For all aplications that will be deployed on premises:
+\begin{itemize}
+    \item Set up a private GitHub repository
+    \item Create Ansible playbooks to make configuration and instalation in a VM repeatable
+    \item In case the application needs to communicate with another aplication deployed in the public cloud we will use Azure Express Route to create a getaway.
+\end{itemize}
+
+For all applications that will be installed on the cloud and run in virtual machines:
+\begin{itemize}
+    \item Set up a private GitHub repository
+    \item Create terraform files to define the infrastructure i.e the VM size and OS
+    \item Create Ansible playbooks to make configuration and instalation in a VM repeatable
+\end{itemize}
 
 \section{Cost of operations in Microsoft Azure}
 
