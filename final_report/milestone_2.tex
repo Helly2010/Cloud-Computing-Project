@@ -151,7 +151,7 @@
 After reviewing the company landscape we have evaluated several options for the migration to a public/private cloud context depending on the application.
 For each one we detail the Cloud Context to deploy, which tools to use, and, if relevant, details on the service models of each product.
 
-\subsection{Finance	Legacy Application}
+\subsection{Finance: Legacy Application}
 
 As the finance department still needs to use this application for the next 3 years, we are only going to migrate to our own private cloud context.
 In this case, it is going to be deployed into a virtual machine with the ability to scale in terms of memory and CPU thanks to PoxMox.
@@ -173,7 +173,7 @@ We are also going to use Ansible playbooks to automate the configuration and ins
 \end{table}
 
 
-\subsection{Finance	SAP PPM, ERP, IAM and ERM}
+\subsection{Finance: SAP PPM, ERP, IAM and ERM}
 These applications will also be deployed in the new private cloud context.
 Since the finance department is the only one that needs access, this system will be somewhat isolated.
 We are going to configure networking access only for the finance department clients.
@@ -192,7 +192,7 @@ Following the same patterns as for the Legacy application, we are also going to 
     \caption{Finance SAP PPM, ERP, IAM and ERM Deployment Strategy}
 \end{table}
 
-\subsection{Production Reporting Management}
+\subsection{Production: Reporting Management}
 This application will be newly developed, for this, we are going to deploy the backend using Azure App Service, the front end using Azure Static Web Apps, Azure Blob Storage to save reports, and Azure CosmosDB if a database is needed.
 To secure all newly developed applications we are going to use Microsoft Entra ID, and make them accessible only with the company VPN.\\
 \begin{table}[h!]
@@ -216,7 +216,7 @@ To secure all newly developed applications we are going to use Microsoft Entra I
 \end{table}
 
 
-\subsection{Production, HR Shift Management}
+\subsection{Production + HR: Shift Management}
 This application will be newly developed. Following the standard for new applications, we will deploy the backend using Azure App Service, the front end using Azure Static Web Apps, and Azure Database For PostgreSQL if a database is needed.
 To secure all newly developed applications we are going to use Microsoft Entra ID, and make them accessible only with the company VPN.\\
 
@@ -239,7 +239,7 @@ To secure all newly developed applications we are going to use Microsoft Entra I
     \caption{Production, HR, Shift Management Deployment Strategy}
 \end{table}
 
-\subsection{Supply Management SCM}
+\subsection{Supply Management: SCM}
 This application is supplied by a third party. It will be installed in a linux virtual machine, using Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
 Same as all other internal applications, it will only be accessible through the company VPN.\\
 
@@ -254,7 +254,7 @@ Same as all other internal applications, it will only be accessible through the 
     \caption{Supply Management SCM Deployment Strategy}
 \end{table}
 
-\subsection{Quality Management QM Software}
+\subsection{Quality Management: QM Software}
 This application is supplied by a third party. It will be installed in a windows virtual machine, using Azure Windows Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
 Same as all other internal applications, it will only be accessible through the company VPN.\\
 
@@ -269,7 +269,7 @@ Same as all other internal applications, it will only be accessible through the 
     \caption{Quality Management QM Software Deployment Strategy}
 \end{table}
 
-\subsection{Warehouse Warehouse Management}
+\subsection{Warehouse: Warehouse Management}
 This application will be newly developed. Following the standard for new applications, we will deploy the backend using Azure App Service, the front end using Azure Static Web Apps, and Azure Database For PostgreSQL if a database is needed.
 To secure all newly developed applications we are going to use Microsoft Entra ID, and make them accessible only with the company VPN.\\
 
@@ -289,10 +289,10 @@ To secure all newly developed applications we are going to use Microsoft Entra I
         Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
         \hline
     \end{tabular}
-    \caption{Production, HR, Shift Management Deployment Strategy}
+    \caption{Warehouse, Warehouse Management}
 \end{table}
 
-\subsection{Warehouse Deliforce}
+\subsection{Warehouse: Deliforce}
 
 This application will be installed on premise. As other on premise deployments we will automate it with Ansible.
 It will communicate with other internal applications using Azure Express Route, enabling us to transfer information between our private cloud and its public counterpart.\\
@@ -311,7 +311,7 @@ It will communicate with other internal applications using Azure Express Route, 
     \caption{Warehouse Deliforce Deployment Strategy}
 \end{table}
 
-\subsection{Sales, Operations, Customer Service	CRM}
+\subsection{Sales + Operations + Customer Service: CRM}
 
 This application is supplied by a third party. It will be installed in a linux virtual machine, using Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
 As all other internal applications, it will only be accessible through the company VPN.\\
@@ -327,7 +327,7 @@ As all other internal applications, it will only be accessible through the compa
     \caption{Quality Management QM Software Deployment Strategy}
 \end{table}
 
-\subsection{Sales Lead Management}
+\subsection{Sales: Lead Management}
 This application will be installed on premise. As other on premise deployments we will automate it with Ansible.
 \begin{table}[h!]
     \centering
@@ -341,7 +341,7 @@ This application will be installed on premise. As other on premise deployments w
     \caption{Sales Lead Management Deployment Strategy}
 \end{table}
 
-\subsection{Sales Business Analytics}
+\subsection{Sales: Business Analytics}
 This application is supplied by a third party. It will be installed in a linux virtual machine, using Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
 As all other internal applications, it will only be accessible through the company VPN.\\
 
@@ -356,7 +356,7 @@ As all other internal applications, it will only be accessible through the compa
     \caption{Sales Business Analytics Deployment Strategy}
 \end{table}
 
-\subsection{Sales Tableu (Market Development)}
+\subsection{Sales: Tableu (Market Development)}
 This application is supplied by a third party. It will be installed in a custom virtual machine, using Azure Tableu Server.
 In this case we are not going to actively enable auto scaling, since we anticipate that te use case does not benefit from adding more instances.
 As other internal applications it will only be accessible through the company VPN.\\
@@ -373,7 +373,7 @@ As other internal applications it will only be accessible through the company VP
     \caption{Sales Tableu (Market Development) Deployment Strategy}
 \end{table}
 
-\subsection{HR HR Software}
+\subsection{HR: HR Software}
 This application will be newly developed following the standard for new applications.
 To secure all newly developed applications we are going to use Microsoft Entra ID, and make them accessible only with the company VPN.\\
 
@@ -396,7 +396,7 @@ To secure all newly developed applications we are going to use Microsoft Entra I
     \caption{HR Software Deployment Strategy}
 \end{table}
 
-\subsection{Facility Management Software}
+\subsection{Facility Management: Facility Management Software}
 This is a proprietary application that will be deployed on premises following practices stated for all previous on premise deployments\\
 \begin{table}[h!]
     \centering
@@ -410,7 +410,7 @@ This is a proprietary application that will be deployed on premises following pr
     \caption{Facility Management Software Deployment Strategy}
 \end{table}
 
-\subsection{Office Suite}
+\subsection{Finance + HR + Sales + Legislation: Office Suite}
 In this case, several departments need access to the office suite. We are going to provide them with access to the Microsoft 365 selection of products.
 Each client will have the option to use the office suite in the cloud, or locally on their devices. We will also provide OneDrive access for easy document sharing and collaboration.\\
 
@@ -428,7 +428,7 @@ Each client will have the option to use the office suite in the cloud, or locall
     \caption{Office Suite Deployment Strategy}
 \end{table}
 
-\subsection{Webshop	Website}
+\subsection{Webshop: Website CMS}
 
 This application will be newly developed following the standard for new applications.
 As a special consideration, this application is the only public facing application which needs to handle customer requests.
