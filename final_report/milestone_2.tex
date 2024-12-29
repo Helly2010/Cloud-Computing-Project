@@ -474,11 +474,8 @@ For all applications that will be installed on the cloud and run in virtual mach
     \item Create Ansible playbooks to make configuration and instalation in a VM repeatable
 \end{itemize}
 
-\section{Cost of operations in Microsoft Azure}
-
-\section{Migration Roadmap}
-
-\section{Cloud Architecture}
+\section{Proposed Cloud Architecture \& Justfication of Used Service Models}
+By considering the requirements of LowTech GmbH, we offer Hyrid Cloud Architecture as mentioned earlier in section 3 and illustrated in the figure \ref{Cloud_Architecture} below. According to the newly modified application landscape, each department's software components use suitable service model solutions (IaaS, PaaS, and SaaS) from public or private cloud service providers.
 
 \begin{figure}[htbp]
     \begin{center}
@@ -489,6 +486,30 @@ For all applications that will be installed on the cloud and run in virtual mach
     \end{center}
   \end{figure}
 
+\subsection{Public Cloud Service Provider : Microsoft Azure}
+\subsubsection{Azure App Serive: PaaS}
+Azure App Service is a comprehensive Platform-as-a-Service (PaaS) offering for developers, providing a fully managed environment for building, deploying, and scaling web applications under offered service plan.
+
+All the newly developed Python3 applications (Reporting Management,Shift Management, Warehouse Management, HR Software and Webshop Website) will be deployed within the single azure app service plan to optimize cost and performance, provided the plan has sufficient resources to handle the load.
+
+\begin{itemize}
+    \item \textbf{Service Plan: Premium v3} 
+    The premium service plan offers better compatibility with our application landscape and requirements due to following reasons.
+    \begin{itemize}
+        \item \textbf{}
+    \end{itemize}
+    \item \textbf{Operating System: Linux} - As Linux is the only operating system option for running Python apps in App Service. Linux is generally recommended due to better performance and compatibility with Python libraries1
+    .Linux also offers a more native environment for Python development\cite{azure-python}.
+\end{itemize}
+
+
+
+\section{Cost of operations in Microsoft Azure}
+
+\section{Migration Roadmap}
+
+
+
 \section{Standard For a Cloud Native Application}
 
 
@@ -496,7 +517,8 @@ For all applications that will be installed on the cloud and run in virtual mach
 
 \begin{thebibliography}{5}
 
-
+\bibitem{azure-python}
+Microsoft, "Configure a Linux Python app for Azure App Service," Microsoft Learn, Available: \url{https://learn.microsoft.com/en-us/azure/app-service/configure-language-python}. [Accessed: Dec. 29, 2024].
 
 \end{thebibliography}
 \end{document}
