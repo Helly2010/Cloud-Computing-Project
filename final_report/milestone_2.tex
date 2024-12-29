@@ -490,20 +490,35 @@ By considering the requirements of LowTech GmbH, we offer Hyrid Cloud Architectu
 \subsubsection{Azure App Serive: PaaS}
 Azure App Service is a comprehensive Platform-as-a-Service (PaaS) offering for developers, providing a fully managed environment for building, deploying, and scaling web applications under offered service plan.
 
-All the newly developed Python3 applications (Reporting Management,Shift Management, Warehouse Management, HR Software and Webshop Website) will be deployed within the single azure app service plan to optimize cost and performance, provided the plan has sufficient resources to handle the load.
+All the newly developed Python3 applications (Reporting Management,Shift Management, Warehouse Management, HR Software and Webshop Website) will be deployed within the single azure app service plan to optimize cost and performance, provided the plan has sufficient resources to handle the load as multiple apps in the same app Service plan share the same VM instances.
 
 \begin{itemize}
-    \item \textbf{Service Plan: Premium v3} 
-    The premium service plan offers better compatibility with our application landscape and requirements due to following reasons.
+    \item \textbf{Service Plan:} \textit{Premium v3}
+    The premium service plan offers better compatibility with our application landscape and requirements compared to other tiers  due to following reasons.
+
     \begin{itemize}
-        \item \textbf{}
+        \item \textbf{Auto-scaling \& Per-app scaling} - With automatic scaling enabled, Azure will monitor the load on your apps and distribute instances based on the metrics set up as such CPU usage. It also supports per-app scaling, allowing each app to scale independently based on its specific load.
+        \item \textbf{Availability \& Zone Redundancy} - Azure SLA guarantees 99.95\% availability but incase case of availability zone failures it is advised to configure app service plan as zone redundant,which means that your resources are spread across multiple availability zones. (Note: To enable zone-redundancy atleast 3 instances should be there in a app service plan).
+        \item \textbf{Security} - Supports authentication, IP address restriction and also offer virtual network integration.
+        \item \textbf{Load-balancing} - Distributes incoming traffic across multiple instances to maximize throughput, minimize response time, and avoid overloading any single resource.
+        \item \textbf{Multi-tenant} - Multiple clients can access the solution via their own individual domains.
     \end{itemize}
-    \item \textbf{Operating System: Linux} - As Linux is the only operating system option for running Python apps in App Service. Linux is generally recommended due to better performance and compatibility with Python libraries1
+    
+    \item \textbf{Operating System:} \textit{Linux} - As Linux is the only operating system option for running Python apps in App Service. Linux is generally recommended due to better performance and compatibility with Python libraries1
     .Linux also offers a more native environment for Python development\cite{azure-python}.
+
+    \item \textbf{VM Instance:} \textit{P2v3} - \#Instances: 3
+    
+    \begin{itemize}
+        \item \textbf{Core:} \textit{4} 
+        \item \textbf{RAM:} \textit{16} 
+        \item \textbf{Storage:} \textit{250 GB} 
+    \end{itemize}
 \end{itemize}
 
-
-
+\subsubsection{Azure Static Web App: PaaS}
+\subsubsection{Microsoft Entra ID : PaaS}
+\subsubsection{Azure Database(PostgreSQL/Cosmos DB) : PaaS}
 \section{Cost of operations in Microsoft Azure}
 
 \section{Migration Roadmap}
@@ -517,8 +532,44 @@ All the newly developed Python3 applications (Reporting Management,Shift Managem
 
 \begin{thebibliography}{5}
 
-\bibitem{azure-python}
-Microsoft, "Configure a Linux Python app for Azure App Service," Microsoft Learn, Available: \url{https://learn.microsoft.com/en-us/azure/app-service/configure-language-python}. [Accessed: Dec. 29, 2024].
+    \bibitem{MicrosoftAzureScaling}
+    Microsoft,
+    \emph{High-density hosting on Azure App Service using per-app scaling},
+    2024,
+    \url{https://learn.microsoft.com/en-us/azure/app-service/manage-scale-per-app}.
+
+    
+    \bibitem{MicrosoftAzureReliability}
+    Microsoft,
+    \emph{Reliability recommendations for Azure App Service},
+    2024,
+    \url{https://learn.microsoft.com/en-us/azure/reliability/reliability-app-service?pivots=premium}.
+    
+    \bibitem{MicrosoftAzureAppServiceOverviewDE}
+    Microsoft,
+    \emph{App Service-Übersicht},
+    2024,
+    \url{https://learn.microsoft.com/de-de/azure/app-service/overview}.
+    
+    \bibitem{MicrosoftAzureHostingPlans}
+    Microsoft,
+    \emph{Azure App Service plan overview},
+    2024,
+    \url{https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans}.
+    
+    \bibitem{MicrosoftAzureSubscriptionLimits}
+    Microsoft,
+    \emph{Azure subscription and service limits, quotas, and constraints},
+    2024,
+    \url{https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits}.
+    
+    \bibitem{MicrosoftAzurePythonConfig}
+    Microsoft,
+    \emph{Configure Linux Python apps - Azure App Service},
+    2024,
+    \url{https://learn.microsoft.com/en-us/azure/app-service/configure-language-python}.
+    
+
 
 \end{thebibliography}
 \end{document}
