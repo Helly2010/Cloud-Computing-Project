@@ -488,7 +488,7 @@ By considering the requirements of LowTech GmbH, we offer Hyrid Cloud Architectu
 
 \subsection{Public Cloud Service Provider : Microsoft Azure}
 \subsubsection{Azure App Serive: PaaS}
-Azure App Service is a comprehensive Platform-as-a-Service (PaaS) offering for developers, providing a fully managed environment for building, deploying, and scaling web applications under offered service plan.
+Azure App Service is a comprehensive HTTP-based  Platform-as-a-Service (PaaS) offering for developers, providing a fully managed environment for building, deploying, and scaling web applications under offered service plan.
 
 All the newly developed Python3 applications (Reporting Management,Shift Management, Warehouse Management, HR Software and Webshop Website) will be deployed within the single azure app service plan to optimize cost and performance, provided the plan has sufficient resources to handle the load as multiple apps in the same app Service plan share the same VM instances.
 
@@ -517,10 +517,49 @@ All the newly developed Python3 applications (Reporting Management,Shift Managem
 \end{itemize}
 
 \subsubsection{Azure Static Web App: PaaS}
-\subsubsection{Microsoft Entra ID : PaaS}
-\subsubsection{Azure Database(PostgreSQL/Cosmos DB) : PaaS}
-\section{Cost of operations in Microsoft Azure}
+Azure Static Web Apps is a Platform-as-a-Service (PaaS) offering that automatically builds and deploys modern web apps with a static front-end to Azure from a code repository and provides seamless backend connection options.
+Here, we will be deploy our React.js based front for all newly developed applications to static web apps connected with dedicated Web apps from App service plan explained above.
+\begin{itemize}
+\item \textbf{Service Plan:} \textit{Standard} - \#Apps: 5
+    
+\begin{itemize}
+    \item \textbf{Included Bandwidth:} \textit{100 GB} 
+    \textit{NOTE: We need 500 GB bandwidth}
+    \item \textbf{Storage:} \textit{2 GB/app} 
+\end{itemize}
+ Key-features of this service are mentioned below.
 
+ \begin{itemize}
+    \item \textbf{Global Distribution} - static assets are distributed around the world, makes serving files much faster as files are physically closer to end users.
+    \item \textbf{DevOps \& CICD Pipeline} - Automated deployment from code repositories like GitHub or Azure DevOps based on code changes and allows CI/CD pipeline integration.
+    \item \textbf{Security} - Supports authentication and Custom Domains with SSL certificates which are automatically renewed.
+\end{itemize}
+\end{itemize}
+
+
+\subsubsection{Microsoft Entra ID : PaaS}
+Microsoft Entra ID is a cloud-based identity and access management service that enables your employees to access cloud resources. Microsoft Entra ID Free edition is included with Azure cloud services (here, App Service \& Static Web Apps) which 
+provides security standards with multi-factor authentication.
+It offers basic RBAC user and group management as well but advanced security is offered in paid plans only.
+
+\subsubsection{Azure Database(PostgreSQL/Cosmos DB) : PaaS}
+
+\section{Cost of operations in Microsoft Azure (Excluding Software Licensing)}
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|l|c|c|c|c|}
+      \hline
+      \textbf{Azure Cloud Service}   & \textbf{Plan Details}        & \textbf{Cost/Month}    &\textbf{Quantity}   & \textbf{Total Cost/Month}  \\
+                           
+      \hline
+      App Service              & 3 years savings plan          & \textasciitilde 136 €              & 3                    & ~\textasciitilde 408 €                 \\
+      \hline
+      Static Web Apps             & Standard         &  \textasciitilde 8.5 € + (0.191 €/GB)           & 5 + (500 GB)                 &  43 € + 95 € = \textasciitilde 138 €                \\
+     
+    \end{tabular}
+    \caption{Cost of operations in Microsoft Azure}
+    \label{tab:Cost_Operation_Monthly}
+  \end{table}
 \section{Migration Roadmap}
 
 
