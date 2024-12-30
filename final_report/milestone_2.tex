@@ -542,6 +542,36 @@ Microsoft Entra ID is a cloud-based identity and access management service that 
 provides security standards with multi-factor authentication.
 It offers basic RBAC user and group management as well but advanced security is offered in paid plans only.
 
+\subsubsection{Virtual Machine Scale Sets: IaaS}
+Azure Virtual Machine Scale Sets are a compute resource that allows to deploy and manage a set of identical, auto-scaling virtual machines.
+We will be using it to manage our group of VMs. This service is offered free of cost along with the VM.
+
+\begin{itemize}
+    \item \textbf{Automatic scaling} -  Can automatically increase or decrease the number of VM instances based on demand or a defined schedule.
+    \item \textbf{High availability} - Distributes VMs across fault domains and update domains to ensure application resilience.
+    \item \textbf{Load balancing} - Integrated with Azure Load Balancer for distributing traffic across VM instances.
+\end{itemize}
+
+\subsubsection{Virtual Machine: IaaS}
+\begin{itemize}
+    \item \textbf{CRM \& SCM }
+
+    \begin{itemize}
+    \item \textbf{Instance:} \textit{Dls v6-series} 
+    \item  \textbf{Operating System:} \textit{Ubuntu Linux} 
+    \item  \textbf{vCPUs:} \textit{2}
+    \item  \textbf{Operating System:} \textit{4 GiB}  
+    \end{itemize}
+    Total 5 instances of above VM will be deployed under 1 Scale Set for CRM application used by Operations, Sales \& Customer Service and SCM used by Supply Management.
+
+    \item \textbf{QM}
+    \begin{itemize}
+        \item 1 more instance of VM same as above
+    \end{itemize}
+
+
+\end{itemize}
+
 \subsubsection{Azure Database(PostgreSQL/Cosmos DB) : PaaS}
 
 \section{Cost of operations in Microsoft Azure (Excluding Software Licensing)}
@@ -554,8 +584,14 @@ It offers basic RBAC user and group management as well but advanced security is 
       \hline
       App Service              & 3 years savings plan          & \textasciitilde 136 €              & 3                    & ~\textasciitilde 408 €                 \\
       \hline
-      Static Web Apps             & Standard         &  \textasciitilde 8.5 € + (0.191 €/GB)           & 5 + (500 GB)                 &  43 € + 95 € = \textasciitilde 138 €                \\
-     
+      Static Web Apps             & Standard         &  \textasciitilde 8.5 € + (0.191 €/GB)           & 5 + (500 GB)       &  43 € + 95 € = \textasciitilde 138 €                \\
+      \hline
+      Virtual Machine           & Dls v6-series        &  \textasciitilde 31 €                         & 6               &  \textasciitilde 186 €                \\
+      \hline
+      Storage           &        &                          &              &                \\
+      \hline
+      Database           &         &                          &               &                \\
+      \hline
     \end{tabular}
     \caption{Cost of operations in Microsoft Azure}
     \label{tab:Cost_Operation_Monthly}
