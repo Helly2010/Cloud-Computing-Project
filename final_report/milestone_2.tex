@@ -479,12 +479,12 @@ By considering the requirements of LowTech GmbH, we offer Hyrid Cloud Architectu
 
 \begin{figure}[htbp]
     \begin{center}
-      \includegraphics[width=1\textwidth]{diagrams/AzureArchCloud.png}
-      \vspace{0.01\textwidth}
-      \caption{Hybrid Cloud Architecture (Azure and On Premises)}
-      \label{Cloud_Architecture} % A unique label.
+        \includegraphics[width=1\textwidth]{diagrams/AzureArchCloud.png}
+        \vspace{0.01\textwidth}
+        \caption{Hybrid Cloud Architecture (Azure and On Premises)}
+        \label{Cloud_Architecture} % A unique label.
     \end{center}
-  \end{figure}
+\end{figure}
 
 \subsection{Public Cloud Service Provider : Microsoft Azure}
 \subsubsection{Azure App Serive: PaaS}
@@ -494,51 +494,51 @@ All the newly developed Python3 applications (Reporting Management,Shift Managem
 
 \begin{itemize}
     \item \textbf{Service Plan:} \textit{Premium v3}
-    The premium service plan offers better compatibility with our application landscape and requirements compared to other tiers  due to following reasons.
+          The premium service plan offers better compatibility with our application landscape and requirements compared to other tiers  due to following reasons.
 
-    \begin{itemize}
-        \item \textbf{Auto-scaling \& Per-app scaling} - With automatic scaling enabled, Azure will monitor the load on your apps and distribute instances based on the metrics set up as such CPU usage. It also supports per-app scaling, allowing each app to scale independently based on its specific load.
-        \item \textbf{Availability \& Zone Redundancy} - Azure SLA guarantees 99.95\% availability but incase case of availability zone failures it is advised to configure app service plan as zone redundant,which means that your resources are spread across multiple availability zones. (Note: To enable zone-redundancy atleast 3 instances should be there in a app service plan).
-        \item \textbf{Security} - Supports authentication, IP address restriction and also offer virtual network integration.
-        \item \textbf{Load-balancing} - Distributes incoming traffic across multiple instances to maximize throughput, minimize response time, and avoid overloading any single resource.
-        \item \textbf{Multi-tenant} - Multiple clients can access the solution via their own individual domains.
-    \end{itemize}
-    
+          \begin{itemize}
+              \item \textbf{Auto-scaling \& Per-app scaling} - With automatic scaling enabled, Azure will monitor the load on your apps and distribute instances based on the metrics set up as such CPU usage. It also supports per-app scaling, allowing each app to scale independently based on its specific load.
+              \item \textbf{Availability \& Zone Redundancy} - Azure SLA guarantees 99.95\% availability but incase case of availability zone failures it is advised to configure app service plan as zone redundant,which means that your resources are spread across multiple availability zones. (Note: To enable zone-redundancy atleast 3 instances should be there in a app service plan).
+              \item \textbf{Security} - Supports authentication, IP address restriction and also offer virtual network integration.
+              \item \textbf{Load-balancing} - Distributes incoming traffic across multiple instances to maximize throughput, minimize response time, and avoid overloading any single resource.
+              \item \textbf{Multi-tenant} - Multiple clients can access the solution via their own individual domains.
+          \end{itemize}
+
     \item \textbf{Operating System:} \textit{Linux} - As Linux is the only operating system option for running Python apps in App Service. Linux is generally recommended due to better performance and compatibility with Python libraries1
-    .Linux also offers a more native environment for Python development\cite{azure-python}.
+          .Linux also offers a more native environment for Python development\cite{azure-python}.
 
     \item \textbf{VM Instance:} \textit{P2v3} - \#Instances: 3
-    
-    \begin{itemize}
-        \item \textbf{Core:} \textit{4} 
-        \item \textbf{RAM:} \textit{16} 
-        \item \textbf{Storage:} \textit{250 GB} 
-    \end{itemize}
+
+          \begin{itemize}
+              \item \textbf{Core:} \textit{4}
+              \item \textbf{RAM:} \textit{16}
+              \item \textbf{Storage:} \textit{250 GB}
+          \end{itemize}
 \end{itemize}
 
 \subsubsection{Azure Static Web App: PaaS}
 Azure Static Web Apps is a Platform-as-a-Service (PaaS) offering that automatically builds and deploys modern web apps with a static front-end to Azure from a code repository and provides seamless backend connection options.
 Here, we will be deploy our React.js based front for all newly developed applications to static web apps connected with dedicated Web apps from App service plan explained above.
 \begin{itemize}
-\item \textbf{Service Plan:} \textit{Standard} - \#Apps: 5
-    
-\begin{itemize}
-    \item \textbf{Included Bandwidth:} \textit{100 GB} 
-    \textit{NOTE: We need 500 GB bandwidth}
-    \item \textbf{Storage:} \textit{2 GB/app} 
-\end{itemize}
- Key-features of this service are mentioned below.
+    \item \textbf{Service Plan:} \textit{Standard} - \#Apps: 5
 
- \begin{itemize}
-    \item \textbf{Global Distribution} - static assets are distributed around the world, makes serving files much faster as files are physically closer to end users.
-    \item \textbf{DevOps \& CICD Pipeline} - Automated deployment from code repositories like GitHub or Azure DevOps based on code changes and allows CI/CD pipeline integration.
-    \item \textbf{Security} - Supports authentication and Custom Domains with SSL certificates which are automatically renewed.
-\end{itemize}
+          \begin{itemize}
+              \item \textbf{Included Bandwidth:} \textit{100 GB}
+                    \textit{NOTE: We need 500 GB bandwidth}
+              \item \textbf{Storage:} \textit{2 GB/app}
+          \end{itemize}
+          Key-features of this service are mentioned below.
+
+          \begin{itemize}
+              \item \textbf{Global Distribution} - static assets are distributed around the world, makes serving files much faster as files are physically closer to end users.
+              \item \textbf{DevOps \& CICD Pipeline} - Automated deployment from code repositories like GitHub or Azure DevOps based on code changes and allows CI/CD pipeline integration.
+              \item \textbf{Security} - Supports authentication and Custom Domains with SSL certificates which are automatically renewed.
+          \end{itemize}
 \end{itemize}
 
 
 \subsubsection{Microsoft Entra ID : PaaS}
-Microsoft Entra ID is a cloud-based identity and access management service that enables your employees to access cloud resources. Microsoft Entra ID Free edition is included with Azure cloud services (here, App Service \& Static Web Apps) which 
+Microsoft Entra ID is a cloud-based identity and access management service that enables your employees to access cloud resources. Microsoft Entra ID Free edition is included with Azure cloud services (here, App Service \& Static Web Apps) which
 provides security standards with multi-factor authentication.
 It offers basic RBAC user and group management as well but advanced security is offered in paid plans only.
 
@@ -556,18 +556,18 @@ We will be using it to manage our group of VMs. This service is offered free of 
 \begin{itemize}
     \item \textbf{CRM \& SCM }
 
-    \begin{itemize}
-    \item \textbf{Instance:} \textit{Dls v6-series} 
-    \item  \textbf{Operating System:} \textit{Ubuntu Linux} 
-    \item  \textbf{vCPUs:} \textit{2}
-    \item  \textbf{Operating System:} \textit{4 GiB}  
-    \end{itemize}
-    Total 5 instances of above VM will be deployed under 1 Scale Set for CRM application used by Operations, Sales \& Customer Service and SCM used by Supply Management.
+          \begin{itemize}
+              \item \textbf{Instance:} \textit{Dls v6-series}
+              \item  \textbf{Operating System:} \textit{Ubuntu Linux}
+              \item  \textbf{vCPUs:} \textit{2}
+              \item  \textbf{Operating System:} \textit{4 GiB}
+          \end{itemize}
+          Total 5 instances of above VM will be deployed under 1 Scale Set for CRM application used by Operations, Sales \& Customer Service and SCM used by Supply Management.
 
     \item \textbf{QM}
-    \begin{itemize}
-        \item 1 more instance of VM same as above
-    \end{itemize}
+          \begin{itemize}
+              \item 1 more instance of VM same as above
+          \end{itemize}
 
 
 \end{itemize}
@@ -578,30 +578,42 @@ We will be using it to manage our group of VMs. This service is offered free of 
 \begin{table}[htbp]
     \centering
     \begin{tabular}{|l|c|c|c|c|}
-      \hline
-      \textbf{Azure Cloud Service}   & \textbf{Plan Details}        & \textbf{Cost/Month}    &\textbf{Quantity}   & \textbf{Total Cost/Month}  \\
-                           
-      \hline
-      App Service              & 3 years savings plan          & \textasciitilde 136 €              & 3                    & ~\textasciitilde 408 €                 \\
-      \hline
-      Static Web Apps             & Standard         &  \textasciitilde 8.5 € + (0.191 €/GB)           & 5 + (500 GB)       &  43 € + 95 € = \textasciitilde 138 €                \\
-      \hline
-      Virtual Machine           & Dls v6-series        &  \textasciitilde 31 €                         & 6               &  \textasciitilde 186 €                \\
-      \hline
-      Storage           &        &                          &              &                \\
-      \hline
-      Database           &         &                          &               &                \\
-      \hline
+        \hline
+        \textbf{Azure Cloud Service} & \textbf{Plan Details} & \textbf{Cost/Month}                  & \textbf{Quantity} & \textbf{Total Cost/Month}           \\
+
+        \hline
+        App Service                  & 3 years savings plan  & \textasciitilde 136 €                & 3                 & ~\textasciitilde 408 €              \\
+        \hline
+        Static Web Apps              & Standard              & \textasciitilde 8.5 € + (0.191 €/GB) & 5 + (500 GB)      & 43 € + 95 € = \textasciitilde 138 € \\
+        \hline
+        Virtual Machine              & Dls v6-series         & \textasciitilde 31 €                 & 6                 & \textasciitilde 186 €               \\
+        \hline
+        Storage                      &                       &                                      &                   &                                     \\
+        \hline
+        Database                     &                       &                                      &                   &                                     \\
+        \hline
     \end{tabular}
     \caption{Cost of operations in Microsoft Azure}
     \label{tab:Cost_Operation_Monthly}
-  \end{table}
+\end{table}
 \section{Migration Roadmap}
 
+\newpage
 
 
 \section{Standard For a Cloud Native Application}
 
+When developing a cloud native application Figure \ref{CloudStandard} shows the basic setup to integrate DevOps concepts into our workflow.
+The website is going to be development under this standard.\\
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{diagrams/AppStandard.drawio.png}
+        \vspace{0.01\textwidth}
+        \caption{Standard Configuration To Deploy An Application}
+        \label{CloudStandard} % A unique label.
+    \end{center}
+\end{figure}
 
 % ---- Bibliography ----
 
@@ -613,37 +625,37 @@ We will be using it to manage our group of VMs. This service is offered free of 
     2024,
     \url{https://learn.microsoft.com/en-us/azure/app-service/manage-scale-per-app}.
 
-    
+
     \bibitem{MicrosoftAzureReliability}
     Microsoft,
     \emph{Reliability recommendations for Azure App Service},
     2024,
     \url{https://learn.microsoft.com/en-us/azure/reliability/reliability-app-service?pivots=premium}.
-    
+
     \bibitem{MicrosoftAzureAppServiceOverviewDE}
     Microsoft,
     \emph{App Service-Übersicht},
     2024,
     \url{https://learn.microsoft.com/de-de/azure/app-service/overview}.
-    
+
     \bibitem{MicrosoftAzureHostingPlans}
     Microsoft,
     \emph{Azure App Service plan overview},
     2024,
     \url{https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans}.
-    
+
     \bibitem{MicrosoftAzureSubscriptionLimits}
     Microsoft,
     \emph{Azure subscription and service limits, quotas, and constraints},
     2024,
     \url{https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits}.
-    
+
     \bibitem{MicrosoftAzurePythonConfig}
     Microsoft,
     \emph{Configure Linux Python apps - Azure App Service},
     2024,
     \url{https://learn.microsoft.com/en-us/azure/app-service/configure-language-python}.
-    
+
 
 
 \end{thebibliography}
