@@ -487,15 +487,14 @@ By considering the requirements of LowTech GmbH, we offer Hyrid Cloud Architectu
 \end{figure}
 
 \subsection{Public Cloud Service Provider : Microsoft Azure}
-\subsubsection{Azure App Serive: PaaS}
+\subsubsection{Azure App Serive: PaaS} \leavevmode\newline
 Azure App Service is a comprehensive HTTP-based  Platform-as-a-Service (PaaS) offering for developers, providing a fully managed environment for building, deploying, and scaling web applications under offered service plan.
 
 All the newly developed Python3 applications (Reporting Management,Shift Management, Warehouse Management, HR Software and Webshop Website) will be deployed within the single azure app service plan to optimize cost and performance, provided the plan has sufficient resources to handle the load as multiple apps in the same app Service plan share the same VM instances.
 
 \begin{itemize}
-    \item \textbf{Service Plan:} \textit{Premium v3}
-          The premium service plan offers better compatibility with our application landscape and requirements compared to other tiers  due to following reasons.
-
+    \item \textbf{Service Plan:} \textit{Premium v3} - The premium service plan offers better compatibility with our application landscape and requirements compared to other tiers.
+    \item Key features of this service
           \begin{itemize}
               \item \textbf{Auto-scaling \& Per-app scaling} - With automatic scaling enabled, Azure will monitor the load on your apps and distribute instances based on the metrics set up as such CPU usage. It also supports per-app scaling, allowing each app to scale independently based on its specific load.
               \item \textbf{Availability \& Zone Redundancy} - Azure SLA guarantees 99.95\% availability but incase case of availability zone failures it is advised to configure app service plan as zone redundant,which means that your resources are spread across multiple availability zones. (Note: To enable zone-redundancy atleast 3 instances should be there in a app service plan).
@@ -516,7 +515,7 @@ All the newly developed Python3 applications (Reporting Management,Shift Managem
           \end{itemize}
 \end{itemize}
 
-\subsubsection{Azure Static Web App: PaaS}
+\subsubsection{Azure Static Web App: PaaS} \leavevmode\newline
 Azure Static Web Apps is a Platform-as-a-Service (PaaS) offering that automatically builds and deploys modern web apps with a static front-end to Azure from a code repository and provides seamless backend connection options.
 Here, we will be deploy our React.js based front for all newly developed applications to static web apps connected with dedicated Web apps from App service plan explained above.
 \begin{itemize}
@@ -527,8 +526,8 @@ Here, we will be deploy our React.js based front for all newly developed applica
                     \textit{NOTE: We need 500 GB bandwidth}
               \item \textbf{Storage:} \textit{2 GB/app}
           \end{itemize}
-          Key-features of this service are mentioned below.
-
+          
+        \item Key features of this service
           \begin{itemize}
               \item \textbf{Global Distribution} - static assets are distributed around the world, makes serving files much faster as files are physically closer to end users.
               \item \textbf{DevOps \& CICD Pipeline} - Automated deployment from code repositories like GitHub or Azure DevOps based on code changes and allows CI/CD pipeline integration.
@@ -537,60 +536,103 @@ Here, we will be deploy our React.js based front for all newly developed applica
 \end{itemize}
 
 
-\subsubsection{Microsoft Entra ID : PaaS}
+\subsubsection{Microsoft Entra ID : PaaS} \leavevmode\newline
 Microsoft Entra ID is a cloud-based identity and access management service that enables your employees to access cloud resources. Microsoft Entra ID Free edition is included with Azure cloud services (here, App Service \& Static Web Apps) which
 provides security standards with multi-factor authentication.
 It offers basic RBAC user and group management as well but advanced security is offered in paid plans only.
 
-\subsubsection{Virtual Machine Scale Sets: IaaS}
+\subsubsection{Virtual Machine Scale Sets: IaaS} \leavevmode\newline
 Azure Virtual Machine Scale Sets are a compute resource that allows to deploy and manage a set of identical, auto-scaling virtual machines.
 We will be using it to manage our group of VMs. This service is offered free of cost along with the VM.
-
 \begin{itemize}
-    \item \textbf{Automatic scaling} -  Can automatically increase or decrease the number of VM instances based on demand or a defined schedule.
-    \item \textbf{High availability} - Distributes VMs across fault domains and update domains to ensure application resilience.
-    \item \textbf{Load balancing} - Integrated with Azure Load Balancer for distributing traffic across VM instances.
+\item Key features of this service
+    \begin{itemize}
+        \item \textbf{Automatic scaling} -  Can automatically increase or decrease the number of VM instances based on demand or a defined schedule.
+        \item \textbf{High availability} - Distributes VMs across fault domains and update domains to ensure application resilience.
+        \item \textbf{Load balancing} - Integrated with Azure Load Balancer for distributing traffic across VM instances.
+    \end{itemize}
 \end{itemize}
 
-\subsubsection{Virtual Machine: IaaS}
+\subsubsection{Virtual Machine: IaaS} \leavevmode\newline
+Total 5 instances VM mentioned below will be deployed under 1 Scale Set for CRM application used by Operations, Sales \& Customer Service and SCM used by Supply Management.
 \begin{itemize}
-    \item \textbf{CRM \& SCM }
-
+    \item \textbf{CRM \& SCM} - \#Instances: 5
           \begin{itemize}
-              \item \textbf{Instance:} \textit{Dls v6-series}
+              \item \textbf{Instance:} \textit{Dpsv6}
               \item  \textbf{Operating System:} \textit{Ubuntu Linux}
               \item  \textbf{vCPUs:} \textit{2}
-              \item  \textbf{Operating System:} \textit{4 GiB}
+              \item  \textbf{RAM:} \textit{8 GiB}
           \end{itemize}
-          Total 5 instances of above VM will be deployed under 1 Scale Set for CRM application used by Operations, Sales \& Customer Service and SCM used by Supply Management.
-
-    \item \textbf{QM}
+    \item \textbf{QM} - \#Instances: 1
           \begin{itemize}
-              \item 1 more instance of VM same as above
+                \item \textbf{Instance:} \textit{Dpsv6}
+                \item  \textbf{Operating System:} \textit{Windows}
+                \item  \textbf{vCPUs:} \textit{2}
+                \item  \textbf{RAM:} \textit{8 GiB}
           \end{itemize}
-
-
+    \item Key features of this service
+        \begin{itemize}
+            \item  \textbf{New optimised architecture:} \textit{Outstanding performance for general-purpose workloads for day-to-day business operations.}
+            \item  \textbf{Balanced performance:} \textit{Equipped with faster processors provide a solid balance between CPU capabilities and memory size.}
+        \end{itemize}
 \end{itemize}
 
-\subsubsection{Azure Database(PostgreSQL/Cosmos DB) : PaaS}
+\subsubsection{Azure Database(PostgreSQL/Cosmos DB) : PaaS} \leavevmode\newline
+In the new adjusted application landscape no specific details of the database so we will assume size of database previous application landscape.
 
+\begin{itemize}
+    \item \textbf{Azure PostgreSQL} 
+    \begin{itemize}
+        \item \textbf{Payroll:} \textit{1 TB - used by HR Software and Shift Management}
+        \item  \textbf{Delivery:} \textit{250 GB - used by Warehouse Management}
+        \item  \textbf{CRM:} \textit{980 GB - used by Sales, Operation and Customer Service}
+        \item  \textbf{CMS:} \textit{10 GB - used by Webshop Website}
+    \end{itemize} \leavevmode\newline
+    Chosen configuration for our solution is mentioned below.
+    \begin{itemize}
+        \item \textbf{Server:} \textit{D2ds v5 - Flexible}
+        \item  \textbf{vCores:} \textit{2}
+        \item  \textbf{Memory:} \textit{8 GiB}
+        \item  \textbf{Storage:} \textit{Premium SSD v2 configuration - 2240 GB \textasciitilde 2085 GiBs}
+        \item  \textbf{IOPS:} \textit{3000 at no additional cost, Our estimated requirement is \textasciitilde 6000}
+        \item  \textbf{Provisioned Throughput:} \textit{125 MB/S}
+        \item  \textbf{Backup Storage:} \textit{Geo-Redundant Storage (GRS) - 2240 GB \textasciitilde 2085 GiBs}
+    \end{itemize}
+    \item Key features of this serive
+        \begin{itemize}
+            \item  \textbf{Flexibility:} \textit{Fully managed database service offering more control and flexibility over database management and configuration.}
+            \item  \textbf{Balanced performance:} \textit{Balanced compute and storage capacities with scalable I/O throughput, efficient cost-performance ratio}
+            \item  \textbf{High availability \& Low latency:} \textit{Allows users to collocate the database engine with the client tier for lower latency and choose high availability within a single availability zone or zone redundant (At extra cost)}
+            \item  \textbf{Redundancy:} \textit{The storage maintains three locally redundant synchronous copies of the database files ensuring data durability.}
+            \item  \textbf{Backup:} \textit{GRS replicates your data in a secondary region several hundred kilometers away from the primary source data location and provides greater durability of your data even in the event of a regional outage.}
+        \end{itemize}
+  \item \textbf{Azure CosmosDB} 
+    \begin{itemize}
+        \item \textit{Reporting Management - Details not mentioned}
+       
+    \end{itemize}
+\end{itemize}
 \section{Cost of operations in Microsoft Azure (Excluding Software Licensing)}
 \begin{table}[htbp]
     \centering
     \begin{tabular}{|l|c|c|c|c|}
         \hline
-        \textbf{Azure Cloud Service} & \textbf{Plan Details} & \textbf{Cost/Month}                  & \textbf{Quantity} & \textbf{Total Cost/Month}           \\
+        \textbf{Azure Cloud Service} & \textbf{Plan Details}    & \textbf{Cost/Month}                & \textbf{Quantity} & \textbf{Total Cost/Month}           \\
 
         \hline
         App Service                  & 3 years savings plan  & \textasciitilde 136 €                & 3                 & ~\textasciitilde 408 €              \\
         \hline
         Static Web Apps              & Standard              & \textasciitilde 8.5 € + (0.191 €/GB) & 5 + (500 GB)      & 43 € + 95 € = \textasciitilde 138 € \\
         \hline
-        Virtual Machine              & Dls v6-series         & \textasciitilde 31 €                 & 6                 & \textasciitilde 186 €               \\
+        Virtual Machine              & Dpsv6                 & \textasciitilde 27 €                 & 6                 & \textasciitilde 162 €               \\
         \hline
-        Storage                      &                       &                                      &                   &                                     \\
+        Database - Server            & D2ds v5 - Flexible    & \textasciitilde 59 €            & 1              & \textasciitilde 59 €                          \\
         \hline
-        Database                     &                       &                                      &                   &                                     \\
+        Database - Storage           & SSD Premium v2         & \textasciitilde 0.13 €/GiB           & 2085              & \textasciitilde 274 €            \\
+        \hline
+        Database - Additional IOPS   &  Additional            &   \textasciitilde 0.02 €             & 3000                 & \textasciitilde 75 €         \\
+        \hline
+        Database - Backup Storage    & GRS         &          &             &                            \\
         \hline
     \end{tabular}
     \caption{Cost of operations in Microsoft Azure}
