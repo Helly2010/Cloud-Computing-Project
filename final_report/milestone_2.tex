@@ -140,13 +140,46 @@
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
+    This report presents a comprehensive cloud transformation strategy for LowTech GmbH, developed by consultants from Awesome Cloud AG. 
+    Building on previous technical analyses, it outlines a strategic migration plan for the expanded application landscape, 
+    incorporating diverse service models such as IaaS, PaaS, and SaaS. The strategy identifies suitable public, private, 
+    and hybrid cloud environments to optimize performance and security while detailing operational cost calculations 
+    for a selected public cloud service provider. Key considerations include SAP requirements, legacy system maintenance, 
+    and leveraging DevOps and Cloud Native approaches for applications like the Webshop. 
+    The report critically analyzes the proposed solutions, balancing benefits and challenges, 
+    and aligning them with LowTech GmbH’s business objectives. This forward-looking strategy ensures scalability, flexibility, and resilience, positioning 
+    the company for sustainable growth and competitive advantage in the digital era.
 
 \end{abstract}
 
 \section{Overview of the Problem}
+LowTech GmbH faces critical challenges with its outdated IT infrastructure, which lacks flexibility, scalability, and standardization. 
+The diverse application landscape, including Finance, HR, Operations, Webshop, and Warehouse systems, 
+requires tailored migration strategies. While some applications can be modernized and containerized, 
+others must remain in their current state due to constraints like unavailable source code. 
+
+Resource limitations, including a finite budget and workforce, further complicate the transition, necessitating 
+a phased approach to minimize downtime and ensure business continuity. 
+The lack of full elasticity in the new setup, despite virtualization improvements, limits immediate adoption 
+of cloud-native capabilities like serverless computing. 
+
+The transformation requires careful planning for data migration, fallback strategies, 
+and post-migration optimization, ensuring LowTech GmbH achieves a scalable, 
+modernized IT environment while balancing costs, risks, and operational demands.
 
 
 \section{Objectives of the Migration}
+
+The primary objective of the migration is to modernize LowTech GmbH's IT infrastructure to enhance scalability, flexibility, and operational efficiency. By transitioning to a cloud-based environment, the company aims to:
+
+\begin{itemize}
+    \item \textbf{Improve Performance:} Migrate applications to optimized environments (public, private, or hybrid cloud) to ensure enhanced performance, reliability, and security.
+    \item \textbf{Enable Standardization:} Standardize the software stack and deployment processes to simplify maintenance and updates.
+    \item \textbf{Ensure Business Continuity:} Minimize downtime and disruptions during and after the migration through robust contingency and fallback strategies.
+    \item \textbf{Optimize Costs:} Implement a cost-effective solution by carefully assessing resource allocation and operational expenses.
+    \item \textbf{Facilitate Modernization:} Leverage containerization and virtualization to enable future adoption of cloud-native and advanced technologies.
+    \item \textbf{Support Long-Term Growth:} Create a scalable infrastructure capable of adapting to evolving business and technological requirements.
+\end{itemize}
 
 \section{Migration Strategy}
 
@@ -675,7 +708,7 @@ In the new adjusted application landscape no specific details of the database so
 
 As per the table above total approximate monthly cost for Azure cloud services is 
 \newpage
-\section*{Cloud Migration Roadmap}
+\section{Cloud Migration Roadmap}
 
 \begin{longtable}{|p{3.1cm}|p{5.2cm}|p{3.1cm}|l|}
     \hline
@@ -768,6 +801,8 @@ The website is going to be development under this standard.\\
     \hline
     3. Migration Strategy \newline 
     7. Standard For a Cloud Native Application    & Wladymir Brborich-Herrera       \\
+    \hline
+    6. Cloud Migration Roadmap    & Vishwaben kakadiya       \\
     \hline
    4. Proposed Cloud Architecture \& Justfication of Used Service Models \newline
    5. Cost of operations in Microsoft Azure                           &   Hellyben Shah        \\
