@@ -17,6 +17,7 @@
 \usepackage{verbatim}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{graphicx}  % For \resizebox
 \usepackage{amssymb}   % AMS-Sonderzeichen
 \usepackage{tabularx}  % Für tabularx und newcolumntype
 \usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
@@ -24,6 +25,7 @@
 \usepackage{makecell}
 \usepackage{color}
 \usepackage{ragged2e}
+\usepackage{longtable}
 \usepackage{ifpdf}
 % \usepackage{titlesec}
 \usepackage{xcolor}    % Lieber xcolor als color. Dann klappt auch das listings gut mit den Farben
@@ -672,7 +674,64 @@ In the new adjusted application landscape no specific details of the database so
 \end{table}
 
 As per the table above total approximate monthly cost for Azure cloud services is 
-\section{Migration Roadmap}
+\newpage
+\section*{Cloud Migration Roadmap}
+
+\begin{longtable}{|p{3.1cm}|p{5.2cm}|p{3.1cm}|l|}
+    \hline
+    \textbf{Application} & \textbf{Service Models \& Infrastructure} & \textbf{Security \& Automation} & \textbf{Timeline} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Application} & \textbf{Service Models \& Infrastructure} & \textbf{Security \& Automation} & \textbf{Timeline} \\
+    \hline
+    \endhead
+    \hline
+    \endfoot
+    \hline
+    
+    Finance + HR + Sales + Legislation: Office Suite & Microsoft Office 365 (SaaS), OneDrive (SaaS) & - & Phase 1 (Month 1) \\
+    \hline
+    Webshop: Website CMS & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS) & Terraform, GitHub Actions & Phase 1 (Month 1-2) \\
+    \hline
+    HR: Shift Management & Azure App Service (PaaS or CaaS), Azure Static Web Apps (PaaS or CaaS), Azure Database for PostgreSQL (PaaS) & Microsoft Entra ID (PaaS) + VPN, Terraform, GitHub Actions & Phase 1 (Month 1-2) \\
+    \hline
+    Finance Legacy Application & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS) & Microsoft Entra ID (PaaS), Terraform, GitHub Actions & Phase 1 (Month 1-2) \\
+    \hline
+    Azure Database for PostgreSQL (PaaS) & D2ds v5 servers, premium SSD, geo-redundant storage & Terraform for configuration & Phase 1 (Month 1-2) \\
+    \hline
+    Azure CosmosDB (PaaS) & Used for Reporting Management (specifics pending) & CI/CD with GitHub Actions & Phase 1 (Month 1-2) \\
+    \hline
+    Warehouse: Warehouse Management & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS) & Microsoft Entra ID (PaaS) + VPN, Terraform, GitHub Actions & Phase 1 (Month 1-2) \\
+    \hline
+    On-premises Deployments & Ansible automation, Azure Express Route integration & VPN, Ansible automation & Ongoing (Month 1-12) \\
+    \hline
+    Azure App Service (PaaS) & Python3 applications, Premium v3, Linux OS, P2v3 VM instances (3 instances) & CI/CD with GitHub Actions & Ongoing (Month 1-12) \\
+    \hline
+    Azure Static Web Apps (PaaS) & React.js frontend, Standard service plan (500 GB bandwidth required) & CI/CD with GitHub Actions & Ongoing (Month 1-12) \\
+    \hline
+    Microsoft Entra ID (PaaS) & Identity and access management for secure access & Integrated with all services for secure access & Ongoing (Month 1-12) \\
+    \hline
+    Supply Management: SCM & Azure Linux VMs + VMSS (IaaS), Autoscaling & VPN, Ansible automation & Phase 2 (Month 2-4) \\
+    \hline
+    Quality Management: QM Software & Azure Windows VMs + VMSS (IaaS), Autoscaling & VPN, Ansible automation & Phase 2 (Month 2-4) \\
+    \hline
+    Warehouse: Deliforce & On-premise with Ansible automation, Express Route integration for hybrid cloud & - & Phase 2 (Month 3-5) \\
+    \hline
+    Sales: Lead Management & On-premise with Ansible automation & - & Phase 2 (Month 3-5) \\
+    \hline
+    Sales + Operations + Customer Service: CRM & Azure Linux VMs + VMSS (IaaS), Autoscaling & VPN, Ansible automation & Phase 3 (Month 4-6) \\
+    \hline
+    Sales: Business Analytics & Azure Linux VMs + VMSS (IaaS), Autoscaling & VPN, Ansible automation & Phase 3 (Month 4-6) \\
+    \hline
+    Sales: Tableau (Market Development) & Azure Tableau Server (IaaS), No autoscaling & VPN, Ansible automation & Phase 3 (Month 4-6) \\
+    \hline
+    Facility Management: Facility Management Software & On-premise with ProxMox, Ansible automation & - & Phase 4 (Month 5-7) \\
+    \hline
+    \caption{Migration Strategy for Applications by Phase}
+    \end{longtable}
+    
+
 
 \newpage
 
