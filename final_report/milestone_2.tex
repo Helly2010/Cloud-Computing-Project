@@ -612,6 +612,29 @@ In the new adjusted application landscape no specific details of the database so
        
     \end{itemize}
 \end{itemize}
+
+\subsubsection{Azure Storage : IaaS} \leavevmode\newline
+\begin{itemize}
+    \item \textbf{Managed Disk} - \textit{Needed to use with Azure VM for CRM,SCM and QM for both the VM Scale sets}
+    \item \begin{itemize}
+        \item \textit{Standard SSD}
+        \item  \textbf{Storage:} \textit{2048 GiB + 128 GiB}
+        \item  \textbf{IOPS:} \textit{500}
+        \item  \textbf{Provisioned Throughput:} \textit{100 MB/S}
+        \item  \textbf{Backup:} \textit{LRS (Locally redundant storage)}     
+    \end{itemize} 
+    \item \textbf{Blob Storage: Hot} - \textit{For storing reports in Reporting Management}
+    \item \begin{itemize}
+        \item  \textbf{Storage:} \textit{512 GiB}
+        \item  \textbf{Redundancy:} \textit{LRS (Locally redundant storage)}     
+    \end{itemize} 
+    \item \textbf{Azure Files} - \textit{For Legacy Application storage}
+    \item \begin{itemize}
+        \item  \textbf{Service Plan:} \textit{SSD - Provisioned v1}
+        \item  \textbf{Storage:} \textit{256 GiB}
+        \item  \textbf{Redundancy:} \textit{LRS (Locally redundant storage)}     
+    \end{itemize}
+\end{itemize}
 \section{Cost of operations in Microsoft Azure (Excluding Software Licensing)}
 \begin{table}[htbp]
     \centering
@@ -632,12 +655,23 @@ In the new adjusted application landscape no specific details of the database so
         \hline
         Database - Additional IOPS   &  Additional            &   \textasciitilde 0.02 €             & 3000                 & \textasciitilde 75 €         \\
         \hline
-        Database - Backup Storage    & GRS         &          &             &                            \\
+        Database - Backup Storage    & GRS - additional cost    & \textasciitilde 0.099 €         & 1000            & \textasciitilde 99 €                             \\
         \hline
+        Storage                      & SSD Standard             & \textasciitilde 147 € + 9 €        & 1           & \textasciitilde 156 €                             \\
+        \hline
+        Blob Storage                 & Hot                      & \textasciitilde 0.0189 €/GB        & 512           & \textasciitilde 10 €                             \\
+        \hline
+        Azure Express Route          & 50 Mbit/s                 & \textasciitilde 52 €             & 1          & \textasciitilde 52 €                            \\
+        \hline
+        Azure Files                 & SSD - Provisioned v1       & \textasciitilde 47 €             & 1 (256 GB)         & \textasciitilde 47 €                            \\
+        \hline
+   
     \end{tabular}
     \caption{Cost of operations in Microsoft Azure}
     \label{tab:Cost_Operation_Monthly}
 \end{table}
+
+As per the table above total approximate monthly cost for Azure cloud services is 
 \section{Migration Roadmap}
 
 \newpage
@@ -657,6 +691,28 @@ The website is going to be development under this standard.\\
     \end{center}
 \end{figure}
 
+\subsection*{Contribution}
+
+\begin{table}[htbp]
+
+  \begin{tabular}{|p{0.7\textwidth}|p{0.3\textwidth}|}
+    \hline
+    \textbf{Topic} & \textbf{Contributor} \\
+    \hline
+    1. Overview of the Problem \newline 
+    2. Objectives of the Migration \newline    & Add your name \newline Add your name          \\
+    \hline
+    3. Migration Strategy \newline 
+    7. Standard For a Cloud Native Application    & Wladymir Brborich-Herrera       \\
+    \hline
+   4. Proposed Cloud Architecture \& Justfication of Used Service Models \newline
+   5. Cost of operations in Microsoft Azure                           &   Hellyben Shah        \\
+    \hline
+    
+  \end{tabular}
+  \caption{Contribution Table}
+  \label{tab:contribution}
+\end{table}
 % ---- Bibliography ----
 
 \begin{thebibliography}{5}
