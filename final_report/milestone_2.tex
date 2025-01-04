@@ -55,14 +55,14 @@
 
 \ifpdf
 \pdfinfo{
-   /Author (Wladymir Alexander Brborich Herrera)
-   /Author (Vishwaben Pareshbhai Kakadiya)
-   /Author (Hellyben Bhaveshkumar Shah)
-   /Author (Heer Rakeshkumar Vankawala)
-   /Author (Priyanka Dilipbhai Vadiwala)
-   /Title  (LowTech GMmBH Techincal Transformation Milestone 2)
-   /Subject (Cloud Computing)
-   /Keywords (Cloud Computing, Technical Transformation, Migration)
+ /Author (Wladymir Alexander Brborich Herrera)
+ /Author (Vishwaben Pareshbhai Kakadiya)
+ /Author (Hellyben Bhaveshkumar Shah)
+ /Author (Heer Rakeshkumar Vankawala)
+ /Author (Priyanka Dilipbhai Vadiwala)
+ /Title  (LowTech GMmBH Techincal Transformation Milestone 2)
+ /Subject (Cloud Computing)
+ /Keywords (Cloud Computing, Technical Transformation, Migration)
 }
 \fi
 
@@ -71,7 +71,7 @@
 \setlength{\itemsep}{0ex plus0.2ex}
 \sloppy                        % Auf jeden Fall die Seitenränder einhalten.
 
-\newcommand{\what}{Milestone 2 : LowTech GMmBH Migration to Azure}
+\newcommand{\what}{Milestone 2: LowTech GMmBH Migration to Azure}
 \newcommand{\who}{Group 23}
 \newcommand{\when}{WiSe 2024-2025}
 
@@ -140,31 +140,31 @@
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
-    This report presents a comprehensive cloud transformation strategy for LowTech GmbH, developed by consultants from Awesome Cloud AG. 
-    Building on previous technical analyses, it outlines a strategic migration plan for the expanded application landscape, 
-    incorporating diverse service models such as IaaS, PaaS, and SaaS. The strategy identifies suitable public, private, 
-    and hybrid cloud environments to optimize performance and security while detailing operational cost calculations 
-    for a selected public cloud service provider. Key considerations include SAP requirements, legacy system maintenance, 
-    and leveraging DevOps and Cloud Native approaches for applications like the Webshop. 
-    The report critically analyzes the proposed solutions, balancing benefits and challenges, 
-    and aligning them with LowTech GmbH’s business objectives. This forward-looking strategy ensures scalability, flexibility, and resilience, positioning 
+    This report presents a comprehensive cloud transformation strategy for LowTech GmbH, developed by consultants from Awesome Cloud AG.
+    Building on previous technical analyses, it outlines a strategic migration plan for the expanded application landscape,
+    incorporating diverse service models such as IaaS, PaaS, and SaaS. The strategy identifies suitable public, private,
+    and hybrid cloud environments to optimize performance and security while detailing operational cost calculations
+    for a selected public cloud service provider. Key considerations include SAP requirements, legacy system maintenance,
+    and leveraging DevOps and Cloud Native approaches for applications like the Webshop.
+    The report critically analyzes the proposed solutions, balancing benefits and challenges,
+    and aligning them with LowTech GmbH’s business objectives. This forward-looking strategy ensures scalability, flexibility, and resilience, positioning
     the company for sustainable growth and competitive advantage in the digital era.
 
 \end{abstract}
 
 \section{Overview of the Problem}
-LowTech GmbH faces critical challenges with its outdated IT infrastructure, which lacks flexibility, scalability, and standardization. 
-The diverse application landscape, including Finance, HR, Operations, Webshop, and Warehouse systems, 
-requires tailored migration strategies. While some applications can be modernized and containerized, 
-others must remain in their current state due to constraints like unavailable source code. 
+LowTech GmbH faces critical challenges with its outdated IT infrastructure, which lacks flexibility, scalability, and standardization.
+The diverse application landscape, including Finance, HR, Operations, Webshop, and Warehouse systems,
+requires tailored migration strategies. While some applications can be modernized and containerized,
+others must remain in their current state due to constraints like unavailable source code.
 
-Resource limitations, including a finite budget and workforce, further complicate the transition, necessitating 
-a phased approach to minimize downtime and ensure business continuity. 
-The lack of full elasticity in the new setup, despite virtualization improvements, limits immediate adoption 
-of cloud-native capabilities like serverless computing. 
+Resource limitations, including a finite budget and workforce, further complicate the transition, necessitating
+a phased approach to minimize downtime and ensure business continuity.
+The lack of full elasticity in the new setup, despite virtualization improvements, limits immediate adoption
+of cloud-native capabilities like serverless computing.
 
-The transformation requires careful planning for data migration, fallback strategies, 
-and post-migration optimization, ensuring LowTech GmbH achieves a scalable, 
+The transformation requires careful planning for data migration, fallback strategies,
+and post-migration optimization, ensuring LowTech GmbH achieves a scalable,
 modernized IT environment while balancing costs, risks, and operational demands.
 
 
@@ -208,7 +208,7 @@ We are also going to use Ansible playbooks to automate the configuration and ins
 \end{table}
 
 
-\subsection{Finance: SAP PPM, ERP, IAM and ERM}
+\subsection{Finance: SAP PPM, ERP, IAM, and ERM}
 These applications will also be deployed in the new private cloud context.
 Since the finance department is the only one that needs access, this system will be somewhat isolated.
 We are going to configure networking access only for the finance department clients.
@@ -275,7 +275,7 @@ To secure all newly developed applications we are going to use Microsoft Entra I
 \end{table}
 
 \subsection{Supply Management: SCM}
-This application is supplied by a third party. It will be installed in a linux virtual machine, using Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
+This application is supplied by a third party. It will be installed in a Linux virtual machine, using Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
 Same as all other internal applications, it will only be accessible through the company VPN.\\
 
 \begin{table}[h!]
@@ -290,7 +290,7 @@ Same as all other internal applications, it will only be accessible through the 
 \end{table}
 
 \subsection{Quality Management: QM Software}
-This application is supplied by a third party. It will be installed in a windows virtual machine, using Azure Windows Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
+This application is supplied by a third party. It will be installed in a Windows virtual machine, using Azure Windows Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
 Same as all other internal applications, it will only be accessible through the company VPN.\\
 
 \begin{table}[h!]
@@ -329,7 +329,7 @@ To secure all newly developed applications we are going to use Microsoft Entra I
 
 \subsection{Warehouse: Deliforce}
 
-This application will be installed on premise. As other on premise deployments we will automate it with Ansible.
+This application will be installed on-premise. As with other on-premise deployments, we will automate it with Ansible.
 It will communicate with other internal applications using Azure Express Route, enabling us to transfer information between our private cloud and its public counterpart.\\
 
 \begin{table}[h!]
@@ -348,8 +348,8 @@ It will communicate with other internal applications using Azure Express Route, 
 
 \subsection{Sales + Operations + Customer Service: CRM}
 
-This application is supplied by a third party. It will be installed in a linux virtual machine, using Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
-As all other internal applications, it will only be accessible through the company VPN.\\
+This application is supplied by a third party. It will be installed in a Linux virtual machine, using Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
+As with all other internal applications, it will only be accessible through the company VPN.\\
 
 \begin{table}[h!]
     \centering
@@ -363,7 +363,7 @@ As all other internal applications, it will only be accessible through the compa
 \end{table}
 
 \subsection{Sales: Lead Management}
-This application will be installed on premise. As other on premise deployments we will automate it with Ansible.
+This application will be installed on-premises. As with other on-premise deployments, we will automate it with Ansible.
 \begin{table}[h!]
     \centering
     \begin{tabular}{lll}
@@ -377,8 +377,8 @@ This application will be installed on premise. As other on premise deployments w
 \end{table}
 
 \subsection{Sales: Business Analytics}
-This application is supplied by a third party. It will be installed in a linux virtual machine, using Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
-As all other internal applications, it will only be accessible through the company VPN.\\
+This application is supplied by a third party. It will be installed in a Linux virtual machine, using Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets, to enable autoscaling.
+As with all other internal applications, it will only be accessible through the company VPN.\\
 
 \begin{table}[h!]
     \centering
@@ -393,8 +393,8 @@ As all other internal applications, it will only be accessible through the compa
 
 \subsection{Sales: Tableu (Market Development)}
 This application is supplied by a third party. It will be installed in a custom virtual machine, using Azure Tableu Server.
-In this case we are not going to actively enable auto scaling, since we anticipate that use case does not benefit from adding more instances.
-As other internal applications it will only be accessible through the company VPN.\\
+In this case, we are not going to actively enable auto-scaling, since we anticipate that the use case does not benefit from adding more instances.
+As with other internal applications, it will only be accessible through the company VPN.\\
 
 \begin{table}[h!]
     \centering
@@ -403,9 +403,9 @@ As other internal applications it will only be accessible through the company VP
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
         Public Cloud           & Azure Tableu Server                & IaaS                    \\
-        N/A                    & Tableu Desktop                     & N/A                     \\
+        N/A                    & Tableau Desktop                    & N/A                     \\
     \end{tabular}
-    \caption{Sales Tableu (Market Development) Deployment Strategy}
+    \caption{Sales Tableau (Market Development) Deployment Strategy}
 \end{table}
 
 \subsection{HR: HR Software}
@@ -432,7 +432,7 @@ To secure all newly developed applications we are going to use Microsoft Entra I
 \end{table}
 
 \subsection{Facility Management: Facility Management Software}
-This is a proprietary application that will be deployed on premises following practices stated for all previous on premise deployments\\
+This is a proprietary application that will be deployed on-premises following practices stated for all previous on-premise deployments\\
 \begin{table}[h!]
     \centering
     \begin{tabular}{lll}
@@ -466,8 +466,8 @@ Each client will have the option to use the office suite in the cloud, or locall
 \subsection{Webshop: Website CMS}
 
 This application will be newly developed following the standard for new applications.
-As a special consideration, this application is the only public facing application which needs to handle customer requests.
-Our standard for newly developed applications enable this critical piece of the business to easily scale and be secured with valid certificates with no extra configurations.\\
+As a special consideration, this application is the only public-facing application that needs to handle customer requests.
+Our standard for newly developed applications enables this critical piece of the business to easily scale and be secured with valid certificates with no extra configurations.\\
 
 \begin{table}[h!]
     \centering
@@ -487,58 +487,58 @@ Our standard for newly developed applications enable this critical piece of the 
 
 \subsection{General Considerations}
 
-Importantly, for all newly developed applications we will:
+Importantly, for all newly developed applications, we will:
 \begin{itemize}
     \item Set up a private GitHub repository
-    \item Set up GitHub actions to enable continues integration and continuous deployments in Azure
+    \item Set up GitHub actions to enable continuous integration and continuous deployments in Azure
     \item Set up an infrastructure folder to hold terraform files. These files will define the infrastructure and will allow for easy repeatability
-    \item Use Microsoft Entra ID in case authentication with the organization is needed
-    \item Use Docker to package the applicaation with containers that will be deployed in Azure App Service in case of the backend, and Azure Static Web Apps in case of the frontend
+    \item Use Microsoft Entra ID in case of authentication with the organization is needed
+    \item Use Docker to package the application with containers that will be deployed in Azure App Service in case of the backend, and Azure Static Web Apps in case of the frontend
 \end{itemize}
-For all aplications that will be deployed on premises:
+For all applications that will be deployed on-premises:
 \begin{itemize}
     \item Set up a private GitHub repository
-    \item Create Ansible playbooks to make configuration and instalation in a VM repeatable
-    \item In case the application needs to communicate with another aplication deployed in the public cloud we will use Azure Express Route to create a getaway.
+    \item Create Ansible playbooks to make configuration and installation in a VM repeatable
+    \item In case the application needs to communicate with another application deployed in the public cloud we will use Azure Express Route to create a getaway.
 \end{itemize}
 
 For all applications that will be installed on the cloud and run in virtual machines:
 \begin{itemize}
     \item Set up a private GitHub repository
     \item Create terraform files to define the infrastructure i.e the VM size and OS
-    \item Create Ansible playbooks to make configuration and instalation in a VM repeatable
+    \item Create Ansible playbooks to make configuration and installation in a VM repeatable
 \end{itemize}
 
 \section{Proposed Cloud Architecture \& Justfication of Used Service Models}
-By considering the requirements of LowTech GmbH, we offer Hyrid Cloud Architecture as mentioned earlier in section 3 and illustrated in the figure \ref{Cloud_Architecture} below. According to the newly modified application landscape, each department's software components use suitable service model solutions (IaaS, PaaS, and SaaS) from public or private cloud service providers.
+By considering the requirements of LowTech GmbH, we offer Hybrid Cloud Architecture as mentioned earlier in section 3 and illustrated in the figure \ref{Cloud_Architecture} below. According to the newly modified application landscape, each department's software components use suitable service model solutions (IaaS, PaaS, and SaaS) from public or private cloud service providers.
 
 \begin{figure}[htbp]
     \begin{center}
         \includegraphics[width=1\textwidth]{diagrams/AzureArchCloud.png}
         \vspace{0.01\textwidth}
-        \caption{Hybrid Cloud Architecture (Azure and On Premises)}
+        \caption{Hybrid Cloud Architecture (Azure and On-Premises)}
         \label{Cloud_Architecture} % A unique label.
     \end{center}
 \end{figure}
 
-\subsection{Public Cloud Service Provider : Microsoft Azure}
-\subsubsection{Azure App Serive: PaaS} \leavevmode\newline
-Azure App Service is a comprehensive HTTP-based  Platform-as-a-Service (PaaS) offering for developers, providing a fully managed environment for building, deploying, and scaling web applications under offered service plan.
+\subsection{Public Cloud Service Provider: Microsoft Azure}
+\subsubsection{Azure App Service: PaaS} \leavevmode\newline
+Azure App Service is a comprehensive HTTP-based  Platform-as-a-Service (PaaS) offering for developers, providing a fully managed environment for building, deploying, and scaling web applications under the offered service plan.
 
-All the newly developed Python3 applications (Reporting Management,Shift Management, Warehouse Management, HR Software and Webshop Website) will be deployed within the single azure app service plan to optimize cost and performance, provided the plan has sufficient resources to handle the load as multiple apps in the same app Service plan share the same VM instances.
+All the newly developed Python3 applications (Reporting Management, Shift Management, Warehouse Management, HR Software, and Webshop Website) will be deployed within the single Azure app service plan to optimize cost and performance, provided the plan has sufficient resources to handle the load as multiple apps in the same app service plan share the same VM instances.
 
 \begin{itemize}
     \item \textbf{Service Plan:} \textit{Premium v3} - The premium service plan offers better compatibility with our application landscape and requirements compared to other tiers.
     \item Key features of this service
           \begin{itemize}
               \item \textbf{Auto-scaling \& Per-app scaling} - With automatic scaling enabled, Azure will monitor the load on your apps and distribute instances based on the metrics set up as such CPU usage. It also supports per-app scaling, allowing each app to scale independently based on its specific load.
-              \item \textbf{Availability \& Zone Redundancy} - Azure SLA guarantees 99.95\% availability but incase case of availability zone failures it is advised to configure app service plan as zone redundant,which means that your resources are spread across multiple availability zones. (Note: To enable zone-redundancy atleast 3 instances should be there in a app service plan).
-              \item \textbf{Security} - Supports authentication, IP address restriction and also offer virtual network integration.
+              \item \textbf{Availability \& Zone Redundancy} - Azure SLA guarantees 99.95\% availability but in case case of availability zone failures it is advised to configure the app service plan as zone redundant, which means that your resources are spread across multiple availability zones. (Note: To enable zone redundancy at least 3 instances should be there in an app service plan).
+              \item \textbf{Security} - Supports authentication, and IP address restriction and also offers virtual network integration.
               \item \textbf{Load-balancing} - Distributes incoming traffic across multiple instances to maximize throughput, minimize response time, and avoid overloading any single resource.
               \item \textbf{Multi-tenant} - Multiple clients can access the solution via their own individual domains.
           \end{itemize}
 
-    \item \textbf{Operating System:} \textit{Linux} - As Linux is the only operating system option for running Python apps in App Service. Linux is generally recommended due to better performance and compatibility with Python libraries1
+    \item \textbf{Operating System:} \textit{Linux} - Linux is the only operating system option for running Python apps in App Service. Linux is generally recommended due to better performance and compatibility with Python libraries
           .Linux also offers a more native environment for Python development\cite{azure-python}.
 
     \item \textbf{VM Instance:} \textit{P2v3} - \#Instances: 3
@@ -552,7 +552,7 @@ All the newly developed Python3 applications (Reporting Management,Shift Managem
 
 \subsubsection{Azure Static Web App: PaaS} \leavevmode\newline
 Azure Static Web Apps is a Platform-as-a-Service (PaaS) offering that automatically builds and deploys modern web apps with a static front-end to Azure from a code repository and provides seamless backend connection options.
-Here, we will be deploy our React.js based front for all newly developed applications to static web apps connected with dedicated Web apps from App service plan explained above.
+Here, we will deploy our React.js based front for all newly developed applications to static web apps connected with dedicated Web apps from the App service plan explained above.
 \begin{itemize}
     \item \textbf{Service Plan:} \textit{Standard} - \#Apps: 5
 
@@ -561,10 +561,10 @@ Here, we will be deploy our React.js based front for all newly developed applica
                     \textit{NOTE: We need 500 GB bandwidth}
               \item \textbf{Storage:} \textit{2 GB/app}
           \end{itemize}
-          
-        \item Key features of this service
+
+    \item Key features of this service
           \begin{itemize}
-              \item \textbf{Global Distribution} - static assets are distributed around the world, makes serving files much faster as files are physically closer to end users.
+              \item \textbf{Global Distribution} - static assets are distributed around the world, making serving files much faster as files are physically closer to end users.
               \item \textbf{DevOps \& CICD Pipeline} - Automated deployment from code repositories like GitHub or Azure DevOps based on code changes and allows CI/CD pipeline integration.
               \item \textbf{Security} - Supports authentication and Custom Domains with SSL certificates which are automatically renewed.
           \end{itemize}
@@ -577,19 +577,19 @@ provides security standards with multi-factor authentication.
 It offers basic RBAC user and group management as well but advanced security is offered in paid plans only.
 
 \subsubsection{Virtual Machine Scale Sets: IaaS} \leavevmode\newline
-Azure Virtual Machine Scale Sets are a compute resource that allows to deploy and manage a set of identical, auto-scaling virtual machines.
+Azure Virtual Machine Scale Sets are a computing resource that allows the deployment and management of a set of identical, auto-scaling virtual machines.
 We will be using it to manage our group of VMs. This service is offered free of cost along with the VM.
 \begin{itemize}
-\item Key features of this service
-    \begin{itemize}
-        \item \textbf{Automatic scaling} -  Can automatically increase or decrease the number of VM instances based on demand or a defined schedule.
-        \item \textbf{High availability} - Distributes VMs across fault domains and update domains to ensure application resilience.
-        \item \textbf{Load balancing} - Integrated with Azure Load Balancer for distributing traffic across VM instances.
-    \end{itemize}
+    \item Key features of this service
+          \begin{itemize}
+              \item \textbf{Automatic scaling} -  Can automatically increase or decrease the number of VM instances based on demand or a defined schedule.
+              \item \textbf{High availability} - Distributes VMs across fault domains and updates domains to ensure application resilience.
+              \item \textbf{Load balancing} - Integrated with Azure Load Balancer for distributing traffic across VM instances.
+          \end{itemize}
 \end{itemize}
 
 \subsubsection{Virtual Machine: IaaS} \leavevmode\newline
-Total 5 instances VM mentioned below will be deployed under 1 Scale Set for CRM application used by Operations, Sales \& Customer Service and SCM used by Supply Management.
+A total of 5 instances of VMs mentioned below will be deployed under 1 Scale Set for CRM application used by Operations, Sales \& Customer Service, and SCM used by Supply Management.
 \begin{itemize}
     \item \textbf{CRM \& SCM} - \#Instances: 5
           \begin{itemize}
@@ -600,82 +600,82 @@ Total 5 instances VM mentioned below will be deployed under 1 Scale Set for CRM 
           \end{itemize}
     \item \textbf{QM} - \#Instances: 1
           \begin{itemize}
-                \item \textbf{Instance:} \textit{Dpsv6}
-                \item  \textbf{Operating System:} \textit{Windows}
-                \item  \textbf{vCPUs:} \textit{2}
-                \item  \textbf{RAM:} \textit{8 GiB}
+              \item \textbf{Instance:} \textit{Dpsv6}
+              \item  \textbf{Operating System:} \textit{Windows}
+              \item  \textbf{vCPUs:} \textit{2}
+              \item  \textbf{RAM:} \textit{8 GiB}
           \end{itemize}
     \item Key features of this service
-        \begin{itemize}
-            \item  \textbf{New optimised architecture:} \textit{Outstanding performance for general-purpose workloads for day-to-day business operations.}
-            \item  \textbf{Balanced performance:} \textit{Equipped with faster processors provide a solid balance between CPU capabilities and memory size.}
-        \end{itemize}
+          \begin{itemize}
+              \item  \textbf{New optimised architecture:} \textit{Outstanding performance for general-purpose workloads for day-to-day business operations.}
+              \item  \textbf{Balanced performance:} \textit{Equipped with faster processors provides a solid balance between CPU capabilities and memory size.}
+          \end{itemize}
 \end{itemize}
 
 \subsubsection{Azure Database(PostgreSQL/Cosmos DB) : PaaS} \leavevmode\newline
-In the new adjusted application landscape no specific details of the database so we will assume size of database previous application landscape.
+In the newly adjusted application landscape no specific details of the database so we will assume the size of the database's previous application landscape.
 
 \begin{itemize}
-    \item \textbf{Azure PostgreSQL} 
-    \begin{itemize}
-        \item \textbf{Payroll:} \textit{1 TB - used by HR Software and Shift Management}
-        \item  \textbf{Delivery:} \textit{250 GB - used by Warehouse Management}
-        \item  \textbf{CRM:} \textit{980 GB - used by Sales, Operation and Customer Service}
-        \item  \textbf{CMS:} \textit{10 GB - used by Webshop Website}
-    \end{itemize} \leavevmode\newline
-    Chosen configuration for our solution is mentioned below.
-    \begin{itemize}
-        \item \textbf{Server:} \textit{D2ds v5 - Flexible}
-        \item  \textbf{vCores:} \textit{2}
-        \item  \textbf{Memory:} \textit{8 GiB}
-        \item  \textbf{Storage:} \textit{Premium SSD v2 configuration - 2240 GB \textasciitilde 2085 GiBs}
-        \item  \textbf{IOPS:} \textit{3000 at no additional cost, Our estimated requirement is \textasciitilde 6000}
-        \item  \textbf{Provisioned Throughput:} \textit{125 MB/S}
-        \item  \textbf{Backup Storage:} \textit{Geo-Redundant Storage (GRS) - 2240 GB \textasciitilde 2085 GiBs}
-    \end{itemize}
-    \item Key features of this serive
-        \begin{itemize}
-            \item  \textbf{Flexibility:} \textit{Fully managed database service offering more control and flexibility over database management and configuration.}
-            \item  \textbf{Balanced performance:} \textit{Balanced compute and storage capacities with scalable I/O throughput, efficient cost-performance ratio}
-            \item  \textbf{High availability \& Low latency:} \textit{Allows users to collocate the database engine with the client tier for lower latency and choose high availability within a single availability zone or zone redundant (At extra cost)}
-            \item  \textbf{Redundancy:} \textit{The storage maintains three locally redundant synchronous copies of the database files ensuring data durability.}
-            \item  \textbf{Backup:} \textit{GRS replicates your data in a secondary region several hundred kilometers away from the primary source data location and provides greater durability of your data even in the event of a regional outage.}
-        \end{itemize}
-  \item \textbf{Azure CosmosDB} 
-    \begin{itemize}
-        \item \textit{Reporting Management - Details not mentioned}
-       
-    \end{itemize}
+    \item \textbf{Azure PostgreSQL}
+          \begin{itemize}
+              \item \textbf{Payroll:} \textit{1 TB - used by HR Software and Shift Management}
+              \item  \textbf{Delivery:} \textit{250 GB - used by Warehouse Management}
+              \item  \textbf{CRM:} \textit{980 GB - used by Sales, Operation and Customer Service}
+              \item  \textbf{CMS:} \textit{10 GB - used by Webshop Website}
+          \end{itemize} \leavevmode\newline
+          The chosen configuration for our solution is mentioned below.
+          \begin{itemize}
+              \item \textbf{Server:} \textit{D2ds v5 - Flexible}
+              \item  \textbf{vCores:} \textit{2}
+              \item  \textbf{Memory:} \textit{8 GiB}
+              \item  \textbf{Storage:} \textit{Premium SSD v2 configuration - 2240 GB \textasciitilde 2085 GiBs}
+              \item  \textbf{IOPS:} \textit{3000 at no additional cost, Our estimated requirement is \textasciitilde 6000}
+              \item  \textbf{Provisioned Throughput:} \textit{125 MB/S}
+              \item  \textbf{Backup Storage:} \textit{Geo-Redundant Storage (GRS) - 2240 GB \textasciitilde 2085 GiBs}
+          \end{itemize}
+    \item Key features of this service
+          \begin{itemize}
+              \item  \textbf{Flexibility:} \textit{Fully managed database service offering more control and flexibility over database management and configuration.}
+              \item  \textbf{Balanced performance:} \textit{Balanced compute and storage capacities with scalable I/O throughput, efficient cost-performance ratio}
+              \item  \textbf{High availability \& Low latency:} \textit{Allows users to collocate the database engine with the client tier for lower latency and choose high availability within a single availability zone or zone redundant (At extra cost)}
+              \item  \textbf{Redundancy:} \textit{The storage maintains three locally redundant synchronous copies of the database files ensuring data durability.}
+              \item  \textbf{Backup:} \textit{GRS replicates your data in a secondary region several hundred kilometers away from the primary source data location and provides greater durability of your data even in the event of a regional outage.}
+          \end{itemize}
+    \item \textbf{Azure CosmosDB}
+          \begin{itemize}
+              \item \textit{Reporting Management - Details not mentioned}
+
+          \end{itemize}
 \end{itemize}
 
 \subsubsection{Azure Storage : IaaS} \leavevmode\newline
 \begin{itemize}
-    \item \textbf{Managed Disk} - \textit{Needed to use with Azure VM for CRM,SCM and QM for both the VM Scale sets}
+    \item \textbf{Managed Disk} - \textit{Needed to use with Azure VM for CRM, SCM, and QM for both the VM Scale sets}
     \item \begin{itemize}
-        \item \textit{Standard SSD}
-        \item  \textbf{Storage:} \textit{2048 GiB + 128 GiB}
-        \item  \textbf{IOPS:} \textit{500}
-        \item  \textbf{Provisioned Throughput:} \textit{100 MB/S}
-        \item  \textbf{Backup:} \textit{LRS (Locally redundant storage)}     
-    \end{itemize} 
+              \item \textit{Standard SSD}
+              \item  \textbf{Storage:} \textit{2048 GiB + 128 GiB}
+              \item  \textbf{IOPS:} \textit{500}
+              \item  \textbf{Provisioned Throughput:} \textit{100 MB/S}
+              \item  \textbf{Backup:} \textit{LRS (Locally redundant storage)}
+          \end{itemize}
     \item \textbf{Blob Storage: Hot} - \textit{For storing reports in Reporting Management}
     \item \begin{itemize}
-        \item  \textbf{Storage:} \textit{512 GiB}
-        \item  \textbf{Redundancy:} \textit{LRS (Locally redundant storage)}     
-    \end{itemize} 
+              \item  \textbf{Storage:} \textit{512 GiB}
+              \item  \textbf{Redundancy:} \textit{LRS (Locally redundant storage)}
+          \end{itemize}
     \item \textbf{Azure Files} - \textit{For Legacy Application storage}
     \item \begin{itemize}
-        \item  \textbf{Service Plan:} \textit{SSD - Provisioned v1}
-        \item  \textbf{Storage:} \textit{256 GiB}
-        \item  \textbf{Redundancy:} \textit{LRS (Locally redundant storage)}     
-    \end{itemize}
+              \item  \textbf{Service Plan:} \textit{SSD - Provisioned v1}
+              \item  \textbf{Storage:} \textit{256 GiB}
+              \item  \textbf{Redundancy:} \textit{LRS (Locally redundant storage)}
+          \end{itemize}
 \end{itemize}
-\section{Cost of operations in Microsoft Azure (Excluding Software Licensing) \cite{azure-pricing-calculator}} 
+\section{Cost of operations in Microsoft Azure (Excluding Software Licensing) \cite{azure-pricing-calculator}}
 \begin{table}[htbp]
     \centering
     \begin{tabular}{|l|c|c|c|c|}
         \hline
-        \textbf{Azure Cloud Service} & \textbf{Plan Details}    & \textbf{Cost/Month}                & \textbf{Quantity} & \textbf{Total Cost/Month}           \\
+        \textbf{Azure Cloud Service} & \textbf{Plan Details} & \textbf{Cost/Month}                  & \textbf{Quantity} & \textbf{Total Cost/Month}           \\
 
         \hline
         App Service                  & 3 years savings plan  & \textasciitilde 136 €                & 3                 & ~\textasciitilde 408 €              \\
@@ -684,105 +684,104 @@ In the new adjusted application landscape no specific details of the database so
         \hline
         Virtual Machine              & Dpsv6                 & \textasciitilde 27 €                 & 6                 & \textasciitilde 162 €               \\
         \hline
-        Database - Server            & D2ds v5 - Flexible    & \textasciitilde 59 €            & 1              & \textasciitilde 59 €                          \\
+        Database - Server            & D2ds v5 - Flexible    & \textasciitilde 59 €                 & 1                 & \textasciitilde 59 €                \\
         \hline
-        Database - Storage           & SSD Premium v2         & \textasciitilde 0.13 €/GiB           & 2085              & \textasciitilde 274 €            \\
+        Database - Storage           & SSD Premium v2        & \textasciitilde 0.13 €/GiB           & 2085              & \textasciitilde 274 €               \\
         \hline
-        Database - Additional IOPS   &  Additional            &   \textasciitilde 0.02 €             & 3000                 & \textasciitilde 75 €         \\
+        Database - Additional IOPS   & Additional            & \textasciitilde 0.02 €               & 3000              & \textasciitilde 75 €                \\
         \hline
-        Database - Backup Storage    & GRS - additional cost    & \textasciitilde 0.099 €         & 1000            & \textasciitilde 99 €                             \\
+        Database - Backup Storage    & GRS - additional cost & \textasciitilde 0.099 €              & 1000              & \textasciitilde 99 €                \\
         \hline
-        Storage                      & SSD Standard             & \textasciitilde 147 € + 9 €        & 1           & \textasciitilde 156 €                             \\
+        Storage                      & SSD Standard          & \textasciitilde 147 € + 9 €          & 1                 & \textasciitilde 156 €               \\
         \hline
-        Blob Storage                 & Hot                      & \textasciitilde 0.0189 €/GB        & 512           & \textasciitilde 10 €                             \\
+        Blob Storage                 & Hot                   & \textasciitilde 0.0189 €/GB          & 512               & \textasciitilde 10 €                \\
         \hline
-        Azure Express Route          & 50 Mbit/s                 & \textasciitilde 52 €             & 1          & \textasciitilde 52 €                            \\
+        Azure Express Route          & 50 Mbit/s             & \textasciitilde 52 €                 & 1                 & \textasciitilde 52 €                \\
         \hline
-        Azure Files                 & SSD - Provisioned v1       & \textasciitilde 47 €             & 1 (256 GB)         & \textasciitilde 47 €                            \\
+        Azure Files                  & SSD - Provisioned v1  & \textasciitilde 47 €                 & 1 (256 GB)        & \textasciitilde 47 €                \\
         \hline
-        Tableau                    &                             & \textasciitilde                   &               & \textasciitilde                            \\
+        Tableau                      &                       & \textasciitilde                      &                   & \textasciitilde                     \\
         \hline
-        \textbf{Total Cost:}          &  -                            & -                  &               &  \textbf{1480  €}                          \\
+        \textbf{Total Cost:}         & -                     & -                                    &                   & \textbf{1480  €}                    \\
         \hline
-   
     \end{tabular}
     \caption{Cost of operations in Microsoft Azure}
     \label{tab:Cost_Operation_Monthly}
 \end{table}
 
- 
+
 \section{Cloud Migration Roadmap}
 
 \begin{longtable}{|p{3.1cm}|p{5.2cm}|p{3.1cm}|l|}
     \hline
-    \textbf{Application} & \textbf{Service Models \& Infrastructure} & \textbf{Security \& Automation} & \textbf{Timeline} \\
+    \textbf{Application}                              & \textbf{Service Models \& Infrastructure}                                                                    & \textbf{Security \& Automation}                            & \textbf{Timeline}    \\
     \hline
     \endfirsthead
     \hline
-    \textbf{Application} & \textbf{Service Models \& Infrastructure} & \textbf{Security \& Automation} & \textbf{Timeline} \\
+    \textbf{Application}                              & \textbf{Service Models \& Infrastructure}                                                                    & \textbf{Security \& Automation}                            & \textbf{Timeline}    \\
     \hline
     \endhead
     \hline
     \endfoot
     \hline
-    
-    Finance + HR + Sales + Legislation: Office Suite & Microsoft Office 365 (SaaS), OneDrive (SaaS) & - & Phase 1 (Month 1) \\
+
+    Finance + HR + Sales + Legislation: Office Suite  & Microsoft Office 365 (SaaS), OneDrive (SaaS)                                                                 & -                                                          & Phase 1 (Month 1)    \\
     \hline
-    Webshop: Website CMS & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS) & Terraform, GitHub Actions & Phase 1 (Month 1-2) \\
+    Webshop: Website CMS                              & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS)                 & Terraform, GitHub Actions                                  & Phase 1 (Month 1-2)  \\
     \hline
-    HR: Shift Management & Azure App Service (PaaS or CaaS), Azure Static Web Apps (PaaS or CaaS), Azure Database for PostgreSQL (PaaS) & Microsoft Entra ID (PaaS) + VPN, Terraform, GitHub Actions & Phase 1 (Month 1-2) \\
+    HR: Shift Management                              & Azure App Service (PaaS or CaaS), Azure Static Web Apps (PaaS or CaaS), Azure Database for PostgreSQL (PaaS) & Microsoft Entra ID (PaaS) + VPN, Terraform, GitHub Actions & Phase 1 (Month 1-2)  \\
     \hline
-    Finance Legacy Application & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS) & Microsoft Entra ID (PaaS), Terraform, GitHub Actions & Phase 1 (Month 1-2) \\
+    Finance Legacy Application                        & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS)                 & Microsoft Entra ID (PaaS), Terraform, GitHub Actions       & Phase 1 (Month 1-2)  \\
     \hline
-    Azure Database for PostgreSQL (PaaS) & D2ds v5 servers, premium SSD, geo-redundant storage & Terraform for configuration & Phase 1 (Month 1-2) \\
+    Azure Database for PostgreSQL (PaaS)              & D2ds v5 servers, premium SSD, geo-redundant storage                                                          & Terraform for configuration                                & Phase 1 (Month 1-2)  \\
     \hline
-    Azure CosmosDB (PaaS) & Used for Reporting Management (specifics pending) & CI/CD with GitHub Actions & Phase 1 (Month 1-2) \\
+    Azure CosmosDB (PaaS)                             & Used for Reporting Management (specifics pending)                                                            & CI/CD with GitHub Actions                                  & Phase 1 (Month 1-2)  \\
     \hline
-    Warehouse: Warehouse Management & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS) & Microsoft Entra ID (PaaS) + VPN, Terraform, GitHub Actions & Phase 1 (Month 1-2) \\
+    Warehouse: Warehouse Management                   & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS)                 & Microsoft Entra ID (PaaS) + VPN, Terraform, GitHub Actions & Phase 1 (Month 1-2)  \\
     \hline
-    On-premises Deployments & Ansible automation, Azure Express Route integration & VPN, Ansible automation & Ongoing (Month 1-12) \\
+    On-premises Deployments                           & Ansible automation, Azure Express Route integration                                                          & VPN, Ansible automation                                    & Ongoing (Month 1-12) \\
     \hline
-    Azure App Service (PaaS) & Python3 applications, Premium v3, Linux OS, P2v3 VM instances (3 instances) & CI/CD with GitHub Actions & Ongoing (Month 1-12) \\
+    Azure App Service (PaaS)                          & Python3 applications, Premium v3, Linux OS, P2v3 VM instances (3 instances)                                  & CI/CD with GitHub Actions                                  & Ongoing (Month 1-12) \\
     \hline
-    Azure Static Web Apps (PaaS) & React.js frontend, Standard service plan (500 GB bandwidth required) & CI/CD with GitHub Actions & Ongoing (Month 1-12) \\
+    Azure Static Web Apps (PaaS)                      & React.js frontend, Standard service plan (500 GB bandwidth required)                                         & CI/CD with GitHub Actions                                  & Ongoing (Month 1-12) \\
     \hline
-    Microsoft Entra ID (PaaS) & Identity and access management for secure access & Integrated with all services for secure access & Ongoing (Month 1-12) \\
+    Microsoft Entra ID (PaaS)                         & Identity and access management for secure access                                                             & Integrated with all services for secure access             & Ongoing (Month 1-12) \\
     \hline
-    Supply Management: SCM & Azure Linux VMs + VMSS (IaaS), Autoscaling & VPN, Ansible automation & Phase 2 (Month 2-4) \\
+    Supply Management: SCM                            & Azure Linux VMs + VMSS (IaaS), Autoscaling                                                                   & VPN, Ansible automation                                    & Phase 2 (Month 2-4)  \\
     \hline
-    Quality Management: QM Software & Azure Windows VMs + VMSS (IaaS), Autoscaling & VPN, Ansible automation & Phase 2 (Month 2-4) \\
+    Quality Management: QM Software                   & Azure Windows VMs + VMSS (IaaS), Autoscaling                                                                 & VPN, Ansible automation                                    & Phase 2 (Month 2-4)  \\
     \hline
-    Warehouse: Deliforce & On-premise with Ansible automation, Express Route integration for hybrid cloud & - & Phase 2 (Month 3-5) \\
+    Warehouse: Deliforce                              & On-premise with Ansible automation, Express Route integration for hybrid cloud                               & -                                                          & Phase 2 (Month 3-5)  \\
     \hline
-    Sales: Lead Management & On-premise with Ansible automation & - & Phase 2 (Month 3-5) \\
+    Sales: Lead Management                            & On-premise with Ansible automation                                                                           & -                                                          & Phase 2 (Month 3-5)  \\
     \hline
-    Sales + Operations + Customer Service: CRM & Azure Linux VMs + VMSS (IaaS), Autoscaling & VPN, Ansible automation & Phase 3 (Month 4-6) \\
+    Sales + Operations + Customer Service: CRM        & Azure Linux VMs + VMSS (IaaS), Autoscaling                                                                   & VPN, Ansible automation                                    & Phase 3 (Month 4-6)  \\
     \hline
-    Sales: Business Analytics & Azure Linux VMs + VMSS (IaaS), Autoscaling & VPN, Ansible automation & Phase 3 (Month 4-6) \\
+    Sales: Business Analytics                         & Azure Linux VMs + VMSS (IaaS), Autoscaling                                                                   & VPN, Ansible automation                                    & Phase 3 (Month 4-6)  \\
     \hline
-    Sales: Tableau (Market Development) & Azure Tableau Server (IaaS), No autoscaling & VPN, Ansible automation & Phase 3 (Month 4-6) \\
+    Sales: Tableau (Market Development)               & Azure Tableau Server (IaaS), No autoscaling                                                                  & VPN, Ansible automation                                    & Phase 3 (Month 4-6)  \\
     \hline
-    Facility Management: Facility Management Software & On-premise with ProxMox, Ansible automation & - & Phase 4 (Month 5-7) \\
+    Facility Management: Facility Management Software & On-premise with ProxMox, Ansible automation                                                                  & -                                                          & Phase 4 (Month 5-7)  \\
     \hline
     \caption{Migration Strategy for Applications by Phase}
-    \end{longtable}
+\end{longtable}
 
-    \newpage
+\newpage
 
 \begin{figure}[htbp]
-        \begin{center}
-            \includegraphics[width=1\textwidth]{diagrams/cloud_migration_roadmap.png}
-            \vspace{0.01\textwidth}
-            \caption{Visualised Cloud Migration Roadmap}
-            \label{cloud migration roadmap} % A unique label.
-        \end{center}
+    \begin{center}
+        \includegraphics[width=1\textwidth]{diagrams/cloud_migration_roadmap.png}
+        \vspace{0.01\textwidth}
+        \caption{Visualised Cloud Migration Roadmap}
+        \label{cloud migration roadmap} % A unique label.
+    \end{center}
 \end{figure}
-    
+
 
 \section{Standard For a Cloud Native Application}
 
-When developing a cloud native application Figure \ref{CloudStandard} shows the basic setup to integrate DevOps concepts into our workflow.
-The website is going to be development under this standard.\\
+When developing a cloud-native application Figure \ref{CloudStandard} shows the basic setup to integrate DevOps concepts into our workflow.
+The website is going to be developed under this standard.\\
 
 \begin{figure}[htbp]
     \begin{center}
@@ -797,24 +796,24 @@ The website is going to be development under this standard.\\
 
 \begin{table}[htbp]
 
-  \begin{tabular}{|p{0.7\textwidth}|p{0.3\textwidth}|}
-    \hline
-    \textbf{Topic} & \textbf{Contributor} \\
-    \hline
-    1. Overview of the Problem \newline 
-    2. Objectives of the Migration     & Priyanka Vadiwala          \\
-    \hline
-    3. Migration Strategy \newline 
-    7. Standard For a Cloud Native Application    & Wladymir Brborich-Herrera       \\
-    \hline
-    4. Proposed Cloud Architecture \& Justfication of Used Service Models \newline
-    5. Cost of operations in Microsoft Azure                           &   Hellyben Shah  \newline  Heer Vankawala       \\
-    \hline
-    6. Cloud Migration Roadmap    & Vishwaben kakadiya       \\
-    \hline
-  \end{tabular}
-  \caption{Contribution Table}
-  \label{tab:contribution}
+    \begin{tabular}{|p{0.7\textwidth}|p{0.3\textwidth}|}
+        \hline
+        \textbf{Topic}                             & \textbf{Contributor}                    \\
+        \hline
+        1. Overview of the Problem \newline
+        2. Objectives of the Migration             & Priyanka Vadiwala                       \\
+        \hline
+        3. Migration Strategy \newline
+        7. Standard For a Cloud Native Application & Wladymir Brborich-Herrera               \\
+        \hline
+        4. Proposed Cloud Architecture \& Justfication of Used Service Models \newline
+        5. Cost of operations in Microsoft Azure   & Hellyben Shah  \newline  Heer Vankawala \\
+        \hline
+        6. Cloud Migration Roadmap                 & Vishwaben kakadiya                      \\
+        \hline
+    \end{tabular}
+    \caption{Contribution Table}
+    \label{tab:contribution}
 \end{table}
 
 % ---- Bibliography ----
