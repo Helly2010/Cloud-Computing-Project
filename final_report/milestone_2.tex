@@ -391,10 +391,9 @@ As with all other internal applications, it will only be accessible through the 
     \caption{Sales Business Analytics Deployment Strategy}
 \end{table}
 
-\subsection{Sales: Tableu (Market Development)}
-This application is supplied by a third party. It will be installed in a custom virtual machine, using Azure Tableu Server.
-In this case, we are not going to actively enable auto-scaling, since we anticipate that the use case does not benefit from adding more instances.
-As with other internal applications, it will only be accessible through the company VPN.\\
+\subsection{Sales: Tableau (Market Development)}
+This application is supplied by a third party.
+We will use the provided Tableau cloud instances, since installing a virtual machine running a server will be extremely cost inefficient due to the base requirements.  \\
 
 \begin{table}[h!]
     \centering
@@ -402,7 +401,7 @@ As with other internal applications, it will only be accessible through the comp
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
-        Public Cloud           & Azure Tableu Server                & IaaS                    \\
+        Public Cloud           & Tableau Cloud                      & SaaS                    \\
         N/A                    & Tableau Desktop                    & N/A                     \\
     \end{tabular}
     \caption{Sales Tableau (Market Development) Deployment Strategy}
@@ -712,65 +711,32 @@ In the newly adjusted application landscape no specific details of the database 
 
 \section{Cloud Migration Roadmap}
 
-\begin{longtable}{|p{3.1cm}|p{5.2cm}|p{3.1cm}|l|}
-    \hline
-    \textbf{Application}                              & \textbf{Service Models \& Infrastructure}                                                                    & \textbf{Security \& Automation}                            & \textbf{Timeline}    \\
-    \hline
-    \endfirsthead
-    \hline
-    \textbf{Application}                              & \textbf{Service Models \& Infrastructure}                                                                    & \textbf{Security \& Automation}                            & \textbf{Timeline}    \\
-    \hline
-    \endhead
-    \hline
-    \endfoot
-    \hline
+For the migration we have determined 4 different workstreams:
+\begin{enumerate}
+    \item New Application Development
+    \item COTS Applications Cloud Installation
+    \item On Premises Deployments
+    \item SaaS Sourcing and Configuration
+\end{enumerate}
 
-    Finance + HR + Sales + Legislation: Office Suite  & Microsoft Office 365 (SaaS), OneDrive (SaaS)                                                                 & -                                                          & Phase 1 (Month 1)    \\
-    \hline
-    Webshop: Website CMS                              & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS)                 & Terraform, GitHub Actions                                  & Phase 1 (Month 1-2)  \\
-    \hline
-    HR: Shift Management                              & Azure App Service (PaaS or CaaS), Azure Static Web Apps (PaaS or CaaS), Azure Database for PostgreSQL (PaaS) & Microsoft Entra ID (PaaS) + VPN, Terraform, GitHub Actions & Phase 1 (Month 1-2)  \\
-    \hline
-    Finance Legacy Application                        & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS)                 & Microsoft Entra ID (PaaS), Terraform, GitHub Actions       & Phase 1 (Month 1-2)  \\
-    \hline
-    Azure Database for PostgreSQL (PaaS)              & D2ds v5 servers, premium SSD, geo-redundant storage                                                          & Terraform for configuration                                & Phase 1 (Month 1-2)  \\
-    \hline
-    Azure CosmosDB (PaaS)                             & Used for Reporting Management (specifics pending)                                                            & CI/CD with GitHub Actions                                  & Phase 1 (Month 1-2)  \\
-    \hline
-    Warehouse: Warehouse Management                   & Azure App Service (PaaS), Azure Static Web Apps (PaaS), Azure Database for PostgreSQL (PaaS)                 & Microsoft Entra ID (PaaS) + VPN, Terraform, GitHub Actions & Phase 1 (Month 1-2)  \\
-    \hline
-    On-premises Deployments                           & Ansible automation, Azure Express Route integration                                                          & VPN, Ansible automation                                    & Ongoing (Month 1-12) \\
-    \hline
-    Azure App Service (PaaS)                          & Python3 applications, Premium v3, Linux OS, P2v3 VM instances (3 instances)                                  & CI/CD with GitHub Actions                                  & Ongoing (Month 1-12) \\
-    \hline
-    Azure Static Web Apps (PaaS)                      & React.js frontend, Standard service plan (500 GB bandwidth required)                                         & CI/CD with GitHub Actions                                  & Ongoing (Month 1-12) \\
-    \hline
-    Microsoft Entra ID (PaaS)                         & Identity and access management for secure access                                                             & Integrated with all services for secure access             & Ongoing (Month 1-12) \\
-    \hline
-    Supply Management: SCM                            & Azure Linux VMs + VMSS (IaaS), Autoscaling                                                                   & VPN, Ansible automation                                    & Phase 2 (Month 2-4)  \\
-    \hline
-    Quality Management: QM Software                   & Azure Windows VMs + VMSS (IaaS), Autoscaling                                                                 & VPN, Ansible automation                                    & Phase 2 (Month 2-4)  \\
-    \hline
-    Warehouse: Deliforce                              & On-premise with Ansible automation, Express Route integration for hybrid cloud                               & -                                                          & Phase 2 (Month 3-5)  \\
-    \hline
-    Sales: Lead Management                            & On-premise with Ansible automation                                                                           & -                                                          & Phase 2 (Month 3-5)  \\
-    \hline
-    Sales + Operations + Customer Service: CRM        & Azure Linux VMs + VMSS (IaaS), Autoscaling                                                                   & VPN, Ansible automation                                    & Phase 3 (Month 4-6)  \\
-    \hline
-    Sales: Business Analytics                         & Azure Linux VMs + VMSS (IaaS), Autoscaling                                                                   & VPN, Ansible automation                                    & Phase 3 (Month 4-6)  \\
-    \hline
-    Sales: Tableau (Market Development)               & Azure Tableau Server (IaaS), No autoscaling                                                                  & VPN, Ansible automation                                    & Phase 3 (Month 4-6)  \\
-    \hline
-    Facility Management: Facility Management Software & On-premise with ProxMox, Ansible automation                                                                  & -                                                          & Phase 4 (Month 5-7)  \\
-    \hline
-    \caption{Migration Strategy for Applications by Phase}
-\end{longtable}
+\subsubsection{New Application Development}
+In this case the majority of the effort is in the development process, we are estimating at least 12 months of development time. An advantage of the "new application standard" is that we are shipping continuously.
+This means that from the first line of code, the application is deployed to the cloud and accessible. We plan for several teams to work in different applications concurrently.
 
-\newpage
+\subsubsection{COTS Applications Cloud Installation}
+For Cloud Installations we are focusing on creating the infrastructure as code files, and the subsequent deployments to Azure. This applications will be usable as soon as the installation ins completed. Given that all other dependencies are accessible.
+
+\subsection{On Premises Deployments}
+
+Similar to the cloud deployments, we are focusing on creating Ansible playbooks and the relevant ProxMox configurations. These applications will be usable once the deployment ins completed.
+
+\subsection{Saas Sourcing and Configuration}
+
+In this case we are interested on enrolling for the software, configuring access policies and potentially negotiating enterprise licenses with the providers. This is the shortest phase and users will be able to use the applications once licences and credentials are available.
 
 \begin{figure}[htbp]
     \begin{center}
-        \includegraphics[width=1\textwidth]{diagrams/cloud_migration_roadmap.png}
+        \includegraphics[width=1\textwidth]{diagrams/roadmap.png}
         \vspace{0.01\textwidth}
         \caption{Visualised Cloud Migration Roadmap}
         \label{cloud migration roadmap} % A unique label.
