@@ -113,42 +113,42 @@
 \title{\what}
 %
 \author{
- Wladymir Alexander Brborich Herrera (1437876)\\
+    Wladymir Alexander Brborich Herrera (1437876)\\
     \texttt{wladymir.brborich-herrera@stud.fra-uas.de}
     \and\\
- Vishwaben Pareshbhai Kakadiya (1471845)\\
+    Vishwaben Pareshbhai Kakadiya (1471845)\\
     \texttt{vishwaben.kakadiya@stud.fra-uas.de}
     \and\\
- Hellyben Bhaveshkumar Shah (1476905)\\
+    Hellyben Bhaveshkumar Shah (1476905)\\
     \texttt{hellyben.shah@stud.fra-uas.de}
     \and\\
- Heer Rakeshkumar Vankawala (1449039)
+    Heer Rakeshkumar Vankawala (1449039)
     \\
     \texttt{heer.vankawala@stud.fra-uas.de}
     \and\\
- Priyanka Dilipbhai Vadiwala (1481466)\\
+    Priyanka Dilipbhai Vadiwala (1481466)\\
     \texttt{priyanka.vadiwala@stud.fra-uas.de}
 }
 %
 \institute{
- Frankfurt University of Applied Sciences\\
- (1971-2014: Fachhochschule Frankfurt am Main)\\
- Nibelungenplatz 1\\
- D-60318 Frankfurt am Main\\
+    Frankfurt University of Applied Sciences\\
+    (1971-2014: Fachhochschule Frankfurt am Main)\\
+    Nibelungenplatz 1\\
+    D-60318 Frankfurt am Main\\
 }
 
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
- This report presents a comprehensive cloud transformation strategy for LowTech GmbH, developed by consultants from Awesome Cloud AG.
- Building on previous technical analyses, it outlines a strategic migration plan for the expanded application landscape,
- incorporating diverse service models such as IaaS, PaaS, and SaaS. The strategy identifies suitable public, private,
- and hybrid cloud environments to optimize performance and security while detailing operational cost calculations
- for a selected public cloud service provider. Key considerations include SAP requirements, legacy system maintenance,
- and leveraging DevOps and Cloud Native approaches for applications like the Webshop.
- The report critically analyzes the proposed solutions, balancing benefits and challenges,
- and aligning them with LowTech GmbH’s business objectives. This forward-looking strategy ensures scalability, flexibility, and resilience, positioning
- the company for sustainable growth and competitive advantage in the digital era.
+    This report presents a comprehensive cloud transformation strategy for LowTech GmbH, developed by consultants from Awesome Cloud AG.
+    Building on previous technical analyses, it outlines a strategic migration plan for the expanded application landscape,
+    incorporating diverse service models such as IaaS, PaaS, and SaaS. The strategy identifies suitable public, private,
+    and hybrid cloud environments to optimize performance and security while detailing operational cost calculations
+    for a selected public cloud service provider. Key considerations include SAP requirements, legacy system maintenance,
+    and leveraging DevOps and Cloud Native approaches for applications like the Webshop.
+    The report critically analyzes the proposed solutions, balancing benefits and challenges,
+    and aligning them with LowTech GmbH’s business objectives. This forward-looking strategy ensures scalability, flexibility, and resilience, positioning
+    the company for sustainable growth and competitive advantage in the digital era.
 
 \end{abstract}
 
@@ -199,9 +199,9 @@ We will also use Ansible playbooks to automate the configuration and installatio
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Private Cloud          & ProxMox, Ansible                   & N/A                     \\
+        Private Cloud          & ProxMox, Ansible                   & N/A                     \\
         \hline
- Public Cloud           & Azure Files                        & IaaS                    \\
+        Public Cloud           & Azure Files                        & IaaS                    \\
         \hline
     \end{tabular}
     \caption{Finance Legacy Application Deployment Strategy}
@@ -221,7 +221,7 @@ Following the same patterns as the Legacy application, we will also use Ansible 
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Private Cloud          & ProxMox, Ansible                   & N/A                     \\
+        Private Cloud          & ProxMox, Ansible                   & N/A                     \\
         \hline
     \end{tabular}
     \caption{Finance SAP PPM, ERP, IAM and ERM Deployment Strategy}
@@ -236,15 +236,15 @@ To secure all newly developed applications we are going to use Microsoft Entra I
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
+        Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
         \hline
- Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
+        Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
         \hline
- Public Cloud           & Azure Blob Storage                 & IaaS                    \\
+        Public Cloud           & Azure Blob Storage                 & IaaS                    \\
         \hline
- Public Cloud           & Microsoft Entra ID                 & PaaS                    \\
+        Public Cloud           & Microsoft Entra ID                 & PaaS                    \\
         \hline
- Public Cloud           & Azure Cosmos DB                    & PaaS                    \\
+        Public Cloud           & Azure Cosmos DB                    & PaaS                    \\
         \hline
     \end{tabular}
     \caption{Production Reporting Management Deployment Strategy}
@@ -261,14 +261,14 @@ To secure all newly developed applications we are going to use Microsoft Entra I
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
+        Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
         \hline
- Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
+        Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
 
         \hline
- Public Cloud           & Microsoft Entra ID                 & PaaS                    \\
+        Public Cloud           & Microsoft Entra ID                 & PaaS                    \\
         \hline
- Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
+        Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
         \hline
     \end{tabular}
     \caption{Production, HR, Shift Management Deployment Strategy}
@@ -284,7 +284,7 @@ Same as all other internal applications, it will only be accessible through the 
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies}                              & \textbf{Service Models} \\
         \hline
- Public Cloud           & Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets & IaaS                    \\
+        Public Cloud           & Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets & IaaS                    \\
     \end{tabular}
     \caption{Supply Management SCM Deployment Strategy}
 \end{table}
@@ -299,7 +299,7 @@ Same as all other internal applications, it will only be accessible through the 
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies}                                & \textbf{Service Models} \\
         \hline
- Public Cloud           & Azure Windows Virtual Machines + Azure Virtual Machine Scale Sets & IaaS                    \\
+        Public Cloud           & Azure Windows Virtual Machines + Azure Virtual Machine Scale Sets & IaaS                    \\
     \end{tabular}
     \caption{Quality Management QM Software Deployment Strategy}
 \end{table}
@@ -314,14 +314,14 @@ To secure all newly developed applications we are going to use Microsoft Entra I
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
+        Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
         \hline
- Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
+        Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
 
         \hline
- Public Cloud           & Microsoft Entra ID                 & PaaS                    \\
+        Public Cloud           & Microsoft Entra ID                 & PaaS                    \\
         \hline
- Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
+        Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
         \hline
     \end{tabular}
     \caption{Warehouse, Warehouse Management}
@@ -338,9 +338,9 @@ It will communicate with other internal applications using Azure Express Route, 
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Public Cloud           & Azure Express Route                & PaaS                    \\
+        Public Cloud           & Azure Express Route                & PaaS                    \\
         \hline
- Private Cloud          & ProxMox, Ansible                   & N/A                     \\
+        Private Cloud          & ProxMox, Ansible                   & N/A                     \\
         \hline
     \end{tabular}
     \caption{Warehouse Deliforce Deployment Strategy}
@@ -357,7 +357,7 @@ As with all other internal applications, it will only be accessible through the 
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies}                              & \textbf{Service Models} \\
         \hline
- Public Cloud           & Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets & IaaS                    \\
+        Public Cloud           & Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets & IaaS                    \\
     \end{tabular}
     \caption{Quality Management QM Software Deployment Strategy}
 \end{table}
@@ -370,7 +370,7 @@ This application will be installed on-premises. As with other on-premise deploym
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Private Cloud          & ProxMox, Ansible                   & N/A                     \\
+        Private Cloud          & ProxMox, Ansible                   & N/A                     \\
         \hline
     \end{tabular}
     \caption{Sales Lead Management Deployment Strategy}
@@ -386,7 +386,7 @@ As with all other internal applications, it will only be accessible through the 
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies}                              & \textbf{Service Models} \\
         \hline
- Public Cloud           & Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets & IaaS                    \\
+        Public Cloud           & Azure Linux Virtual Machines + Azure Virtual Machine Scale Sets & IaaS                    \\
     \end{tabular}
     \caption{Sales Business Analytics Deployment Strategy}
 \end{table}
@@ -401,8 +401,8 @@ We will use the provided Tableau cloud instances, since installing a virtual mac
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Public Cloud           & Tableau Cloud                      & SaaS                    \\
- N/A                    & Tableau Desktop                    & N/A                     \\
+        Public Cloud           & Tableau Cloud                      & SaaS                    \\
+        N/A                    & Tableau Desktop                    & N/A                     \\
     \end{tabular}
     \caption{Sales Tableau (Market Development) Deployment Strategy}
 \end{table}
@@ -417,14 +417,14 @@ To secure all newly developed applications we are going to use Microsoft Entra I
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
+        Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
         \hline
- Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
+        Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
 
         \hline
- Public Cloud           & Microsoft Entra ID                 & PaaS                    \\
+        Public Cloud           & Microsoft Entra ID                 & PaaS                    \\
         \hline
- Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
+        Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
         \hline
     \end{tabular}
     \caption{HR Software Deployment Strategy}
@@ -438,7 +438,7 @@ This is a proprietary application that will be deployed on-premises following pr
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Private Cloud          & ProxMox, Ansible                   & N/A                     \\
+        Private Cloud          & ProxMox, Ansible                   & N/A                     \\
         \hline
     \end{tabular}
     \caption{Facility Management Software Deployment Strategy}
@@ -454,9 +454,9 @@ Each client will have the option to use the office suite in the cloud, or locall
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Public Cloud           & Microsoft Office 365               & SaaS                    \\
+        Public Cloud           & Microsoft Office 365               & SaaS                    \\
         \hline
- Public Cloud           & OneDrive                           & SaaS                    \\
+        Public Cloud           & OneDrive                           & SaaS                    \\
         \hline
     \end{tabular}
     \caption{Office Suite Deployment Strategy}
@@ -474,11 +474,11 @@ Our standard for newly developed applications enables this critical piece of the
         \hline
         \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
         \hline
- Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
+        Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
         \hline
- Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
+        Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
         \hline
- Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
+        Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
         \hline
     \end{tabular}
     \caption{Webshop Website Deployment Strategy}
@@ -538,7 +538,7 @@ All the newly developed Python3 applications (Reporting Management, Shift Manage
           \end{itemize}
 
     \item \textbf{Operating System:} \textit{Linux} - Linux is the only operating system option for running Python apps in App Service. Linux is generally recommended due to better performance and compatibility with Python libraries
- .Linux also offers a more native environment for Python development\cite{MicrosoftAzurePythonConfig}.
+          .Linux also offers a more native environment for Python development\cite{MicrosoftAzurePythonConfig}.
 
     \item \textbf{VM Instance:} \textit{P2v3} - \#Instances: 3
 
@@ -622,7 +622,7 @@ In the newly adjusted application landscape no specific details of the database 
               \item  \textbf{CRM:} \textit{980 GB - used by Sales, Operation and Customer Service}
               \item  \textbf{CMS:} \textit{10 GB - used by Webshop Website}
           \end{itemize} \leavevmode\newline
- The chosen configuration for our solution is mentioned below.
+          The chosen configuration for our solution is mentioned below.
           \begin{itemize}
               \item \textbf{Server:} \textit{D2ds v5 - Flexible}
               \item  \textbf{vCores:} \textit{2}
@@ -650,7 +650,7 @@ In the newly adjusted application landscape no specific details of the database 
 \subsubsection{Azure Storage : IaaS} \leavevmode\newline
 \begin{itemize}
     \item \textbf{Managed Disk} - \textit{Needed to use with Azure VM for CRM, SCM, and QM for both the VM Scale sets}
-         \begin{itemize}
+          \begin{itemize}
               \item \textit{Standard SSD}
               \item  \textbf{Storage:} \textit{2048 GiB + 128 GiB}
               \item  \textbf{IOPS:} \textit{500}
@@ -658,25 +658,25 @@ In the newly adjusted application landscape no specific details of the database 
               \item  \textbf{Backup:} \textit{LRS (Locally redundant storage)}
           \end{itemize}
     \item \textbf{Blob Storage: Hot} - \textit{For storing reports in Reporting Management}
-         \begin{itemize}
+          \begin{itemize}
               \item  \textbf{Storage:} \textit{512 GiB}
               \item  \textbf{Redundancy:} \textit{LRS (Locally redundant storage)}
           \end{itemize}
     \item \textbf{Azure Files} - \textit{For Legacy Application storage}
-         \begin{itemize}
+          \begin{itemize}
               \item  \textbf{Service Plan:} \textit{SSD - Provisioned v1}
               \item  \textbf{Storage:} \textit{256 GiB}
               \item  \textbf{Redundancy:} \textit{LRS (Locally redundant storage)}
           \end{itemize}
 \end{itemize}
-\subsection{Cloud SaaS Services} 
+\subsection{Cloud SaaS Services}
 
 \subsubsection{Tableau Cloud: SaaS} \leavevmode\newline
-Tableau Cloud is a fully-hosted SaaS 
+Tableau Cloud is a fully-hosted SaaS
 solution that enables organizations to access and analyze data through a web browser eliminating the need for dedicated IT resources, reducing costs, and simplifying maintenance.
 \begin{itemize}
     \item Tableau Cloud uses a user-based licensing model that offers various options such as Creator, Explorer, or Viewer. We will choose \textit{Creator} as it will give the highest level of access to the users for using Tableau Desktop, Tableau Prep Builder, Tableau Pulse
- , and One Creator license of Tableau Cloud. 
+          , and One Creator license of Tableau Cloud.
 \end{itemize}
 
 \subsubsection{Microsoft 365 \& OneDrive: SaaS} \leavevmode\newline
@@ -688,13 +688,13 @@ and collaboration. Microsoft 365 Business Standard suits the LowTech GmbH requir
 \subsection{Cloud Migration Drawbacks}
 \begin{itemize}
 
-\item \textbf{Strategic Migration Complexity: }Transitioning to Azure presents significant challenges in terms of setup and migration complexity. This process demands comprehensive planning and a well-defined migration strategy, careful identification of applications and workloads suitable for migration, addressing potential compatibility issues with legacy systems, and mitigating risks of operational disruptions and budget overruns.
+    \item \textbf{Strategic Migration Complexity: }Transitioning to Azure presents significant challenges in terms of setup and migration complexity. This process demands comprehensive planning and a well-defined migration strategy, careful identification of applications and workloads suitable for migration, addressing potential compatibility issues with legacy systems, and mitigating risks of operational disruptions and budget overruns.
 
-\item \textbf{Technology Dependency Risks: }
-Adopting Azure services extensively can lead to vendor lock-in, a situation where an organization becomes overly dependent on a single cloud provider. This dependency may result in reduced flexibility in switching to alternative providers, potential difficulties in data portability and application migration, vulnerability to provider-specific changes in pricing or services, and limited control over the technology stack and innovation options.
+    \item \textbf{Technology Dependency Risks: }
+          Adopting Azure services extensively can lead to vendor lock-in, a situation where an organization becomes overly dependent on a single cloud provider. This dependency may result in reduced flexibility in switching to alternative providers, potential difficulties in data portability and application migration, vulnerability to provider-specific changes in pricing or services, and limited control over the technology stack and innovation options.
 
-\item \textbf{Technical Expertise Requirements: }
-Managing an Azure infrastructure necessitates specialized skills and knowledge, which can be challenging for organizations with limited IT resources. Key considerations include the need for personnel with Azure-specific expertise, potential difficulties in recruiting or training staff with required cloud skills, and the ongoing requirement to keep up with rapidly evolving technologies and best practices.
+    \item \textbf{Technical Expertise Requirements: }
+          Managing an Azure infrastructure necessitates specialized skills and knowledge, which can be challenging for organizations with limited IT resources. Key considerations include the need for personnel with Azure-specific expertise, potential difficulties in recruiting or training staff with required cloud skills, and the ongoing requirement to keep up with rapidly evolving technologies and best practices.
 \end{itemize}
 These challenges underscore the importance of thorough preparation, strategic planning, and investment in skilled personnel when considering Azure adoption and migration.
 
@@ -703,32 +703,32 @@ These challenges underscore the importance of thorough preparation, strategic pl
     \centering
     \begin{tabular}{|l|c|c|c|c|}
         \hline
-        \textbf{Azure Cloud Service} & \textbf{Plan Details} & \textbf{Cost/Month}                  & \textbf{Quantity} & \textbf{Total Cost/Month}           \\
+        \textbf{Azure Cloud Service} & \textbf{Plan Details} & \textbf{Cost/Month}                  & \textbf{Quantity}      & \textbf{Total Cost/Month}           \\
 
         \hline
- App Service                  & 3 years savings plan  & \textasciitilde 136 €                & 3                 & ~\textasciitilde 408 €              \\
+        App Service                  & 3 years savings plan  & \textasciitilde 136 €                & 3                      & ~\textasciitilde 408 €              \\
         \hline
- Static Web Apps              & Standard              & \textasciitilde 8.5 € + (0.191 €/GB) & 5 + (500 GB)      & 43 € + 95 € = \textasciitilde 138 € \\
+        Static Web Apps              & Standard              & \textasciitilde 8.5 € + (0.191 €/GB) & 5 + (500 GB)           & 43 € + 95 € = \textasciitilde 138 € \\
         \hline
- Virtual Machine              & Dpsv6                 & \textasciitilde 27 €                 & 6                 & \textasciitilde 162 €               \\
+        Virtual Machine              & Dpsv6                 & \textasciitilde 27 €                 & 6                      & \textasciitilde 162 €               \\
         \hline
- Database - Server            & D2ds v5 - Flexible    & \textasciitilde 59 €                 & 1                 & \textasciitilde 59 €                \\
+        Database - Server            & D2ds v5 - Flexible    & \textasciitilde 59 €                 & 1                      & \textasciitilde 59 €                \\
         \hline
- Database - Storage           & SSD Premium v2        & \textasciitilde 0.13 €/GiB           & 2085              & \textasciitilde 274 €               \\
+        Database - Storage           & SSD Premium v2        & \textasciitilde 0.13 €/GiB           & 2085                   & \textasciitilde 274 €               \\
         \hline
- Database - Additional IOPS   & Additional            & \textasciitilde 0.02 €               & 3000              & \textasciitilde 75 €                \\
+        Database - Additional IOPS   & Additional            & \textasciitilde 0.02 €               & 3000                   & \textasciitilde 75 €                \\
         \hline
- Database - Backup Storage    & GRS - additional cost & \textasciitilde 0.099 €              & 1000              & \textasciitilde 99 €                \\
+        Database - Backup Storage    & GRS - additional cost & \textasciitilde 0.099 €              & 1000                   & \textasciitilde 99 €                \\
         \hline
- Storage - Managed Disk       & SSD Standard          & \textasciitilde 147 € + 9 €          & 1 (2048 GiB + 128 GiB) & \textasciitilde 156 €               \\
+        Storage - Managed Disk       & SSD Standard          & \textasciitilde 147 € + 9 €          & 1 (2048 GiB + 128 GiB) & \textasciitilde 156 €               \\
         \hline
- Blob Storage                 & Hot                   & \textasciitilde 0.0189 €/GB          & 512               & \textasciitilde 10 €                \\
+        Blob Storage                 & Hot                   & \textasciitilde 0.0189 €/GB          & 512                    & \textasciitilde 10 €                \\
         \hline
- Azure Express Route          & 50 Mbit/s             & \textasciitilde 52 €                 & 1                 & \textasciitilde 52 €                \\
+        Azure Express Route          & 50 Mbit/s             & \textasciitilde 52 €                 & 1                      & \textasciitilde 52 €                \\
         \hline
- Azure Files                  & SSD - Provisioned v1  & \textasciitilde 47 €                 & 1 (256 GB)        & \textasciitilde 47 €                \\
+        Azure Files                  & SSD - Provisioned v1  & \textasciitilde 47 €                 & 1 (256 GB)             & \textasciitilde 47 €                \\
         \hline
-        \textbf{Total Cost:}         & -                     & -                                    &                   & \textbf{1480  €}                    \\
+        \textbf{Total Cost:}         & -                     & -                                    &                        & \textbf{1480  €}                    \\
         \hline
     \end{tabular}
     \caption{Cost of operations in Microsoft Azure}
@@ -791,18 +791,18 @@ The website is going to be developed under this standard.\\
 
     \begin{tabular}{|p{0.7\textwidth}|p{0.3\textwidth}|}
         \hline
-        \textbf{Topic}                             & \textbf{Contributor}                    \\
+        \textbf{Topic}                             & \textbf{Contributor}                   \\
         \hline
- 1. Overview of the Problem \newline
- 2. Objectives of the Migration             & Priyanka Vadiwala                       \\
+        1. Overview of the Problem \newline
+        2. Objectives of the Migration             & Priyanka Vadiwala                      \\
         \hline
- 3. Migration Strategy \newline
- 7. Standard For a Cloud Native Application & Wladymir Brborich-Herrera               \\
+        3. Migration Strategy \newline
+        7. Standard For a Cloud Native Application & Wladymir Brborich-Herrera              \\
         \hline
- 4. Proposed Cloud Architecture \& Critical Analysis of Used Service Models \newline
- 5. Cost of operations in Microsoft Azure   & Hellyben Shah  \newline Heer Vankawala \\
+        4. Proposed Cloud Architecture \& Critical Analysis of Used Service Models \newline
+        5. Cost of operations in Microsoft Azure   & Hellyben Shah  \newline Heer Vankawala \\
         \hline
- 6. Cloud Migration Roadmap                 & Vishwaben Kakadiya                      \\
+        6. Cloud Migration Roadmap                 & Vishwaben Kakadiya                     \\
         \hline
     \end{tabular}
     \caption{Contribution Table}
@@ -814,43 +814,43 @@ The website is going to be developed under this standard.\\
 \begin{thebibliography}{5}
 
     \bibitem{AppServiceplan}
- Microsoft,
+    Microsoft,
     \emph{Azure App Service plan overview},
- 2024, Available:
+    2024, Available:
     \url{https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans}.
 
     \bibitem{MicrosoftAzureSubscriptionLimits}
- Microsoft,
+    Microsoft,
     \emph{Azure subscription and service limits, quotas, and constraints},
- 2024, Available:
+    2024, Available:
     \url{https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits}.
 
     \bibitem{azurepricingcalculator}
- Microsoft, Available:
+    Microsoft, Available:
     \emph{Azure Pricing Calculator}, 2024,
     \url{https://azure.microsoft.com/de-de/pricing/calculator/}.
 
     \bibitem{MicrosoftAzurePythonConfig}
- Microsoft,
+    Microsoft,
     \emph{Configure Linux Python apps - Azure App Service},
- 2024, Available:
+    2024, Available:
     \url{https://learn.microsoft.com/en-us/azure/app-service/configure-language-python}
 
     \bibitem{azurestaticwebapps}
- Microsoft, 
-    \emph{What is Azure Static Web Apps?}, 2024, 
- Available: \url{https://learn.microsoft.com/en-us/azure/static-web-apps/overview}.
+    Microsoft,
+    \emph{What is Azure Static Web Apps?}, 2024,
+    Available: \url{https://learn.microsoft.com/en-us/azure/static-web-apps/overview}.
 
     \bibitem{azuredatabase}
- Microsoft, 
-    \emph{Azure Database for PostgreSQL – Flexible Servers}, 2024, 
- Available: \url{https://learn.microsoft.com/de-de/azure/postgresql/flexible-server/overview}.
+    Microsoft,
+    \emph{Azure Database for PostgreSQL – Flexible Servers}, 2024,
+    Available: \url{https://learn.microsoft.com/de-de/azure/postgresql/flexible-server/overview}.
 
     \bibitem{azurevirtualscale}
- Microsoft, 
-    \emph{What are Virtual Machine Scale Sets?}, 2024, 
- Available: \url{https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview}.
+    Microsoft,
+    \emph{What are Virtual Machine Scale Sets?}, 2024,
+    Available: \url{https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview}.
 
-    
+
 \end{thebibliography}
 \end{document}
