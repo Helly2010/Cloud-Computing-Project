@@ -760,7 +760,7 @@ Similar to the cloud deployments, we are focusing on creating Ansible playbooks 
 \subsection{Saas Sourcing and Configuration}
 
 In this case, we are interested in enrolling for the software, configuring access policies, and potentially negotiating enterprise licenses with the providers. This is the shortest phase and users will be able to use the applications once licenses and credentials are available.
-
+\newpage
 \begin{figure}[htbp]
     \begin{center}
         \includegraphics[width=1\textwidth]{diagrams/roadmap.png}
@@ -784,7 +784,17 @@ The website is going to be developed under this standard.\\
         \label{CloudStandard} % A unique label.
     \end{center}
 \end{figure}
-\newpage
+
+\section{Analysis and Assessment}
+
+After considering the estimated cost of the infrastructure without software licenses, the choice seems expensive.
+This is not ideal since cloud providers often have many hidden costs, such as data transfer or internet connections, that are difficult to factor in without having the infrastructure running.
+Nevertheless, we are getting a lot of flexibility and development speed.
+Given that we will spend some time and effort developing new applications for the business, we believe it is worth the investment in the cloud just for the benefit of developer productivity.
+Since we are able to leverage only teams of software developers to also handle the infrastructure. Additionally, we are saving a lot on infrastructure, maintenance, and energy costs.
+Finally, the architecture also allows us back to move to an on-premises model if there is a need. In our assessment, the webshop and warehouse are the applications that benefit the most by being on the cloud.
+In the future, there are two directions that the project can take: Optimizing the cloud infrastructure costs, by iterating and tailoring our development process to Azure, or downsizing the cloud deployment to only contain critical customer-facing applications.
+
 \subsection*{Contribution}
 
 \begin{table}[htbp]
