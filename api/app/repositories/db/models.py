@@ -1,24 +1,26 @@
 from sqlalchemy import Column, Integer, String,ForeignKey,DateTime,JSON,Rela
 from database import Base
 from sqlalchemy.orm import relationship
-class Stock(Base):
-    __tablename__ = 'stock'
+
+class Stocks(Base):
+    __tablename__ = 'stocks'
 
     id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
-    product_id = Column(Integer, ForeignKey('product.id'), nullable=False, unique=True,index=True)
+    product_id = Column(Integer, ForeignKey('products.id'), nullable=False, unique=True,index=True)
     quantity = Column(Integer, nullable=False)
     updated_at = Column(DateTime, nullable=False)
     created_at = Column(DateTime, nullable=False)
-    product = relationship('Product', back_populates='stock', uselist=False)
 
-class Product(Base):
-    __tablename__ = 'product'
+    products = relationship('Products', back_populates='stocks', uselist=False)
+
+class Products(Base):
+    __tablename__ = 'products'
 
     id = Column(Integer, primary_key=True, nullable=False,index=True,autoincrement=True)
     name = Column(String, nullable=False)
     ean_code = Column(Integer, nullable=False,index=True,unique=True)
-    category_id = Column(Integer, ForeignKey('category.id'), nullable=False)
-    supplier_id = Column(Integer, ForeignKey('supplier.id'), nullable=False)
+    category_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
+    supplier_id = Column(Integer, ForeignKey('suppliers.id'), nullable=False)
     description = Column(String, nullable=False)
     public_unit_price = Column(Integer, nullable=False)
     supplier_unit_price = Column(Integer, nullable=False)
@@ -28,22 +30,23 @@ class Product(Base):
     created_at = Column(DateTime, nullable=False)
     updated_at = Column(DateTime, nullable=False)
 
-    stock = relationship('Stock', back_populates='product')
-    category = relationship('Category', back_populates='product')
-    supplier = relationship('Supplier', back_populates='product')
-    orderdetail = relationship('OrderDetail',back_populates='product')
-class Category(Base):
-    __tablename__ = 'category'
+    stocks = relationship('Stocks', back_populates='products')
+    categories = relationship('Categories', back_populates='products')
+    suppliers = relationship('Suppliers', back_populates='products')
+    order_details = relationship('OrderDetails',back_populates='products')
+
+class Categories(Base):
+    __tablename__ = 'categories'
 
     id = Column(Integer, primary_key=True, nullable=False,index=True,autoincrement=True)
     name = Column(String, nullable=False)
     description = Column(String, nullable=False)
     metadata = Column(JSON, nullable=False)
 
-    product = relationship('Product', back_populates='category', uselist=True)
+    products = relationship('Products', back_populates='categories', uselist=True)
 
-class Supplier(Base):
-    __tablename__ = 'supplier'
+class Suppliers(Base):
+    __tablename__ = 'suppliers'
 
     id = Column(Integer, primary_key=True, nullable=False,index=True,autoincrement=True)
     name = Column(String, nullable=False)
@@ -51,10 +54,10 @@ class Supplier(Base):
     phone = Column(String, nullable=False,unique=True)
     email = Column(String, nullable=False,unique=True)
 
-    product = relationship('Product', back_populates='supplier', uselist=True)
+    products = relationship('Products', back_populates='suppliers', uselist=True)
 
-class OrdersHeader(Base):
-    __tablename__ = 'orderheader'
+class Orders(Base):
+    __tablename__ = 'orders'
 
     id = Column(Integer, primary_key=True, nullable=False,index=True,autoincrement=True)
     order_total = Column(Integer, nullable=False)
@@ -67,17 +70,17 @@ class OrdersHeader(Base):
     created_at = Column(DateTime, nullable=False)
     updated_at = Column(DateTime, nullable=False)
 
-    orderdetail = relationship('OrderDetail', back_populates='orderheader', uselist=True)
+    order_details = relationship('OrderDetails', back_populates='orders', uselist=True)
 
-class OrderDetail(Base):
-    __tablename__ = 'orderdetail'
+class OrderDetails(Base):
+    __tablename__ = 'order_details'
 
     id = Column(Integer, primary_key=True, nullable=False,index=True,autoincrement=True)
-    product_id = Column(Integer, ForeignKey('product.id'), nullable=False, index=True)
-    orderheader_id = Column(Integer, ForeignKey('orderheader.id'), nullable=False)
+    product_id = Column(Integer, ForeignKey('products.id'), nullable=False, index=True)
+    order_id = Column(Integer, ForeignKey('orders.id'), nullable=False)
     product_price = Column(Integer, nullable=False)
     created_at = Column(DateTime, nullable=False)
     updated_at = Column(DateTime, nullable=False)
 
-    orderheader = relationship('OrderHeader', back_populates='orderdetail')
-    product = relationship('Product', back_populates='orderdetail')
+    orders = relationship('orders', back_populates='order_details')
+    products = relationship('Products', back_populates='order_details')

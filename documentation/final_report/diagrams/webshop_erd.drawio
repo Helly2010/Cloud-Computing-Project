@@ -10,7 +10,7 @@
         <mxCell id="O599vIxPyZ5ag_olLyhW-19" value="" style="group;fontFamily=Helvetica;" parent="oDCol93xk47E9iByFCbb-89" vertex="1" connectable="0">
           <mxGeometry y="6.75" width="250" height="260" as="geometry" />
         </mxCell>
-        <mxCell id="C-vyLk0tnHw3VtMMgP7b-13" value="Supplier" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="O599vIxPyZ5ag_olLyhW-19" vertex="1">
+        <mxCell id="C-vyLk0tnHw3VtMMgP7b-13" value="suppliers" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="O599vIxPyZ5ag_olLyhW-19" vertex="1">
           <mxGeometry width="250" height="260" as="geometry" />
         </mxCell>
         <mxCell id="C-vyLk0tnHw3VtMMgP7b-14" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;fontFamily=Helvetica;" parent="C-vyLk0tnHw3VtMMgP7b-13" vertex="1">
@@ -78,7 +78,7 @@
         <mxCell id="kDhygVRO_tqBMdC2wP5P-2" value="" style="group;fontFamily=Helvetica;" parent="1" vertex="1" connectable="0">
           <mxGeometry x="140" y="40" width="610" height="580.5699999999999" as="geometry" />
         </mxCell>
-        <mxCell id="C-vyLk0tnHw3VtMMgP7b-23" value="Product" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="kDhygVRO_tqBMdC2wP5P-2" vertex="1">
+        <mxCell id="C-vyLk0tnHw3VtMMgP7b-23" value="products" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="kDhygVRO_tqBMdC2wP5P-2" vertex="1">
           <mxGeometry width="250" height="423.00000000000006" as="geometry">
             <mxRectangle width="90" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -161,7 +161,7 @@
         <mxCell id="O599vIxPyZ5ag_olLyhW-21" value="" style="group;fontFamily=Helvetica;" parent="kDhygVRO_tqBMdC2wP5P-2" vertex="1" connectable="0">
           <mxGeometry x="360" y="362.57" width="250" height="218" as="geometry" />
         </mxCell>
-        <mxCell id="oDCol93xk47E9iByFCbb-73" value="OrderDetail" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="O599vIxPyZ5ag_olLyhW-21" vertex="1">
+        <mxCell id="oDCol93xk47E9iByFCbb-73" value="order_details" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="O599vIxPyZ5ag_olLyhW-21" vertex="1">
           <mxGeometry width="250" height="218" as="geometry" />
         </mxCell>
         <mxCell id="oDCol93xk47E9iByFCbb-74" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;fontFamily=Helvetica;" parent="oDCol93xk47E9iByFCbb-73" vertex="1">
@@ -198,7 +198,7 @@
             <mxRectangle width="30" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="oDCol93xk47E9iByFCbb-82" value="orderheader_id    INT    NOT NULL" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontFamily=Helvetica;" parent="oDCol93xk47E9iByFCbb-80" vertex="1">
+        <mxCell id="oDCol93xk47E9iByFCbb-82" value="order_id    INT    NOT NULL" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontFamily=Helvetica;" parent="oDCol93xk47E9iByFCbb-80" vertex="1">
           <mxGeometry x="30" width="220" height="30" as="geometry">
             <mxRectangle width="220" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -243,7 +243,7 @@
         <mxCell id="O599vIxPyZ5ag_olLyhW-17" value="y" style="group;fontFamily=Helvetica;" parent="1" vertex="1" connectable="0">
           <mxGeometry x="500" y="140" width="250" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="C-vyLk0tnHw3VtMMgP7b-2" value="Category" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="O599vIxPyZ5ag_olLyhW-17" vertex="1">
+        <mxCell id="C-vyLk0tnHw3VtMMgP7b-2" value="categories" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="O599vIxPyZ5ag_olLyhW-17" vertex="1">
           <mxGeometry y="-10" width="250" height="210" as="geometry" />
         </mxCell>
         <mxCell id="C-vyLk0tnHw3VtMMgP7b-3" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;fontFamily=Helvetica;" parent="C-vyLk0tnHw3VtMMgP7b-2" vertex="1">
@@ -359,7 +359,7 @@
             <mxRectangle width="240" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="oDCol93xk47E9iByFCbb-48" value="OrderHeader" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="O599vIxPyZ5ag_olLyhW-22" vertex="1">
+        <mxCell id="oDCol93xk47E9iByFCbb-48" value="orders" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="O599vIxPyZ5ag_olLyhW-22" vertex="1">
           <mxGeometry width="289" height="341" as="geometry" />
         </mxCell>
         <mxCell id="oDCol93xk47E9iByFCbb-49" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;fontFamily=Helvetica;" parent="oDCol93xk47E9iByFCbb-48" vertex="1">
@@ -404,7 +404,7 @@
         <mxCell id="CiDl6XAIIdeiYuVBN_p--9" value="" style="group" parent="1" vertex="1" connectable="0">
           <mxGeometry x="-230" y="250" width="250" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="oDCol93xk47E9iByFCbb-37" value="Stock" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="CiDl6XAIIdeiYuVBN_p--9" vertex="1">
+        <mxCell id="oDCol93xk47E9iByFCbb-37" value="stocks" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="CiDl6XAIIdeiYuVBN_p--9" vertex="1">
           <mxGeometry width="250" height="190" as="geometry" />
         </mxCell>
         <mxCell id="oDCol93xk47E9iByFCbb-38" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;fontFamily=Helvetica;" parent="oDCol93xk47E9iByFCbb-37" vertex="1">
