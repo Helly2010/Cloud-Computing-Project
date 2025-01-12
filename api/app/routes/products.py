@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.ext.asyncio import AsyncSession
-from app.repositories.postgres.connector import PostgreSQLDBConnector
-from app.repositories.db.models import Product, Stock
-from app.serializers.response import ProductSerializer
-from app.serializers.request import ProductCreateSerializer, ProductUpdateSerializer
 from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.repositories.db.models import Product, Stock
+from app.repositories.postgres.connector import PostgreSQLDBConnector
+from app.serializers.request import ProductCreateSerializer, ProductUpdateSerializer
+from app.serializers.response import ProductSerializer
 
 router = APIRouter()
 
