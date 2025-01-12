@@ -14,10 +14,11 @@ class OrderSerializer(BaseModel):
     updated_at: datetime
     created_at: datetime
 
+
 class ProductSerializer(BaseModel):
-    id: int 
+    id: int
     name: str
-    ean_code: int 
+    ean_code: int
     category_id: int
     supplier_id: int
     stock_id: int

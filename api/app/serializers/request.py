@@ -13,7 +13,7 @@ class ShippingInfo(BaseModel):
     city: str
 
 
-class OrderRequestSerializer(BaseModel):
+class OrderCreateSerializer(BaseModel):
     customer_name: str
     customer_shipping_info: ShippingInfo
     customer_phone: str
@@ -21,7 +21,8 @@ class OrderRequestSerializer(BaseModel):
     payment_method: PaymentInfo
     products: dict[int, int]  # dict[product_id: quantity]
 
-class ProductCreate(BaseModel):
+
+class ProductCreateSerializer(BaseModel):
     name: str
     ean_code: int
     category_id: int
@@ -31,9 +32,10 @@ class ProductCreate(BaseModel):
     supplier_unit_price: int
     img_link: str
     reorder_level: int
-    metadata: dict
+    extra_info: dict
 
-class ProductUpdate(BaseModel):
+
+class ProductUpdateSerializer(BaseModel):
     product_id: int
     name: str | None = None
     ean_code: int | None = None
