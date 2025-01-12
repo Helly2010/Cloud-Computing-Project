@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.repositories.postgres.connector import PostgreSQLDBConnector
 from app.repositories.db.models import Order, OrderStatus, OrderTrackingStatus, Product, OrderDetail
 from app.serializers.response import OrderSerializer
-from app.serializers.request import OrderRequestSerializer
+from app.serializers.request import OrderCreateSerializer
 from sqlalchemy import select
 
 router = APIRouter()
@@ -18,8 +18,8 @@ async def get_orders(status: str = OrderStatus.ACTIVE, db: AsyncSession = Depend
 
 
 @router.post("/orders/", response_model=OrderSerializer)
-async def create_order(order_data: OrderRequestSerializer, db: AsyncSession = Depends(PostgreSQLDBConnector.get_session)):
-    products = await db.scalars(select(Product).where(Product.id.in_(order_data.products.keys())))
+async def create_order(order_data: OrderCreateSerializer, db: AsyncSession = Depends(PostgreSQLDBConnector.get_session)):
+    products = (await db.scalars(select(Product).where(Product.id.in_(order_data.products.keys())))).all()
 
     if not products or len(products) != len(order_data.products):
         raise HTTPException(status_code=400, detail="No products found for order or invalid products found in list")
@@ -36,8 +36,8 @@ async def create_order(order_data: OrderRequestSerializer, db: AsyncSession = De
         )
 
         db.add(new_order)
-        db.flush()
-        db.refresh(new_order)
+        await db.flush()
+        await db.refresh(new_order)
 
         order_details = []
 
