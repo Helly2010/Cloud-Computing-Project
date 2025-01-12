@@ -31,3 +31,7 @@ run `poetry install`
 run `poetry shell`
 
 Inside the virtual environment run `python runner.py`
+
+To create a migration revision: `alembic revision --autogenerate -m "your migration title"`
+
+To run the database migrations: `alembic upgrade head`
