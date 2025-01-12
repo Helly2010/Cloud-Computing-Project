@@ -1,92 +1,144 @@
+from datetime import datetime
+
+from sqlalchemy import JSON, DateTime, ForeignKey, Integer, PrimaryKeyConstraint, String
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.sql import func
+
 from app.repositories.postgres.connector import PostgreSQLDBConnector
-from sqlalchemy import JSON, Column, DateTime, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
 
 
 class Stock(PostgreSQLDBConnector.Base):
     __tablename__ = "stock"
 
-    id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
-    product_id = Column(Integer, ForeignKey("products.id"), nullable=False, unique=True, index=True)
-    quantity = Column(Integer, nullable=False)
-    updated_at = Column(DateTime, nullable=False)
-    created_at = Column(DateTime, nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
+    product_id: Mapped[int] = mapped_column(Integer, ForeignKey("products.id"), nullable=False, index=True)
+    quantity: Mapped[int] = mapped_column(Integer, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        server_default=func.now(),
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
+    )
 
-    products = relationship("Products", back_populates="stock", uselist=False)
+    __table_args__ = (PrimaryKeyConstraint("id", name="pk_stock"),)
 
 
-class Products(PostgreSQLDBConnector.Base):
+class Product(PostgreSQLDBConnector.Base):
     __tablename__ = "products"
 
-    id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
-    name = Column(String, nullable=False)
-    ean_code = Column(Integer, nullable=False, index=True, unique=True)
-    category_id = Column(Integer, ForeignKey("categories.id"), nullable=False)
-    supplier_id = Column(Integer, ForeignKey("suppliers.id"), nullable=False)
-    description = Column(String, nullable=False)
-    public_unit_price = Column(Integer, nullable=False)
-    supplier_unit_price = Column(Integer, nullable=False)
-    img_link = Column(String, nullable=False)
-    reorder_level = Column(Integer, nullable=False)
-    metadata = Column(JSON, nullable=False)
-    created_at = Column(DateTime, nullable=False)
-    updated_at = Column(DateTime, nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String, nullable=False)
+    ean_code: Mapped[int] = mapped_column(Integer, nullable=False, index=True, unique=True)
+    category_id: Mapped[int] = mapped_column(Integer, ForeignKey("categories.id"), nullable=False)
+    supplier_id: Mapped[int] = mapped_column(Integer, ForeignKey("suppliers.id"), nullable=False)
+    stock_id: Mapped[int] = mapped_column(Integer, ForeignKey("stock.id"), index=True)
+    description: Mapped[str] = mapped_column(String, nullable=False)
+    public_unit_price: Mapped[int] = mapped_column(Integer, nullable=False)
+    supplier_unit_price: Mapped[int] = mapped_column(Integer, nullable=False)
+    img_link: Mapped[str] = mapped_column(String, nullable=False)
+    reorder_level: Mapped[int] = mapped_column(Integer, nullable=False)
+    metadata: Mapped[dict] = mapped_column(JSON, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        server_default=func.now(),
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
+    )
 
-    stock = relationship("Stock", back_populates="products")
-    categories = relationship("Categories", back_populates="products")
-    suppliers = relationship("Suppliers", back_populates="products")
-    order_details = relationship("OrderDetails", back_populates="products")
+    stock: Mapped[Stock] = relationship("Stock", lazy="joined")
+    category: Mapped["Category"] = relationship("Category", lazy="joined")
+    supplier: Mapped["Supplier"] = relationship("Supplier", lazy="joined")
+
+    __table_args__ = (PrimaryKeyConstraint("id", name="pk_products"),)
 
 
-class Categories(PostgreSQLDBConnector.Base):
+class Category(PostgreSQLDBConnector.Base):
     __tablename__ = "categories"
 
-    id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
-    name = Column(String, nullable=False)
-    description = Column(String, nullable=False)
-    metadata = Column(JSON, nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String, nullable=False)
+    description: Mapped[str] = mapped_column(String, nullable=False)
+    metadata: Mapped[dict] = mapped_column(JSON, nullable=False)
 
-    products = relationship("Products", back_populates="categories", uselist=True)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        server_default=func.now(),
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
+    )
+
+    __table_args__ = (PrimaryKeyConstraint("id", name="pk_categories"),)
 
 
-class Suppliers(PostgreSQLDBConnector.Base):
+class Supplier(PostgreSQLDBConnector.Base):
     __tablename__ = "suppliers"
 
-    id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
-    name = Column(String, nullable=False)
-    address = Column(String, nullable=False)
-    phone = Column(String, nullable=False, unique=True)
-    email = Column(String, nullable=False, unique=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String, nullable=False)
+    address: Mapped[str] = mapped_column(String, nullable=False)
+    phone: Mapped[str] = mapped_column(String, nullable=False, unique=True)
+    email: Mapped[str] = mapped_column(String, nullable=False, unique=True)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        server_default=func.now(),
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
+    )
 
-    products = relationship("Products", back_populates="suppliers", uselist=True)
+    __table_args__ = (PrimaryKeyConstraint("id", name="pk_suppliers"),)
 
 
-class Orders(PostgreSQLDBConnector.Base):
+class Order(PostgreSQLDBConnector.Base):
     __tablename__ = "orders"
 
-    id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
-    order_total = Column(Integer, nullable=False)
-    customer_name = Column(String, nullable=False)
-    customer_shipping_info = Column(JSON, nullable=False)
-    customer_phone = Column(String, nullable=False)
-    customer_email = Column(String, nullable=False)
-    payment_method = Column(JSON, nullable=False)
-    status = Column(String, nullable=False)
-    created_at = Column(DateTime, nullable=False)
-    updated_at = Column(DateTime, nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
+    order_total: Mapped[int] = mapped_column(Integer, nullable=False)
+    customer_name: Mapped[str] = mapped_column(String, nullable=False)
+    customer_shipping_info: Mapped[dict] = mapped_column(JSON, nullable=False)
+    customer_phone: Mapped[str] = mapped_column(String, nullable=False)
+    customer_email: Mapped[str] = mapped_column(String, nullable=False)
+    payment_method: Mapped[dict] = mapped_column(JSON, nullable=False)
+    status: Mapped[str] = mapped_column(String, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        server_default=func.now(),
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
+    )
 
-    order_details = relationship("OrderDetails", back_populates="orders", uselist=True)
+    __table_args__ = (PrimaryKeyConstraint("id", name="pk_categories"),)
 
 
-class OrderDetails(PostgreSQLDBConnector.Base):
+class OrderDetail(PostgreSQLDBConnector.Base):
     __tablename__ = "order_details"
 
-    id = Column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
-    product_id = Column(Integer, ForeignKey("products.id"), nullable=False, index=True)
-    order_id = Column(Integer, ForeignKey("orders.id"), nullable=False)
-    product_price = Column(Integer, nullable=False)
-    created_at = Column(DateTime, nullable=False)
-    updated_at = Column(DateTime, nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
+    product_id: Mapped[int] = mapped_column(Integer, ForeignKey("products.id"), nullable=False, index=True)
+    order_id: Mapped[int] = mapped_column(Integer, ForeignKey("orders.id"), nullable=False)
+    product_price: Mapped[int] = mapped_column(Integer, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        server_default=func.now(),
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
+    )
 
-    orders = relationship("orders", back_populates="order_details")
-    products = relationship("Products", back_populates="order_details")
+    __table_args__ = (PrimaryKeyConstraint("id", name="pk_order_details"),)
