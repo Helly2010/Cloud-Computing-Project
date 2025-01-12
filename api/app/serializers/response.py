@@ -13,3 +13,19 @@ class OrderSerializer(BaseModel):
     status: str
     updated_at: datetime
     created_at: datetime
+
+class ProductSerializer(BaseModel):
+    id: int 
+    name: str
+    ean_code: int 
+    category_id: int
+    supplier_id: int
+    stock_id: int
+    description: str
+    public_unit_price: int
+    supplier_unit_price: int
+    img_link: str
+    reorder_level: int
+    extra_info: dict
+    updated_at: datetime
+    created_at: datetime
