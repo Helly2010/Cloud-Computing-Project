@@ -42,6 +42,6 @@ class ProductUpdate(BaseModel):
     description: str | None = None
     public_unit_price: int | None = None
     supplier_unit_price: int | None = None
-    ig_link: str | None = None
+    img_link: str | None = None
     reorder_level: int | None = None
     metadata: dict | None = None

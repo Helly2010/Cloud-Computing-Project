@@ -30,7 +30,7 @@ async def create_product(product: ProductCreate, db: AsyncSession = Depends(Post
             reorder_level=product.reorder_level,
             metadata=product.metadata
         )
-
+    
         db.add(new_product)
         await db.flush()
         await db.refresh(new_product)
