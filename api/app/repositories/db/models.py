@@ -1,4 +1,5 @@
 from datetime import datetime
+from enum import StrEnum
 
 from sqlalchemy import JSON, DateTime, ForeignKey, Integer, PrimaryKeyConstraint, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -99,6 +100,20 @@ class Supplier(PostgreSQLDBConnector.Base):
     __table_args__ = (PrimaryKeyConstraint("id", name="pk_suppliers"),)
 
 
+class OrderStatus(StrEnum):
+    ACTIVE = "active"
+    CANCELLED = "cancelled"
+    REFUNDED = "refunded"
+
+
+class OrderTrackingStatus(StrEnum):
+    SHIPMENT_CREATED = "shipmen_created"
+    DISPATCHED = "dispatched"
+    IN_TRANSIT = "in_transit"
+    DELIVERED = "delivered"
+    RETURNED = "returned"
+
+
 class Order(PostgreSQLDBConnector.Base):
     __tablename__ = "orders"
 
@@ -110,6 +125,7 @@ class Order(PostgreSQLDBConnector.Base):
     customer_email: Mapped[str] = mapped_column(String, nullable=False)
     payment_method: Mapped[dict] = mapped_column(JSON, nullable=False)
     status: Mapped[str] = mapped_column(String, nullable=False)
+    tracking_status: Mapped[str] = mapped_column(String, nullable=False)
     updated_at: Mapped[datetime] = mapped_column(
         DateTime,
         nullable=False,
