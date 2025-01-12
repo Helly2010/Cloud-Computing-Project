@@ -5,12 +5,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.repositories.db.models import Product, Stock
 from app.repositories.postgres.connector import PostgreSQLDBConnector
 from app.serializers.request import ProductCreateSerializer, ProductUpdateSerializer
-from app.serializers.response import ProductSerializer
+from app.serializers.response import ProductSerializer, ProductBaseSerializer
 
 router = APIRouter()
 
 
-@router.get("/products/", response_model=list[ProductSerializer])
+@router.get("/products/", response_model=list[ProductBaseSerializer])
 async def get_products(db: AsyncSession = Depends(PostgreSQLDBConnector.get_session)):
     products = (await db.scalars(select(Product).order_by(Product.id))).all()
     return products
@@ -25,7 +25,7 @@ async def get_product(product_id: int, db: AsyncSession = Depends(PostgreSQLDBCo
     return db_product
 
 
-@router.post("/products/", response_model=ProductSerializer)
+@router.post("/products/", response_model=ProductBaseSerializer)
 async def create_product(product: ProductCreateSerializer, db: AsyncSession = Depends(PostgreSQLDBConnector.get_session)):
     async with db.begin():
         new_stock = Stock(quantity=0)
@@ -53,7 +53,7 @@ async def create_product(product: ProductCreateSerializer, db: AsyncSession = De
     return new_product
 
 
-@router.patch("/products/{product_id}", response_model=ProductSerializer)
+@router.patch("/products/{product_id}", response_model=ProductBaseSerializer)
 async def update_product(
     product_id: int, product_update: ProductUpdateSerializer, db: AsyncSession = Depends(PostgreSQLDBConnector.get_session)
 ):
@@ -71,7 +71,7 @@ async def update_product(
     return db_product
 
 
-@router.delete("/products/{product_id}", response_model=ProductSerializer)
+@router.delete("/products/{product_id}", response_model=ProductBaseSerializer)
 async def delete_product(product_id: int, db: AsyncSession = Depends(PostgreSQLDBConnector.get_session)):
     async with db.begin():
         db_product = await db.get(Product, product_id)

@@ -47,3 +47,15 @@ class ProductUpdateSerializer(BaseModel):
     img_link: str | None = None
     reorder_level: int | None = None
     metadata: dict | None = None
+
+
+class CategoryCreateSerializer(BaseModel):
+    name: str
+    description: str
+    extra_info: dict
+
+
+class CategoryUpdateSerializer(BaseModel):
+    name: str | None = None
+    description: str | None = None
+    extra_info: dict | None = None

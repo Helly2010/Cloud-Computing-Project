@@ -15,7 +15,7 @@ class OrderSerializer(BaseModel):
     created_at: datetime
 
 
-class ProductSerializer(BaseModel):
+class ProductBaseSerializer(BaseModel):
     id: int
     name: str
     ean_code: int
@@ -30,3 +30,14 @@ class ProductSerializer(BaseModel):
     extra_info: dict
     updated_at: datetime
     created_at: datetime
+
+
+class ProductSerializer(ProductBaseSerializer):
+    category: "CategorySerializer"
+
+
+class CategorySerializer(BaseModel):
+    id: int
+    name: str
+    description: str
+    extra_info: dict
