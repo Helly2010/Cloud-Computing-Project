@@ -32,6 +32,8 @@ run `poetry shell`
 
 Inside the virtual environment run `python runner.py`
 
+To start the db with docker `docker compose --env-file=.env.docker --profile dev up`
+
 To create a migration revision: `alembic revision --autogenerate -m "your migration title"`
 
 To run the database migrations: `alembic upgrade head`
