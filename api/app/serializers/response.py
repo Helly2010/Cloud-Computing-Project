@@ -41,3 +41,21 @@ class CategorySerializer(BaseModel):
     name: str
     description: str
     extra_info: dict
+    updated_at: datetime
+    created_at: datetime
+
+class SupplierSerializer(BaseModel):
+    id: int
+    name: str
+    address: str
+    phone: str
+    email: str
+    updated_at: datetime
+    created_at: datetime
+
+
+class StockSerializer(BaseModel):
+    id: int
+    quantity: str
+    updated_at: datetime
+    created_at: datetime

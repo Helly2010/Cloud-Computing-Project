@@ -59,3 +59,22 @@ class CategoryUpdateSerializer(BaseModel):
     name: str | None = None
     description: str | None = None
     extra_info: dict | None = None
+
+
+class SupplierCreateSerializer(BaseModel):
+    name: str
+    address: str
+    phone: str
+    email: str
+
+class SupplierUpdateSerializer(BaseModel):
+    name: str | None = None
+    address: str | None = None
+    phone: str | None = None
+    email: str | None = None
+
+class StockCreateSerializer(BaseModel):
+    quantity: str 
+
+class StockUpdateSerializer(BaseModel):
+    quantity: str | None = None
