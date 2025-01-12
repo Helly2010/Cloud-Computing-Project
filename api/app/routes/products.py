@@ -34,6 +34,7 @@ async def create_product(product: ProductCreate, db: AsyncSession = Depends(Post
         db.add(new_product)
         await db.flush()
         await db.refresh(new_product)
+        await db.commit()
     return new_product
 
 @router.patch("/products/{product_id}", response_model=ProductSerializer)
@@ -49,6 +50,7 @@ async def update_product(product_id: int, product_update: ProductUpdate, db: Asy
         
         await db.flush()
         await db.refresh(db_product)
+        await db.commit()
     
     return db_product
 
@@ -60,5 +62,6 @@ async def delete_product(product_id: int, db: AsyncSession = Depends(PostgreSQLD
             raise HTTPException(status_code=404, detail="Product not found")
         await db.delete(db_product)
         await db.flush()
+        await db.commit()
     return db_product
 
