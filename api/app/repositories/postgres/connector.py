@@ -20,7 +20,7 @@ class PostgreSQLDBConnector:
             cls.sessionmaker = async_sessionmaker(cls.engine, expire_on_commit=False)
 
     @classmethod
-    async def get_session(cls) -> AsyncGenerator[AsyncSession]:
+    async def get_session(cls) -> AsyncGenerator[AsyncSession, None]:
         session = cls.sessionmaker()
         async with session as session:
             yield session

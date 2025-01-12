@@ -20,6 +20,7 @@ fastapi = {extras = ["standard"], version = "^0.115.6"}
 pydantic-settings = "^2.7.1"
 sqlalchemy = {extras = ["asyncio"], version = "^2.0.37"}
 psycopg = "^3.2.3"
+alembic = "^1.14.0"
 
 
 [tool.poetry.group.dev.dependencies]

@@ -7,6 +7,6 @@ EnvManager = get_settings()
 
 
 app = FastAPI()
-PostgreSQLDBConnector.init_db(EnvManager.AZURE_DATABASE_URL)
+PostgreSQLDBConnector.init_db(EnvManager.get_db_url())
 
 app.include_router(products_router)

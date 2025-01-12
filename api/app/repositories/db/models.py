@@ -40,7 +40,7 @@ class Product(PostgreSQLDBConnector.Base):
     supplier_unit_price: Mapped[int] = mapped_column(Integer, nullable=False)
     img_link: Mapped[str] = mapped_column(String, nullable=False)
     reorder_level: Mapped[int] = mapped_column(Integer, nullable=False)
-    metadata: Mapped[dict] = mapped_column(JSON, nullable=False)
+    extra_info: Mapped[dict] = mapped_column(JSON, nullable=False)
     updated_at: Mapped[datetime] = mapped_column(
         DateTime,
         nullable=False,
@@ -64,7 +64,7 @@ class Category(PostgreSQLDBConnector.Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String, nullable=False)
     description: Mapped[str] = mapped_column(String, nullable=False)
-    metadata: Mapped[dict] = mapped_column(JSON, nullable=False)
+    extra_info: Mapped[dict] = mapped_column(JSON, nullable=False)
 
     updated_at: Mapped[datetime] = mapped_column(
         DateTime,
