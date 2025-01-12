@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  server:
+    build:
+      context: ./api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgresdb
+    environment:
+      PYTHONUNBUFFERED: 1
+      AZURE_DATABASE_URL: "${POSTGRESQL_DB_USER}:${POSTGRESQL_DB_PASS}@postgresdb:5438"
+      ENV: PROD
+
+  postgresdb:
+    image: postgres:14.2
+    ports:
+      - "5438:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRESQL_DB_USER}
+      POSTGRES_PASSWORD: ${POSTGRESQL_DB_PASS}
+      POSTGRES_DB: webshopdb
+    volumes:
+      - "postgresql:/var/lib/postgresql/data"
+
+    profiles: [dev]
+
+volumes:
+  postgresql: {}

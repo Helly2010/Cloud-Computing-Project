@@ -11,6 +11,8 @@ package-mode = false
 python = "^3.11"
 fastapi = {extras = ["standard"], version = "^0.115.6"}
 pydantic-settings = "^2.7.1"
+sqlalchemy = "^2.0.37"
+psycopg = "^3.2.3"
 
 
 [build-system]
