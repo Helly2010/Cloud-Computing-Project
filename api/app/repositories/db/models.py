@@ -11,7 +11,6 @@ class Stock(PostgreSQLDBConnector.Base):
     __tablename__ = "stock"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False, index=True, autoincrement=True)
-    product_id: Mapped[int] = mapped_column(Integer, ForeignKey("products.id"), nullable=False, index=True)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False)
     updated_at: Mapped[datetime] = mapped_column(
         DateTime,
@@ -121,7 +120,7 @@ class Order(PostgreSQLDBConnector.Base):
         DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
     )
 
-    __table_args__ = (PrimaryKeyConstraint("id", name="pk_categories"),)
+    __table_args__ = (PrimaryKeyConstraint("id", name="pk_orders"),)
 
 
 class OrderDetail(PostgreSQLDBConnector.Base):
