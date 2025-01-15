@@ -10,7 +10,7 @@ The UI is based on this repo https://github.com/DebasmitaMallick/React-e-Commerc
 
 ### Commands
 
-Go to the `/ui` folder with `cd /ui`.
+Go to the `/ui` folder with `cd ui`.
 
 Install dependencies with `npm install`.
 
