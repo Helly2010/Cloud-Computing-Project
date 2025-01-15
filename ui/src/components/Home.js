@@ -1,12 +1,13 @@
 import React from 'react'
 import { CartState } from '../context/CartContext'
+import  products  from '../data/products'
 import Filters from './Filters';
 import SingleProduct from './SingleProduct';
 import './styles.css';
 
 const Home = () => {
   const { 
-    state: { products }, //destructuring
+    state: { myproducts }, //destructuring
     productFilterState: { sort, byStock, byFastDelivery, byRating, searchQuery }
   } = CartState();
 
@@ -36,7 +37,7 @@ const Home = () => {
 
     if(searchQuery) {
       sortedProducts = sortedProducts.filter(
-        prod => prod.name.toLowerCase().includes(searchQuery.toLowerCase())
+        prod => prod.name.toLowerCase().includes(searchQuery.toLowerCase()) || prod.category.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
@@ -49,6 +50,7 @@ const Home = () => {
           transformProducts().map((prod) => {
             return <SingleProduct key={prod.id} prod={prod} />
           })
+          
         }
       </div>
       <Filters />
@@ -57,8 +59,6 @@ const Home = () => {
 }
 
 export default Home;
-
-
 
 
 /**

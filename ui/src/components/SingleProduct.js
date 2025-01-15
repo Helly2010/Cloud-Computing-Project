@@ -31,11 +31,13 @@ const SingleProduct = ({ prod }) => { //getting a product object as a prop
           <Card.Body className={`${theme === 'light' ? 'lightCard' : 'darkCard'}`}>
             <Card.Title>{prod.name}</Card.Title>
             <Card.Subtitle style={{ paddingBottom: 10 }}>
-              <span style={{fontSize: '1.2rem'}}>₹ {prod.price.split('.')[0]}</span>
+              <span style={{fontSize: '1.2rem'}}>₹ {prod.price}</span>
+              <p>Categorgy: {prod.category}</p>
+              <p>Description: {prod.description}</p>
               {prod.fastDelivery ? (
                 <div>Fast Delivery</div>
               ) : (
-                <div>4 days delivery</div>
+                <div>10 days delivery</div>
               )}
               <Rating rating={prod.ratings} />
             </Card.Subtitle>

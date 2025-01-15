@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Cart from './components/Cart';
 import { ToastContainer } from 'react-toastify';
+import ProductList from "./components/ProductList";
 const stripePromise = loadStripe('pk_test_51MwPQuSBD8MtMZAoDOk33CGs935GKRdxMeR3HN4Rro4g8HIuIPOMfDRLHoEYWPFPHIpK0RfN5Gc9zbKOhqcMzMPn00z8zgZCFw');
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Header />
           <Routes>
               <Route path='/' element={<Home />} />
+              <Route path='/products' element={<ProductList />} />
               <Route path='/cart' element={<Cart />} />
               <Route path='/checkout' element={
                 <Elements stripe={stripePromise}>

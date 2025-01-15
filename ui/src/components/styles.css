@@ -53,7 +53,8 @@
     padding: 20px;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-top: 7.9rem;
+    gap: 20px; /* Add spacing between products */
+    margin-top: 8rem;
     margin-left: 306px;
 }
 
@@ -91,19 +92,19 @@
 }
 
 .product {
-    /* grow shrink basis */
-    flex: 1 0 23%; 
+    flex: 1 0 21%; /* Adjust flex-basis for more products in a row */ 
     margin: 10px;
-    max-width: 23rem;
-    min-width: 19rem;
+    max-width: 22rem; /* Limit maximum width */
+    min-width: 18rem; /* Ensure consistency on smaller screens */
 }
 
 .product img {
-    transition: filter 0.3s;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .product img:hover {
-    filter: contrast(150%);
+    transform: scale(1.05); /* Slightly enlarge the image */
+    filter: brightness(110%) contrast(120%);
 }
 
 .cartItem {
@@ -167,6 +168,7 @@ given the remaining full space.
     border: none !important;
 }
 
+
 @media screen and (min-width: 1100px) {
     .searchIcon {
         display: none;
@@ -174,14 +176,19 @@ given the remaining full space.
 }
 @media screen and (max-width: 1100px) {
     .productContainer {
-        margin-left: 0;
+        margin-left: 0; /* Remove left margin for narrow screens */
+        padding: 10px;
+    }
+
+    .product {
+        flex-basis: 30%; /* Show 3 products per row */
     }
   }
 
-@media screen and (max-width: 760px) {
-.product {
-    flex-basis: 30%;
-}
+  @media screen and (max-width: 760px) {
+    .product {
+        flex-basis: 100%; /* Show 1 product per row for very small screens */
+    }
 }
 
 @media screen and (max-width: 499px) {

@@ -13,7 +13,7 @@ const SearchBar = ({classes}) => {
     <>
         <Navbar.Text className={`p-0 ${classes}`}>
             <FormControl
-                placeholder='Search a product'
+                placeholder='Search product by name or category'
                 className='m-auto'
                 onChange={e => productFilterDispatch({
                     type: 'FILTER_BY_SEARCH',
