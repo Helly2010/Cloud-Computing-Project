@@ -27,19 +27,19 @@ const SingleProduct = ({ prod }) => { //getting a product object as a prop
     <>
       <div className='product'>
         <Card>
-          <Card.Img variant='top' src={prod.image} alt={ prod.name } />
+          <Card.Img variant='top' src={prod.img_link} alt={ prod.name } />
           <Card.Body className={`${theme === 'light' ? 'lightCard' : 'darkCard'}`}>
             <Card.Title>{prod.name}</Card.Title>
             <Card.Subtitle style={{ paddingBottom: 10 }}>
-              <span style={{fontSize: '1.2rem'}}>₹ {prod.price}</span>
-              <p>Categorgy: {prod.category}</p>
+              <span style={{fontSize: '1.2rem'}}>₹ {prod.public_unit_price/100}</span>
+              <p>Categorgy: {prod.category_id}</p>
               <p>Description: {prod.description}</p>
-              {prod.fastDelivery ? (
+              {/* {prod.fastDelivery ? (
                 <div>Fast Delivery</div>
               ) : (
                 <div>10 days delivery</div>
               )}
-              <Rating rating={prod.ratings} />
+              <Rating rating={prod.ratings} /> */}
             </Card.Subtitle>
             {
               /**
