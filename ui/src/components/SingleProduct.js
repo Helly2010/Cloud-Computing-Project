@@ -1,37 +1,43 @@
 // conating template for a single product
 
-import React from 'react'
-import { Button, Card } from 'react-bootstrap';
-import { CartState } from '../context/CartContext';
-import Rating from './Rating';
-import { toast } from 'react-toastify';
-import { useTheme } from '../context/ThemeContextProvider';
-import 'react-toastify/dist/ReactToastify.css';
+import React from "react";
+import { Button, Card } from "react-bootstrap";
+import { CartState } from "../context/CartContext";
+import Rating from "./Rating";
+import { toast } from "react-toastify";
+import { useTheme } from "../context/ThemeContextProvider";
+import "react-toastify/dist/ReactToastify.css";
 
-const SingleProduct = ({ prod }) => { //getting a product object as a prop
+const SingleProduct = ({ prod }) => {
+  //getting a product object as a prop
 
   //getting the cart from state, and the dispatch function
-  const { state: { cart }, dispatch } = CartState();
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
 
   const { theme } = useTheme();
-  
-  const notifySuccess = (message) => //success notification on adding / removing product from the cart 
+
+  const notifySuccess = (
+    message //success notification on adding / removing product from the cart
+  ) =>
     toast.success(message, {
       position: "top-left",
       autoClose: 1500,
-      closeOnClick: true
+      closeOnClick: true,
     });
-  ;
-
   return (
     <>
-      <div className='product'>
+      <div className="product">
         <Card>
-          <Card.Img variant='top' src={prod.img_link} alt={ prod.name } />
-          <Card.Body className={`${theme === 'light' ? 'lightCard' : 'darkCard'}`}>
+          <Card.Img variant="top" src={prod.img_link} alt={prod.name} />
+          <Card.Body className={`${theme === "light" ? "lightCard" : "darkCard"}`}>
             <Card.Title>{prod.name}</Card.Title>
             <Card.Subtitle style={{ paddingBottom: 10 }}>
-              <span style={{fontSize: '1.2rem'}}>₹ {prod.public_unit_price/100}</span>
+              <span style={{ fontSize: "1.2rem" }}>
+                &#8364; {/* EUR */} {prod.public_unit_price / 100}
+              </span>
               <p>Categorgy: {prod.category_id}</p>
               <p>Description: {prod.description}</p>
               {/* {prod.fastDelivery ? (
@@ -41,50 +47,46 @@ const SingleProduct = ({ prod }) => { //getting a product object as a prop
               )}
               <Rating rating={prod.ratings} /> */}
             </Card.Subtitle>
-            {
-              /**
-               * The Array.some() method checks if any of the elements in an array pass a test (provided as a function).
-               * here the test is p.id === prod.id
-               * so basically, here cart.some() returns true if the current product is present in the cart
-               */
-            }
-            {
-              cart.some(p => p.id === prod.id) ? 
-
-                (<Button
-                    onClick={() => {
-                      dispatch({ //passes type and payload
-                        type: 'REMOVE_FROM_CART',
-                        payload: prod //product that is currently being rendered
-                      });
-                      notifySuccess('Item removed successfully');
-                      
-                    }}
-                    variant='danger'
-                    style={{fontSize: '0.9rem'}}
-                  >
-                      Remove from cart
-                  </Button>) : 
-
-                (<Button 
-                    onClick={() => {
-                      dispatch({ 
-                        type: 'ADD_TO_CART',
-                        payload: prod //product that is currently being rendered
-                      });
-                      notifySuccess('Item added successfully');
-                    }}
-                    disabled={!prod.inStock}
-                    style={{fontSize: '0.9rem'}}
-                  >
-                    {!prod.inStock ? 'Out of Stock' : 'Add to Cart'}
-                </Button>)
-            }
+            {/**
+             * The Array.some() method checks if any of the elements in an array pass a test (provided as a function).
+             * here the test is p.id === prod.id
+             * so basically, here cart.some() returns true if the current product is present in the cart
+             */}
+            {cart.some((p) => p.id === prod.id) ? (
+              <Button
+                onClick={() => {
+                  dispatch({
+                    //passes type and payload
+                    type: "REMOVE_FROM_CART",
+                    payload: prod, //product that is currently being rendered
+                  });
+                  notifySuccess("Item removed successfully");
+                }}
+                variant="danger"
+                style={{ fontSize: "0.9rem" }}
+              >
+                Remove from cart
+              </Button>
+            ) : (
+              <Button
+                onClick={() => {
+                  dispatch({
+                    type: "ADD_TO_CART",
+                    payload: prod, //product that is currently being rendered
+                  });
+                  notifySuccess("Item added successfully");
+                }}
+                disabled={!prod.inStock}
+                style={{ fontSize: "0.9rem" }}
+              >
+                {!prod.inStock ? "Out of Stock" : "Add to Cart"}
+              </Button>
+            )}
           </Card.Body>
         </Card>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SingleProduct
+export default SingleProduct;
