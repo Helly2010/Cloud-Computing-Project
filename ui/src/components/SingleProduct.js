@@ -7,6 +7,7 @@ import Rating from "./Rating";
 import { toast } from "react-toastify";
 import { useTheme } from "../context/ThemeContextProvider";
 import "react-toastify/dist/ReactToastify.css";
+import { Link, useNavigate } from "react-router-dom"; 
 
 const SingleProduct = ({ prod }) => {
   //getting a product object as a prop
@@ -18,6 +19,10 @@ const SingleProduct = ({ prod }) => {
   } = CartState();
 
   const { theme } = useTheme();
+  const navigate = useNavigate(); 
+  const handleClick = () => {
+    navigate(`/product/${prod.id}`); // Navigate to the product detail page
+  };
 
   const notifySuccess = (
     message //success notification on adding / removing product from the cart
@@ -31,7 +36,8 @@ const SingleProduct = ({ prod }) => {
     <>
       <div className="product">
         <Card>
-          <Card.Img variant="top" src={prod.img_link} alt={prod.name} />
+          <Card.Img variant="top" src={prod.image} alt={prod.name} onClick={() => navigate(`/product/${prod.id}`)}
+          style={{ cursor: "pointer" }}/>
           <Card.Body className={`${theme === "light" ? "lightCard" : "darkCard"}`}>
             <Card.Title>{prod.name}</Card.Title>
             <Card.Subtitle style={{ paddingBottom: 10 }}>

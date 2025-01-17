@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { CartState } from "../context/CartContext";
 import Filters from "./Filters";
+import products from "../data/products";
 import SingleProduct from "./SingleProduct";
 import "./styles.css";
 
@@ -9,6 +10,8 @@ const Home = () => {
   const {
     productFilterState: { sort, byStock, byFastDelivery, byRating, searchQuery },
   } = CartState();
+
+  //const [productList] = useState(products);
 
   const [products, setProducts] = useState([]);
 
