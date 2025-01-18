@@ -2,7 +2,7 @@ const products = [
     {
       id: 1,
       name: "Wooden Chair",
-      description: "Elegant wooden chair with a smooth finish, perfect for any room.",
+      description: "This natural-colored, classically shaped doll's chair has plenty of space for dolls up to 40 cm tall. The chair was handmade in Germany and impresses with its simple, timeless design.",
       inStock: "5",
       fastDelivery: true,
       ratings: "5",

@@ -1,0 +1,36 @@
+/* ProductDetails.css */
+
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .product-details-page {
+    background-color: #f4f4f4;
+    padding-bottom: 50px;
+  }
+  
+  .container {
+    max-width: 1200px;
+  }
+  
+  .card {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.02);
+  }
+  
+  img {
+    border-radius: 8px;
+  }
+  
+  h2 {
+    font-weight: bold;
+  }
+  
+  hr {
+    border: 1px solid #ddd;
+  }
+  
