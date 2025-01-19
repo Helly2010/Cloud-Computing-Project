@@ -13,9 +13,9 @@ const Home = () => {
 
   //const [productList] = useState(products);
 
-  const [products, setProducts] = useState([]);
+  //const [products, setProducts] = useState([]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     fetch("http://localhost:8000/products/").then((response) => {
       if (!response.ok) {
         toast.error("Error while loading products", {
