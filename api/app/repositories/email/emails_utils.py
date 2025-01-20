@@ -4,7 +4,6 @@ from fastapi_mail import FastMail, ConnectionConfig, MessageSchema, MessageType
 from pydantic import BaseModel, EmailStr
 from typing import List
 
-# Load environment variables
 load_dotenv()
 
 class ConnectionConfigSettings(ConnectionConfig):
