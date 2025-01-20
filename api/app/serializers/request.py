@@ -21,6 +21,8 @@ class OrderCreateSerializer(BaseModel):
     payment_method: PaymentInfo
     products: dict[int, int]  # dict[product_id: quantity]
 
+class OrderUpdateSerializer(BaseModel):
+    tracking_status : str | None = None
 
 class ProductCreateSerializer(BaseModel):
     name: str
