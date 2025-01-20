@@ -31,6 +31,16 @@ async def order_status_update_webhook(request: Request):
     )
     return {"status": "success"}
 
+@router.post("/webhook/restock-alert")
+async def restock_alert_webhook(request: Request):
+    restock_data = await request.json()
+    await send_email(
+        "inventory_manager@example.com",
+        f"Restock Alert: Product {restock_data['product_name']} (ID: {restock_data['product_id']})",
+        f"The stock for product {restock_data['product_name']} (ID: {restock_data['product_id']}) has fallen below the reorder level. Current quantity: {restock_data['current_quantity']}"
+    )
+    return {"status": "success"}
+
 @router.get("/orders/", response_model=list[OrderSerializer])
 async def get_orders(status: str = OrderStatus.ACTIVE, db: AsyncSession = Depends(PostgreSQLDBConnector.get_session)):
     orders = await db.scalars(select(Order).where(Order.status == status).order_by(Order.id))
@@ -71,7 +81,7 @@ async def create_order(order_data: OrderCreateSerializer, background_tasks: Back
             product.stock.quantity = product.stock.quantity - required_stock
 
             if product.stock.quantity < product.reorder_level:
-                pass  # Here queue a notification to restock product
+                background_tasks.add_task(trigger_restock_webhook, product.id, product.name, product.stock.quantity)
 
             order_details.append(OrderDetail(product_id=product.id, order_id=new_order.id, product_price=product.public_unit_price))
 
@@ -115,7 +125,9 @@ async def trigger_new_order_webhook(order_id: int, customer_email: str):
     async with httpx.AsyncClient() as client:
         await client.post(
             "http://your-webhook-url/webhook/new-order",
-            json={"id": order_id, "customer_email": customer_email}
+            json={"id": order_id, 
+                  "customer_email": customer_email
+            }
         )
 
 
@@ -123,5 +135,19 @@ async def trigger_order_status_update_webhook(order_id: int, customer_email: str
     async with httpx.AsyncClient() as client:
         await client.post(
             "http://your-webhook-url/webhook/order-status-update",
-            json={"order_id": order_id, "customer_email": customer_email, "new_status": new_status}
+            json={"order_id": order_id, 
+                  "customer_email": customer_email, 
+                  "new_status": new_status
+            }
+        )
+
+async def trigger_restock_webhook(product_id: int, product_name: str, current_quantity: int):
+    async with httpx.AsyncClient() as client:
+        await client.post(
+            "http://your-webhook-url/webhook/restock-alert",
+            json={
+                "product_id": product_id,
+                "product_name": product_name,
+                "current_quantity": current_quantity
+            }
         )
