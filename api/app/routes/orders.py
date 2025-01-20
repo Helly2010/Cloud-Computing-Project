@@ -7,10 +7,11 @@ from app.serializers.response import OrderSerializer
 from app.serializers.request import OrderCreateSerializer, OrderUpdateSerializer
 from sqlalchemy import select
 import httpx
+import os
 from app.repositories.email.emails_utils import send_email
 
 router = APIRouter()
-
+BASE_URL = os.getenv('BASE_URL')
 @router.post("/webhook/new-order")
 async def new_order_webhook(request: Request):
     order_data = await request.json()
@@ -124,7 +125,7 @@ async def update_order_status(
 async def trigger_new_order_webhook(order_id: int, customer_email: str):
     async with httpx.AsyncClient() as client:
         await client.post(
-            "http://your-webhook-url/webhook/new-order",
+            f"{BASE_URL}/webhook/new-order",
             json={"id": order_id, 
                   "customer_email": customer_email
             }
@@ -134,7 +135,7 @@ async def trigger_new_order_webhook(order_id: int, customer_email: str):
 async def trigger_order_status_update_webhook(order_id: int, customer_email: str, new_status: str):
     async with httpx.AsyncClient() as client:
         await client.post(
-            "http://your-webhook-url/webhook/order-status-update",
+             f"{BASE_URL}/webhook/order-status-update",
             json={"order_id": order_id, 
                   "customer_email": customer_email, 
                   "new_status": new_status
@@ -144,7 +145,7 @@ async def trigger_order_status_update_webhook(order_id: int, customer_email: str
 async def trigger_restock_webhook(product_id: int, product_name: str, current_quantity: int):
     async with httpx.AsyncClient() as client:
         await client.post(
-            "http://your-webhook-url/webhook/restock-alert",
+             f"{BASE_URL}/webhook/restock-alert",
             json={
                 "product_id": product_id,
                 "product_name": product_name,
