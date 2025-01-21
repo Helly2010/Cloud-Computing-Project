@@ -44,6 +44,7 @@ class CategorySerializer(BaseModel):
     updated_at: datetime
     created_at: datetime
 
+
 class SupplierSerializer(BaseModel):
     id: int
     name: str
@@ -56,6 +57,6 @@ class SupplierSerializer(BaseModel):
 
 class StockSerializer(BaseModel):
     id: int
-    quantity: str
+    quantity: int
     updated_at: datetime
     created_at: datetime
