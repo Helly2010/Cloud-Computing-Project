@@ -40,6 +40,7 @@ class Product(PostgreSQLDBConnector.Base):
     supplier_unit_price: Mapped[int] = mapped_column(Integer, nullable=False)
     img_link: Mapped[str] = mapped_column(String, nullable=False)
     reorder_level: Mapped[int] = mapped_column(Integer, nullable=False)
+    reorder_ammount: Mapped[int] = mapped_column(Integer, nullable=False, default=10)
     extra_info: Mapped[dict] = mapped_column(JSON, nullable=False)
     updated_at: Mapped[datetime] = mapped_column(
         DateTime,
