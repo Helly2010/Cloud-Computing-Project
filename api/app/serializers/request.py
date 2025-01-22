@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+from app.repositories.db.models import OrderTrackingStatus
+
 
 class PaymentInfo(BaseModel):
     credit_card_number: str
@@ -13,13 +15,22 @@ class ShippingInfo(BaseModel):
     city: str
 
 
+class ProductQuantity(BaseModel):
+    product_id: int
+    ammount: int
+
+
 class OrderCreateSerializer(BaseModel):
     customer_name: str
     customer_shipping_info: ShippingInfo
     customer_phone: str
     customer_email: str
     payment_method: PaymentInfo
-    products: dict[int, int]  # dict[product_id: quantity]
+    products: list[ProductQuantity]
+
+
+class OrderTrackingSerializer(BaseModel):
+    tracking_status: OrderTrackingStatus
 
 
 class ProductCreateSerializer(BaseModel):
@@ -67,14 +78,17 @@ class SupplierCreateSerializer(BaseModel):
     phone: str
     email: str
 
+
 class SupplierUpdateSerializer(BaseModel):
     name: str | None = None
     address: str | None = None
     phone: str | None = None
     email: str | None = None
 
+
 class StockCreateSerializer(BaseModel):
-    quantity: str 
+    quantity: str
+
 
 class StockUpdateSerializer(BaseModel):
-    quantity: str | None = None
+    quantity: int
