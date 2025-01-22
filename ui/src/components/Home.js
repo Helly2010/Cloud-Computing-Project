@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { CartState } from "../context/CartContext";
 import Filters from "./Filters";
-import products from "../data/products";
+import productsData  from "../data/products";
 import SingleProduct from "./SingleProduct";
 import "./styles.css";
 
@@ -11,12 +11,16 @@ const Home = () => {
     productFilterState: { sort, byStock, byFastDelivery, byRating, searchQuery },
   } = CartState();
 
-  //const [productList] = useState(products);
+  // Local state to hold static product data
+  const [productList] = useState(productsData);
 
-  //const [products, setProducts] = useState([]);
+  // State to hold fetched products from API
+  const [products, setProducts] = useState([]);
 
-  /*useEffect(() => {
-    fetch("http://localhost:8000/products/").then((response) => {
+  // useEffect hook to fetch product data when component mounts
+  useEffect(() => {
+    // Fetch products from API endpoint defined in .env file
+    fetch(process.env.REACT_APP_API_CALL).then((response) => {
       if (!response.ok) {
         toast.error("Error while loading products", {
           position: "top-left",
@@ -36,34 +40,52 @@ const Home = () => {
   /**
    * @returns filtered products
    */
+  
   const transformProducts = (sortedProducts) => {
+    // Apply sorting based on the 'sort' filter value (lowToHigh or highToLow)
+    // If the 'sort' value is 'lowToHigh', it sorts the products by price in ascending order.
+    // If the 'sort' value is 'highToLow', it sorts the products by price in descending order.
     if (sort) {
-      //sort the products if sort = true
-      sortedProducts = sortedProducts.sort((a, b) => (sort === "lowToHigh" ? a.price - b.price : b.price - a.price));
+      sortedProducts = sortedProducts.sort((a, b) =>
+        sort === "lowToHigh" ? a.price - b.price : b.price - a.price
+      );
     }
-
-    // if (!byStock) {
-    //   sortedProducts = sortedProducts.filter((prod) => prod.inStock);
-    // }
-
-    // if (byFastDelivery) {
-    //   sortedProducts = sortedProducts.filter((prod) => prod.fastDelivery);
-    // }
-
-    // if (byRating) {
-    //   sortedProducts = sortedProducts.filter((prod) => prod.ratings === byRating);
-    // }
-
+  
+    // Filter products by stock availability:
+    // If 'byStock' is false, filter out products that are out of stock. 
+    // This ensures only products that are available for purchase are shown.
+    if (!byStock) {
+      sortedProducts = sortedProducts.filter((prod) => prod.inStock);
+    }
+  
+    // Filter products by fast delivery option:
+    // If 'byFastDelivery' is true, filter to show only products that offer fast delivery.
+    if (byFastDelivery) {
+      sortedProducts = sortedProducts.filter((prod) => prod.fastDelivery);
+    }
+  
+    // Filter products by rating:
+    // If 'byRating' filter is specified (i.e., it's a non-zero value), 
+    // only products with the specified rating will be displayed.
+    if (byRating) {
+      sortedProducts = sortedProducts.filter((prod) => prod.ratings === byRating);
+    }
+  
+    // Filter products by search query:
+    // If the 'searchQuery' is not empty, the function filters the products
+    // based on the query. It matches the query with the product name or category (case-insensitive).
     if (searchQuery) {
       sortedProducts = sortedProducts.filter(
         (prod) =>
-          prod.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          prod.category.toLowerCase().includes(searchQuery.toLowerCase())
+          prod.name.toLowerCase().includes(searchQuery.toLowerCase()) ||  // Matches query with product name
+          prod.category.toLowerCase().includes(searchQuery.toLowerCase())  // Matches query with product category
       );
     }
-
+  
+    // Return the final list of filtered and sorted products based on all the applied filters.
     return sortedProducts;
   };
+  
   console.log(products)
   return (
     <div className="home">
