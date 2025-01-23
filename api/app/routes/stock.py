@@ -26,5 +26,9 @@ async def update_stock(
         db_stock.quantity = stock_update.quantity
 
         await db.commit()
+        await db.refresh(db_stock)
+
+        # Expire the session state to ensure up-to-date data on subsequent requests
+        await db.expire_all()
 
     return db_stock
