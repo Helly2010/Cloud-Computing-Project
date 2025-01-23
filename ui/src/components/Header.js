@@ -46,7 +46,7 @@ const Header = () => {
                             {/* Containg the logo */}
                             <Navbar.Brand style={{color: theme === 'dark' && 'white'}}>
                                 <Link to='/'>
-                                    <AiOutlineShoppingCart fontSize='50px'/> ShopX
+                                    <AiOutlineShoppingCart fontSize='50px'/> LowTech GmbH
                                 </Link>
                             </Navbar.Brand>
                         </div>
