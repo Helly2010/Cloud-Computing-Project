@@ -8,6 +8,7 @@ import { useTheme } from "../context/ThemeContextProvider";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom"; 
 import useCategories from "../hooks/useCategories";
+import useStock from "../hooks/useStock";
 
 const SingleProduct = ({ prod }) => {
   //getting a product object as a prop
@@ -20,6 +21,7 @@ const SingleProduct = ({ prod }) => {
 
   const { theme } = useTheme();
   const navigate = useNavigate(); 
+  const { stock, loading, error } = useStock(prod.id); // Fetch stock using the hook
   const handleClick = () => {
     navigate(`/product/${prod.id}`); // Navigate to the product detail page
   };
@@ -80,19 +82,21 @@ const SingleProduct = ({ prod }) => {
               </Button>
             ) : (
               <Button
-                onClick={() => {
+              onClick={() => {
+                if (stock > 0) {
                   dispatch({
                     type: "ADD_TO_CART",
-                    payload: prod, //product that is currently being rendered
+                    payload: prod, // Adds the product to the cart
                   });
                   notifySuccess("Item added successfully");
-                }}
-                disabled={!prod.inStock}
-                style={{ fontSize: "0.9rem" }}
-              >
-                {!prod.inStock ? "Out of Stock" : "Add to Cart"}
-              </Button>
-            )}
+                }
+              }}
+              disabled={loading || stock <= 0} // Disable button if loading or out of stock
+              style={{ fontSize: "0.9rem" }}
+            >
+              {loading ? "Loading..." : stock <= 0 ? "Out of Stock" : "Add to Cart"}
+            </Button>
+          )}
           </Card.Body>
         </Card>
       </div>

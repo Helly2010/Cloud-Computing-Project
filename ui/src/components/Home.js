@@ -1,82 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CartState } from "../context/CartContext";
 import Filters from "./Filters";
 import SingleProduct from "./SingleProduct";
 import useProducts from "../hooks/useProducts";
 import useCategories from "../hooks/useCategories";
+import useStock from "../hooks/useStock"; // Import useStock hook
 import "./styles.css";
 
 const Home = () => {
-
   const products = useProducts(); // Fetch products using the custom hook
-  const categories = useCategories(); // Fetch products using the custom hook
+  const categories = useCategories(); // Fetch categories using the custom hook
 
   const {
     productFilterState: { sort, byStock, byFastDelivery, byRating, searchQuery },
   } = CartState();
 
-  /**
-   * @returns filtered products
-   */
-  
+  const [productIds, setProductIds] = useState([]);
+
+  // Get all product IDs from products
+  useEffect(() => {
+    setProductIds(products.map((product) => product.id));
+  }, [products]);
+
+  // Fetch stock data for all products
+  const { stockData, loading, error } = useStock(productIds); // Pass the productIds to the useStock hook
+
   const transformProducts = (sortedProducts) => {
-    // Apply sorting based on the 'sort' filter value (lowToHigh or highToLow)
-    // If the 'sort' value is 'lowToHigh', it sorts the products by price in ascending order.
-    // If the 'sort' value is 'highToLow', it sorts the products by price in descending order.
     if (sort) {
       sortedProducts = sortedProducts.sort((a, b) =>
         sort === "lowToHigh" ? a.price - b.price : b.price - a.price
       );
     }
-  
-    // Filter products by stock availability:
-    // If 'byStock' is false, filter out products that are out of stock. 
-    // This ensures only products that are available for purchase are shown.
+
+    // Filter products by stock availability
     if (!byStock) {
-      sortedProducts = sortedProducts.filter((prod) => prod.inStock);
+      sortedProducts = sortedProducts.filter(
+        (prod) => stockData[prod.id] > 0 // Use stockData to filter by availability
+      );
     }
-  
-    // Filter products by fast delivery option:
-    // If 'byFastDelivery' is true, filter to show only products that offer fast delivery.
+
+    // Filter products by fast delivery
     if (byFastDelivery) {
       sortedProducts = sortedProducts.filter((prod) => prod.fastDelivery);
     }
-  
-    // Filter products by rating:
-    // If 'byRating' filter is specified (i.e., it's a non-zero value), 
-    // only products with the specified rating will be displayed.
+
+    // Filter products by rating
     if (byRating) {
       sortedProducts = sortedProducts.filter((prod) => prod.ratings === byRating);
     }
-  
-    // Filter products by search query:
-    // If the 'searchQuery' is not empty, the function filters the products
-    // based on the query. It matches the query with the product name or category (case-insensitive).
+
+    // Filter products by search query
     if (searchQuery) {
-      sortedProducts = sortedProducts.filter(
-        (prod) =>
-          {
-            // Get the category name for the current product
-            const categoryName = categories.find((obj) => obj.id === prod.category_id)?.name || "Unknown";
-        
-            // Check if the product name or category name includes the search query
-            return (
-              prod.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-              categoryName.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-          });
-        }
-  
-    // Return the final list of filtered and sorted products based on all the applied filters.
+      sortedProducts = sortedProducts.filter((prod) => {
+        const categoryName = categories.find((obj) => obj.id === prod.category_id)?.name || "Unknown";
+        return (
+          prod.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          categoryName.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      });
+    }
+
     return sortedProducts;
   };
-  
+
   return (
     <div className="home">
       <div className="productContainer">
-        {transformProducts(products).map((prod) => {
-          return <SingleProduct key={prod.id} prod={prod} />;
-        })}
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          transformProducts(products).map((prod) => {
+            return <SingleProduct key={prod.id} prod={prod} />;
+          })
+        )}
       </div>
       <Filters />
     </div>
@@ -84,9 +80,3 @@ const Home = () => {
 };
 
 export default Home;
-
-/**
- * The destructuring assignment syntax is a JavaScript expression
- * that makes it possible to unpack values from arrays, or properties
- * from objects, into distinct variables.
- */
