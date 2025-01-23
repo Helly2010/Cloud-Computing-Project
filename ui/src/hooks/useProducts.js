@@ -5,7 +5,7 @@ const useProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_CALL}`).then((response) => {
+    fetch("http://localhost:8000/products/").then((response) => {
       if (!response.ok) {
         toast.error("Error while loading products", {
           position: "top-left",

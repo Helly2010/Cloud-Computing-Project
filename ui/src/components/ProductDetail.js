@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import productsData from "../data/products"; // Replace with your actual data source
 import "../styles/ProductDetails.css"; // Optional: For additional styling
 
+
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
