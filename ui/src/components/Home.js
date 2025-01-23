@@ -3,11 +3,13 @@ import { CartState } from "../context/CartContext";
 import Filters from "./Filters";
 import SingleProduct from "./SingleProduct";
 import useProducts from "../hooks/useProducts";
+import useCategories from "../hooks/useCategories";
 import "./styles.css";
 
 const Home = () => {
 
   const products = useProducts(); // Fetch products using the custom hook
+  const categories = useCategories(); // Fetch products using the custom hook
 
   const {
     productFilterState: { sort, byStock, byFastDelivery, byRating, searchQuery },
@@ -53,10 +55,17 @@ const Home = () => {
     if (searchQuery) {
       sortedProducts = sortedProducts.filter(
         (prod) =>
-          prod.name.toLowerCase().includes(searchQuery.toLowerCase()) ||  // Matches query with product name
-          prod.category.toLowerCase().includes(searchQuery.toLowerCase())  // Matches query with product category
-      );
-    }
+          {
+            // Get the category name for the current product
+            const categoryName = categories.find((obj) => obj.id === prod.category_id)?.name || "Unknown";
+        
+            // Check if the product name or category name includes the search query
+            return (
+              prod.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+              categoryName.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+          });
+        }
   
     // Return the final list of filtered and sorted products based on all the applied filters.
     return sortedProducts;
