@@ -81,6 +81,27 @@ const Filters = () => {
                     checked= {byFastDelivery}
                 />
             </span>
+            {/* Filter added to allow products to be viewed by categories */}
+            <span>
+                <select onChange={(e) => productFilterDispatch({
+                    type: 'FILTER_BY_SEARCH',
+                    payload: e.target.value,
+                })}>
+                    <option value="">All Categories</option>
+                        <option value="Furniture">
+                            Furniture
+                        </option>
+                        <option value="Storage">
+                            Storage
+                        </option>
+                        <option value="Office">
+                            Office
+                        </option>
+                        <option value="Living Room">
+                            Living Room
+                        </option>
+                </select>
+            </span>
             <span>
                 <label style={{ paddingRight: 10 }}>Rating: </label>
                 <Rating 
@@ -98,6 +119,7 @@ const Filters = () => {
                     type: 'CLEAR_FILTERS'
                 })}
             >
+
                 Clear Filters
             </Button>
         </div>
