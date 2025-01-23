@@ -1,6 +1,5 @@
 // conating template for a single product
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { CartState } from "../context/CartContext";
 import Rating from "./Rating";
@@ -8,6 +7,7 @@ import { toast } from "react-toastify";
 import { useTheme } from "../context/ThemeContextProvider";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom"; 
+import useCategories from "../hooks/useCategories";
 
 const SingleProduct = ({ prod }) => {
   //getting a product object as a prop
@@ -32,6 +32,9 @@ const SingleProduct = ({ prod }) => {
       autoClose: 1500,
       closeOnClick: true,
     });
+
+  const categories = useCategories(); // Fetch products using the custom hook
+
   return (
     <>
       <div className="product">
@@ -44,7 +47,9 @@ const SingleProduct = ({ prod }) => {
               <span style={{ fontSize: "1.2rem" }}>
                 &#8364; {/* EUR */} {prod.public_unit_price / 100}
               </span>
-              <p>Categorgy: {prod.category_id}</p>
+              <p>
+                Category: {categories.find(obj => obj.id === prod.category_id)?.name || "Unknown"}
+              </p>
               <p>Description: {prod.description}</p>
               {/* {prod.fastDelivery ? (
                 <div>Fast Delivery</div>

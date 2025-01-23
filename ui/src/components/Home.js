@@ -1,41 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import React from "react";
 import { CartState } from "../context/CartContext";
 import Filters from "./Filters";
-import productsData  from "../data/products";
 import SingleProduct from "./SingleProduct";
+import useProducts from "../hooks/useProducts";
 import "./styles.css";
 
 const Home = () => {
+
+  const products = useProducts(); // Fetch products using the custom hook
+
   const {
     productFilterState: { sort, byStock, byFastDelivery, byRating, searchQuery },
   } = CartState();
-
-  // Local state to hold static product data
-  const [productList] = useState(productsData);
-
-  // State to hold fetched products from API
-  const [products, setProducts] = useState([]);
-
-  // useEffect hook to fetch product data when component mounts
-  useEffect(() => {
-    // Fetch products from API endpoint defined in .env file
-    fetch(process.env.REACT_APP_API_CALL).then((response) => {
-      if (!response.ok) {
-        toast.error("Error while loading products", {
-          position: "top-left",
-          autoClose: 1500,
-          closeOnClick: true,
-        });
-        return;
-      }
-
-      return response.json().then((data) => {
-
-        setProducts(data);
-      });
-    });
-  }, []);
 
   /**
    * @returns filtered products
@@ -86,7 +62,6 @@ const Home = () => {
     return sortedProducts;
   };
   
-  console.log(products)
   return (
     <div className="home">
       <div className="productContainer">
