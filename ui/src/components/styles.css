@@ -96,6 +96,11 @@
     margin: 10px;
     max-width: 22rem; /* Limit maximum width */
     min-width: 18rem; /* Ensure consistency on smaller screens */
+    background-color: transparent;
+    background-image: none;
+    clip-path: none;
+      
+      
 }
 
 .product img {
