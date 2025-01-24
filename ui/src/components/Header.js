@@ -79,7 +79,9 @@ const Header = () => {
                                                             />
                                                             <div className="cartItemDetail">
                                                                 <span>{prod.name}</span>
-                                                                <span>₹ {prod.price.split('.')[0]}</span>
+                                                                <span>₹ {prod.price?.toString().split('.')[0] || "0"}</span>
+
+                                                                
                                                             </div>
                                                             <AiFillDelete
                                                                 fontSize='20px'
