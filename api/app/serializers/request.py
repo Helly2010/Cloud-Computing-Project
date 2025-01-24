@@ -17,7 +17,7 @@ class ShippingInfo(BaseModel):
 
 class ProductQuantity(BaseModel):
     product_id: int
-    ammount: int
+    amount: int
 
 
 class OrderCreateSerializer(BaseModel):
