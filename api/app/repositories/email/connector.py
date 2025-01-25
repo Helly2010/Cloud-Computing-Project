@@ -14,7 +14,7 @@ class EmailConnector:
                 MAIL_PORT=port,
                 MAIL_SERVER=server,
                 MAIL_STARTTLS=True,
-                MAIL_SSL_TLS=False,
+                MAIL_SSL_TLS=True,
                 USE_CREDENTIALS=True,
                 VALIDATE_CERTS=True,
                 MAIL_FROM=mail,
