@@ -108,7 +108,7 @@ class OrderStatus(StrEnum):
 
 
 class OrderTrackingStatus(StrEnum):
-    SHIPMENT_CREATED = "shipmen_created"
+    SHIPMENT_CREATED = "shipment_created"
     DISPATCHED = "dispatched"
     IN_TRANSIT = "in_transit"
     DELIVERED = "delivered"
