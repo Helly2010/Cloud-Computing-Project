@@ -53,8 +53,9 @@ async def create_order(
     order_details = []
 
     for product in products:
-        subtotal = product.public_unit_price * required_stock
+        
         required_stock = product_quantities[product.id].amount
+        subtotal = product.public_unit_price * required_stock
 
         if product.stock.quantity < required_stock:
             raise HTTPException(status_code=400, detail=f"Not enough stock for product {product.name}")
