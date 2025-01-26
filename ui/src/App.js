@@ -9,26 +9,38 @@ import Cart from './components/Cart';
 import { ToastContainer } from 'react-toastify';
 import ProductList from "./components/ProductList";
 import ProductDetail from "./components/ProductDetail";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
 const stripePromise = loadStripe('pk_test_51MwPQuSBD8MtMZAoDOk33CGs935GKRdxMeR3HN4Rro4g8HIuIPOMfDRLHoEYWPFPHIpK0RfN5Gc9zbKOhqcMzMPn00z8zgZCFw');
-function App() {
+
+const App = () => {
   return (
-      <>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/cart' element={<Cart />} />
-              <Route path='/product/:id' element={<ProductDetail />} />
-              <Route path='/checkout' element={
-                <Elements stripe={stripePromise}>
-                  <CheckoutForm />
-                </Elements>
-              } />
-            </Routes>
-        </BrowserRouter>
+    <PayPalScriptProvider
+      options={{
+        "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
+        currency: "USD",
+      }}
+    >
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route
+            path="/checkout"
+            element={
+              // Wrap the CheckoutForm with the <Elements> provider
+              <Elements stripe={stripePromise}>
+                <CheckoutForm />
+              </Elements>
+            }
+          />
+        </Routes>
         <ToastContainer />
-      </>
+      </BrowserRouter>
+    </PayPalScriptProvider>
   );
-}
+};
 
 export default App;
