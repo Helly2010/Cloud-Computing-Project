@@ -147,6 +147,8 @@ class OrderDetail(PostgreSQLDBConnector.Base):
     product_id: Mapped[int] = mapped_column(Integer, ForeignKey("products.id"), nullable=False, index=True)
     order_id: Mapped[int] = mapped_column(Integer, ForeignKey("orders.id"), nullable=False)
     product_price: Mapped[int] = mapped_column(Integer, nullable=False)
+    quantity: Mapped[int] = mapped_column(Integer, nullable=False)  
+    subtotal: Mapped[int] = mapped_column(Integer, nullable=False)  
     updated_at: Mapped[datetime] = mapped_column(
         DateTime,
         nullable=False,

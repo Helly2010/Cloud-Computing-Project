@@ -12,7 +12,7 @@ from app.tasks.tracking import trigger_order_status_update_notification
 router = APIRouter(prefix="/tracking")
 
 
-@router.patch("/orders/{order_id}", response_model=OrderSerializer)
+@router.patch("/{order_id}", response_model=OrderSerializer)
 async def update_order_status(
     order_id: int,
     order_update: OrderTrackingSerializer,
@@ -30,6 +30,7 @@ async def update_order_status(
         db_order.tracking_status = new_status
 
         if previous_status != new_status:
+            print(new_status)
             background_tasks.add_task(trigger_order_status_update_notification, fm, db_order, previous_status, new_status)
 
         await db.commit()

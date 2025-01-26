@@ -30,6 +30,7 @@ async def create_order(
 ):
     product_quantities = {p.product_id: p for p in order_data.products}
     products = (await db.scalars(select(Product).where(Product.id.in_(product_quantities.keys())))).all()
+    order_total_cal = sum(product.public_unit_price * product_quantities[product.id].amount for product in products)
 
     if not products or len(products) != len(order_data.products):
         raise HTTPException(status_code=400, detail="No products found for order or invalid products found in list")
@@ -42,7 +43,7 @@ async def create_order(
         payment_method=order_data.payment_method.model_dump(),
         status=OrderStatus.ACTIVE,
         tracking_status=OrderTrackingStatus.SHIPMENT_CREATED,
-        order_total=10,
+        order_total=order_total_cal,
     )
 
     db.add(new_order)
@@ -52,6 +53,7 @@ async def create_order(
     order_details = []
 
     for product in products:
+        subtotal = product.public_unit_price * required_stock
         required_stock = product_quantities[product.id].amount
 
         if product.stock.quantity < required_stock:
@@ -66,7 +68,8 @@ async def create_order(
 
             background_tasks.add_task(trigger_restock_notification, fm, product, supplier)
 
-        order_details.append(OrderDetail(product_id=product.id, order_id=new_order.id, product_price=product.public_unit_price))
+        order_details.append(OrderDetail(product_id=product.id, order_id=new_order.id, product_price=product.public_unit_price, quantity=required_stock,
+        subtotal=subtotal))
 
     await db.commit()
 
