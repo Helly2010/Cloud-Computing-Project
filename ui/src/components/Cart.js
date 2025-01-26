@@ -99,9 +99,9 @@ const Cart = () => {
         <div className='checkoutCard'>
           <Card>
             <Card.Body>
-              <Card.Title> SUBTOTAL: ₹ {total.toFixed(2)}</Card.Title>
+            <Card.Title> SUBTOTAL: € {(total / 100).toFixed(2)}</Card.Title>
               <Card.Text>Total items: {items}</Card.Text>
-              <Link to='/checkout' state={{ total }}>
+              <Link to='/checkout' state={{ total: Number((total / 100).toFixed(2)) }}>
                 <Button variant='primary'>Proceed to Checkout</Button>
               </Link>
             </Card.Body>
