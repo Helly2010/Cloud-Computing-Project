@@ -47,13 +47,11 @@ async def create_order(
     )
 
     db.add(new_order)
-    await db.flush()
     await db.refresh(new_order)
 
     order_details = []
 
     for product in products:
-        
         required_stock = product_quantities[product.id].amount
         subtotal = product.public_unit_price * required_stock
 
@@ -69,8 +67,15 @@ async def create_order(
 
             background_tasks.add_task(trigger_restock_notification, fm, product, supplier)
 
-        order_details.append(OrderDetail(product_id=product.id, order_id=new_order.id, product_price=product.public_unit_price, quantity=required_stock,
-        subtotal=subtotal))
+        order_details.append(
+            OrderDetail(
+                product_id=product.id,
+                order_id=new_order.id,
+                product_price=product.public_unit_price,
+                quantity=required_stock,
+                subtotal=subtotal,
+            )
+        )
 
     await db.commit()
 
