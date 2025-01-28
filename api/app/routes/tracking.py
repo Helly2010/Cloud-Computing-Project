@@ -20,19 +20,17 @@ async def update_order_status(
     db: AsyncSession = Depends(PostgreSQLDBConnector.get_session),
     fm: FastMail = Depends(EmailConnector.get_connector),
 ):
-    async with db.begin():
-        db_order = await db.get(Order, order_id)
-        if not db_order:
-            raise HTTPException(status_code=404, detail="Order not found")
+    db_order = await db.get(Order, order_id)
+    if not db_order:
+        raise HTTPException(status_code=404, detail="Order not found")
 
-        previous_status = db_order.tracking_status
-        new_status = order_update.tracking_status
+    previous_status = db_order.tracking_status
+    new_status = order_update.tracking_status
+
+    if previous_status != new_status:
         db_order.tracking_status = new_status
-
-        if previous_status != new_status:
-            print(new_status)
-            background_tasks.add_task(trigger_order_status_update_notification, fm, db_order, previous_status, new_status)
-
         await db.commit()
+        background_tasks.add_task(trigger_order_status_update_notification, fm, db_order, previous_status, new_status)
 
+    await db.refresh(db_order)  # Prevent implicit I/O on updated_at date
     return db_order
