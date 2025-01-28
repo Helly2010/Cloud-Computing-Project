@@ -42,15 +42,8 @@ class Product(PostgreSQLDBConnector.Base):
     reorder_level: Mapped[int] = mapped_column(Integer, nullable=False)
     reorder_ammount: Mapped[int] = mapped_column(Integer, nullable=False, default=10)
     extra_info: Mapped[dict] = mapped_column(JSON, nullable=False)
-    updated_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        nullable=False,
-        default=func.now(),
-        server_default=func.now(),
-    )
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
-    )
+    updated_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now(), onupdate=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now())
 
     stock: Mapped[Stock] = relationship("Stock", lazy="joined")
     category: Mapped["Category"] = relationship("Category", lazy="joined")
@@ -67,15 +60,8 @@ class Category(PostgreSQLDBConnector.Base):
     description: Mapped[str] = mapped_column(String, nullable=False)
     extra_info: Mapped[dict] = mapped_column(JSON, nullable=False)
 
-    updated_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        nullable=False,
-        default=func.now(),
-        server_default=func.now(),
-    )
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
-    )
+    updated_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now(), onupdate=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now())
 
     __table_args__ = (PrimaryKeyConstraint("id", name="pk_categories"),)
 
@@ -88,15 +74,8 @@ class Supplier(PostgreSQLDBConnector.Base):
     address: Mapped[str] = mapped_column(String, nullable=False)
     phone: Mapped[str] = mapped_column(String, nullable=False, unique=True)
     email: Mapped[str] = mapped_column(String, nullable=False, unique=True)
-    updated_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        nullable=False,
-        default=func.now(),
-        server_default=func.now(),
-    )
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
-    )
+    updated_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now(), onupdate=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now())
 
     __table_args__ = (PrimaryKeyConstraint("id", name="pk_suppliers"),)
 
@@ -127,15 +106,8 @@ class Order(PostgreSQLDBConnector.Base):
     payment_method: Mapped[dict] = mapped_column(JSON, nullable=False)
     status: Mapped[str] = mapped_column(String, nullable=False)
     tracking_status: Mapped[str] = mapped_column(String, nullable=False)
-    updated_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        nullable=False,
-        default=func.now(),
-        server_default=func.now(),
-    )
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
-    )
+    updated_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now(), onupdate=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now())
 
     __table_args__ = (PrimaryKeyConstraint("id", name="pk_orders"),)
 
@@ -147,16 +119,9 @@ class OrderDetail(PostgreSQLDBConnector.Base):
     product_id: Mapped[int] = mapped_column(Integer, ForeignKey("products.id"), nullable=False, index=True)
     order_id: Mapped[int] = mapped_column(Integer, ForeignKey("orders.id"), nullable=False)
     product_price: Mapped[int] = mapped_column(Integer, nullable=False)
-    quantity: Mapped[int] = mapped_column(Integer, nullable=False)  
-    subtotal: Mapped[int] = mapped_column(Integer, nullable=False)  
-    updated_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        nullable=False,
-        default=func.now(),
-        server_default=func.now(),
-    )
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime, nullable=False, default=func.now(), server_default=func.now(), onupdate=func.now()
-    )
+    quantity: Mapped[int] = mapped_column(Integer, nullable=False)
+    subtotal: Mapped[int] = mapped_column(Integer, nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now(), onupdate=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now())
 
     __table_args__ = (PrimaryKeyConstraint("id", name="pk_order_details"),)
