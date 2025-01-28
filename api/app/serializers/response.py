@@ -6,6 +6,7 @@ class OrderSerializer(BaseModel):
     id: int
     order_total: int
     customer_name: str
+    tracking_status: str
     customer_shipping_info: dict
     customer_phone: str
     customer_email: str
