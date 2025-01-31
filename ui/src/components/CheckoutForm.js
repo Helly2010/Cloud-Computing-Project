@@ -134,13 +134,26 @@ const CheckoutForm = () => {
               Pay with PayPal
             </button>
           </div>       
-        <button
-            type="submit"
-            disabled={processing}
-            onClick={handleSubmit}
-        >
-            {processing ? 'Processing...' : 'Pay'}
-        </button>
+          {/* Render Stripe or PayPal button based on selected payment method */}
+          {paymentMethod === 'stripe' ? (
+            <button
+              type="submit"
+              disabled={processing}
+              onClick={handleSubmit}
+            >
+              {processing ? 'Processing...' : 'Pay with Stripe'}
+            </button>
+          ) : (
+            <PayPalButtons
+              style={{
+                layout: "vertical",
+                shape: "pill",
+                color: "blue",
+              }}
+              onApprove={handlePayPalApprove}
+              onError={handlePayPalError}
+            />
+          )}
         </div>
       </form>
     </div>
