@@ -123,6 +123,17 @@ const CheckoutForm = () => {
             <label style={{color: theme === 'light' ? 'black':'white'}}>Email</label>
             <input className='cardInput' type="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
+        <div className="payment-methods">
+          {/* Payment Method Selector */}
+          <label>Select Payment Method:</label>
+          <div>
+            <button type="button" onClick={() => setPaymentMethod('stripe')}>
+              Pay with Stripe
+            </button>
+            <button type="button" onClick={() => setPaymentMethod('paypal')}>
+              Pay with PayPal
+            </button>
+          </div>       
         <button
             type="submit"
             disabled={processing}
@@ -130,6 +141,7 @@ const CheckoutForm = () => {
         >
             {processing ? 'Processing...' : 'Pay'}
         </button>
+        </div>
       </form>
     </div>
   );
