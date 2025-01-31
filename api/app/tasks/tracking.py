@@ -172,10 +172,10 @@ async def trigger_new_order_notification(fm: FastMail, order: Order, order_detai
     <h3>Need Help?</h3>
     <p>If you have any questions about your order or our return policy, please don't hesitate to contact our customer service team at infolowtechgmbh@gmail.com</p>
     
-    <p>Thank you again for choosing Our Store. We appreciate your business and hope you enjoy your purchase!</p>
+    <p>Thank you again for choosing Our Store. We hope you enjoy your purchase!</p>
     
     <p>Best regards,<br>
-    LowTech Gmbh Team</p>
+    LowTech GmbH Customer Service Team</p>
     """
 
     email_body = get_base_template(content)
@@ -189,15 +189,38 @@ async def trigger_new_order_notification(fm: FastMail, order: Order, order_detai
 
 
 
-async def trigger_order_status_update_notification(fm: FastMail, order: Order, previous_status: str, new_status: str):
+async def trigger_order_status_update_notification(fm: FastMail, order: Order, new_status: str):
+    
     content = f"""
-    <h2>Order Status Update</h2>
-    <p>Your order #{order.id} status has been updated.</p>
-    <ul>
-        <li>Previous status: {previous_status}</li>
-        <li>New status: <strong>{new_status}</strong></li>
-    </ul>
-    <p>If you have any questions, please don't hesitate to contact us.</p>
+    <h2>Dear {order.customer_name},</h2>
+    
+    <p>We are writing to inform you about an update to your order with LowTech GmbH.</p>
+    
+    <h3>Order Status Update</h3>
+    <p>Your order (#{order.id}) status has been updated to: <strong>{new_status}</strong></p>
+    
+    <h3>Order Details:</h3>
+    <p><strong>Order Number:</strong> {order.id}</p>
+    <p><strong>Order Date:</strong> {order.created_at.strftime('%B %d, %Y')}</p>
+    <p><strong>Total Amount:</strong> {order.order_total:.2f}€</p>
+    
+
+    <h3>Shipping Address:</h3>
+    <p>
+    {order.customer_shipping_info['street']}<br>
+    {order.customer_shipping_info['zip_code']}, {order.customer_shipping_info['city']}
+    </p>
+    
+    <h3>Next Steps</h3>
+    <p>We will continue to process your order according to our standard procedures. We're working diligently to ensure your order reaches you as soon as possible. You'll receive emails from our side whenever your order tracking status is updated.</p>
+    
+    <h3>Need Help?</h3>
+    <p>If you have any questions about your order or our return policy, please don't hesitate to contact our customer service team at infolowtechgmbh@gmail.com</p>
+    
+    <p>Thank you again for choosing Our Store. We hope you enjoy your purchase!</p>
+    
+    <p>Best regards,<br>
+    LowTech GmbH Customer Service Team</p>
     """
 
     email_body = get_base_template(content)
@@ -205,6 +228,6 @@ async def trigger_order_status_update_notification(fm: FastMail, order: Order, p
     await send_email(
         fm,
         order.customer_email,
-        f"Order #{order.id} Status Update: {new_status}",
+        f"LowTech GmbH: Order #{order.id} Status Update",
         email_body,
     )
