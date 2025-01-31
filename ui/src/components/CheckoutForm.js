@@ -96,6 +96,11 @@ const CheckoutForm = () => {
       sendEmail();
     });
   };
+    // Handle PayPal error
+  const handlePayPalError = (err) => {
+    console.error("PayPal Error: ", err);
+    alert("An error occurred while processing PayPal payment.");
+  };
 
   return (
     <div className='checkoutPage' ref={container}>
