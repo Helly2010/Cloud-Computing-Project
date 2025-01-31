@@ -30,10 +30,14 @@ const App = () => {
           <Route
             path="/checkout"
             element={
-              // Wrap the CheckoutForm with the <Elements> provider
-              <Elements stripe={stripePromise}>
-                <CheckoutForm />
-              </Elements>
+              // Wrap the CheckoutForm with the <Elements> provider for Stripe
+              <div>
+                <Elements stripe={stripePromise}>
+                  <CheckoutForm />
+                </Elements>
+
+                
+              </div>
             }
           />
         </Routes>
