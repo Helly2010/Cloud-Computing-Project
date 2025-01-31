@@ -68,8 +68,6 @@ const Home = () => {
         sort === "lowToHigh" ? a.priceEuro - b.priceEuro : b.priceEuro - a.priceEuro
       );
     }
-
-    console.log("Products after sorting:", sortedProducts); // Debugging log
     
     return sortedProducts;
   };
