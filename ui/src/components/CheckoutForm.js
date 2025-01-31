@@ -6,6 +6,7 @@ import { useTheme } from '../context/ThemeContextProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CartState } from '../context/CartContext';
 import TestCards from './TestCards';
+import { PayPalButtons } from '@paypal/react-paypal-js'; 
 
 const CheckoutForm = () => {
 
@@ -18,6 +19,7 @@ const CheckoutForm = () => {
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(false);
   const referenceNo = Math.floor(Math.random() * 900000) + 100000;
+  const [paymentMethod, setPaymentMethod] = useState('stripe');  // Track selected payment method
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const location = useLocation();
