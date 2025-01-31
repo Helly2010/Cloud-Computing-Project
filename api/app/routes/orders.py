@@ -46,7 +46,9 @@ async def create_order(
         order_total=order_total_cal,
     )
 
+    
     db.add(new_order)
+    await db.flush()
     await db.refresh(new_order)
 
     order_details = []
@@ -79,6 +81,6 @@ async def create_order(
 
     await db.commit()
 
-    background_tasks.add_task(trigger_new_order_notification, fm, new_order, order_details)
+    background_tasks.add_task(trigger_new_order_notification, fm, new_order, order_details, db)
 
     return new_order
