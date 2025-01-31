@@ -24,10 +24,9 @@ def get_base_template(content: str) -> str:
                 padding: 0;
             }}
             .container {{
-                max-width: 600px;
-                margin: 20px auto;
+                max-width: 800px;
+                margin: 0 auto;
                 background-color: #ffffff;
-                border-radius: 8px;
                 overflow: hidden;
                 box-shadow: 0 0 10px rgba(0,0,0,0.1);
             }}
@@ -44,6 +43,10 @@ def get_base_template(content: str) -> str:
             }}
             .content {{
                 padding: 30px;
+            }}
+            .table-container {{
+                width: 100%;
+                overflow-x: auto;
             }}
             .order-table {{
                 width: 100%;
@@ -76,30 +79,19 @@ def get_base_template(content: str) -> str:
                 margin-top: 15px;
             }}
             @media only screen and (max-width: 600px) {{
-                .order-table, .order-table tbody, .order-table tr, .order-table td {{
-                    display: block;
+                .container {{
                     width: 100%;
+                    margin: 0;
+                    border-radius: 0;
                 }}
-                .order-table tr {{
-                    margin-bottom: 15px;
+                .content {{
+                    padding: 15px;
                 }}
-                .order-table td {{
-                    text-align: right;
-                    padding-left: 50%;
-                    position: relative;
+                .order-table {{
+                    font-size: 14px;
                 }}
-                .order-table td::before {{
-                    content: attr(data-label);
-                    position: absolute;
-                    left: 6px;
-                    width: 45%;
-                    padding-right: 10px;
-                    white-space: nowrap;
-                    text-align: left;
-                    font-weight: bold;
-                }}
-                .order-table thead {{
-                    display: none;
+                .order-table th, .order-table td {{
+                    padding: 6px;
                 }}
             }}
         </style>
@@ -121,12 +113,12 @@ def get_base_template(content: str) -> str:
     </html>
     """
 
+
 async def trigger_new_order_notification(fm: FastMail, order: Order, order_details: List[OrderDetail], db: AsyncSession):
     # Fetch product details
     product_ids = [detail.product_id for detail in order_details]
     products = {product.id: product for product in (await db.scalars(select(Product).where(Product.id.in_(product_ids)))).all()}
 
-  
     product_info = "".join([
         f"""
         <tr>
@@ -156,10 +148,10 @@ async def trigger_new_order_notification(fm: FastMail, order: Order, order_detai
     <table class="order-table">
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Unit Price</th>
-                <th>Subtotal</th>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Subtotal</th>
             </tr>
         </thead>
         <tbody>
@@ -194,6 +186,9 @@ async def trigger_new_order_notification(fm: FastMail, order: Order, order_detai
         f"LowTech Gmbh: Order Confirmation - Order #{order.id}",
         email_body,
     )
+
+
+
 async def trigger_order_status_update_notification(fm: FastMail, order: Order, previous_status: str, new_status: str):
     content = f"""
     <h2>Order Status Update</h2>
