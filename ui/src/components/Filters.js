@@ -7,13 +7,16 @@ import { useFilterBarState } from '../context/FilterBar';
 import { useTheme } from '../context/ThemeContextProvider';
 import { useWindowSize } from '../hooks/useWindowSize';
 import Rating from './Rating'
+import useCategories from "../hooks/useCategories"; // Import dynamic categories
 
 const Filters = () => {
     const { productFilterState : {
-                byStock, byFastDelivery, sort, byRating
+                byStock, byFastDelivery, sort, byRating, byCategory
             }, 
             productFilterDispatch 
     } = CartState();
+
+    const categories = useCategories(); // Fetch categories from API
 
     const { theme } = useTheme();
 
@@ -81,7 +84,7 @@ const Filters = () => {
                     checked= {byFastDelivery}
                 />
             </span>
-            {/* Filter added to allow products to be viewed by categories */}
+            {/*
             <span>
                 <select onChange={(e) => productFilterDispatch({
                     type: 'FILTER_BY_SEARCH',
@@ -102,6 +105,26 @@ const Filters = () => {
                         </option>
                 </select>
             </span>
+            */}
+            <span>
+                <select
+                    value={byCategory} // Keep track of selected category
+                    onChange={(e) =>
+                        productFilterDispatch({
+                            type: "FILTER_BY_CATEGORY",
+                            payload: e.target.value,
+                        })
+                    }
+                >
+                    <option value="">All Categories</option>
+                    {categories.map((category) => (
+                        <option key={category.id} value={category.name}>
+                            {category.name}
+                        </option>
+                    ))}
+                </select>
+            </span>
+            
             <span>
                 <label style={{ paddingRight: 10 }}>Rating: </label>
                 <Rating 

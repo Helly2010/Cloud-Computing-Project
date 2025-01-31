@@ -50,6 +50,7 @@ const CartContext = ({ children }) => {
     byFastDelivery: false,
     byRating: 0,
     searchQuery: "",
+    byCategory: "", // Reset category filter
   });
 
   return (

@@ -56,6 +56,12 @@ export const productFilterReducer = (state, action) => {
 
         case 'FILTER_BY_SEARCH':
             return { ...state, searchQuery: action.payload }; 
+        
+            case "FILTER_BY_CATEGORY":
+                return {
+                    ...state,
+                    byCategory: action.payload, // Store selected category ID
+                };
             
         case 'CLEAR_FILTERS':
             return {
@@ -63,6 +69,7 @@ export const productFilterReducer = (state, action) => {
                 byFastDelivery: false,
                 byRating: 0,
                 searchQuery: "",
+                byCategory: "", 
              }; 
 
         default:

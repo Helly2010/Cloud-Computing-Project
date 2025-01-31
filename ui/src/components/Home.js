@@ -12,7 +12,7 @@ const Home = () => {
   const categories = useCategories(); // Fetch categories using the custom hook
 
   const {
-    productFilterState: { sort, byStock, byFastDelivery, byRating, searchQuery },
+    productFilterState: { sort, byStock, byFastDelivery, byRating, searchQuery, byCategory },
   } = CartState();
 
   const [productIds, setProductIds] = useState([]);
@@ -57,6 +57,14 @@ const Home = () => {
           prod.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           categoryName.toLowerCase().includes(searchQuery.toLowerCase())
         );
+      });
+    }
+
+    // Filter by Selected Category (Matching Category Name)
+    if (byCategory) {
+      sortedProducts = sortedProducts.filter((prod) => {
+        const categoryName = categories.find((cat) => cat.id === prod.category_id)?.name || "";
+        return categoryName.toLowerCase() === byCategory.toLowerCase();
       });
     }
 
