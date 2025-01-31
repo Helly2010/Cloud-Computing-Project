@@ -6,6 +6,7 @@ import { useTheme } from '../context/ThemeContextProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CartState } from '../context/CartContext';
 import TestCards from './TestCards';
+import { PayPalButtons } from '@paypal/react-paypal-js'; 
 
 const CheckoutForm = () => {
 
@@ -18,6 +19,7 @@ const CheckoutForm = () => {
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(false);
   const referenceNo = Math.floor(Math.random() * 900000) + 100000;
+  const [paymentMethod, setPaymentMethod] = useState('stripe');  // Track selected payment method
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const location = useLocation();
@@ -85,6 +87,20 @@ const CheckoutForm = () => {
         error => console.log(error.text)
     );
   }
+  // Handle PayPal approval
+  const handlePayPalApprove = (data, actions) => {
+    actions.order.capture().then(details => {
+      // Process the PayPal order on approval
+      alert(`Transaction completed by ${details.payer.name.given_name}`);
+      dispatch({ type: 'EMPTY_CART' });
+      sendEmail();
+    });
+  };
+    // Handle PayPal error
+  const handlePayPalError = (err) => {
+    console.error("PayPal Error: ", err);
+    alert("An error occurred while processing PayPal payment.");
+  };
 
   return (
     <div className='checkoutPage' ref={container}>
@@ -107,13 +123,38 @@ const CheckoutForm = () => {
             <label style={{color: theme === 'light' ? 'black':'white'}}>Email</label>
             <input className='cardInput' type="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
-        <button
-            type="submit"
-            disabled={processing}
-            onClick={handleSubmit}
-        >
-            {processing ? 'Processing...' : 'Pay'}
-        </button>
+        <div className="payment-methods">
+          {/* Payment Method Selector */}
+          <label>Select Payment Method:</label>
+          <div>
+            <button type="button" onClick={() => setPaymentMethod('stripe')}>
+              Pay with Stripe
+            </button>
+            <button type="button" onClick={() => setPaymentMethod('paypal')}>
+              Pay with PayPal
+            </button>
+          </div>       
+          {/* Render Stripe or PayPal button based on selected payment method */}
+          {paymentMethod === 'stripe' ? (
+            <button
+              type="submit"
+              disabled={processing}
+              onClick={handleSubmit}
+            >
+              {processing ? 'Processing...' : 'Pay with Stripe'}
+            </button>
+          ) : (
+            <PayPalButtons
+              style={{
+                layout: "vertical",
+                shape: "pill",
+                color: "blue",
+              }}
+              onApprove={handlePayPalApprove}
+              onError={handlePayPalError}
+            />
+          )}
+        </div>
       </form>
     </div>
   );

@@ -11,6 +11,7 @@ import ProductList from "./components/ProductList";
 import ProductDetail from "./components/ProductDetail";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
+
 const stripePromise = loadStripe('pk_test_51MwPQuSBD8MtMZAoDOk33CGs935GKRdxMeR3HN4Rro4g8HIuIPOMfDRLHoEYWPFPHIpK0RfN5Gc9zbKOhqcMzMPn00z8zgZCFw');
 
 const App = () => {
@@ -30,10 +31,15 @@ const App = () => {
           <Route
             path="/checkout"
             element={
-              // Wrap the CheckoutForm with the <Elements> provider
-              <Elements stripe={stripePromise}>
-                <CheckoutForm />
-              </Elements>
+              // Wrap the CheckoutForm with the <Elements> provider for Stripe
+              <div>
+                <Elements stripe={stripePromise}>
+                  <CheckoutForm />
+                </Elements>
+
+                
+                
+              </div>
             }
           />
         </Routes>
