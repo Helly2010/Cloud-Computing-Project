@@ -16,7 +16,12 @@ const useProducts = () => {
       }
 
       return response.json().then((data) => {
-        setProducts(data);
+        const processedProducts = data.map((product) => ({
+          ...product,
+          priceEuro: product.public_unit_price / 100, // Convert price to Euro
+        }));
+
+        setProducts(processedProducts);
       });
     });
   }, []);

@@ -23,6 +23,8 @@ const Filters = () => {
     const windowSize = useWindowSize();
 
     const {visible} = useFilterBarState();
+
+    console.log("Sort state:", sort); // Debugging log
     
     return (
         <div 
@@ -41,7 +43,7 @@ const Filters = () => {
                         type: 'SORT_BY_PRICE',
                         payload: 'lowToHigh',
                     })}
-                    checked= {sort === 'lowToHigh' ? true : false}
+                    checked= {sort === 'lowToHigh'}
                 />
             </span>
             <span>
@@ -55,7 +57,7 @@ const Filters = () => {
                         type: 'SORT_BY_PRICE',
                         payload: 'highToLow',
                     })}
-                    checked= {sort === 'highToLow' ? true : false}
+                    checked= {sort === 'highToLow'}
                 />
             </span>
             <span>

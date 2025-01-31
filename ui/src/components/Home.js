@@ -26,11 +26,6 @@ const Home = () => {
   const { stockData, loading, error } = useStock(productIds); // Pass the productIds to the useStock hook
 
   const transformProducts = (sortedProducts) => {
-    if (sort) {
-      sortedProducts = sortedProducts.sort((a, b) =>
-        sort === "lowToHigh" ? a.price - b.price : b.price - a.price
-      );
-    }
 
     // Filter products by stock availability
     if (!byStock) {
@@ -68,6 +63,14 @@ const Home = () => {
       });
     }
 
+    if (sort) {
+      sortedProducts = [...sortedProducts].sort((a, b) =>
+        sort === "lowToHigh" ? a.priceEuro - b.priceEuro : b.priceEuro - a.priceEuro
+      );
+    }
+
+    console.log("Products after sorting:", sortedProducts); // Debugging log
+    
     return sortedProducts;
   };
 
