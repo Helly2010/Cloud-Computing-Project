@@ -87,6 +87,15 @@ const CheckoutForm = () => {
         error => console.log(error.text)
     );
   }
+  // Handle PayPal approval
+  const handlePayPalApprove = (data, actions) => {
+    actions.order.capture().then(details => {
+      // Process the PayPal order on approval
+      alert(`Transaction completed by ${details.payer.name.given_name}`);
+      dispatch({ type: 'EMPTY_CART' });
+      sendEmail();
+    });
+  };
 
   return (
     <div className='checkoutPage' ref={container}>
