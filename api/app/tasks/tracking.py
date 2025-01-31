@@ -189,7 +189,7 @@ async def trigger_new_order_notification(fm: FastMail, order: Order, order_detai
 
 
 
-async def trigger_order_status_update_notification(fm: FastMail, order: Order, new_status: str):
+async def trigger_order_status_update_notification(fm: FastMail, order: Order, previous_staus:str, new_status: str):
     
     content = f"""
     <h2>Dear {order.customer_name},</h2>
