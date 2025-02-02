@@ -52,3 +52,34 @@
 .cardInput:focus {
   border-color: #1c64f2;
 }
+
+button[type='submit'] {
+  background-color: #1c64f2;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 20px;
+  transition: background-color 0.3s ease;
+  margin-top: 2rem;
+  width: 100%;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+
+button[type='submit']:hover {
+  background-color: #0a3ba3;
+}
+
+button[type='submit']:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.card-error {
+  color: rgb(236, 12, 12);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
