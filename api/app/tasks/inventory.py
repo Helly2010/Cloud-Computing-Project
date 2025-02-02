@@ -21,3 +21,9 @@ async def check_inventory_levels(db: AsyncSession, fm: FastMail):
     """Check inventory levels and notify the manager if stock is low."""
     result = await db.scalars(select(Product).where(Product.stock_quantity <= LOW_STOCK_THRESHOLD))
     low_stock_products: List[Product] = result.all()
+    
+    if low_stock_products:
+        product_details = "\n".join([
+            f"- {product.name} (Stock: {product.stock_quantity})"
+            for product in low_stock_products
+        ])
