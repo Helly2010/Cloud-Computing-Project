@@ -83,3 +83,29 @@ button[type='submit']:disabled {
   font-size: 0.9rem;
   margin-top: 1rem;
 }
+
+.testCard {
+  padding: 8px 15px;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.testCard:hover {
+  background-color: #f0f0f0;
+}
+
+.testCard:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.testCard span {
+  display: block;
+  margin-top: 5px;
+}
+
