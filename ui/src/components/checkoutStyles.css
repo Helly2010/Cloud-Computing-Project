@@ -24,3 +24,31 @@
 .form-row {
   margin-bottom: 1.5rem;
 }
+
+#cardElement {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 12px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+#cardElement:focus {
+  border-color: #1c64f2; /* Highlight border color on focus */
+}
+
+.cardInput {
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+  outline: none;
+  font-family: sans-serif;
+}
+
+.cardInput:focus {
+  border-color: #1c64f2;
+}
