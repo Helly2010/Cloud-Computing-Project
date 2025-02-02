@@ -108,4 +108,13 @@ button[type='submit']:disabled {
   display: block;
   margin-top: 5px;
 }
+@media (max-width: 768px) {
+  .checkoutForm {
+    width: 90%;
+    padding: 1rem;
+  }
 
+  button[type='submit'], .payment-methods button, .testCard {
+    font-size: 14px;
+  }
+}
