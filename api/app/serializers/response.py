@@ -20,44 +20,58 @@ class ProductBaseSerializer(BaseModel):
     id: int
     name: str
     ean_code: int
-    category_id: int
-    supplier_id: int
-    stock_id: int
     description: str
     public_unit_price: int
-    supplier_unit_price: int
     img_link: str
-    reorder_level: int
     extra_info: dict
-    updated_at: datetime
-    created_at: datetime
+    currency: str
 
-
-class ProductSerializer(ProductBaseSerializer):
+    stock: "StockSerializer"
     category: "CategorySerializer"
 
 
-class CategorySerializer(BaseModel):
+class ProductSerializer(ProductBaseSerializer):
+    category_id: int
+    supplier_id: int
+    stock_id: int
+    reorder_level: int
+    supplier_unit_price: int
+    updated_at: datetime
+    created_at: datetime
+
+    supplier: "SupplierBaseSerializer"
+
+
+class CategoryBaseSerializer(BaseModel):
     id: int
     name: str
     description: str
     extra_info: dict
+
+
+class CategorySerializer(CategoryBaseSerializer):
     updated_at: datetime
     created_at: datetime
 
 
-class SupplierSerializer(BaseModel):
+class SupplierBaseSerializer(BaseModel):
     id: int
     name: str
     address: str
     phone: str
     email: str
+
+
+class SupplierSerializer(SupplierBaseSerializer):
     updated_at: datetime
     created_at: datetime
 
 
-class StockSerializer(BaseModel):
+class StockBaseSerializer(BaseModel):
     id: int
     quantity: int
+
+
+class StockSerializer(StockBaseSerializer):
     updated_at: datetime
     created_at: datetime

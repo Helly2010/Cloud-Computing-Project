@@ -50,6 +50,8 @@ async def create_product(product: ProductCreateSerializer, db: AsyncSession = De
 
         db.add(new_product)
         await db.commit()
+
+    await db.refresh(new_product)
     return new_product
 
 
