@@ -2,6 +2,8 @@ from app.repositories.db.models import Product, Supplier
 from app.repositories.email.connector import FastMail
 from app.repositories.email.emails_utils import send_email
 
+MANAGER_EMAIL = "manager@lowtechgmbh.com"
+LOW_STOCK_THRESHOLD = 10  # Define a threshold for low stock
 
 async def trigger_restock_notification(fm: FastMail, product: Product, supplier: Supplier):
     await send_email(
