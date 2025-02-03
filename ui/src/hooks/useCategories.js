@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const useCategories = () => {
+const useCategories = (done = () => {}) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -17,9 +17,10 @@ const useCategories = () => {
 
       return response.json().then((data) => {
         setCategories(data);
+        done();
       });
     });
-  }, [!categories]);
+  }, [done]);
 
   return categories;
 };
