@@ -1,65 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { CartState } from "../context/CartContext";
+import useProducts from "../hooks/useProducts";
 import Filters from "./Filters";
 import SingleProduct from "./SingleProduct";
-import useProducts from "../hooks/useProducts";
-import useCategories from "../hooks/useCategories";
-import useStock from "../hooks/useStock"; // Import useStock hook
-/*import "./styles.css";*/
-import "../styles/ProductView.css";
+import "./styles.css";
 
 const Home = () => {
-  const products = useProducts(); // Fetch products using the custom hook
-  const categories = useCategories(); // Fetch categories using the custom hook
+  const [loading, setLoading] = useState(true);
+
+  const loadingDone = useMemo(() => {
+    setLoading(false);
+  }, []);
+
+  const products = useProducts(loadingDone);
 
   const {
     productFilterState: { sort, byStock, byFastDelivery, byRating, searchQuery, byCategory },
   } = CartState();
 
-  const [productIds, setProductIds] = useState([]);
-
-  // Get all product IDs from products
-  useEffect(() => {
-    setProductIds(products.map((product) => product.id));
-  }, [products]);
-
-  // Fetch stock data for all products
-  const { stockData, loading } = useStock(productIds); // Pass the productIds to the useStock hook
-
   const transformProducts = (sortedProducts) => {
-
-      // Ensure stock data exists before filtering
-    sortedProducts = sortedProducts.map((prod) => {
-      const stockQuantity = stockData[prod.id] ?? 0; // Default to 0 if stock data is missing
-      return {
-        ...prod,
-        isInStock: stockQuantity > 0, // Track whether product is in stock
-        fastDelivery: stockQuantity > 5, // If stock is greater than 5, set fastDelivery to true
-      };
-    });
-
     // Filter products by stock availability
     if (!byStock) {
-      sortedProducts = sortedProducts.filter((prod) => prod.isInStock); // Now correctly filters out out-of-stock items
+      sortedProducts = sortedProducts.filter((prod) => prod.stock.quantity > 0);
     }
 
     // Filter products by fast delivery
     if (byFastDelivery) {
-      sortedProducts = sortedProducts.filter((prod) => prod.fastDelivery);
+      sortedProducts = sortedProducts.filter((prod) => prod.extra_info.fast_delivery);
     }
 
     // Filter products by rating
     if (byRating) {
-      sortedProducts = sortedProducts.filter((prod) => prod.ratings === byRating);
+      sortedProducts = sortedProducts.filter((prod) => prod.extra_info.rating === byRating);
     }
 
     // Filter products by search query
     if (searchQuery) {
       sortedProducts = sortedProducts.filter((prod) => {
-        const categoryName = categories.find((obj) => obj.id === prod.category_id)?.name || "Unknown";
         return (
           prod.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          categoryName.toLowerCase().includes(searchQuery.toLowerCase())
+          prod.category.name.toLowerCase().includes(searchQuery.toLowerCase())
         );
       });
     }
@@ -67,17 +47,16 @@ const Home = () => {
     // Filter by Selected Category (Matching Category Name)
     if (byCategory) {
       sortedProducts = sortedProducts.filter((prod) => {
-        const categoryName = categories.find((cat) => cat.id === prod.category_id)?.name || "";
-        return categoryName.toLowerCase() === byCategory.toLowerCase();
+        return prod.category.name.toLowerCase() === byCategory.toLowerCase();
       });
     }
 
     if (sort) {
       sortedProducts = [...sortedProducts].sort((a, b) =>
-        sort === "lowToHigh" ? a.priceEuro - b.priceEuro : b.priceEuro - a.priceEuro
+        sort === "lowToHigh" ? a.public_unit_price - b.public_unit_price : b.public_unit_price - a.public_unit_price
       );
     }
-    
+
     return sortedProducts;
   };
 
