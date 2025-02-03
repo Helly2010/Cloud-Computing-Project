@@ -1,0 +1,230 @@
+% This is LLNCS.DEM the demonstration file of
+% the LaTeX macro package from Springer-Verlag
+% for Lecture Notes in Computer Science,
+% version 2.3 for LaTeX2e
+
+
+
+\documentclass{llncs}
+
+
+\usepackage{ngerman}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{makeidx}  % allows for indexgeneration
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{graphicx}  % For \resizebox
+\usepackage{amssymb}   % AMS-Sonderzeichen
+\usepackage{tabularx}  % Für tabularx und newcolumntype
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{color}
+\usepackage{ragged2e}
+\usepackage{longtable}
+\usepackage{ifpdf}
+% \usepackage{titlesec}
+\usepackage{xcolor}    % Lieber xcolor als color. Dann klappt auch das listings gut mit den Farben
+\usepackage{listings}
+\usepackage{upquote}   % Verändert die Ausgabe der einfachen Anführungszeichen innerhalb von verbatim
+\usepackage{eurosym}   % Euro-Zeichen: \euro
+\usepackage{lastpage}  % \pageref{LastPage} um die Anzahl der Seiten zu erhalten
+% hiermit kann man auch umlaute copy-pasten
+\usepackage{lmodern}
+\selectlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{caption}
+\usepackage{float}
+\setlength{\abovecaptionskip}{0pt} % Reduce space above the caption
+\setlength{\belowcaptionskip}{0pt} % Space between caption and table
+\captionsetup[table]{skip=5pt} % Adjust the value of '10pt' as needed
+\pagestyle{fancy}
+% Reduce space between float and surrounding text
+\setlength{\textfloatsep}{0pt}
+\setlength{\floatsep}{0pt}
+\setlength{\intextsep}{0pt}
+
+
+
+%
+
+\ifpdf
+\pdfinfo{
+ /Author (Wladymir Alexander Brborich Herrera)
+ /Author (Vishwaben Pareshbhai Kakadiya)
+ /Author (Hellyben Bhaveshkumar Shah)
+ /Author (Heer Rakeshkumar Vankawala)
+ /Author (Priyanka Dilipbhai Vadiwala)
+ /Title  (LowTech GMmBH Techincal Transformation Milestone 2)
+ /Subject (Cloud Computing)
+ /Keywords (Cloud Computing, Technical Transformation, Migration)
+}
+\fi
+
+\setlength{\parindent}{0pt}    % Erste Zeile eines Absatzes nicht einrücken
+\parskip2ex                    % Absatzabstand
+\setlength{\itemsep}{0ex plus0.2ex}
+\sloppy                        % Auf jeden Fall die Seitenränder einhalten.
+
+\newcommand{\what}{Milestone 3: Practical Implementation of Webshop in CSP Platform}
+\newcommand{\who}{Group 23}
+\newcommand{\when}{WiSe 2024-2025}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\lhead[\when]{\who}
+\rhead[\who]{\when}
+\chead[]{}
+\lfoot[Page \thepage\ of \pageref{LastPage}]{\what}
+\rfoot[\what]{Page \thepage\ of \pageref{LastPage}}
+\cfoot[]{}
+\pagestyle{fancy}
+
+
+% Hurenkinder und Schusterjungen komplett verbieten.
+\clubpenalty = 10000 
+\widowpenalty = 10000 
+\displaywidowpenalty = 10000
+% Diese Begriffe bezeichnen den Makel beim Textsatz, wenn eine Seite mit der ersten Zeile eines Absatzes endet (so genannter Schusterjunge) oder eine neue Seite mit der letzten Zeile eines Absatzes beginnt (so genanntes Hurenkind).
+
+
+% Wir definieren ein paar Farben
+\definecolor{Brown}{cmyk}{0,0.81,1,0.60}
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.9}
+\definecolor{FrankfurtBlue}{HTML}{3333b2}
+
+% Hier fängt das Dokument an!
+\begin{document}
+
+%
+% \frontmatter          % for the preliminaries
+%
+% \tableofcontents
+%
+\mainmatter              % start of the contributions
+%
+\title{\what}
+%
+\author{
+    Wladymir Alexander Brborich Herrera (1437876)\\
+    \texttt{wladymir.brborich-herrera@stud.fra-uas.de}
+    \and\\
+    Vishwaben Pareshbhai Kakadiya (1471845)\\
+    \texttt{vishwaben.kakadiya@stud.fra-uas.de}
+    \and\\
+    Hellyben Bhaveshkumar Shah (1476905)\\
+    \texttt{hellyben.shah@stud.fra-uas.de}
+    \and\\
+    Heer Rakeshkumar Vankawala (1449039)
+    \\
+    \texttt{heer.vankawala@stud.fra-uas.de}
+    \and\\
+    Priyanka Dilipbhai Vadiwala (1481466)\\
+    \texttt{priyanka.vadiwala@stud.fra-uas.de}
+}
+%
+\institute{
+    Frankfurt University of Applied Sciences\\
+    (1971-2014: Fachhochschule Frankfurt am Main)\\
+    Nibelungenplatz 1\\
+    D-60318 Frankfurt am Main\\
+}
+
+\maketitle              % typeset the title of the contribution
+
+
+\begin{abstract}
+This report documents the implementation of LowTech GmbH's cloud-based webshop demonstration system on Microsoft Azure. The solution leverages Azure App Service for frontend hosting, Azure Kubernetes Service for middleware orchestration, Azure SQL Database for structured data storage, and Azure Blob Storage for media assets. The architecture implements high availability through Azure Load Balancer and Availability Zones, demonstrating a complete three-tier cloud application with automated scaling capabilities.
+\end{abstract}
+
+\section{Introduction}
+\subsection{Project Overview}
+Brief recap of previous milestones and progression to current implementation phase
+
+\subsection{Objectives}
+\begin{itemize}
+    \item Three-tier architecture implementation
+    \item Cloud service integration demonstration
+    \item High availability configuration
+    \item Practical validation of architectural decisions
+\end{itemize}
+
+\section{Application Design}
+\subsection{Architectural Overview}
+Detailed description of the three-tier structure with CSP service mapping
+
+\subsection{Technology Stack}
+\begin{itemize}
+    \item Frontend: React.js with Azure Static Web Apps
+    \item Middleware: Spring Boot on Azure Kubernetes Service
+    \item Database: Azure SQL Database with Redis Cache
+    \item Blob Storage: Azure Blob Storage for product images
+\end{itemize}
+
+\subsection{System Diagrams}
+
+\section{Implementation Process}
+\subsection{Cloud Environment Setup}
+Step-by-step account configuration and resource provisioning
+
+\subsection{Service Integration}
+\begin{itemize}
+    \item Azure Load Balancer configuration
+    \item Database replication setup
+    \item Blob storage integration patterns
+\end{itemize}
+
+\subsection{Development Challenges}
+\begin{itemize}
+    \item State management in scaled environments
+    \item Database connection pooling
+    \item CSP-specific limitations encountered
+\end{itemize}
+
+\section{Operational Characteristics}
+\subsection{Performance Metrics}
+Load testing results and scalability demonstrations
+
+\subsection{Security Considerations}
+\begin{itemize}
+    \item Network security groups configuration
+    \item Database encryption implementation
+    \item Access control mechanisms
+\end{itemize}
+
+\section{Critical Analysis}
+\subsection{Cloud Service Evaluation}
+Cost-benefit analysis of selected Azure services
+
+\subsection{Architectural Decisions}
+Trade-off discussion between containerized vs serverless approaches
+
+\section{Repository Documentation}
+\subsection{GitHub Structure}
+\begin{itemize}
+    \item Branching strategy
+    \item CI/CD pipeline configuration
+    \item Documentation standards
+\end{itemize}
+
+\subsection{Contribution Tracking}
+Commit history analysis and individual contribution breakdown
+
+\section{Conclusion}
+\subsection{Project Outcomes}
+Summary of achieved objectives and demo capabilities
+
+\subsection{Future Enhancements}
+Potential improvements for production readiness
+
+\begin{thebibliography}{9}
+
+\end{thebibliography}
+\end{document}
