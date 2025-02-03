@@ -52,3 +52,5 @@ While running python runner.py, if Import error comes then try out below command
 To create a migration revision: `alembic revision --autogenerate -m "your migration title"`
 
 To run the database migrations: `alembic upgrade head`
+
+To seed the database run: `python -m scripts.seed_db` on the api folder
