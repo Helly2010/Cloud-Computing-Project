@@ -128,8 +128,8 @@ async def seed_products(db: AsyncSession, categories: list[Category], suppliers:
                 supplier_unit_price=unit_price - unit_price / 10,
                 img_link=f"/img/{product['name'].lower()}.png",
                 reorder_level=10,
-                currency=random.choices(["EUR", "USD"], [0.8, 0.2]),
-                extra_info={"rating": random.randint(3, 5), "fast_delivery": random.choices([True, False], [0.7, 0.3])},
+                currency="EUR",
+                extra_info={"rating": random.randint(3, 5), "fast_delivery": random.choices([True, False], [0.7, 0.3])[0]},
             )
             db.add(db_product)
             await db.commit()
