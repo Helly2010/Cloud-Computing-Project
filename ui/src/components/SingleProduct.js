@@ -4,8 +4,6 @@ import { toast } from "react-toastify"; // Toast for notifications
 import { useNavigate } from "react-router-dom"; // For navigation
 import { CartState } from "../context/CartContext"; // Cart state context
 import { useTheme } from "../context/ThemeContextProvider"; // Theme context
-import useStock from "../hooks/useStock"; // Custom hook for stock
-import useCategories from "../hooks/useCategories"; // Custom hook for categories
 import "react-toastify/dist/ReactToastify.css"; // Toast styles
 
 const SingleProduct = ({ prod }) => {
@@ -17,9 +15,6 @@ const SingleProduct = ({ prod }) => {
   const { theme } = useTheme();
   const navigate = useNavigate();
 
-  // Fetch stock using the custom hook
-  const { stockData, loading, error } = useStock(prod.id); // Get the stockData object
-  const stock = stockData?.[prod.id] ?? 0; // Extract stock for the current product ID, default to 0 if undefined
 
   const handleClick = () => {
     navigate(`/product/${prod.id}`); // Navigate to the product detail page
@@ -32,7 +27,6 @@ const SingleProduct = ({ prod }) => {
       closeOnClick: true,
     });
 
-  const categories = useCategories(); // Fetch categories using the custom hook
 
   return (
     <div className="product">
@@ -50,12 +44,10 @@ const SingleProduct = ({ prod }) => {
           <Card.Title>{prod.name}</Card.Title>
           <Card.Subtitle style={{ paddingBottom: 10 }}>
             <span style={{ fontSize: "1.2rem" }}>
-              &#8364; {/* EUR */} {prod.public_unit_price / 100}
+              {prod.formatted_price}
             </span>
             <p>
-              Category:{" "}
-              {categories.find((obj) => obj.id === prod.category_id)?.name ||
-                "Unknown"}
+              {`Category: ${prod.category.name}`}
             </p>
             <p>Description: {prod.description}</p>
           </Card.Subtitle>
@@ -77,7 +69,7 @@ const SingleProduct = ({ prod }) => {
           ) : (
             <Button
               onClick={() => {
-                if (stock > 0) {
+                if (prod.stock.quantity > 0) {
                   dispatch({
                     type: "ADD_TO_CART",
                     payload: prod,
@@ -85,10 +77,10 @@ const SingleProduct = ({ prod }) => {
                   notifySuccess("Item added successfully");
                 }
               }}
-              disabled={loading || stock <= 0}
+              disabled={prod.stock.quantity <= 0}
               style={{ fontSize: "0.9rem" }}
             >
-              {loading ? "Loading..." : stock <= 0 ? "Out of Stock" : "Add to Cart"}
+              {prod.stock.quantity <= 0 ? "Out of Stock" : "Add to Cart"}
             </Button>
           )}
         </Card.Body>
