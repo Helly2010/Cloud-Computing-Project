@@ -52,7 +52,7 @@ const Cart = () => {
                 </Col>
                 <Col md={2}>{prod.formatted_price}</Col>
                 <Col md={2}>
-                  <Rating rating={prod.ratings || 0} onClick={() => {}}></Rating>
+                  <Rating rating={prod.extra_info.rating || 0} onClick={() => {}} />
                 </Col>
                 <Col md={2}>
                   <Form.Control
@@ -60,6 +60,9 @@ const Cart = () => {
                     value={prod.qty}
                     max={prod.stock.quantity}
                     min={1}
+                    onInput={(e) =>
+                      (e.target.value = !!e.target.value && Math.abs(e.target.value) >= 0 ? Math.abs(e.target.value) : 1)
+                    }
                     onChange={(e) =>
                       dispatch({
                         type: "CHANGE_CART_QTY",
@@ -96,7 +99,7 @@ const Cart = () => {
             <Card.Body>
               <Card.Title> SUBTOTAL: {(total / 100).toFixed(2)} &euro; </Card.Title>
               <Card.Text>Total items: {items}</Card.Text>
-              <Link to="/checkout" state={{ total: Number((total / 100).toFixed(2))}}>
+              <Link to="/checkout" state={{ total: Number((total / 100).toFixed(2)) }}>
                 <Button variant="primary">Proceed to Checkout</Button>
               </Link>
             </Card.Body>
