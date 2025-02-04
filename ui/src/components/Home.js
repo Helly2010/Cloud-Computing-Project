@@ -24,7 +24,7 @@ const Home = () => {
   }, [products]);
 
   // Fetch stock data for all products
-  const { stockData, loading, error } = useStock(productIds); // Pass the productIds to the useStock hook
+  const { stockData, loading } = useStock(productIds); // Pass the productIds to the useStock hook
 
   const transformProducts = (sortedProducts) => {
 

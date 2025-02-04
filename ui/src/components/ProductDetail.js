@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import productsData from "../data/products"; // Replace with your actual data source
+import useProducts from "../hooks/useProducts"; // Import the custom hook
 import "../styles/ProductDetails.css"; // Optional: For additional styling
 
-
 const ProductDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // Get the product ID from the URL
+  const products = useProducts(); // Fetch products using the custom hook
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    // Fetch product details based on the ID from URL
-    const selectedProduct = productsData.find((item) => item.id === parseInt(id));
+    // Find the product based on the ID from the URL after the products are fetched
+    const selectedProduct = products.find((prod) => prod.id === parseInt(id));
     setProduct(selectedProduct);
-  }, [id]);
+  }, [id, products]); // Re-run whenever the id or products change
 
   if (!product) {
     return (
@@ -69,10 +69,10 @@ const ProductDetails = () => {
                 <hr />
                 <p className="mb-2">
                   <strong>Price:</strong>{" "}
-                  <span className="text-success">€{product.price.toFixed(2)}</span>
+                  <span className="text-success">€{product.priceEuro.toFixed(2)}</span>
                 </p>
                 <p className="mb-2">
-                  <strong>Category:</strong> {product.category}
+                  <strong>Category:</strong> {product.categoryName}
                 </p>
                 <p className="mb-2">
                   <strong>Rating:</strong> {product.ratings} / 5
