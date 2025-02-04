@@ -14,7 +14,6 @@ const CartContext = ({ children }) => {
    * - `dispatch` is used to update the state
    */
   const [state, dispatch] = useReducer(cartReducer, {
-    products: [], // Products fetched from API or Faker.js
     cart: [], // Initially empty cart
   });
 

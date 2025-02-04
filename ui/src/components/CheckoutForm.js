@@ -1,65 +1,45 @@
-import React, { useState } from 'react';
-import './checkoutStyles.css';
-import emailjs from "emailjs-com";
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { PayPalButtons } from '@paypal/react-paypal-js';
-import { useTheme } from '../context/ThemeContextProvider';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { CartState } from '../context/CartContext';
-import TestCards from './TestCards';
+import { PayPalButtons } from "@paypal/react-paypal-js";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import React, { useState } from "react";
+import { Col, Image, ListGroup, Row, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { CartState } from "../context/CartContext";
+import { useTheme } from "../context/ThemeContextProvider";
+import "./checkoutStyles.css";
 
 const CheckoutForm = () => {
-  const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-  const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-  const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(false);
-  const referenceNo = Math.floor(Math.random() * 900000) + 100000;
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const location = useLocation();
-  const grandtotal = location.state ? location.state : 0;
-  console.log('total ' + grandtotal);
-  const date = new Date();
+  const [orderData, setOrderData] = useState({
+    name: "",
+    email: "",
+    street: "",
+    zipCode: "",
+    city: "",
+    phone: "",
+  });
 
   const { theme } = useTheme();
 
   const navigate = useNavigate();
-  const { dispatch } = CartState();
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
 
-  const sendEmail = () => {
-    const emailParams = {
-      to_email: email,
-      name: name,
-      ref_no: referenceNo,
-      order_date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
-      total: `₹ ${grandtotal}`
-    };
-
-    emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      emailParams,
-      EMAILJS_PUBLIC_KEY
-    ).then(
-      result => {
-        alert('Thanks for being a good customer! Check your email for the invoice');
-        navigate('/');
-      },
-      error => console.log(error.text)
-    );
-  };
+  const total = cart.reduce((acc, curr) => {
+    const validPrice = Number(curr.public_unit_price) || 0;
+    return acc + validPrice * curr.qty;
+  }, 0);
 
   // Handle PayPal approval
   const handlePayPalApprove = (data, actions) => {
-    actions.order.capture().then(details => {
+    actions.order.capture().then((details) => {
       // Process the PayPal order on approval
       alert(`Transaction completed by ${details.payer.name.given_name}`);
-      dispatch({ type: 'EMPTY_CART' });
-      sendEmail();
+      dispatch({ type: "EMPTY_CART" });
     });
   };
 
@@ -78,7 +58,7 @@ const CheckoutForm = () => {
     }
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
+      type: "card",
       card: elements.getElement(CardElement),
     });
 
@@ -92,31 +72,108 @@ const CheckoutForm = () => {
       setError(null);
       setProcessing(false);
       alert("Payment succeeded with Stripe!");
-      dispatch({ type: 'EMPTY_CART' });
-      sendEmail();
+      dispatch({ type: "EMPTY_CART" });
     }
   };
 
   return (
-    <div className='checkoutPage'>
-      <TestCards />
-      <form className='checkoutForm'>
-        <div className="form-row">
-          <label style={{ color: theme === 'light' ? 'black' : 'white' }}>Name</label>
-          <input className='cardInput' type="text" name='name' value={name} onChange={(e) => setName(e.target.value)} required />
-        </div>
-        <div className="form-row">
-          <label style={{ color: theme === 'light' ? 'black' : 'white' }}>Email</label>
-          <input className='cardInput' type="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
+    <div className="checkoutPage">
+      <form className="checkoutForm">
+        <Card.Title>Shipping & Payment Information</Card.Title>
+        <br></br>
+        <Row>
+          <Col>
+            <div className="form-row">
+              <label style={{ color: theme === "light" ? "black" : "white" }}>Name</label>
+              <input
+                className="cardInput"
+                type="text"
+                name="name"
+                value={orderData.name}
+                onChange={(e) => setOrderData({ ...orderData, name: e.target.value })}
+                required
+              />
+            </div>
+            <div className="form-row">
+              <label style={{ color: theme === "light" ? "black" : "white" }}>Email</label>
+              <input
+                className="cardInput"
+                type="email"
+                name="email"
+                value={orderData.email}
+                onChange={(e) => setOrderData({ ...orderData, email: e.target.value })}
+                required
+              />
+            </div>
+
+            <div className="form-row">
+              <label style={{ color: theme === "light" ? "black" : "white" }}>Phone</label>
+              <input
+                className="cardInput"
+                type="phone"
+                name="phone"
+                value={orderData.phone}
+                onChange={(e) => setOrderData({ ...orderData, phone: e.target.value })}
+                required
+              />
+            </div>
+          </Col>
+
+          <Col>
+            <Row>
+              <div className="form-row">
+                <label style={{ color: theme === "light" ? "black" : "white" }}>Address</label>
+                <input
+                  className="cardInput"
+                  type="text"
+                  name="address"
+                  value={orderData.street}
+                  onChange={(e) => setOrderData({ ...orderData, street: e.target.value })}
+                  required
+                />
+              </div>
+            </Row>
+            <Row>
+              <Col>
+                <label style={{ color: theme === "light" ? "black" : "white" }}>City</label>
+                <input
+                  className="cardInput"
+                  type="text"
+                  name="city"
+                  value={orderData.city}
+                  onChange={(e) => setOrderData({ ...orderData, city: e.target.value })}
+                  required
+                />
+              </Col>
+
+              <Col>
+                <label style={{ color: theme === "light" ? "black" : "white" }}>Zipcode</label>
+                <input
+                  className="cardInput"
+                  type="number"
+                  name="zipcode"
+                  value={orderData.zipCode}
+                  onChange={(e) => setOrderData({ ...orderData, zipCode: e.target.value })}
+                  required
+                />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
 
         {/* Stripe Payment */}
         <div className="form-row">
-          <label htmlFor="card-element" style={{ color: theme === 'light' ? 'black' : 'white' }}>Card information</label>
+          <label htmlFor="card-element" style={{ color: theme === "light" ? "black" : "white" }}>
+            Card information
+          </label>
           <div id="cardElement">
             <CardElement />
           </div>
-          {error && <div className="card-error" role="alert">{error}</div>}
+          {error && (
+            <div className="card-error" role="alert">
+              {error}
+            </div>
+          )}
         </div>
 
         {/* PayPal Button */}
@@ -133,14 +190,36 @@ const CheckoutForm = () => {
         </div>
 
         {/* Stripe Payment Submit Button */}
-        <button
-          type="submit"
-          disabled={processing}
-          onClick={handleSubmit}
-        >
-          {processing ? 'Processing...' : 'Pay with Stripe'}
+        <button type="submit" disabled={processing} onClick={handleSubmit}>
+          {processing ? "Processing..." : "Pay with Stripe"}
         </button>
       </form>
+      <br></br>
+      <div className="checkoutProductReview">
+        <Card.Title>Your Order</Card.Title>
+        <br></br>
+        <ListGroup>
+          {cart.map((prod) => (
+            <ListGroup.Item key={prod.id}>
+              <Row>
+                <Col md={2}>
+                  <Image src={prod.img_link} alt={prod.name} fluid rounded />
+                </Col>
+                <Col md={2}>
+                  <span>{prod.name}</span>
+                </Col>
+                <Col md={2}>{prod.formatted_price}</Col>
+              </Row>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+        <Card style={{ "margin-top": "0.5em" }}>
+          <Card.Body>
+            <Card.Text> SUBTOTAL: {(total / 100).toFixed(2)} &euro; </Card.Text>
+            <Card.Text>Total items: {cart.length}</Card.Text>
+          </Card.Body>
+        </Card>
+      </div>
     </div>
   );
 };

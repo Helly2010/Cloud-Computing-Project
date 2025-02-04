@@ -19,7 +19,6 @@ const Cart = () => {
   const [items, setItems] = useState(0); // Total items in the cart
 
   useEffect(() => {
-    console.log("Cart data:", cart); // Debugging line to check cart structure
     setTotal(
       cart.reduce((acc, curr) => {
         const validPrice = Number(curr.public_unit_price) || 0; // Fallback for invalid prices
