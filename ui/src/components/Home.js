@@ -34,6 +34,7 @@ const Home = () => {
       return {
         ...prod,
         isInStock: stockQuantity > 0, // Track whether product is in stock
+        fastDelivery: stockQuantity > 5, // If stock is greater than 5, set fastDelivery to true
       };
     });
 
