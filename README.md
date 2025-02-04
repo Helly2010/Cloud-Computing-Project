@@ -17,9 +17,9 @@ Install dependencies with `npm install`.
 Run the react app with `npm start`.
 
 ### Paypal integration
-go to the /ui` folder with `cd ui`.
+go to the `/ui` folder with `cd ui`.
 
-run npm install @paypal/react-paypal-js
+run npm install `@paypal/react-paypal-js`
 
 Add Paypal Client id as REACT_APP_PAYPAL_CLIENT_ID in .env
 
