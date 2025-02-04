@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap';
-import { CartState } from '../context/CartContext';
-import Rating from './Rating';
-import Form from 'react-bootstrap/Form';
-import { AiFillDelete } from 'react-icons/ai';
-import { useTheme } from '../context/ThemeContextProvider';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
+import { CartState } from "../context/CartContext";
+import Rating from "./Rating";
+import Form from "react-bootstrap/Form";
+import { AiFillDelete } from "react-icons/ai";
+import { useTheme } from "../context/ThemeContextProvider";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { theme } = useTheme();
@@ -32,16 +32,14 @@ const Cart = () => {
   const transformedProducts = () => {
     let products = cart;
     if (searchQuery) {
-      products = products.filter((prod) =>
-        prod.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      products = products.filter((prod) => prod.name.toLowerCase().includes(searchQuery.toLowerCase()));
     }
     return products;
   };
 
   return (
-    <div className='home flex-column'>
-      <div className={`productContainer ms-0 ${theme === 'dark' && 'darkBody'}`}>
+    <div className="home flex-column">
+      <div className={`productContainer ms-0 ${theme === "dark" && "darkBody"}`}>
         <ListGroup>
           {transformedProducts().map((prod) => (
             <ListGroup.Item key={prod.id}>
@@ -52,42 +50,39 @@ const Cart = () => {
                 <Col md={2}>
                   <span>{prod.name}</span>
                 </Col>
-                <Col md={2}>₹ {prod.public_unit_price ? prod.public_unit_price : 'N/A'}</Col>
+                <Col md={2}>{prod.formatted_price}</Col>
                 <Col md={2}>
-                  <Rating rating={prod.ratings || 0}></Rating>
+                  <Rating rating={prod.ratings || 0} onClick={() => {}}></Rating>
                 </Col>
                 <Col md={2}>
-                  <Form.Select
+                  <Form.Control
+                    type="number"
                     value={prod.qty}
+                    max={prod.stock.quantity}
+                    min={1}
                     onChange={(e) =>
                       dispatch({
-                        type: 'CHANGE_CART_QTY',
+                        type: "CHANGE_CART_QTY",
                         payload: {
                           id: prod.id,
                           qty: e.target.value,
                         },
                       })
                     }
-                  >
-                    {[...Array(prod.inStock || 1).keys()].map((x) => (
-                      <option key={x + 1} value={x + 1}>
-                        {x + 1}
-                      </option>
-                    ))}
-                  </Form.Select>
+                  />
                 </Col>
                 <Col md={2}>
                   <Button
-                    type='button'
-                    variant='light'
+                    type="button"
+                    variant="light"
                     onClick={() =>
                       dispatch({
-                        type: 'REMOVE_FROM_CART',
+                        type: "REMOVE_FROM_CART",
                         payload: prod,
                       })
                     }
                   >
-                    <AiFillDelete fontSize='20px' />
+                    <AiFillDelete fontSize="20px" />
                   </Button>
                 </Col>
               </Row>
@@ -96,19 +91,19 @@ const Cart = () => {
         </ListGroup>
       </div>
       {cart.length > 0 ? (
-        <div className='checkoutCard'>
+        <div className="checkoutCard">
           <Card>
             <Card.Body>
-            <Card.Title> SUBTOTAL: € {(total / 100).toFixed(2)}</Card.Title>
+              <Card.Title> SUBTOTAL: {(total / 100).toFixed(2)} &euro; </Card.Title>
               <Card.Text>Total items: {items}</Card.Text>
-              <Link to='/checkout' state={{ total: Number((total / 100).toFixed(2)) }}>
-                <Button variant='primary'>Proceed to Checkout</Button>
+              <Link to="/checkout" state={{ total: Number((total / 100).toFixed(2))}}>
+                <Button variant="primary">Proceed to Checkout</Button>
               </Link>
             </Card.Body>
           </Card>
         </div>
       ) : (
-        <h4 style={{ textAlign: 'center' }}>Cart is Empty!</h4>
+        <h4 style={{ textAlign: "center" }}>Cart is Empty!</h4>
       )}
     </div>
   );

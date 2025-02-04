@@ -73,13 +73,13 @@ const Header = () => {
                                                     cart.map( prod => (
                                                         <span className='cartItem' key={prod.id}>
                                                             <img 
-                                                                src={prod.image}
+                                                                src={prod.img_link}
                                                                 className='cartItemImg'
                                                                 alt={prod.name}
                                                             />
                                                             <div className="cartItemDetail">
                                                                 <span>{prod.name}</span>
-                                                                <span>₹ {prod.price?.toString().split('.')[0] || "0"}</span>
+                                                                <span>{prod.formatted_price}</span>
 
                                                                 
                                                             </div>
