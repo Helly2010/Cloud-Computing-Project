@@ -28,11 +28,18 @@ const Home = () => {
 
   const transformProducts = (sortedProducts) => {
 
+      // Ensure stock data exists before filtering
+    sortedProducts = sortedProducts.map((prod) => {
+      const stockQuantity = stockData[prod.id] ?? 0; // Default to 0 if stock data is missing
+      return {
+        ...prod,
+        isInStock: stockQuantity > 0, // Track whether product is in stock
+      };
+    });
+
     // Filter products by stock availability
     if (!byStock) {
-      sortedProducts = sortedProducts.filter(
-        (prod) => stockData[prod.id] > 0 // Use stockData to filter by availability
-      );
+      sortedProducts = sortedProducts.filter((prod) => prod.isInStock); // Now correctly filters out out-of-stock items
     }
 
     // Filter products by fast delivery
