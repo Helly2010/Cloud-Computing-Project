@@ -5,7 +5,8 @@ import SingleProduct from "./SingleProduct";
 import useProducts from "../hooks/useProducts";
 import useCategories from "../hooks/useCategories";
 import useStock from "../hooks/useStock"; // Import useStock hook
-import "./styles.css";
+/*import "./styles.css";*/
+import "../styles/ProductView.css";
 
 const Home = () => {
   const products = useProducts(); // Fetch products using the custom hook
