@@ -34,6 +34,20 @@ const CheckoutForm = () => {
     return acc + validPrice * curr.qty;
   }, 0);
 
+  // Create Order
+
+  const onCreateOrder = (data,actions) => {
+    return actions.order.create({
+        purchase_units: [
+            {
+                amount: {
+                    value: `${total.toFixed(2)}`,
+                },
+            },
+        ],
+    });
+}
+
   // Handle PayPal approval
   const handlePayPalApprove = (data, actions) => {
     actions.order.capture().then((details) => {
@@ -190,6 +204,7 @@ const CheckoutForm = () => {
             }}
             onApprove={handlePayPalApprove}
             onError={handlePayPalError}
+            createOrder={onCreateOrder}
           />
         </div>
       </form>
