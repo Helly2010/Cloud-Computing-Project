@@ -1,7 +1,7 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
-import { Col, Image, ListGroup, Row, Card } from "react-bootstrap";
+import { Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { CartState } from "../context/CartContext";
 import { useTheme } from "../context/ThemeContextProvider";
@@ -167,13 +167,17 @@ const CheckoutForm = () => {
             Card information
           </label>
           <div id="cardElement">
-            <CardElement />
+            <CardElement hidePostalCode />
           </div>
           {error && (
             <div className="card-error" role="alert">
               {error}
             </div>
           )}
+          {/* Stripe Payment Submit Button */}
+          <button type="submit" disabled={processing || cart.length === 0} onClick={handleSubmit}>
+            {processing ? "Processing..." : "Pay with Stripe"}
+          </button>
         </div>
 
         {/* PayPal Button */}
@@ -188,11 +192,6 @@ const CheckoutForm = () => {
             onError={handlePayPalError}
           />
         </div>
-
-        {/* Stripe Payment Submit Button */}
-        <button type="submit" disabled={processing} onClick={handleSubmit}>
-          {processing ? "Processing..." : "Pay with Stripe"}
-        </button>
       </form>
       <br></br>
       <div className="checkoutProductReview">
@@ -213,7 +212,7 @@ const CheckoutForm = () => {
             </ListGroup.Item>
           ))}
         </ListGroup>
-        <Card style={{ "margin-top": "0.5em" }}>
+        <Card style={{ marginTop: "0.5em" }}>
           <Card.Body>
             <Card.Text> SUBTOTAL: {(total / 100).toFixed(2)} &euro; </Card.Text>
             <Card.Text>Total items: {cart.length}</Card.Text>
