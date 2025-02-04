@@ -1,5 +1,6 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, computed_field
 from datetime import datetime
+from money import Money
 
 
 class OrderSerializer(BaseModel):
@@ -28,6 +29,11 @@ class ProductBaseSerializer(BaseModel):
 
     stock: "StockSerializer"
     category: "CategorySerializer"
+
+    @computed_field
+    @property
+    def formatted_price(self) -> str:
+        return Money(amount=f"{self.public_unit_price/100:.2f}", currency=self.currency).format("de_DE")
 
 
 class ProductSerializer(ProductBaseSerializer):
