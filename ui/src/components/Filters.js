@@ -1,27 +1,18 @@
 // Sidebar Component
 
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { CartState } from "../context/CartContext";
 import { useFilterBarState } from "../context/FilterBar";
 import { useTheme } from "../context/ThemeContextProvider";
-import useCategories from "../hooks/useCategories";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Rating from "./Rating";
 
-const Filters = () => {
+const Filters = ({ categories }) => {
   const {
     productFilterState: { byStock, byFastDelivery, sort, byRating, byCategory },
     productFilterDispatch,
   } = CartState();
-
-  const [loading, setLoading] = useState(true);
-
-  const loadingDone = useMemo(() => {
-    setLoading(false);
-  }, []);
-
-  const categories = useCategories(loadingDone);
 
   const { theme } = useTheme();
 
@@ -107,16 +98,17 @@ const Filters = () => {
             })
           }
         >
-          <option value="">All Categories</option>
-
-          {loading ? (
-            <div></div>
+          {!categories ? (
+            <option value="">Loading ...</option>
           ) : (
-            categories.map((category) => (
-              <option key={`category-${category.id}`} value={category.name}>
-                {category.name}
-              </option>
-            ))
+            <>
+              <option value="">All Categories</option>
+              {categories.map((category) => (
+                <option key={`category-${category.id}`} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </>
           )}
         </select>
       </span>

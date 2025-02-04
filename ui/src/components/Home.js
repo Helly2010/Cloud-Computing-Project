@@ -1,18 +1,22 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CartState } from "../context/CartContext";
-import useProducts from "../hooks/useProducts";
 import Filters from "./Filters";
 import SingleProduct from "./SingleProduct";
+import { fetchCategories } from "../services/api/categories";
+import { fetchProducts } from "../services/api/products";
 import "./styles.css";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
 
-  const loadingDone = useMemo(() => {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetchProducts().then((p) => setProducts(p));
+    fetchCategories().then((c) => setCategories(c));
     setLoading(false);
   }, []);
-
-  const products = useProducts(loadingDone);
 
   const {
     productFilterState: { sort, byStock, byFastDelivery, byRating, searchQuery, byCategory },
@@ -71,7 +75,7 @@ const Home = () => {
           })
         )}
       </div>
-      <Filters />
+      <Filters categories={categories} />
     </div>
   );
 };
