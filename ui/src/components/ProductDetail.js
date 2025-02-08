@@ -16,7 +16,6 @@ const notifySuccess = (
   });
 const ProductDetails = () => {
   const { id } = useParams(); // Get the product ID from the URL
-  const products = useProducts(); // Fetch products using the custom hook
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
