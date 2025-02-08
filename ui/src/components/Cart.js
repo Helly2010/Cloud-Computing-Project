@@ -43,7 +43,7 @@ const Cart = () => {
           {transformedProducts().map((prod) => (
             <ListGroup.Item key={prod.id}>
               <Row className="align-items-center justify-content-around">
-                <Col md={2} style={{ maxWidth: "20rem", maxHeight: "20rem" }}>
+                <Col md={2} style={{ maxWidth: "20vw", maxHeight: "20vh" }}>
                   <Image src={prod.img_link} alt={prod.name} fluid rounded />
                 </Col>
                 <Col md={2} className="text-center">

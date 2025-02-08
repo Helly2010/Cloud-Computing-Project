@@ -13,7 +13,7 @@
 }
 
 .checkoutForm {
-  width: 60em;
+  width: 50em;
   margin: auto;
   background-color: #fff;
   padding: 2rem;
@@ -31,6 +31,7 @@
 .form-row {
   margin-bottom: 1.5rem;
 }
+
 
 
 
@@ -64,6 +65,8 @@
 
 .payment-methods {
   margin-top: 2rem;
+  z-index: 0;
+  position: relative;
 }
 
 .payment-methods button {
@@ -77,6 +80,7 @@
   width: 100%;
   margin-top: 1rem;
   font-family: sans-serif;
+  z-index: 2;
 }
 
 .payment-methods button:hover {
@@ -144,22 +148,23 @@ button[type='submit']:disabled {
   display: block;
   margin-top: 5px;
 }
+
 @media (max-width: 768px) {
   .checkoutForm {
     width: 90%;
     padding: 1rem;
   }
 
-  button[type='submit'], .payment-methods button, .testCard {
-    font-size: 14px;
+  .checkoutProductReview {
+    width: 90%;
+    padding: 1rem;
   }
 }
 
 
 .checkoutProductReview {
-  width: 60em;
+  max-width: 50em;
   margin: auto;
-  margin-bottom: 10px;
   background-color: #fff;
   padding: 2rem;
   border-radius: 8px;

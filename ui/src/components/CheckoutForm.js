@@ -216,13 +216,13 @@ const CheckoutForm = () => {
           {cart.map((prod) => (
             <ListGroup.Item key={prod.id}>
               <Row>
-                <Col md={2}>
+                <Col md={3} style={{ maxWidth: "20vw", maxHeight: "20vh" }}>
                   <Image src={prod.img_link} alt={prod.name} fluid rounded />
                 </Col>
-                <Col md={2}>
+                <Col md={3}>
                   <span>{prod.name}</span>
                 </Col>
-                <Col md={2}>{prod.formatted_price}</Col>
+                <Col md={3}>{prod.formatted_price}</Col>
               </Row>
             </ListGroup.Item>
           ))}
