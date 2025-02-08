@@ -1,13 +1,17 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
-import { Card, Col, Image, ListGroup, Row, Form } from "react-bootstrap";
+import { Card, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { CartState } from "../context/CartContext";
 import { useTheme } from "../context/ThemeContextProvider";
 import "./checkoutStyles.css";
 
 const CheckoutForm = () => {
+  const { theme } = useTheme();
+  const navigate = useNavigate();
+
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
@@ -21,9 +25,6 @@ const CheckoutForm = () => {
     phone: "",
   });
 
-  const { theme } = useTheme();
-
-  const navigate = useNavigate();
   const {
     state: { cart },
     dispatch,
@@ -34,33 +35,58 @@ const CheckoutForm = () => {
     return acc + validPrice * curr.qty;
   }, 0);
 
-  // Create Order
-
   const onCreateOrder = (data, actions) => {
     return actions.order.create({
       purchase_units: [
         {
           amount: {
-            value: `${total.toFixed(2)}`,
+            value: `${(total / 100).toFixed(2)}`,
+          },
+
+          shipping: {
+            type: "SHIPPING",
+            name: {
+              full_name: orderData.name,
+            },
+            email_address: orderData.email,
+            phone_number: {
+              country_code: "49",
+              national_number: orderData.phone,
+            },
+            address: {
+              address_line_1: orderData.street,
+              admin_area_2: orderData.city,
+              postal_code: orderData.zipCode,
+              country_code: "DE",
+            },
           },
         },
       ],
     });
   };
 
-  // Handle PayPal approval
   const handlePayPalApprove = (data, actions) => {
     actions.order.capture().then((details) => {
-      // Process the PayPal order on approval
-      alert(`Transaction completed by ${details.payer.name.given_name}`);
-      dispatch({ type: "EMPTY_CART" });
+      toast.info(`Order succesfully placed!`, {
+        position: "top-left",
+        autoClose: 1500,
+        closeOnClick: true,
+      });
+
+      setTimeout(() => {
+        dispatch({ type: "EMPTY_CART" });
+        navigate("/");
+      }, 10000);
     });
   };
 
-  // Handle PayPal error
   const handlePayPalError = (err) => {
-    console.error("PayPal Error: ", err);
-    alert("An error occurred while processing PayPal payment.");
+    console.log("PayPal Error: ", err);
+    toast.error("Error while creating paypal order", {
+      position: "top-left",
+      autoClose: 1500,
+      closeOnClick: true,
+    });
   };
 
   const handleSubmit = async (event) => {
@@ -81,12 +107,19 @@ const CheckoutForm = () => {
       setProcessing(false);
     } else {
       const { id } = paymentMethod;
-      console.log(id);
-      // Here, you can submit the payment method id to your server for processing the payment
+
       setError(null);
       setProcessing(false);
-      alert("Payment succeeded with Stripe!");
-      dispatch({ type: "EMPTY_CART" });
+      toast.info(`Order succesfully placed!`, {
+        position: "top-left",
+        autoClose: 1500,
+        closeOnClick: true,
+      });
+
+      setTimeout(() => {
+        dispatch({ type: "EMPTY_CART" });
+        navigate("/");
+      }, 10000);
     }
   };
 
@@ -244,6 +277,7 @@ const CheckoutForm = () => {
               onApprove={handlePayPalApprove}
               onError={handlePayPalError}
               createOrder={onCreateOrder}
+              disabled={cart.length === 0}
             />
           </div>
         </div>
