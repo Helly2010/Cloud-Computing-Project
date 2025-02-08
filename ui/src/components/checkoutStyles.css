@@ -1,5 +1,6 @@
 .checkoutPage {
   padding-top: 10rem;
+  padding-bottom: 2rem;
   font-family: 'Arial', sans-serif;
   background-color: #f7f7f7;
   min-height: 100vh;
@@ -13,7 +14,7 @@
 }
 
 .checkoutForm {
-  width: 60em;
+  max-width: 70vw;
   margin: auto;
   background-color: #fff;
   padding: 2rem;
@@ -152,13 +153,13 @@ button[type='submit']:disabled {
 
 @media (max-width: 768px) {
   .checkoutForm {
-    width: 90%;
-    padding: 1rem;
+    max-width: 94vw !important;
+    padding: 1rem !important;
   }
 
   .checkoutProductReview {
-    width: 90%;
-    padding: 1rem;
+    max-width: 94vw !important;
+    padding: 1rem !important;
   }
 
   .payment-methods {
@@ -168,7 +169,7 @@ button[type='submit']:disabled {
 
 
 .checkoutProductReview {
-  max-width: 60em;
+  max-width: 70vw;
   margin: auto;
   background-color: #fff;
   padding: 2rem;

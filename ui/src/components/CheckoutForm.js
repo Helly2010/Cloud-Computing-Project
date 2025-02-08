@@ -1,7 +1,7 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
-import { Card, Col, Image, ListGroup, Row } from "react-bootstrap";
+import { Card, Col, Image, ListGroup, Row, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { CartState } from "../context/CartContext";
 import { useTheme } from "../context/ThemeContextProvider";
@@ -92,7 +92,41 @@ const CheckoutForm = () => {
 
   return (
     <div className="checkoutPage">
-      <form className="checkoutForm">
+      <div className="checkoutProductReview">
+        <Card.Title>Your Order</Card.Title>
+
+        <br></br>
+        <ListGroup>
+          {cart.map((prod) => (
+            <ListGroup.Item key={prod.id}>
+              <Row className="align-items-center justify-content-around">
+                <Col style={{ maxWidth: "20vw", maxHeight: "20vh" }}>
+                  <Image
+                    style={{ maxWidth: "15vw", maxHeight: "20vh" }}
+                    src={prod.img_link}
+                    alt={prod.name}
+                    fluid
+                    rounded
+                  />
+                </Col>
+                <Col className="text-center">
+                  <span>{prod.name}</span>
+                </Col>
+                <Col className="text-center">{prod.qty}</Col>
+                <Col className="text-center">{prod.formatted_price}</Col>
+              </Row>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+        <Card style={{ marginTop: "0.5em" }}>
+          <Card.Body>
+            <Card.Text> SUBTOTAL: {(total / 100).toFixed(2)} &euro; </Card.Text>
+            <Card.Text>Total items: {cart.length}</Card.Text>
+          </Card.Body>
+        </Card>
+      </div>
+      <br />
+      <Form className="checkoutForm">
         <Card.Title>Shipping & Payment Information</Card.Title>
         <br></br>
         <Row>
@@ -148,7 +182,7 @@ const CheckoutForm = () => {
               </div>
             </Row>
             <Row>
-              <Col sm={8} md={8}>
+              <Col>
                 <div className="form-row">
                   <label style={{ color: theme === "light" ? "black" : "white" }}>City</label>
                   <input
@@ -162,7 +196,7 @@ const CheckoutForm = () => {
                 </div>
               </Col>
 
-              <Col sm={8} md={4}>
+              <Col>
                 <div className="form-row">
                   <label style={{ color: theme === "light" ? "black" : "white" }}>Zipcode</label>
                   <input
@@ -199,7 +233,7 @@ const CheckoutForm = () => {
         </div>
 
         {/* PayPal Button */}
-        <div className="justify-content-center" style={{"display": "flex"}}>
+        <div className="justify-content-center" style={{ display: "flex" }}>
           <div className="payment-methods">
             <PayPalButtons
               style={{
@@ -213,33 +247,7 @@ const CheckoutForm = () => {
             />
           </div>
         </div>
-      </form>
-      <br></br>
-      <div className="checkoutProductReview">
-        <Card.Title>Your Order</Card.Title>
-        <br></br>
-        <ListGroup>
-          {cart.map((prod) => (
-            <ListGroup.Item key={prod.id}>
-              <Row className="align-items-center justify-content-around">
-                <Col md={3} style={{ maxWidth: "20vw", maxHeight: "20vh" }}>
-                  <Image src={prod.img_link} alt={prod.name} fluid rounded />
-                </Col>
-                <Col md={3} className="text-center">
-                  <span>{prod.name}</span>
-                </Col>
-                <Col md={3} className="text-center">{prod.formatted_price}</Col>
-              </Row>
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
-        <Card style={{ marginTop: "0.5em" }}>
-          <Card.Body>
-            <Card.Text> SUBTOTAL: {(total / 100).toFixed(2)} &euro; </Card.Text>
-            <Card.Text>Total items: {cart.length}</Card.Text>
-          </Card.Body>
-        </Card>
-      </div>
+      </Form>
     </div>
   );
 };
