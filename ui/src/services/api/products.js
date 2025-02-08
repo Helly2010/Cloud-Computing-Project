@@ -19,7 +19,7 @@ const fetchProducts = async () => {
     const products = await response.json();
     return products;
   } catch (error) {
-    toast.error("Error while loading categories", {
+    toast.error("Error while loading products", {
       position: "top-left",
       autoClose: 1500,
       closeOnClick: true,

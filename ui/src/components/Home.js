@@ -4,6 +4,7 @@ import Filters from "./Filters";
 import SingleProduct from "./SingleProduct";
 import { fetchCategories } from "../services/api/categories";
 import { fetchProducts } from "../services/api/products";
+import { toast } from "react-toastify";
 import "./styles.css";
 
 const Home = () => {
@@ -69,11 +70,11 @@ const Home = () => {
       <div className="productContainer">
         {loading ? (
           <div>Loading...</div>
-        ) : (
+        ) : products ? (
           transformProducts(products).map((prod) => {
             return <SingleProduct key={prod.id} prod={prod} />;
           })
-        )}
+        ) : null}
       </div>
       <Filters categories={categories} />
     </div>
