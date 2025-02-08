@@ -72,7 +72,7 @@ const CheckoutForm = () => {
         setTimeout(() => {
           dispatch({ type: "EMPTY_CART" });
           navigate("/");
-        }, 10000);
+        }, 2000);
       });
     },
     [orderData, cart, dispatch, navigate]
