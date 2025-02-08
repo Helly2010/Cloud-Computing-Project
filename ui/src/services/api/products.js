@@ -39,19 +39,19 @@ const fetchProduct = async (id) => {
         autoClose: 1500,
         closeOnClick: true,
       });
-      return [];
+      return null;
     }
 
     const product = await response.json();
     return product;
   } catch (error) {
-    toast.error("Error while loading categories", {
+    toast.error("Error while loading products", {
       position: "top-left",
       autoClose: 1500,
       closeOnClick: true,
     });
     console.log(error);
-    return [];
+    return null;
   }
 };
 
