@@ -221,14 +221,14 @@ const CheckoutForm = () => {
         <ListGroup>
           {cart.map((prod) => (
             <ListGroup.Item key={prod.id}>
-              <Row>
+              <Row className="align-items-center justify-content-around">
                 <Col md={3} style={{ maxWidth: "20vw", maxHeight: "20vh" }}>
                   <Image src={prod.img_link} alt={prod.name} fluid rounded />
                 </Col>
-                <Col md={3}>
+                <Col md={3} className="text-center">
                   <span>{prod.name}</span>
                 </Col>
-                <Col md={3}>{prod.formatted_price}</Col>
+                <Col md={3} className="text-center">{prod.formatted_price}</Col>
               </Row>
             </ListGroup.Item>
           ))}
