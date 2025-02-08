@@ -36,17 +36,17 @@ const CheckoutForm = () => {
 
   // Create Order
 
-  const onCreateOrder = (data,actions) => {
+  const onCreateOrder = (data, actions) => {
     return actions.order.create({
-        purchase_units: [
-            {
-                amount: {
-                    value: `${total.toFixed(2)}`,
-                },
-            },
-        ],
+      purchase_units: [
+        {
+          amount: {
+            value: `${total.toFixed(2)}`,
+          },
+        },
+      ],
     });
-}
+  };
 
   // Handle PayPal approval
   const handlePayPalApprove = (data, actions) => {

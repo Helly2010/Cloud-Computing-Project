@@ -11,9 +11,7 @@ import Home from "./components/Home";
 import ProductDetail from "./components/ProductDetail";
 import EnvManager from "./config/envManager";
 
-const stripePromise = loadStripe(
-  EnvManager.STRIPE_KEY
-);
+const stripePromise = loadStripe(EnvManager.STRIPE_KEY);
 
 const App = () => {
   return (
