@@ -1,12 +1,18 @@
+from enum import StrEnum
+from typing import Optional
 from pydantic import BaseModel
 
 from app.repositories.db.models import OrderTrackingStatus
 
 
+class PaymentProviders(StrEnum):
+    PAYPAL = "PAYPAL"
+    STRIPE = "STRIPE"
+
+
 class PaymentInfo(BaseModel):
-    credit_card_number: str
-    ccv: str
-    expiration_date: str
+    credit_card_number: Optional[str] = None
+    payment_provider: PaymentProviders
 
 
 class ShippingInfo(BaseModel):

@@ -1,12 +1,17 @@
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Card, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { CartState } from "../context/CartContext";
 import { useTheme } from "../context/ThemeContextProvider";
+import { createOrder } from "../services/api/orders";
 import "./checkoutStyles.css";
+
+const validateOrderData = (orderData) => {
+  return orderData;
+};
 
 const CheckoutForm = () => {
   const { theme } = useTheme();
@@ -35,7 +40,45 @@ const CheckoutForm = () => {
     return acc + validPrice * curr.qty;
   }, 0);
 
-  const onCreateOrder = (data, actions) => {
+  const createOrderCallback = useCallback(
+    (provider, last4) => {
+      const validOrderData = validateOrderData(orderData);
+
+      if (!validOrderData) {
+        toast.error(`Invalid Order Data`, {
+          position: "top-left",
+          autoClose: 1500,
+          closeOnClick: true,
+        });
+        return;
+      }
+
+      createOrder({ ...validOrderData, paymentProvider: provider, last4 }, cart).then((order) => {
+        if (!order) {
+          toast.error(`Error while creating your order`, {
+            position: "top-left",
+            autoClose: 1500,
+            closeOnClick: true,
+          });
+          return;
+        }
+
+        toast.info(`Order succesfully placed!`, {
+          position: "top-left",
+          autoClose: 1500,
+          closeOnClick: true,
+        });
+
+        setTimeout(() => {
+          dispatch({ type: "EMPTY_CART" });
+          navigate("/");
+        }, 10000);
+      });
+    },
+    [orderData, cart, dispatch, navigate]
+  );
+
+  const onCreatePaypalOrder = (data, actions) => {
     return actions.order.create({
       purchase_units: [
         {
@@ -67,16 +110,7 @@ const CheckoutForm = () => {
 
   const handlePayPalApprove = (data, actions) => {
     actions.order.capture().then((details) => {
-      toast.info(`Order succesfully placed!`, {
-        position: "top-left",
-        autoClose: 1500,
-        closeOnClick: true,
-      });
-
-      setTimeout(() => {
-        dispatch({ type: "EMPTY_CART" });
-        navigate("/");
-      }, 10000);
+      createOrderCallback("PAYPAL");
     });
   };
 
@@ -106,20 +140,10 @@ const CheckoutForm = () => {
       setError(error.message);
       setProcessing(false);
     } else {
-      const { id } = paymentMethod;
+      createOrderCallback("STRIPE", paymentMethod.card.last4);
 
       setError(null);
       setProcessing(false);
-      toast.info(`Order succesfully placed!`, {
-        position: "top-left",
-        autoClose: 1500,
-        closeOnClick: true,
-      });
-
-      setTimeout(() => {
-        dispatch({ type: "EMPTY_CART" });
-        navigate("/");
-      }, 10000);
     }
   };
 
@@ -276,7 +300,7 @@ const CheckoutForm = () => {
               }}
               onApprove={handlePayPalApprove}
               onError={handlePayPalError}
-              createOrder={onCreateOrder}
+              createOrder={onCreatePaypalOrder}
               disabled={cart.length === 0}
             />
           </div>
