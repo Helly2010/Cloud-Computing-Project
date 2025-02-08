@@ -13,7 +13,7 @@ const fetchProducts = async () => {
         autoClose: 1500,
         closeOnClick: true,
       });
-      return;
+      return [];
     }
 
     const products = await response.json();
@@ -25,7 +25,7 @@ const fetchProducts = async () => {
       closeOnClick: true,
     });
     console.log(error);
-    return;
+    return [];
   }
 };
 
