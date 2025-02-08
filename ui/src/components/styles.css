@@ -1,129 +1,135 @@
 :root {
-    --light : #354259; 
-    --veryLight : #ebe0cc;
-    --superLight : #C2DED1;
-    --superDark : #000000e6; 
-    --dark : #423F3E;
-    --lessDark : #423F3E;
-    --pitchDark : #171010;
-    --white: #ffffff;
+  --light: #354259;
+  --veryLight: #ebe0cc;
+  --superLight: #c2ded1;
+  --superDark: #000000e6;
+  --dark: #423f3e;
+  --lessDark: #423f3e;
+  --pitchDark: #171010;
+  --white: #ffffff;
 }
 
 .themeLogo {
-    cursor: pointer;
-    font-size: 20px;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 .darkHeader {
-    background-color: var(--dark);
-    color: var(--white) !important;
+  background-color: var(--dark);
+  color: var(--white) !important;
 }
 
 .darkFilter {
-    background-color: var(--superDark);
+  background-color: var(--superDark);
 }
 
 .darkCard {
-    background-color: var(--lessDark);
-    color: var(--white) !important;
+  background-color: var(--lessDark);
+  color: var(--white) !important;
 }
 
 .darkBody {
-    background-color: var(--pitchDark);
+  background-color: var(--pitchDark);
 }
 
 .lightHeader {
-    background-color: var(--veryLight);
+  background-color: var(--veryLight);
 }
 
 .lightFilter {
-    background-color: var(--light);
+  background-color: var(--light);
 }
 
 .lightCard {
-    background-color: var(--superLight);
+  background-color: var(--superLight);
 }
 
 .home {
-    display: flex;
+  display: flex;
 }
 
 .productContainer {
-    display: flex;
-    padding: 20px;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 20px; /* Add spacing between products */
-    margin-top: 8rem;
-    margin-left: 306px;
+  display: flex;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px; /* Add spacing between products */
+  margin-top: 8rem;
+  margin-left: 306px;
 }
 
 .header {
-    position: fixed;
-    width: -webkit-fill-available;
-    z-index: 1;
+  position: fixed;
+  width: -webkit-fill-available;
+  z-index: 1;
 }
 
 .lowerNav {
-    position: fixed;
-    height: 46px;
-    width: -webkit-fill-available;
-    z-index: 1;
-    color: var(--white);
+  position: fixed;
+  height: 46px;
+  width: -webkit-fill-available;
+  z-index: 1;
+  color: var(--white);
 }
 
 .filters {
-    top: 126px;
-    position: fixed;
-    color: var(--white);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 306px;
-    height: 90vh;
+  top: 126px;
+  position: fixed;
+  color: var(--white);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 306px;
+  height: 90vh;
 }
 
 .filters > span {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .title {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .product {
-    flex: 1 0 21%; /* Adjust flex-basis for more products in a row */ 
-    margin: 10px;
-    max-width: 22rem; /* Limit maximum width */
-    min-width: 18rem; /* Ensure consistency on smaller screens */
-    background-color: transparent;
-    background-image: none;
-    clip-path: none;
-      
-      
+  flex: 1 0 21%; /* Adjust flex-basis for more products in a row */
+  margin: 10px;
+  max-width: 20rem; /* Limit maximum width */
+  min-width: 18rem; /* Ensure consistency on smaller screens */
+  background-color: transparent;
+  background-image: none;
+  clip-path: none;
 }
 
 .product img {
-    transition: transform 0.3s ease, filter 0.3s ease;
+  min-height: 16rem;
+  max-height: 16rem;
+
+  min-width: 16rem;
+  max-width: 20rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .product img:hover {
-    transform: scale(1.05); /* Slightly enlarge the image */
-    filter: brightness(110%) contrast(120%);
+  transform: scale(1.05); /* Slightly enlarge the image */
+  filter: brightness(110%) contrast(120%);
 }
 
 .cartItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 20px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px 20px 20px;
 }
 
 .cartItemImg {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    object-fit: cover; /* The image keeps its aspect ratio and fills the given dimension. The image will be clipped to fit */  
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover; /* The image keeps its aspect ratio and fills the given dimension. The image will be clipped to fit */
 }
 
 /*
@@ -132,72 +138,71 @@ will be the same as their content, but the element with flex: 1 will be
 given the remaining full space.
 */
 .cartItemDetail {
-    display: flex;
-    flex: 1;
-    padding: 0 20px;
-    flex-direction: column;
+  display: flex;
+  flex: 1;
+  padding: 0 20px;
+  flex-direction: column;
 }
 
 .filterMenuIcon {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .navIcons {
-    position: absolute !important;
-    right: 33px;
+  position: absolute !important;
+  right: 33px;
 }
 
 .navLeftItems {
-    position: absolute !important;
-    left: 33px;
+  position: absolute !important;
+  left: 33px;
 }
 
 .searchBar {
-    position: absolute !important;
-    right: 141px;
-    width: 33rem;
+  position: absolute !important;
+  right: 141px;
+  width: 33rem;
 }
 
 .searchIcon {
-    cursor: pointer;
-    padding-left: 18px;
+  cursor: pointer;
+  padding-left: 18px;
 }
 
 .checkoutCard {
-    display: flex;
-    justify-content: flex-end;
-    margin: auto;
+  display: flex;
+  justify-content: flex-end;
+  margin: auto;
 }
 
 .checkoutCard .card {
-    border: none !important;
+  border: none !important;
 }
-
 
 @media screen and (min-width: 1100px) {
-    .searchIcon {
-        display: none;
-    }
+  .searchIcon {
+    display: none;
+  }
 }
 @media screen and (max-width: 1100px) {
-    .productContainer {
-        margin-left: 0; /* Remove left margin for narrow screens */
-        padding: 10px;
-    }
-
-    .product {
-        flex-basis: 30%; /* Show 3 products per row */
-    }
+  .productContainer {
+    margin-left: 0; /* Remove left margin for narrow screens */
+    padding: 10px;
   }
 
-  @media screen and (max-width: 760px) {
-    .product {
-        flex-basis: 100%; /* Show 1 product per row for very small screens */
-    }
+  .product {
+    flex-basis: 30%; /* Show 3 products per row */
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .product {
+    flex-basis: 100%; /* Show 1 product per row for very small screens */
+  }
 }
 
 @media screen and (max-width: 499px) {
-    .product{
-        flex-basis: 100%;
-    }
+  .product {
+    flex-basis: 100%;
+  }
 }
