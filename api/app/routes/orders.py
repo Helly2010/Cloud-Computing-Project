@@ -46,7 +46,6 @@ async def create_order(
         order_total=order_total_cal,
     )
 
-    
     db.add(new_order)
     await db.flush()
     await db.refresh(new_order)
@@ -55,7 +54,6 @@ async def create_order(
 
     for product in products:
         required_stock = product_quantities[product.id].amount
-        subtotal = product.public_unit_price * required_stock
 
         if product.stock.quantity < required_stock:
             raise HTTPException(status_code=400, detail=f"Not enough stock for product {product.name}")
@@ -69,6 +67,7 @@ async def create_order(
 
             background_tasks.add_task(trigger_restock_notification, fm, product, supplier)
 
+        subtotal = product.public_unit_price * required_stock
         order_details.append(
             OrderDetail(
                 product_id=product.id,
@@ -81,6 +80,6 @@ async def create_order(
 
     await db.commit()
 
-    background_tasks.add_task(trigger_new_order_notification, fm, new_order, order_details, db)
+    background_tasks.add_task(trigger_new_order_notification, fm, new_order, order_details, list(products))
 
     return new_order

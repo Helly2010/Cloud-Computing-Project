@@ -1,10 +1,8 @@
 from app.repositories.db.models import Order, OrderDetail, Product
 from app.repositories.email.connector import FastMail
 from app.repositories.email.emails_utils import send_email
-from typing import List
-from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
-from app.repositories.postgres.connector import PostgreSQLDBConnector
+from money import Money  # type: ignore
+
 
 def get_base_template(content: str) -> str:
     return f"""
@@ -114,22 +112,22 @@ def get_base_template(content: str) -> str:
     """
 
 
-async def trigger_new_order_notification(fm: FastMail, order: Order, order_details: List[OrderDetail], db: AsyncSession):
-    # Fetch product details
-    product_ids = [detail.product_id for detail in order_details]
-    products = {product.id: product for product in (await db.scalars(select(Product).where(Product.id.in_(product_ids)))).all()}
+async def trigger_new_order_notification(fm: FastMail, order: Order, order_details: list[OrderDetail], products: list[Product]):
+    products_by_id = {product.id: product for product in products}
 
-    product_info = "".join([
-        f"""
+    product_info = "".join(
+        [
+            f"""
         <tr>
-            <td data-label="Product">{products[detail.product_id].name}</td>
+            <td data-label="Product">{products_by_id[detail.product_id].name}</td>
             <td data-label="Quantity">{detail.quantity}</td>
-            <td data-label="Unit Price">{detail.product_price:.2f}€</td>
-            <td data-label="Subtotal">{detail.subtotal:.2f}€</td>
+            <td data-label="Unit Price">{Money(amount=f'{detail.product_price /100:.2f}', currency=products_by_id[detail.product_id].currency).format('de_DE')}</td>
+            <td data-label="Subtotal">{Money(amount=f'{detail.subtotal /100:.2f}', currency=products_by_id[detail.product_id].currency).format('de_DE')}</td>
         </tr>
         """
-        for detail in order_details
-    ])
+            for detail in order_details
+        ]
+    )
 
     content = f"""
     <h2>Dear {order.customer_name},</h2>
@@ -158,7 +156,7 @@ async def trigger_new_order_notification(fm: FastMail, order: Order, order_detai
             {product_info}
             <tr>
                 <td data-label="Order Total" colspan="3" style="text-align: right;"><strong>Order Total:</strong></td>
-                <td data-label="Total Amount"><strong>{order.order_total:.2f}€</strong></td>
+                <td data-label="Total Amount"><strong>{Money(amount=f'{order.order_total /100:.2f}', currency=products[0].currency).format('de_DE')}</strong></td>
             </tr>
         </tbody>
     </table>
@@ -188,9 +186,7 @@ async def trigger_new_order_notification(fm: FastMail, order: Order, order_detai
     )
 
 
-
-async def trigger_order_status_update_notification(fm: FastMail, order: Order, previous_staus:str, new_status: str):
-    
+async def trigger_order_status_update_notification(fm: FastMail, order: Order, previous_staus: str, new_status: str):
     content = f"""
     <h2>Dear {order.customer_name},</h2>
     
