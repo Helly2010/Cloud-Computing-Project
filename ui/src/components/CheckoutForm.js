@@ -96,7 +96,7 @@ const CheckoutForm = () => {
         <Card.Title>Shipping & Payment Information</Card.Title>
         <br></br>
         <Row>
-          <Col>
+          <Col sm={8}>
             <div className="form-row">
               <label style={{ color: theme === "light" ? "black" : "white" }}>Name</label>
               <input
@@ -148,28 +148,32 @@ const CheckoutForm = () => {
               </div>
             </Row>
             <Row>
-              <Col>
-                <label style={{ color: theme === "light" ? "black" : "white" }}>City</label>
-                <input
-                  className="cardInput"
-                  type="text"
-                  name="city"
-                  value={orderData.city}
-                  onChange={(e) => setOrderData({ ...orderData, city: e.target.value })}
-                  required
-                />
+              <Col sm={8} md={8}>
+                <div className="form-row">
+                  <label style={{ color: theme === "light" ? "black" : "white" }}>City</label>
+                  <input
+                    className="cardInput"
+                    type="text"
+                    name="city"
+                    value={orderData.city}
+                    onChange={(e) => setOrderData({ ...orderData, city: e.target.value })}
+                    required
+                  />
+                </div>
               </Col>
 
-              <Col>
-                <label style={{ color: theme === "light" ? "black" : "white" }}>Zipcode</label>
-                <input
-                  className="cardInput"
-                  type="number"
-                  name="zipcode"
-                  value={orderData.zipCode}
-                  onChange={(e) => setOrderData({ ...orderData, zipCode: e.target.value })}
-                  required
-                />
+              <Col sm={8} md={4}>
+                <div className="form-row">
+                  <label style={{ color: theme === "light" ? "black" : "white" }}>Zipcode</label>
+                  <input
+                    className="cardInput"
+                    type="number"
+                    name="zipcode"
+                    value={orderData.zipCode}
+                    onChange={(e) => setOrderData({ ...orderData, zipCode: e.target.value })}
+                    required
+                  />
+                </div>
               </Col>
             </Row>
           </Col>
@@ -195,17 +199,19 @@ const CheckoutForm = () => {
         </div>
 
         {/* PayPal Button */}
-        <div className="payment-methods">
-          <PayPalButtons
-            style={{
-              layout: "vertical",
-              shape: "pill",
-              color: "blue",
-            }}
-            onApprove={handlePayPalApprove}
-            onError={handlePayPalError}
-            createOrder={onCreateOrder}
-          />
+        <div className="justify-content-center" style={{"display": "flex"}}>
+          <div className="payment-methods">
+            <PayPalButtons
+              style={{
+                layout: "vertical",
+                shape: "pill",
+                color: "blue",
+              }}
+              onApprove={handlePayPalApprove}
+              onError={handlePayPalError}
+              createOrder={onCreateOrder}
+            />
+          </div>
         </div>
       </form>
       <br></br>

@@ -13,7 +13,7 @@
 }
 
 .checkoutForm {
-  width: 50em;
+  width: 60em;
   margin: auto;
   background-color: #fff;
   padding: 2rem;
@@ -67,6 +67,7 @@
   margin-top: 2rem;
   z-index: 0;
   position: relative;
+  width: 30vw;
 }
 
 .payment-methods button {
@@ -159,11 +160,15 @@ button[type='submit']:disabled {
     width: 90%;
     padding: 1rem;
   }
+
+  .payment-methods {
+    width: 60vw;
+  }
 }
 
 
 .checkoutProductReview {
-  max-width: 50em;
+  max-width: 60em;
   margin: auto;
   background-color: #fff;
   padding: 2rem;
