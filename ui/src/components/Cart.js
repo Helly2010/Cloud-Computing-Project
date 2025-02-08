@@ -42,25 +42,26 @@ const Cart = () => {
         <ListGroup>
           {transformedProducts().map((prod) => (
             <ListGroup.Item key={prod.id}>
-              <Row>
-                <Col md={2}>
+              <Row className="align-items-center justify-content-around">
+                <Col md={2} style={{ maxWidth: "20rem", maxHeight: "20rem" }}>
                   <Image src={prod.img_link} alt={prod.name} fluid rounded />
                 </Col>
-                <Col md={2}>
+                <Col md={2} className="text-center">
                   <span>{prod.name}</span>
                 </Col>
-                <Col md={2}>{prod.formatted_price}</Col>
-                <Col md={2}>
+                <Col md={2} className="text-center">{prod.formatted_price}</Col>
+                <Col md={2} className="text-center">
                   <Rating rating={prod.extra_info.rating || 0} onClick={() => {}} />
                 </Col>
-                <Col md={2}>
+                <Col md={2} className="text-center">
                   <Form.Control
                     type="number"
                     value={prod.qty}
                     max={prod.stock.quantity}
                     min={1}
                     onInput={(e) =>
-                      (e.target.value = !!e.target.value && Math.abs(e.target.value) >= 0 ? Math.abs(e.target.value) : 1)
+                      (e.target.value =
+                        !!e.target.value && Math.abs(e.target.value) >= 0 ? Math.abs(e.target.value) : 1)
                     }
                     onChange={(e) =>
                       dispatch({
@@ -73,7 +74,7 @@ const Cart = () => {
                     }
                   />
                 </Col>
-                <Col md={2}>
+                <Col md={2} className="text-center">
                   <Button
                     type="button"
                     variant="light"
