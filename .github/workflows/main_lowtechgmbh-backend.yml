@@ -53,8 +53,8 @@ jobs:
         with:
           name: python-app
           path: |
-            release.zip
-            !venv/
+            ./api/release.zip
+            ./api/!venv/
 
   deploy:
     runs-on: ubuntu-latest
