@@ -27,7 +27,9 @@ jobs:
 
       - name: Create requirements.txt
         working-directory: ./api
-        run: poetry export --without-hashes -f requirements.txt -o requirements.txt
+        run: |
+          poetry self add poetry-plugin-export
+          poetry export --without-hashes -f requirements.txt -o requirements.txt
 
       - name: Create and start virtual environment
         working-directory: ./api
