@@ -186,19 +186,18 @@ async def trigger_new_order_notification(fm: FastMail, order: Order, order_detai
     )
 
 
-async def trigger_order_status_update_notification(fm: FastMail, order: Order, previous_staus: str, new_status: str):
+async def trigger_order_status_update_notification(fm: FastMail, order: Order, previous_status: str, new_status: str):
     content = f"""
     <h2>Dear {order.customer_name},</h2>
     
     <p>We are writing to inform you about an update to your order with LowTech GmbH.</p>
     
     <h3>Order Status Update</h3>
-    <p>Your order (#{order.id}) status has been updated to: <strong>{new_status}</strong></p>
+    <p>Your order (#{order.id}) status has been updated from {previous_status} to: <strong>{new_status}</strong></p>
     
     <h3>Order Details:</h3>
     <p><strong>Order Number:</strong> {order.id}</p>
-    <p><strong>Order Date:</strong> {order.created_at.strftime('%B %d, %Y')}</p>
-    <p><strong>Total Amount:</strong> {order.order_total:.2f}€</p>
+    <p><strong>Order Date:</strong> {order.created_at.strftime(r'%B %d, %Y')}</p>
     
 
     <h3>Shipping Address:</h3>
