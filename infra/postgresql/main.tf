@@ -10,6 +10,7 @@ resource "azurerm_postgresql_flexible_server" "postgresql_db" {
   public_network_access_enabled = false
   administrator_login           = var.username
   administrator_password        = var.password
+  zone                          = "1"
 
   storage_mb   = 32768
   storage_tier = "P4"

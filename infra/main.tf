@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurem = {
       source  = "hashicorp/azurerm"
-      version = "=4.1.0"
+      version = "=4.18.0"
     }
   }
 }
@@ -45,12 +45,33 @@ resource "azurerm_subnet" "vn_subnet" {
       ]
     }
   }
-  depends_on = [azurerm_virtual_network.vn ]
+  depends_on = [azurerm_virtual_network.vn]
 }
+
+
+resource "azurerm_subnet" "vn_subnet_backend" {
+  name                 = "lowtechgmbh-sn-backend"
+  resource_group_name  = azurerm_resource_group.main_rg.name
+  virtual_network_name = azurerm_virtual_network.vn.name
+  address_prefixes     = ["10.0.3.0/24"]
+  service_endpoints    = ["Microsoft.Storage"]
+  delegation {
+    name = "fs"
+    service_delegation {
+      name = "Microsoft.Web/serverFarms"
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/join/action",
+      ]
+    }
+  }
+  depends_on = [azurerm_virtual_network.vn]
+}
+
+
 resource "azurerm_private_dns_zone" "private_dns_zone" {
   name                = "lowtechgmbh.postgres.database.azure.com"
   resource_group_name = azurerm_resource_group.main_rg.name
-  depends_on = [ azurerm_resource_group.main_rg ]
+  depends_on          = [azurerm_resource_group.main_rg]
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "vnet_link" {
@@ -71,4 +92,13 @@ module "db" {
   dns_zone_id = azurerm_private_dns_zone.private_dns_zone.id
   subnet_id   = azurerm_subnet.vn_subnet.id
   depends_on  = [azurerm_private_dns_zone_virtual_network_link.vnet_link]
+}
+
+
+module "backend" {
+  source     = "./appservice"
+  location   = azurerm_resource_group.main_rg.location
+  rg_name    = azurerm_resource_group.main_rg.name
+  subnet_id  = azurerm_subnet.vn_subnet_backend.id
+  depends_on = [module.db]
 }
