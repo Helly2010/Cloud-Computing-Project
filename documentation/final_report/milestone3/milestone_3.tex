@@ -49,7 +49,8 @@
 \setlength{\floatsep}{0pt}
 \setlength{\intextsep}{0pt}
 
-
+% Enable subsubsection numbering
+\setcounter{secnumdepth}{3}
 
 %
 
@@ -210,7 +211,36 @@ Step-by-step account configuration and resource provisioning
 
 \section{Operational Characteristics}
 \subsection{Performance Metrics}
-Load testing results and scalability demonstrations
+
+\subsubsection{Functional Test Cases}
+
+\begin{longtable}{|c|p{4.5cm}|p{4.5cm}|c|}
+\hline
+\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
+\endfirsthead
+\hline
+\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
+\endhead
+TC-001 & Load homepage and verify product listing & Homepage loads with products displayed correctly. & \\ \hline
+TC-002 & Apply price filter (Ascending/Descending) & Products reorder correctly based on selected price. & \\ \hline
+TC-003 & Apply "Out of Stock" filter & Only out-of-stock items are displayed. & \\ \hline
+TC-004 & Apply "Fast Delivery" filter & Only products eligible for fast delivery show up. & \\ \hline
+TC-005 & Filter by category & Products are filtered correctly by selected category. & \\ \hline
+TC-006 & Search product by name or category & Products matching search are shown correctly. & \\ \hline
+TC-007 & Clear filter functionality & All filters are removed, showing the full product list. & \\ \hline
+TC-008 & Product Detail Page - Click Product & Clicking a product opens its detailed page. & \\ \hline
+TC-009 & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & \\ \hline
+TC-010 & Add a product to cart & Product appears in cart with correct details. & \\ \hline
+TC-011 & Increase product quantity in cart & Quantity updates and is reflected in the cart. & \\ \hline
+TC-012 & Remove product from cart & Product is removed from the cart immediately. & \\ \hline
+TC-013 & Proceed to checkout & Checkout page loads with the correct order summary. & \\ \hline
+TC-014 & Select payment method - Stripe & Stripe payment option is selected and processed. & \\ \hline
+TC-015 & Select payment method - PayPal & PayPal payment option is selected and processed. & \\ \hline
+TC-016 & Complete order processing & Order confirmation message is displayed. & \\ \hline
+TC-017 & Order confirmation email is received & Email is sent after order is placed. & \\ \hline
+TC-018 & Shipment notification email is received & Email is sent when the order is shipped. & \\ \hline
+TC-019 & Toggle Dark/Light Theme & Application switches between themes successfully. & \\ \hline
+\end{longtable}
 
 \subsection{Security Considerations}
 \begin{itemize}
