@@ -142,7 +142,8 @@
 
 
 \begin{abstract}
-    LowTech GmbH Cloud Transformation Project, building upon the previous analyses and migration strategies. In this phase, 
+
+    \\LowTech GmbH Cloud Transformation Project, building upon the previous analyses and migration strategies. In this phase, 
     the focus is on optimizing cloud operations, performance monitoring, and cost efficiency after the transition to Microsoft
     Azure. The objective is to ensure the system reliability, security, and scalability while fine-tuning the deployed infrastructure.
     The report outlines key post-migration strategies, including performance assessment, security enhancements, and cost analysis. 
@@ -152,6 +153,7 @@
     analyzing usage patterns and identifying areas for optimization.The report also discusses future scalability strategies,
     ensuring that LowTech GmbH is well-equipped to handle growing business demands.This phase serves as the foundation for long-term 
     cloud sustainability, enabling the company to leverage cloud-native solutions efficiently while maintaining operational resilience.
+
 \end{abstract}
 
 \section{Introduction}
@@ -269,7 +271,15 @@ Trade-off discussion between containerized vs serverless approaches
 \section{Repository Documentation}
 \subsection{GitHub Structure}
 \begin{itemize}
-    \item Branching strategy
+    \item \textbf{Branching Strategy}  
+    The project follows a simple \texttt{main} branch strategy where all contributors work directly on the main branch. 
+    This ensures seamless integration without managing multiple branches.  
+    \begin{itemize}
+        \item All changes should be committed with meaningful messages.  
+        \item Code should be reviewed and tested before pushing to \texttt{main}.  
+          
+    \end{itemize}
+
     \item CI/CD pipeline configuration
     \item Documentation standards
 \end{itemize}
