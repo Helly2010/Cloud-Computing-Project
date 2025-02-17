@@ -170,18 +170,34 @@ Detailed description of the three-tier structure with CSP service mapping
 \subsubsection{Presentation-Tier (Frontend) - User Interface (UI)}
 \paragraph{Technology Stack}
 \begin{itemize}
-    \item Frontend Framework
-    \item State Management
-    \item Communication with Backend
-    \item Hosting \& Deployment‚
+    \item Frontend Framework : React.js (JavaScript)
+    \item State Management : React Context API
+    \item Communication with Backend : FastAPI
+    \item Hosting \& Deployment : Azure Static Web Apps
  
 \end{itemize}
 
 \paragraph{component-based architecture}
 \begin{enumerate}
-    \item Navigation \& Routing
-    \item API Communication
-    \item Data Fetching
+    \item Navigation \& Routing \\
+    Users can easily navigate between different sections of application, such as viewing product lists, accessing product details, and managing their shopping cart. React Router enables seamless client-side navigation, keeping your app as a single-page application (SPA).
+    \begin{itemize}
+        \item React Router Setup 
+        \begin{itemize}
+            \item React Router (react-router-dom) to handle the routing of different components, allowing users to navigate through pages like the homepage (/), product detail pages (/product/:id), and potentially a shopping cart or checkout page.
+            \item For product detail pages, you're using dynamic routes with product/:id to fetch and display specific product data based on the product’s unique id. For instance:
+            \item When a user clicks on a product in the catalog, the URL changes to something like /product/123, and the ProductDetail component is rendered with data for product 123.
+            \item This is achieved using useNavigate and useParams hooks provided by React Router to capture the dynamic part of the URL.
+        \end{itemize}
+        \ 
+        \item Navigation Links
+        \begin{itemize}
+            \item On the homepage (Home component), displaying a list of products. Each product has an image and name that users can click. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function.
+        \end{itemize}
+            \item API Communication \\
+            API communication in app is responsible for sending and receiving data from the backend server. This includes fetching product data to populate catalog, handling cart actions (adding/removing items), and processing payments during checkout.
+        \item Data Fetching
+    \end{itemize}
  
 \end{enumerate}
 \paragraph{Key Features of the UI}
@@ -199,6 +215,7 @@ Detailed description of the three-tier structure with CSP service mapping
 \paragraph{Payment Processing}
 \paragraph{Inventery Management}
 \paragraph{Email Notification}
+
 \subsubsection{Data-Tier (Database) - Databases}
 \paragraph{Technology Stack}
 \paragraph{Data bases}
