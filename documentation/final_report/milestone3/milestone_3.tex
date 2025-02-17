@@ -143,7 +143,7 @@
 
 \begin{abstract}
 
-    \\LowTech GmbH Cloud Transformation Project, building upon the previous analyses and migration strategies. In this phase, 
+    LowTech GmbH Cloud Transformation Project, building upon the previous analyses and migration strategies. In this phase, 
     the focus is on optimizing cloud operations, performance monitoring, and cost efficiency after the transition to Microsoft
     Azure. The objective is to ensure the system reliability, security, and scalability while fine-tuning the deployed infrastructure.
     The report outlines key post-migration strategies, including performance assessment, security enhancements, and cost analysis. 
@@ -273,14 +273,29 @@ Trade-off discussion between containerized vs serverless approaches
 \begin{itemize}
     \item \textbf{Branching Strategy}  
     The project follows a simple main branch strategy where all contributors work directly on the main branch. 
-    This ensures seamless integration without managing multiple branches.  
-    \begin{itemize}
-        \item All changes should be committed with meaningful messages.  
-        \item Code should be reviewed and tested before pushing main branch.
-          
-    \end{itemize}
+    This ensures seamless integration without managing multiple branches.All changes should be committed with meaningful messages.  
+    Code should be reviewed and tested before pushing to the main branch.
 
-    \item CI/CD pipeline configuration
+    \item \textbf{CI/CD Pipeline Configuration}  
+    Continuous Integration and Continuous Deployment (CI/CD) is implemented to automate the software development lifecycle, ensuring that code changes are tested, built, and deployed efficiently.  
+
+    \begin{itemize}
+        \item **Continuous Integration (CI)**:  
+        Every code commit triggers an automated build and testing process. This includes:
+        \begin{itemize}
+            \item Running unit tests to validate individual components.
+            \item Performing integration tests to ensure compatibility between different modules.
+            \item Static code analysis for linting and security vulnerabilities.
+        \end{itemize}
+
+        \item **Continuous Deployment (CD)**:  
+        Once the CI stage passes successfully, the application is automatically deployed to the appropriate environment. This process includes:
+        \begin{itemize}
+            \item Deploying to a staging environment for final testing.
+            \item Running automated acceptance tests before production deployment.
+            \item Deploying to production with rollback mechanisms in case of failure.
+        \end{itemize}
+        
     \item Documentation standards
 \end{itemize}
 
