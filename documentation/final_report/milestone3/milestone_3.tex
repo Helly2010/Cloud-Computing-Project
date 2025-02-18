@@ -179,7 +179,7 @@ Detailed description of the three-tier structure with CSP service mapping
 
 \paragraph{component-based architecture}
 \begin{enumerate}
-    \item Navigation \& Routing \\
+    \item Navigation \& Routing 
     Users can easily navigate between different sections of application, such as viewing product lists, accessing product details, and managing their shopping cart. React Router enables seamless client-side navigation, keeping your app as a single-page application (SPA).
     \begin{itemize}
         \item React Router Setup 
@@ -189,16 +189,24 @@ Detailed description of the three-tier structure with CSP service mapping
             \item When a user clicks on a product in the catalog, the URL changes to something like /product/123, and the ProductDetail component is rendered with data for product 123.
             \item This is achieved using useNavigate and useParams hooks provided by React Router to capture the dynamic part of the URL.
         \end{itemize}
-        \ 
+        
         \item Navigation Links
         \begin{itemize}
             \item On the homepage (Home component), displaying a list of products. Each product has an image and name that users can click. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function.
         \end{itemize}
-            \item API Communication \\
-            API communication in app is responsible for sending and receiving data from the backend server. This includes fetching product data to populate catalog, handling cart actions (adding/removing items), and processing payments during checkout.
-        \item Data Fetching
     \end{itemize}
- 
+
+    \item API Communication 
+    \begin{itemize}
+        \item API communication in app is responsible for sending and receiving data from the backend server. This includes fetching product data to populate catalog, handling cart actions (adding or removing items), and processing payments during checkout.
+        \item The app communicates with the backend to update the cart whenever an item is added or removed. When a user clicks ``Add to Cart'' or ``Remove from Cart,'' an API call might be made to update the user's cart data on the server. This interaction is handled by \texttt{CartContext}, which uses \texttt{dispatch} to update the cart state and might also send a request to the backend to keep the cart in sync.
+        \item For payment, we use PayPal to securely handle credit card transactions. The app makes API calls to PayPal's backend to process the payment once the user submits their payment details.
+    \end{itemize}
+    \item Data Fetching \\
+    Data fetching refers to the process of retrieving data from external sources (your backend API) to populate app with dynamic information, such as product details, cart contents, and order history.
+    \begin{itemize}
+        \item The product data, which includes the list of products with details such as images, names, prices, and categories, is fetched when the homepage or product catalog page loads. This is done using useEffect to trigger an API call and update the state with the fetched data.
+    \end{itemize}
 \end{enumerate}
 \paragraph{Key Features of the UI}
     \begin{enumerate}
