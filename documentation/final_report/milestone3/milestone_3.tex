@@ -40,6 +40,7 @@
 \usepackage{url}
 \usepackage{caption}
 \usepackage{float}
+
 \setlength{\abovecaptionskip}{0pt} % Reduce space above the caption
 \setlength{\belowcaptionskip}{0pt} % Space between caption and table
 \captionsetup[table]{skip=5pt} % Adjust the value of '10pt' as needed
@@ -49,7 +50,8 @@
 \setlength{\floatsep}{0pt}
 \setlength{\intextsep}{0pt}
 
-
+% Enable subsubsection numbering
+\setcounter{secnumdepth}{3}
 
 %
 
@@ -60,7 +62,7 @@
  /Author (Hellyben Bhaveshkumar Shah)
  /Author (Heer Rakeshkumar Vankawala)
  /Author (Priyanka Dilipbhai Vadiwala)
- /Title  (LowTech GMmBH Techincal Transformation Milestone 2)
+ /Title  (LowTech GMBH Techincal Transformation Milestone 3)
  /Subject (Cloud Computing)
  /Keywords (Cloud Computing, Technical Transformation, Migration)
 }
@@ -141,6 +143,18 @@
 
 
 \begin{abstract}
+
+    LowTech GmbH Cloud Transformation Project, building upon the previous analyses and migration strategies. In this phase, 
+    the focus is on optimizing cloud operations, performance monitoring, and cost efficiency after the transition to Microsoft
+    Azure. The objective is to ensure the system reliability, security, and scalability while fine-tuning the deployed infrastructure.
+    The report outlines key post-migration strategies, including performance assessment, security enhancements, and cost analysis. 
+    It introduce automation techniques using tools like Terraform and Ansible for infrastructure management and GitHub Actions for 
+    continuous integration and deployment (CI/CD). Special attention is given to monitoring solutions like Azure Monitor and Prometheus
+    to track system performance and detect potential issues in real time. Furthermore, we evaluate cloud cost management techniques by 
+    analyzing usage patterns and identifying areas for optimization.The report also discusses future scalability strategies,
+    ensuring that LowTech GmbH is well-equipped to handle growing business demands.This phase serves as the foundation for long-term 
+    cloud sustainability, enabling the company to leverage cloud-native solutions efficiently while maintaining operational resilience.
+
 \end{abstract}
 
 \section{Introduction}
@@ -154,8 +168,75 @@ Brief recap of previous milestones and progression to current implementation pha
 \subsection{Architectural Overview}
 Detailed description of the three-tier structure with CSP service mapping
 \subsubsection{Presentation-Tier (Frontend) - User Interface (UI)}
+\paragraph{Technology Stack}
+\begin{itemize}
+    \item Frontend Framework : React.js (JavaScript)
+    \item State Management : React Context API
+    \item Communication with Backend : FastAPI
+    \item Hosting \& Deployment : Azure Static Web Apps
+ 
+\end{itemize}
+
+\paragraph{component-based architecture}
+\begin{enumerate}
+    \item Navigation \& Routing \\
+    Users can easily navigate between different sections of application, such as viewing product lists, accessing product details, and managing their shopping cart. React Router enables seamless client-side navigation, keeping your app as a single-page application (SPA).
+    \begin{itemize}
+        \item React Router Setup 
+        \begin{itemize}
+            \item React Router (react-router-dom) to handle the routing of different components, allowing users to navigate through pages like the homepage (/), product detail pages (/product/:id), and potentially a shopping cart or checkout page.
+            \item For product detail pages, you're using dynamic routes with product/:id to fetch and display specific product data based on the product’s unique id. For instance:
+            \item When a user clicks on a product in the catalog, the URL changes to something like /product/123, and the ProductDetail component is rendered with data for product 123.
+            \item This is achieved using useNavigate and useParams hooks provided by React Router to capture the dynamic part of the URL.
+        \end{itemize}
+        \ 
+        \item Navigation Links
+        \begin{itemize}
+            \item On the homepage (Home component), displaying a list of products. Each product has an image and name that users can click. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function.
+        \end{itemize}
+            \item API Communication \\
+            API communication in app is responsible for sending and receiving data from the backend server. This includes fetching product data to populate catalog, handling cart actions (adding/removing items), and processing payments during checkout.
+        \item Data Fetching
+    \end{itemize}
+ 
+\end{enumerate}
+\paragraph{Key Features of the UI}
+    \begin{enumerate}
+        \item Product Catalog
+        \item Product Search and Filtering
+        \item Product Details Page
+        \item Shopping Cart
+        \item Checkout Process
+    \end{enumerate}
 \subsubsection{Application-Tier (Backend) - Business Logic}
+\paragraph{Technology Stack}
+\paragraph{Product Management}
+\paragraph{Order Management}
+\paragraph{Payment Processing}
+\paragraph{Inventery Management}
+\paragraph{Email Notification}
+
 \subsubsection{Data-Tier (Database) - Databases}
+\paragraph{Technology Stack}
+\paragraph{Data bases}
+\begin{enumerate}
+    \item Product Data
+    \begin{itemize}
+        \item Product
+        \item Catagories
+        \end{itemize}
+    \item Order Data
+    \begin{itemize}
+        \item Order 
+        \item Order Details
+        \end{itemize}
+    \item Inventory Data
+    \begin{itemize}
+        \item Stocks 
+        \item suppliers
+        \end{itemize}
+ 
+\end{enumerate}
 \subsection{Technology Stack}
 \begin{itemize}
     \item Frontend: 
@@ -186,7 +267,36 @@ Step-by-step account configuration and resource provisioning
 
 \section{Operational Characteristics}
 \subsection{Performance Metrics}
-Load testing results and scalability demonstrations
+
+\subsubsection{Functional Test Cases}
+
+\begin{longtable}{|c|p{4.5cm}|p{4.5cm}|c|}
+\hline
+\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
+\endfirsthead
+\hline
+\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
+\endhead
+TC-001 & Load homepage and verify product listing & Homepage loads with products displayed correctly. & \\ \hline
+TC-002 & Apply price filter (Ascending/Descending) & Products reorder correctly based on selected price. & \\ \hline
+TC-003 & Apply "Out of Stock" filter & Only out-of-stock items are displayed. & \\ \hline
+TC-004 & Apply "Fast Delivery" filter & Only products eligible for fast delivery show up. & \\ \hline
+TC-005 & Filter by category & Products are filtered correctly by selected category. & \\ \hline
+TC-006 & Search product by name or category & Products matching search are shown correctly. & \\ \hline
+TC-007 & Clear filter functionality & All filters are removed, showing the full product list. & \\ \hline
+TC-008 & Product Detail Page - Click Product & Clicking a product opens its detailed page. & \\ \hline
+TC-009 & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & \\ \hline
+TC-010 & Add a product to cart & Product appears in cart with correct details. & \\ \hline
+TC-011 & Increase product quantity in cart & Quantity updates and is reflected in the cart. & \\ \hline
+TC-012 & Remove product from cart & Product is removed from the cart immediately. & \\ \hline
+TC-013 & Proceed to checkout & Checkout page loads with the correct order summary. & \\ \hline
+TC-014 & Select payment method - Stripe & Stripe payment option is selected and processed. & \\ \hline
+TC-015 & Select payment method - PayPal & PayPal payment option is selected and processed. & \\ \hline
+TC-016 & Complete order processing & Order confirmation message is displayed. & \\ \hline
+TC-017 & Order confirmation email is received & Email is sent after order is placed. & \\ \hline
+TC-018 & Shipment notification email is received & Email is sent when the order is shipped. & \\ \hline
+TC-019 & Toggle Dark/Light Theme & Application switches between themes successfully. & \\ \hline
+\end{longtable}
 
 \subsection{Security Considerations}
 \begin{itemize}
@@ -205,9 +315,33 @@ Trade-off discussion between containerized vs serverless approaches
 \section{Repository Documentation}
 \subsection{GitHub Structure}
 \begin{itemize}
-    \item Branching strategy
-    \item CI/CD pipeline configuration
+    \item \textbf{Branching Strategy}  
+    The project follows a simple main branch strategy where all contributors work directly on the main branch. 
+    This ensures seamless integration without managing multiple branches.All changes should be committed with meaningful messages.  
+    Code should be reviewed and tested before pushing to the main branch.
+
+    \item \textbf{CI/CD Pipeline Configuration}  
+    Continuous Integration and Continuous Deployment (CI/CD) is implemented to automate the software development lifecycle, ensuring that code changes are tested, built, and deployed efficiently.  
+
+    \begin{itemize}
+        \item **Continuous Integration (CI)**:  
+        Every code commit triggers an automated build and testing process. This includes:
+        \begin{itemize}
+            \item Running unit tests to validate individual components.
+            \item Performing integration tests to ensure compatibility between different modules.
+            \item Static code analysis for linting and security vulnerabilities.
+        \end{itemize}
+
+        \item **Continuous Deployment (CD)**:  
+        Once the CI stage passes successfully, the application is automatically deployed to the appropriate environment. This process includes:
+        \begin{itemize}
+            \item Deploying to a staging environment for final testing.
+            \item Running automated acceptance tests before production deployment.
+            \item Deploying to production with rollback mechanisms in case of failure.
+        \end{itemize}
+        
     \item Documentation standards
+\end{itemize}
 \end{itemize}
 
 \subsection{Contribution Tracking}
