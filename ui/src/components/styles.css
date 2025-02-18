@@ -40,6 +40,34 @@
   background-color: var(--light);
 }
 
+/* Filter Labels - Hover Effect (Light Yellow) */
+.filters label {
+  font-size: 16px;
+  color: var(--white);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.filters label:hover {
+  color: #f8e79d; /* Light Yellow on Hover */
+}
+
+/* Clear Filters & All Categories - Hover Effect */
+.filters button,
+.filters select {
+  background-color: var(--white);
+  border: 1px solid var(--superLight);
+  color: var(--dark);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Change Background & Text Color on Hover */
+.filters button:hover,
+.filters select:hover {
+  background-color: var(--superLight); /* Light Green (Same as Product Cards) */
+  color: var(--dark); /* Keep text readable */
+}
+
 .lightCard {
   background-color: var(--superLight);
 }
