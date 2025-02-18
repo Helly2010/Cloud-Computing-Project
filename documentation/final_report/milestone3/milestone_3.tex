@@ -270,7 +270,9 @@ Step-by-step account configuration and resource provisioning
 
 \subsubsection{Functional Test Cases}
 
-\begin{longtable}{|c|p{4.5cm}|p{4.5cm}|c|}
+\renewcommand{\arraystretch}{1.3} % Adjust row height for better readability
+
+\begin{longtable}{|c|>{\raggedright}p{6cm}|p{7cm}|p{2cm}|}
 \hline
 \textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
 \endfirsthead
@@ -278,24 +280,55 @@ Step-by-step account configuration and resource provisioning
 \textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
 \endhead
 TC-001 & Load homepage and verify product listing & Homepage loads with products displayed correctly. & \\ \hline
-TC-002 & Apply price filter (Ascending/Descending) & Products reorder correctly based on selected price. & \\ \hline
-TC-003 & Apply "Out of Stock" filter & Only out-of-stock items are displayed. & \\ \hline
-TC-004 & Apply "Fast Delivery" filter & Only products eligible for fast delivery show up. & \\ \hline
-TC-005 & Filter by category & Products are filtered correctly by selected category. & \\ \hline
-TC-006 & Search product by name or category & Products matching search are shown correctly. & \\ \hline
-TC-007 & Clear filter functionality & All filters are removed, showing the full product list. & \\ \hline
+TC-002 & Apply Price Filter (Ascending/Descending) & Products reorder correctly based on selected price. & \\ \hline
+TC-003 & Apply Out of Stock Filter & Only out-of-stock items are displayed. & \\ \hline
+TC-004 & Apply Fast Delivery Filter & Only products eligible for fast delivery show up. & \\ \hline
+TC-005 & Filter by Category & Products are filtered correctly by selected category. & \\ \hline
+TC-006 & Search Product by Name or Category & Products matching search are shown correctly. & \\ \hline
+TC-007 & Clear Filter functionality & All filters are removed, showing the full product list. & \\ \hline
 TC-008 & Product Detail Page - Click Product & Clicking a product opens its detailed page. & \\ \hline
-TC-009 & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & \\ \hline
-TC-010 & Add a product to cart & Product appears in cart with correct details. & \\ \hline
-TC-011 & Increase product quantity in cart & Quantity updates and is reflected in the cart. & \\ \hline
+TC-009 & Product Detail Page - Load Product Details & Product Details (name, description, price) are displayed. & \\ \hline
+TC-010 & Add a Product to Cart & Product appears in cart with correct details. & \\ \hline
+TC-011 & Increase Product Quantity in Cart & Quantity updates and is reflected in the cart. & \\ \hline
 TC-012 & Remove product from cart & Product is removed from the cart immediately. & \\ \hline
 TC-013 & Proceed to checkout & Checkout page loads with the correct order summary. & \\ \hline
 TC-014 & Select payment method - Stripe & Stripe payment option is selected and processed. & \\ \hline
 TC-015 & Select payment method - PayPal & PayPal payment option is selected and processed. & \\ \hline
-TC-016 & Complete order processing & Order confirmation message is displayed. & \\ \hline
-TC-017 & Order confirmation email is received & Email is sent after order is placed. & \\ \hline
-TC-018 & Shipment notification email is received & Email is sent when the order is shipped. & \\ \hline
+TC-016 & Complete Order Processing & Order confirmation message is displayed. & \\ \hline
+TC-017 & Order Confirmation Email is received & Email is sent after order is placed. & \\ \hline
+TC-018 & Shipment Notification Email is received & Email is sent when the order is shipped. & \\ \hline
 TC-019 & Toggle Dark/Light Theme & Application switches between themes successfully. & \\ \hline
+\end{longtable}
+
+\subsubsection{API Performance Testing (Backend Response Validation)}
+
+\renewcommand{\arraystretch}{1.3} % Adjust row height for better readability
+
+\begin{longtable}{|c|>{\raggedright}p{7.5cm}|p{5.5cm}|p{2cm}|}
+\hline
+\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
+\endfirsthead
+\hline
+\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
+\endhead
+API-001 & Fetch all products (`GET /products/`) & Returns a list of products with name, category, supplier, price, stock, and reorder level. & \\ \hline
+API-002 & Create a new product (`POST /products/`) & Successfully adds a product with details (name, category, supplier, price, etc.). & \\ \hline
+API-003 & Fetch a product by ID (`GET /products/\{id\}`) & Returns specific product details, including name, price, stock, and supplier info. & \\ \hline
+API-004 & Update a product (`PATCH /products/\{id\}`) & Updates product details such as price, stock, and description. & \\ \hline
+API-005 & Delete a product (`DELETE /products/\{id\}`) & Removes the product from the system and returns confirmation. & \\ \hline
+API-006 & Fetch all categories (`GET /categories/`) & Returns all available product categories. & \\ \hline
+API-007 & Fetch a category by ID (`GET /categories/\{id\}`) & Returns category details including name and description. & \\ \hline
+API-008 & Create a new category (`POST /categories/`) & Successfully adds a new category and returns its details. & \\ \hline
+API-009 & Update category (`PATCH /categories/\{id\}`) & Updates category details and returns confirmation. & \\ \hline
+API-010 & Fetch all orders (`GET /orders/`) & Returns a list of orders with customer details, order total, and tracking status. & \\ \hline
+API-011 & Create an order (`POST /orders/`) & Successfully places an order with customer info, payment method, and product list. & \\ \hline
+API-012 & Fetch all suppliers (`GET/suppliers/`) & Returns a list of suppliers with name, address, email, and phone. & \\ \hline
+API-013 & Fetch supplier by ID (`GET/suppliers/\{id\}`) & Returns supplier details including personal info and contact details. & \\ \hline
+API-014 & Create a new supplier (`POST/suppliers/`) & Successfully adds a supplier with name, address, and contact details. & \\ \hline
+API-015 & Update supplier details (`PATCH/suppliers/\{id\}`) & Updates supplier information and returns confirmation. & \\ \hline
+API-016 & Fetch stock details (`GET /stock/\{product\_id\}`) & Returns stock availability for a specific product. & \\ \hline
+API-017 & Update stock quantity (`PATCH/stock/\{product\_id\}`) & Updates stock levels and returns confirmation. & \\ \hline
+API-018 & Update order tracking status (`PATCH /tracking/\{order\_id\}`) & Updates order shipment status and returns updated tracking details. & \\ \hline
 \end{longtable}
 
 \subsection{Security Considerations}
