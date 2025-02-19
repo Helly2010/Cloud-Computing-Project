@@ -278,10 +278,53 @@ Detailed description of the three-tier structure with CSP service mapping
     
 \subsubsection{Application-Tier (Backend) - Business Logic}
 \paragraph{Technology Stack}
-\paragraph{Product Management}
-\paragraph{Order Management}
-\paragraph{Payment Processing}
-\paragraph{Inventery Management}
+    \begin{itemize}
+        \item FastAPI
+        \item SQLAlchemy with PostgreSQL
+        \item Asyncio
+    \end{itemize}
+
+\paragraph{Product Management} \leavevmode
+
+The Product Management module handles the lifecycle of products in the system. This includes operations for adding new products, updating product details, and retrieving product information. The core business logic ensures that products are categorized correctly, their stock levels are managed, and prices are updated as needed.
+    \begin{itemize}
+        \item Key Operations:
+        \begin{itemize}
+        \item Add, update, and delete products.
+        \item Manage product details such as descriptions, prices, and categories.
+        \item Track stock availability and reorder levels.
+        \item Calculate the public unit price and manage suppliers' pricing.
+        \end{itemize}   
+    \end{itemize}
+
+\paragraph{Order Management} \leavevmode
+
+The Order Management module manages customer orders, from order creation to order completion. It tracks the order status and ensures that orders are processed correctly, including payment validation, stock management, and shipping.
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}
+    \item Create and update orders with customer and product information.
+    \item Monitor order statuses (e.g., processing, dispatched, delivered).
+    \item Validate inventory and ensure product availability during order processing.
+    \item Handle refunds, cancellations, and partial shipments.
+    \end{itemize}   
+\end{itemize}
+
+\paragraph{Payment Processing} \leavevmode
+
+The Payment Processing module integrates with third-party payment gateways (e.g., Stripe) to securely process customer payments. This module validates payment details, checks for fraud, and ensures payment is successfully processed before confirming orders.
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}
+    \item Process payments securely through APIs like Stripe and PayPal.
+    \item Validate payment information (e.g., credit card details).
+    \item Handle refunds, cancellations, and partial shipments.
+    \end{itemize}   
+\end{itemize}
+
+\paragraph{Inventery Management} \leavevmode
+
+The Inventory Management module tracks the stock levels of all products, ensuring that inventory is updated in real-time based on orders placed and products received from suppliers. It also tracks reorder levels and alerts the system to restock low inventory.
 \paragraph{Email Notification}
 
 \subsubsection{Data-Tier (Database) - Databases}
