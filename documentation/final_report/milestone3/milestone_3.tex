@@ -325,7 +325,29 @@ The Payment Processing module integrates with third-party payment gateways (e.g.
 \paragraph{Inventery Management} \leavevmode
 
 The Inventory Management module tracks the stock levels of all products, ensuring that inventory is updated in real-time based on orders placed and products received from suppliers. It also tracks reorder levels and alerts the system to restock low inventory.
-\paragraph{Email Notification}
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}   
+        \item Monitor and update product stock levels after each sale.
+        \item Track the supplier’s stock and delivery lead times.
+        \item Generate reports on product availability, low-stock items, and reorder recommendations.
+    \end{itemize}   
+\end{itemize}
+    
+
+
+\paragraph{Email Notification} \leavevmode
+
+The Email Notification module sends emails to customers and administrators for various events in the system, such as order confirmations, shipment tracking updates, and payment status notifications. It integrates with FastMail to send HTML-formatted emails with dynamic content.
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}   
+        \item Send order confirmation emails to customers.
+        \item Notify customers of order status updates, such as dispatched or delivered.
+        \item Alert administrators of low stock levels and other system alerts.
+        \item Provide a user-friendly email template system for various types of notifications.
+    \end{itemize}   
+\end{itemize}
 
 \subsubsection{Data-Tier (Database) - Databases}
 \paragraph{Technology Stack}
