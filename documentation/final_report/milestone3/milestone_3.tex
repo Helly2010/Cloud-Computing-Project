@@ -467,15 +467,39 @@ The Email Notification module sends emails to customers and administrators for v
                 \item product\_id: Foreign Key linking to the Products table.
                 \item quantity: Number of units of the product ordered.
                 \item product\_price: Unit price at the time of the order.
-                \item subtotal: Calculated subtotal for the item.
+                \item subtotal: Calculated subtotal for the item.\\
                 
             \end{itemize}
         \end{itemize}
      \end{itemize}
-    \item Inventory Data
+
+    \item Inventory Data\\
     \begin{itemize}
         \item Stocks 
+        \begin{itemize}
+            \item Monitors the available quantity of each product and manages restocking.
+            \item Key Attributes:
+            \begin{itemize}
+                \item id: Unique stock identifier (Primary Key).
+                \item quantity: Number of available units for a product.
+                \item updated\_at: Timestamp of the last stock update.
+                \item created\_at: Timestamp when the stock record was created.\\
+                
+            \end{itemize}
+        \end{itemize}
         \item suppliers
+        \begin{itemize}
+            \item Manages supplier-related information and links to products for procurement.
+            \item Key Attributes:
+            \begin{itemize}
+                \item id: Unique supplier identifier (Primary Key).
+                \item name: Supplier name.
+                \item address: Supplier’s physical address.
+                \item phone: Contact number.
+                \item email: Contact email address.
+                
+            \end{itemize}
+        \end{itemize}
     \end{itemize}
 \end{enumerate}
 
