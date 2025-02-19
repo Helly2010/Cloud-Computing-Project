@@ -40,7 +40,6 @@
 \usepackage{url}
 \usepackage{caption}
 \usepackage{float}
-
 \setlength{\abovecaptionskip}{0pt} % Reduce space above the caption
 \setlength{\belowcaptionskip}{0pt} % Space between caption and table
 \captionsetup[table]{skip=5pt} % Adjust the value of '10pt' as needed
@@ -62,7 +61,7 @@
  /Author (Hellyben Bhaveshkumar Shah)
  /Author (Heer Rakeshkumar Vankawala)
  /Author (Priyanka Dilipbhai Vadiwala)
- /Title  (LowTech GmbH Techincal Transformation Milestone 3)
+ /Title  (LowTech GMBH Techincal Transformation Milestone 3)
  /Subject (Cloud Computing)
  /Keywords (Cloud Computing, Technical Transformation, Migration)
 }
@@ -142,27 +141,70 @@
 \maketitle              % typeset the title of the contribution
 
 
-\begin{abstract}
+\section*{Abstract}
 
-    LowTech GmbH Cloud Transformation Project, building upon the previous analyses and migration strategies. In this phase,
-the focus is on optimizing cloud operations, performance monitoring, and cost efficiency after the transition to Microsoft
-Azure. The objective is to ensure system reliability, security, and scalability while fine-tuning the deployed infrastructure.
-The report outlines key post-migration strategies, including performance assessment, security enhancements, and cost analysis.
-It introduces automation techniques using tools like Terraform and Ansible for infrastructure management and GitHub Actions for
-continuous integration and deployment (CI/CD). Special attention is given to monitoring solutions like Azure Monitor and Prometheus
-to track system performance and detect potential issues in real time. Furthermore, we evaluate cloud cost management techniques by
-analyzing usage patterns and identifying areas for optimization. The report also discusses future scalability strategies,
-ensuring that LowTech GmbH is well-equipped to handle growing business demands. This phase serves as the foundation for long-term
-cloud sustainability, enabling the company to leverage cloud-native solutions efficiently while maintaining operational resilience.
-
-\end{abstract}
+LowTech GmbH Cloud Transformation Project, building upon the previous analyses and migration strategies. In this phase,  
+the focus is on optimizing cloud operations, performance monitoring, and cost efficiency after the transition to Microsoft  
+Azure. The objective is to ensure system reliability, security, and scalability while fine-tuning the deployed infrastructure.  
+The report outlines key post-migration strategies, including performance assessment, security enhancements, and cost analysis.  
+It introduces automation techniques using tools like Terraform and Ansible for infrastructure management and GitHub Actions for  
+continuous integration and deployment (CI/CD). Special attention is given to monitoring solutions like Azure Monitor and Prometheus  
+to track system performance and detect potential issues in real time.  Furthermore, we evaluate cloud cost management techniques by analyzing usage patterns and identifying areas for optimization.  
+The report also discusses future scalability strategies, ensuring that LowTech GmbH is well-equipped to handle growing business demands.  
+This phase serves as the foundation for long-term cloud sustainability, enabling the company to leverage cloud-native solutions efficiently  
+while maintaining operational resilience.  
 
 \section{Introduction}
 \subsection{Overview of the Project}
-Brief recap of previous milestones and progression to current implementation phase
+LowTech GmbH, a medium-sized enterprise specializing in wooden furniture production, is modernizing its IT infrastructure as part of a comprehensive cloud transformation. Initially relying on traditional on-premises systems, the company faced challenges in scalability, security, and operational efficiency.
+
+The transformation began with a thorough assessment of the existing infrastructure, which revealed the following key challenges:
+\begin{itemize}
+    \item Limited scalability due to fixed hardware constraints.
+    \item High operational costs and energy consumption of legacy systems.
+    \item Outdated security measures, including basic firewall protection.
+    \item Lack of automation, requiring manual interventions for maintenance and scaling.
+\end{itemize}
+
+To address these challenges, a private cloud migration strategy was adopted, focusing on hyper-converged infrastructure (HCI) and virtualization using Proxmox and Ansible. The aim was to improve scalability, security, and cost-efficiency while ensuring minimal downtime and business continuity.
+The company transitioned its IT ecosystem to Microsoft Azure, leveraging a hybrid cloud architecture that integrates Azure IaaS, PaaS, and SaaS solutions. Key steps in the migration included:
+\begin{itemize}
+    \item Migrating critical business applications such as Finance, HR, Operations, Webshop, and Warehouse.
+    \item Implementing DevOps pipelines using GitHub Actions for automated deployments.
+    \item Enhancing monitoring capabilities through Azure Monitor and Prometheus.
+    \item Optimizing cloud costs through resource scaling and usage analysis.
+\end{itemize}
+
+This strategic approach positions LowTech GmbH to adapt to business growth, enhance security, and optimize costs, all while leveraging cloud-native services for long-term sustainability.
+
 
 \subsection{Objectives of the Cloud Implementation of Webshop}
 
+The Webshop is a critical component for LowTech GmbH, serving as the company’s primary sales platform. The goal of its cloud implementation is to enhance performance, scalability, and security, ensuring a seamless user experience.
+
+Key objectives for the Webshop's cloud-based deployment include:
+
+\begin{itemize}
+    \item \textbf{Scalability and Performance Optimization:}  
+    The Webshop is deployed on Azure App Service with auto-scaling capabilities, enabling efficient traffic handling during peak periods. A load balancer ensures even traffic distribution across multiple instances.
+    \bigskip % Adds space before the next section
+    \item \textbf{High Availability and Reliability:}  
+    Azure Virtual Machine Scale Sets provide fault tolerance with automatic failover. Azure Blob Storage is used to securely store digital assets with high availability.
+    \bigskip % Adds space before the next section
+    \item \textbf{Security and Compliance:}  
+    The Webshop integrates with Microsoft Entra ID for user authentication and Azure Security Center for enhanced threat protection. Encryption and Role-Based Access Control (RBAC) are employed to safeguard sensitive customer data.
+    \bigskip % Adds space before the next section
+    \item \textbf{Continuous Deployment and DevOps Automation:}  
+    A CI/CD pipeline powered by GitHub Actions automates code deployments, improving deployment speed and reducing manual intervention.
+    \bigskip % Adds space before the next section
+    \item \textbf{Cost Efficiency and Resource Optimization:}  
+    The dynamic allocation of resources optimizes compute and storage usage, reducing operational expenses. Azure’s pay-as-you-go model aids in cost forecasting and budget management.
+    \bigskip % Adds space before the next section
+    \item \textbf{Future-Proofing and Cloud-Native Development:}  
+    The Webshop follows cloud-native best practices, utilizing Docker containers for portability and Azure Kubernetes Service (AKS) for container orchestration, positioning the Webshop for seamless integration with future cloud services.
+\end{itemize}
+
+These objectives ensure that the Webshop is scalable, secure, and cost-effective, delivering a fast and reliable shopping experience while adapting to the evolving needs of the business.
 
 \section{Application Design}
 \subsection{Architectural Overview}
@@ -350,6 +392,26 @@ The Email Notification module sends emails to customers and administrators for v
 \end{itemize}
 
 \subsubsection{Data-Tier (Database) - Databases}
+\paragraph{Technology Stack}
+\paragraph{Data bases}
+\begin{enumerate}
+    \item Product Data
+    \begin{itemize}
+        \item Product
+        \item Catagories
+    \end{itemize}
+    \item Order Data
+    \begin{itemize}
+        \item Order 
+        \item Order Details
+     \end{itemize}
+    \item Inventory Data
+    \begin{itemize}
+        \item Stocks 
+        \item suppliers
+    \end{itemize}
+\end{enumerate}
+
 \subsection{Technology Stack}
 \begin{itemize}
     \item Frontend: 
@@ -383,9 +445,7 @@ Step-by-step account configuration and resource provisioning
 
 \subsubsection{Functional Test Cases}
 
-\renewcommand{\arraystretch}{1.3} % Adjust row height for better readability
-
-\begin{longtable}{|c|>{\raggedright}p{6cm}|p{7cm}|p{2cm}|}
+\begin{longtable}{|c|p{4.5cm}|p{4.5cm}|c|}
 \hline
 \textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
 \endfirsthead
@@ -393,55 +453,24 @@ Step-by-step account configuration and resource provisioning
 \textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
 \endhead
 TC-001 & Load homepage and verify product listing & Homepage loads with products displayed correctly. & \\ \hline
-TC-002 & Apply Price Filter (Ascending/Descending) & Products reorder correctly based on selected price. & \\ \hline
-TC-003 & Apply Out of Stock Filter & Only out-of-stock items are displayed. & \\ \hline
-TC-004 & Apply Fast Delivery Filter & Only products eligible for fast delivery show up. & \\ \hline
-TC-005 & Filter by Category & Products are filtered correctly by selected category. & \\ \hline
-TC-006 & Search Product by Name or Category & Products matching search are shown correctly. & \\ \hline
-TC-007 & Clear Filter functionality & All filters are removed, showing the full product list. & \\ \hline
+TC-002 & Apply price filter (Ascending/Descending) & Products reorder correctly based on selected price. & \\ \hline
+TC-003 & Apply "Out of Stock" filter & Only out-of-stock items are displayed. & \\ \hline
+TC-004 & Apply "Fast Delivery" filter & Only products eligible for fast delivery show up. & \\ \hline
+TC-005 & Filter by category & Products are filtered correctly by selected category. & \\ \hline
+TC-006 & Search product by name or category & Products matching search are shown correctly. & \\ \hline
+TC-007 & Clear filter functionality & All filters are removed, showing the full product list. & \\ \hline
 TC-008 & Product Detail Page - Click Product & Clicking a product opens its detailed page. & \\ \hline
-TC-009 & Product Detail Page - Load Product Details & Product Details (name, description, price) are displayed. & \\ \hline
-TC-010 & Add a Product to Cart & Product appears in cart with correct details. & \\ \hline
-TC-011 & Increase Product Quantity in Cart & Quantity updates and is reflected in the cart. & \\ \hline
+TC-009 & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & \\ \hline
+TC-010 & Add a product to cart & Product appears in cart with correct details. & \\ \hline
+TC-011 & Increase product quantity in cart & Quantity updates and is reflected in the cart. & \\ \hline
 TC-012 & Remove product from cart & Product is removed from the cart immediately. & \\ \hline
 TC-013 & Proceed to checkout & Checkout page loads with the correct order summary. & \\ \hline
 TC-014 & Select payment method - Stripe & Stripe payment option is selected and processed. & \\ \hline
 TC-015 & Select payment method - PayPal & PayPal payment option is selected and processed. & \\ \hline
-TC-016 & Complete Order Processing & Order confirmation message is displayed. & \\ \hline
-TC-017 & Order Confirmation Email is received & Email is sent after order is placed. & \\ \hline
-TC-018 & Shipment Notification Email is received & Email is sent when the order is shipped. & \\ \hline
+TC-016 & Complete order processing & Order confirmation message is displayed. & \\ \hline
+TC-017 & Order confirmation email is received & Email is sent after order is placed. & \\ \hline
+TC-018 & Shipment notification email is received & Email is sent when the order is shipped. & \\ \hline
 TC-019 & Toggle Dark/Light Theme & Application switches between themes successfully. & \\ \hline
-\end{longtable}
-
-\subsubsection{API Performance Testing (Backend Response Validation)}
-
-\renewcommand{\arraystretch}{1.3} % Adjust row height for better readability
-
-\begin{longtable}{|c|>{\raggedright}p{7.5cm}|p{5.5cm}|p{2cm}|}
-\hline
-\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
-\endfirsthead
-\hline
-\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
-\endhead
-API-001 & Fetch all products (`GET /products/`) & Returns a list of products with name, category, supplier, price, stock, and reorder level. & \\ \hline
-API-002 & Create a new product (`POST /products/`) & Successfully adds a product with details (name, category, supplier, price, etc.). & \\ \hline
-API-003 & Fetch a product by ID (`GET /products/\{id\}`) & Returns specific product details, including name, price, stock, and supplier info. & \\ \hline
-API-004 & Update a product (`PATCH /products/\{id\}`) & Updates product details such as price, stock, and description. & \\ \hline
-API-005 & Delete a product (`DELETE /products/\{id\}`) & Removes the product from the system and returns confirmation. & \\ \hline
-API-006 & Fetch all categories (`GET /categories/`) & Returns all available product categories. & \\ \hline
-API-007 & Fetch a category by ID (`GET /categories/\{id\}`) & Returns category details including name and description. & \\ \hline
-API-008 & Create a new category (`POST /categories/`) & Successfully adds a new category and returns its details. & \\ \hline
-API-009 & Update category (`PATCH /categories/\{id\}`) & Updates category details and returns confirmation. & \\ \hline
-API-010 & Fetch all orders (`GET /orders/`) & Returns a list of orders with customer details, order total, and tracking status. & \\ \hline
-API-011 & Create an order (`POST /orders/`) & Successfully places an order with customer info, payment method, and product list. & \\ \hline
-API-012 & Fetch all suppliers (`GET/suppliers/`) & Returns a list of suppliers with name, address, email, and phone. & \\ \hline
-API-013 & Fetch supplier by ID (`GET/suppliers/\{id\}`) & Returns supplier details including personal info and contact details. & \\ \hline
-API-014 & Create a new supplier (`POST/suppliers/`) & Successfully adds a supplier with name, address, and contact details. & \\ \hline
-API-015 & Update supplier details (`PATCH/suppliers/\{id\}`) & Updates supplier information and returns confirmation. & \\ \hline
-API-016 & Fetch stock details (`GET /stock/\{product\_id\}`) & Returns stock availability for a specific product. & \\ \hline
-API-017 & Update stock quantity (`PATCH/stock/\{product\_id\}`) & Updates stock levels and returns confirmation. & \\ \hline
-API-018 & Update order tracking status (`PATCH /tracking/\{order\_id\}`) & Updates order shipment status and returns updated tracking details. & \\ \hline
 \end{longtable}
 
 \subsection{Security Considerations}
@@ -454,23 +483,26 @@ API-018 & Update order tracking status (`PATCH /tracking/\{order\_id\}`) & Updat
 \section{Critical Analysis}
 \subsection{Cloud Service Evaluation}
 Cost-benefit analysis of selected Azure services
-
 \subsection{Architectural Decisions}
 Trade-off discussion between containerized vs serverless approaches
 
 \section{Repository Documentation}
 \subsection{GitHub Structure}
-\begin{itemize}
-    \item \textbf{Branching Strategy}  
-    The project follows a simple main branch strategy where all contributors work directly on the main branch. 
-    This ensures seamless integration without managing multiple branches.All changes should be committed with meaningful messages.  
+
+
+\begin{enumerate}
+    \item \textbf{Branching Strategy:} \newline 
+     The project follows a simple main branch strategy where all contributors work directly on the main branch.  
+    This ensures seamless integration without managing multiple branches. All changes should be committed with meaningful messages.  
     Code should be reviewed and tested before pushing to the main branch.
+\end{enumerate}
 
-    \item \textbf{CI/CD Pipeline Configuration}  
-    Continuous Integration and Continuous Deployment (CI/CD) is implemented to automate the software development lifecycle, ensuring that code changes are tested, built, and deployed efficiently.  
-
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item \textbf{Continuous Integration/Continuous Deployment:}  
     \begin{itemize}
-        \item **Continuous Integration (CI)**:  
+        \item \textbf{Continuous Integration (CI):}  
+        
         Every code commit triggers an automated build and testing process. This includes:
         \begin{itemize}
             \item Running unit tests to validate individual components.
@@ -478,17 +510,22 @@ Trade-off discussion between containerized vs serverless approaches
             \item Static code analysis for linting and security vulnerabilities.
         \end{itemize}
 
-        \item **Continuous Deployment (CD)**:  
+        \bigskip % Adds space before the next section
+        \item \textbf{Continuous Deployment (CD):}  
+        
         Once the CI stage passes successfully, the application is automatically deployed to the appropriate environment. This process includes:
         \begin{itemize}
             \item Deploying to a staging environment for final testing.
             \item Running automated acceptance tests before production deployment.
             \item Deploying to production with rollback mechanisms in case of failure.
         \end{itemize}
-        
-    \item Documentation standards
-\end{itemize}
-\end{itemize}
+
+        \bigskip % Adds space before the next section
+
+        \item \textbf{Documentation Standards}
+    \end{itemize}
+\end{enumerate}
+
 
 \subsection{Contribution Tracking}
 Commit history analysis and individual contribution breakdown
@@ -504,3 +541,4 @@ Potential improvements for production readiness
 
 \end{thebibliography}
 \end{document}
+
