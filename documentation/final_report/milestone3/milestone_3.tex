@@ -393,17 +393,84 @@ The Email Notification module sends emails to customers and administrators for v
 
 \subsubsection{Data-Tier (Database) - Databases}
 \paragraph{Technology Stack}
+\begin{itemize}   
+    \item PostgreSQL
+    \item SQLAlchemy ORM
+    \item Asyncio \& Asynchronous SQLAlchemy
+    \item Alembic
+    \item Azure Database for PostgreSQL
+\end{itemize}   
 \paragraph{Data bases}
 \begin{enumerate}
-    \item Product Data
+    \item Product Data\\
     \begin{itemize}
         \item Product
+        \begin{itemize}
+            \item Stores the core product information and links to categories, suppliers, and inventory.
+            \item Key Attributes:
+            \begin{itemize}
+                \item id: Unique product identifier (Primary Key).
+                \item name: Product name.
+                \item description: Product description.
+                \item category\_id: Foreign Key linking to the Categories table.
+                \item supplier\_id: Foreign Key linking to the Suppliers table.
+                \item stock\_id: Links to the Stock table for inventory tracking.
+                \item public\_unit\_price: Price displayed to customers.
+                \item supplier\_unit\_price: Price from the supplier (for internal calculations).
+                \item ean\_code: Unique product code for identification.
+                \item reorder\_level: Threshold for restocking.
+                \item img\_link: URL to the product image.
+                \item extra\_info: JSON field to store additional product attributes. \\
+            \end{itemize}
+        \end{itemize}
         \item Catagories
+        \begin{itemize}
+        \item This table categorizes products for better organization and searchability.
+        \item Key Attributes:
+        \begin{itemize}
+            \item id: Unique category identifier (Primary Key).
+            \item name: Product name.
+            \item description: Category description.
+            \item extra\_info: JSON field for additional metadata.\\
+        \end{itemize}
     \end{itemize}
-    \item Order Data
+    \end{itemize} 
+
+
+    \item Order Data\\
     \begin{itemize}
         \item Order 
+        \begin{itemize}
+            \item This table records general order details and customer information.
+            \item Key Attributes:
+            \begin{itemize}
+                \item id: Unique order identifier (Primary Key).
+                \item customer\_name: Name of the customer.
+                \item customer\_email: Customer's email address for notifications.
+                \item customer\_phone: Contact number.
+                \item order\_total: Total value of the order.
+                \item status: Enum representing the order state (e.g., ''active'', ''cancelled'').
+                \item tracking\_status: Enum tracking delivery progress (e.g., ''dispatched'', ''delivered'').
+                \item payment\_method: JSON field storing payment details (e.g., card type).
+                \item customer\_shipping\_info: JSON field for customer delivery address.
+                \item created\_at: Timestamp when the order was created.
+                \item updated\_at: Timestamp when the order was last updated.\\
+            \end{itemize}
+        \end{itemize}
         \item Order Details
+        \begin{itemize}
+            \item This table provides itemized details of each product within an order.
+            \item Key Attributes:
+            \begin{itemize}
+                \item id: Unique identifier for each order detail record (Primary Key).
+                \item order\_id: Foreign Key linking to the Orders table.
+                \item product\_id: Foreign Key linking to the Products table.
+                \item quantity: Number of units of the product ordered.
+                \item product\_price: Unit price at the time of the order.
+                \item subtotal: Calculated subtotal for the item.
+                
+            \end{itemize}
+        \end{itemize}
      \end{itemize}
     \item Inventory Data
     \begin{itemize}
