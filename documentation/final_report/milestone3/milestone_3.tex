@@ -496,12 +496,22 @@ The Email Notification module sends emails to customers and administrators for v
                 \item name: Supplier name.
                 \item address: Supplier’s physical address.
                 \item phone: Contact number.
-                \item email: Contact email address.
+                \item email: Contact email address.\\
                 
             \end{itemize}
         \end{itemize}
     \end{itemize}
-\end{enumerate}
+    \item  Database Migrations with Alembic \\
+    \begin{itemize}
+        \item It allows us to track database changes, apply updates to production, and roll back changes when needed.
+        \item Key Operations with Alembic:
+        \begin{itemize}
+            \item \textit{Schema Migration:} Automatically generates migration scripts to apply changes to the database (e.g., adding new fields to a table).
+            \item \textit{Version Control:} Each migration is versioned, allowing us to track and audit changes.
+            \item \textit{Rollback Support:} Provides the ability to downgrade to previous schema versions if issues arise.\\  
+        \end{itemize}
+    \end{itemize}
+    \end{enumerate}
 
 \subsection{Technology Stack}
 \begin{itemize}
