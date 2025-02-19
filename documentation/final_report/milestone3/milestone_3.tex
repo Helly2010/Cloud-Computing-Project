@@ -212,30 +212,206 @@ Detailed description of the three-tier structure with CSP service mapping
 \subsubsection{Presentation-Tier (Frontend) - User Interface (UI)}
 \paragraph{Technology Stack}
 \begin{itemize}
-    \item Frontend Framework
-    \item State Management
-    \item Communication with Backend
-    \item Hosting \& Deployment‚
+    \item Frontend Framework : React.js (JavaScript)
+    \item State Management : React Context API
+    \item Communication with Backend : FastAPI
+    \item Hosting \& Deployment : Azure Static Web Apps
  
 \end{itemize}
 
 \paragraph{component-based architecture}
 \begin{enumerate}
-    \item Navigation \& Routing
-    \item API Communication
-    \item Data Fetching
- 
+    \item Navigation \& Routing 
+    Users can easily navigate between different sections of application, such as viewing product lists, accessing product details, and managing their shopping cart. React Router enables seamless client-side navigation, keeping your app as a single-page application (SPA).
+    \begin{itemize}
+        \item React Router Setup 
+        \begin{itemize}
+            \item React Router (react-router-dom) to handle the routing of different components, allowing users to navigate through pages like the homepage (/), product detail pages (/product/:id), and potentially a shopping cart or checkout page.
+            \item For product detail pages, you're using dynamic routes with product/:id to fetch and display specific product data based on the product’s unique id. For instance:
+            \item When a user clicks on a product in the catalog, the URL changes to something like /product/123, and the ProductDetail component is rendered with data for product 123.
+            \item This is achieved using useNavigate and useParams hooks provided by React Router to capture the dynamic part of the URL.
+        \end{itemize}
+        
+        \item Navigation Links
+        \begin{itemize}
+            \item On the homepage (Home component), displaying a list of products. Each product has an image and name that users can click. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function.\\
+        \end{itemize}
+    \end{itemize}
+    \item API Communication 
+    \begin{itemize}
+        \item API communication in app is responsible for sending and receiving data from the backend server. This includes fetching product data to populate catalog, handling cart actions (adding or removing items), and processing payments during checkout.
+        \item The app communicates with the backend to update the cart whenever an item is added or removed. When a user clicks ``Add to Cart'' or ``Remove from Cart,'' an API call might be made to update the user's cart data on the server. This interaction is handled by \texttt{CartContext}, which uses \texttt{dispatch} to update the cart state and might also send a request to the backend to keep the cart in sync.
+        \item For payment, we use PayPal to securely handle credit card transactions. The app makes API calls to PayPal's backend to process the payment once the user submits their payment details.\\
+    \end{itemize}
+    \item Data Fetching \\
+    Data fetching refers to the process of retrieving data from external sources (your backend API) to populate app with dynamic information, such as product details, cart contents, and order history.
+    \begin{itemize}
+        \item The product data, which includes the list of products with details such as images, names, prices, and categories, is fetched when the homepage or product catalog page loads. This is done using useEffect to trigger an API call and update the state with the fetched data.
+    \end{itemize}
 \end{enumerate}
 \paragraph{Key Features of the UI}
     \begin{enumerate}
-        \item Product Catalog
-        \item Product Search and Filtering
-        \item Product Details Page
-        \item Shopping Cart
-        \item Checkout Process
+        \item UI Components \& Design \\
+        The UI components in your app are designed to provide an intuitive and engaging shopping experience. Each component serves a specific role, ensuring modularity, reusability, and maintainability.
+        \begin{itemize}
+            \item Key Features 
+            \begin{itemize}
+                \item Reusable Components: Components like SingleProduct.js, ProductDetail.js, and Cart.js ensure a structured and modular UI. 
+                \item Bootstrap Integration: react-bootstrap is used to style UI components such as Card, Button, and Container, ensuring a consistent and responsive design.
+                \item Dark \& Light Theme Support: A theme context (ThemeContextProvider) dynamically adjusts UI styles based on user preference.\\
+            \end{itemize}
+        \end{itemize}
+
+        \item Product Display \& Interaction \\
+        The UI effectively displays products with details, allowing users to browse, select, and view product specifications before making a purchase.
+            \begin{itemize}
+                \item Key Features 
+                \begin{itemize}
+                    \item Product Catalog: Displays a grid of available products with images, names, and prices.
+                    \item Product Cards (SingleProduct.js):
+                    \begin{itemize}
+                        \item Clickable product images navigate to the product details page.
+                        \item Shows product information such as name, category, description, and price.
+                        \item ``Add to Cart'' and ''Remove from Cart'' buttons enable quick cart management.
+                    \end{itemize}
+                    \item Product Details Page (ProductDetail.js):
+                    \begin{itemize}
+                        \item Displays full product details, including stock availability.
+                        \item Users can add/remove items from the cart.\\
+    
+                    \end{itemize}
+                \end{itemize}
+            \end{itemize}
+
+        \item Shopping Cart UI \& Checkout\\
+        The cart and checkout sections provide an intuitive way for users to review their selected products, manage quantities, and complete purchases.
+            \begin{itemize}
+                \item Key Features 
+                \begin{itemize}
+                    \item Cart UI (Cart.js)
+                    \begin{itemize}
+                        \item Displays a list of selected products with prices and a ''Remove from Cart'' button.
+                        \item Updates total price dynamically based on the cart's contents.
+                        \item Navigates users to checkout when ready.
+                    \end{itemize}
+                    \item Checkout UI (CheckoutForm.js)
+                    \begin{itemize}
+                        \item Collects user details (name, email).
+                        \item Integrates Stripe and PayPal for secure payment processing.
+                        \item Uses emailjs to send order confirmation emails.
+                        \item Displays success messages with reference numbers for placed orders.\\
+                    \end{itemize}
+                \end{itemize}
+            \end{itemize}
+
+        \item Notifications\\
+        Notifications is crucial to enhancing the shopping experience. The app uses toast notifications and error messages to keep users informed.
+            \begin{itemize}
+                \item Key Features 
+                \begin{itemize}
+                    \item Toast Notifications (react-toastify)
+                    \begin{itemize}
+                        \item Displays success messages when products are added/removed from the cart.
+                        \item Shows error messages if something goes wrong (e.g., out-of-stock products, payment failures).\\
+                    \end{itemize}
+                \end{itemize}
+            \end{itemize}
     \end{enumerate}
+    
 \subsubsection{Application-Tier (Backend) - Business Logic}
+\paragraph{Technology Stack}
+    \begin{itemize}
+        \item FastAPI
+        \item SQLAlchemy with PostgreSQL
+        \item Asyncio
+    \end{itemize}
+
+\paragraph{Product Management} \leavevmode
+
+The Product Management module handles the lifecycle of products in the system. This includes operations for adding new products, updating product details, and retrieving product information. The core business logic ensures that products are categorized correctly, their stock levels are managed, and prices are updated as needed.
+    \begin{itemize}
+        \item Key Operations:
+        \begin{itemize}
+        \item Add, update, and delete products.
+        \item Manage product details such as descriptions, prices, and categories.
+        \item Track stock availability and reorder levels.
+        \item Calculate the public unit price and manage suppliers' pricing.
+        \end{itemize}   
+    \end{itemize}
+
+\paragraph{Order Management} \leavevmode
+
+The Order Management module manages customer orders, from order creation to order completion. It tracks the order status and ensures that orders are processed correctly, including payment validation, stock management, and shipping.
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}
+    \item Create and update orders with customer and product information.
+    \item Monitor order statuses (e.g., processing, dispatched, delivered).
+    \item Validate inventory and ensure product availability during order processing.
+    \item Handle refunds, cancellations, and partial shipments.
+    \end{itemize}   
+\end{itemize}
+
+\paragraph{Payment Processing} \leavevmode
+
+The Payment Processing module integrates with third-party payment gateways (e.g., Stripe) to securely process customer payments. This module validates payment details, checks for fraud, and ensures payment is successfully processed before confirming orders.
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}
+    \item Process payments securely through APIs like Stripe and PayPal.
+    \item Validate payment information (e.g., credit card details).
+    \item Handle refunds, cancellations, and partial shipments.
+    \end{itemize}   
+\end{itemize}
+
+\paragraph{Inventery Management} \leavevmode
+
+The Inventory Management module tracks the stock levels of all products, ensuring that inventory is updated in real-time based on orders placed and products received from suppliers. It also tracks reorder levels and alerts the system to restock low inventory.
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}   
+        \item Monitor and update product stock levels after each sale.
+        \item Track the supplier’s stock and delivery lead times.
+        \item Generate reports on product availability, low-stock items, and reorder recommendations.
+    \end{itemize}   
+\end{itemize}
+    
+
+
+\paragraph{Email Notification} \leavevmode
+
+The Email Notification module sends emails to customers and administrators for various events in the system, such as order confirmations, shipment tracking updates, and payment status notifications. It integrates with FastMail to send HTML-formatted emails with dynamic content.
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}   
+        \item Send order confirmation emails to customers.
+        \item Notify customers of order status updates, such as dispatched or delivered.
+        \item Alert administrators of low stock levels and other system alerts.
+        \item Provide a user-friendly email template system for various types of notifications.
+    \end{itemize}   
+\end{itemize}
+
 \subsubsection{Data-Tier (Database) - Databases}
+\paragraph{Technology Stack}
+\paragraph{Data bases}
+\begin{enumerate}
+    \item Product Data
+    \begin{itemize}
+        \item Product
+        \item Catagories
+    \end{itemize}
+    \item Order Data
+    \begin{itemize}
+        \item Order 
+        \item Order Details
+     \end{itemize}
+    \item Inventory Data
+    \begin{itemize}
+        \item Stocks 
+        \item suppliers
+    \end{itemize}
+\end{enumerate}
+
 \subsection{Technology Stack}
 \begin{itemize}
     \item Frontend: 
