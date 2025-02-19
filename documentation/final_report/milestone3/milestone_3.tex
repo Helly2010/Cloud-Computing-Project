@@ -171,6 +171,31 @@ To address these challenges, a private cloud migration strategy was adopted, foc
 
 \subsection{Objectives of the Cloud Implementation of Webshop}
 
+The Webshop is a critical component for LowTech GmbH, serving as the company’s primary sales platform. The goal of its cloud implementation is to enhance performance, scalability, and security, ensuring a seamless user experience.
+
+Key objectives for the Webshop's cloud-based deployment include:
+
+\begin{itemize}
+    \item \textbf{Scalability and Performance Optimization:}  
+    The Webshop is deployed on Azure App Service with auto-scaling capabilities, enabling efficient traffic handling during peak periods. A load balancer ensures even traffic distribution across multiple instances.
+    \bigskip % Adds space before the next section
+    \item \textbf{High Availability and Reliability:}  
+    Azure Virtual Machine Scale Sets provide fault tolerance with automatic failover. Azure Blob Storage is used to securely store digital assets with high availability.
+    \bigskip % Adds space before the next section
+    \item \textbf{Security and Compliance:}  
+    The Webshop integrates with Microsoft Entra ID for user authentication and Azure Security Center for enhanced threat protection. Encryption and Role-Based Access Control (RBAC) are employed to safeguard sensitive customer data.
+    \bigskip % Adds space before the next section
+    \item \textbf{Continuous Deployment and DevOps Automation:}  
+    A CI/CD pipeline powered by GitHub Actions automates code deployments, improving deployment speed and reducing manual intervention.
+    \bigskip % Adds space before the next section
+    \item \textbf{Cost Efficiency and Resource Optimization:}  
+    The dynamic allocation of resources optimizes compute and storage usage, reducing operational expenses. Azure’s pay-as-you-go model aids in cost forecasting and budget management.
+    \bigskip % Adds space before the next section
+    \item \textbf{Future-Proofing and Cloud-Native Development:}  
+    The Webshop follows cloud-native best practices, utilizing Docker containers for portability and Azure Kubernetes Service (AKS) for container orchestration, positioning the Webshop for seamless integration with future cloud services.
+\end{itemize}
+
+These objectives ensure that the Webshop is scalable, secure, and cost-effective, delivering a fast and reliable shopping experience while adapting to the evolving needs of the business.
 
 \section{Application Design}
 \subsection{Architectural Overview}
