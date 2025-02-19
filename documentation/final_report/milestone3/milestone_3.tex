@@ -62,7 +62,7 @@
  /Author (Hellyben Bhaveshkumar Shah)
  /Author (Heer Rakeshkumar Vankawala)
  /Author (Priyanka Dilipbhai Vadiwala)
- /Title  (LowTech GMBH Techincal Transformation Milestone 3)
+ /Title  (LowTech GmbH Techincal Transformation Milestone 3)
  /Subject (Cloud Computing)
  /Keywords (Cloud Computing, Technical Transformation, Migration)
 }
@@ -144,16 +144,16 @@
 
 \begin{abstract}
 
-    LowTech GmbH Cloud Transformation Project, building upon the previous analyses and migration strategies. In this phase, 
-    the focus is on optimizing cloud operations, performance monitoring, and cost efficiency after the transition to Microsoft
-    Azure. The objective is to ensure the system reliability, security, and scalability while fine-tuning the deployed infrastructure.
-    The report outlines key post-migration strategies, including performance assessment, security enhancements, and cost analysis. 
-    It introduce automation techniques using tools like Terraform and Ansible for infrastructure management and GitHub Actions for 
-    continuous integration and deployment (CI/CD). Special attention is given to monitoring solutions like Azure Monitor and Prometheus
-    to track system performance and detect potential issues in real time. Furthermore, we evaluate cloud cost management techniques by 
-    analyzing usage patterns and identifying areas for optimization.The report also discusses future scalability strategies,
-    ensuring that LowTech GmbH is well-equipped to handle growing business demands.This phase serves as the foundation for long-term 
-    cloud sustainability, enabling the company to leverage cloud-native solutions efficiently while maintaining operational resilience.
+    LowTech GmbH Cloud Transformation Project, building upon the previous analyses and migration strategies. In this phase,
+the focus is on optimizing cloud operations, performance monitoring, and cost efficiency after the transition to Microsoft
+Azure. The objective is to ensure system reliability, security, and scalability while fine-tuning the deployed infrastructure.
+The report outlines key post-migration strategies, including performance assessment, security enhancements, and cost analysis.
+It introduces automation techniques using tools like Terraform and Ansible for infrastructure management and GitHub Actions for
+continuous integration and deployment (CI/CD). Special attention is given to monitoring solutions like Azure Monitor and Prometheus
+to track system performance and detect potential issues in real time. Furthermore, we evaluate cloud cost management techniques by
+analyzing usage patterns and identifying areas for optimization. The report also discusses future scalability strategies,
+ensuring that LowTech GmbH is well-equipped to handle growing business demands. This phase serves as the foundation for long-term
+cloud sustainability, enabling the company to leverage cloud-native solutions efficiently while maintaining operational resilience.
 
 \end{abstract}
 
@@ -179,7 +179,7 @@ Detailed description of the three-tier structure with CSP service mapping
 
 \paragraph{component-based architecture}
 \begin{enumerate}
-    \item Navigation \& Routing \\
+    \item Navigation \& Routing 
     Users can easily navigate between different sections of application, such as viewing product lists, accessing product details, and managing their shopping cart. React Router enables seamless client-side navigation, keeping your app as a single-page application (SPA).
     \begin{itemize}
         \item React Router Setup 
@@ -189,32 +189,165 @@ Detailed description of the three-tier structure with CSP service mapping
             \item When a user clicks on a product in the catalog, the URL changes to something like /product/123, and the ProductDetail component is rendered with data for product 123.
             \item This is achieved using useNavigate and useParams hooks provided by React Router to capture the dynamic part of the URL.
         \end{itemize}
-        \ 
+        
         \item Navigation Links
         \begin{itemize}
-            \item On the homepage (Home component), displaying a list of products. Each product has an image and name that users can click. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function.
+            \item On the homepage (Home component), displaying a list of products. Each product has an image and name that users can click. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function.\\
         \end{itemize}
-            \item API Communication \\
-            API communication in app is responsible for sending and receiving data from the backend server. This includes fetching product data to populate catalog, handling cart actions (adding/removing items), and processing payments during checkout.
-        \item Data Fetching
     \end{itemize}
- 
+    \item API Communication 
+    \begin{itemize}
+        \item API communication in app is responsible for sending and receiving data from the backend server. This includes fetching product data to populate catalog, handling cart actions (adding or removing items), and processing payments during checkout.
+        \item The app communicates with the backend to update the cart whenever an item is added or removed. When a user clicks ``Add to Cart'' or ``Remove from Cart,'' an API call might be made to update the user's cart data on the server. This interaction is handled by \texttt{CartContext}, which uses \texttt{dispatch} to update the cart state and might also send a request to the backend to keep the cart in sync.
+        \item For payment, we use PayPal to securely handle credit card transactions. The app makes API calls to PayPal's backend to process the payment once the user submits their payment details.\\
+    \end{itemize}
+    \item Data Fetching \\
+    Data fetching refers to the process of retrieving data from external sources (your backend API) to populate app with dynamic information, such as product details, cart contents, and order history.
+    \begin{itemize}
+        \item The product data, which includes the list of products with details such as images, names, prices, and categories, is fetched when the homepage or product catalog page loads. This is done using useEffect to trigger an API call and update the state with the fetched data.
+    \end{itemize}
 \end{enumerate}
 \paragraph{Key Features of the UI}
     \begin{enumerate}
-        \item Product Catalog
-        \item Product Search and Filtering
-        \item Product Details Page
-        \item Shopping Cart
-        \item Checkout Process
+        \item UI Components \& Design \\
+        The UI components in your app are designed to provide an intuitive and engaging shopping experience. Each component serves a specific role, ensuring modularity, reusability, and maintainability.
+        \begin{itemize}
+            \item Key Features 
+            \begin{itemize}
+                \item Reusable Components: Components like SingleProduct.js, ProductDetail.js, and Cart.js ensure a structured and modular UI. 
+                \item Bootstrap Integration: react-bootstrap is used to style UI components such as Card, Button, and Container, ensuring a consistent and responsive design.
+                \item Dark \& Light Theme Support: A theme context (ThemeContextProvider) dynamically adjusts UI styles based on user preference.\\
+            \end{itemize}
+        \end{itemize}
+
+        \item Product Display \& Interaction \\
+        The UI effectively displays products with details, allowing users to browse, select, and view product specifications before making a purchase.
+            \begin{itemize}
+                \item Key Features 
+                \begin{itemize}
+                    \item Product Catalog: Displays a grid of available products with images, names, and prices.
+                    \item Product Cards (SingleProduct.js):
+                    \begin{itemize}
+                        \item Clickable product images navigate to the product details page.
+                        \item Shows product information such as name, category, description, and price.
+                        \item ``Add to Cart'' and ''Remove from Cart'' buttons enable quick cart management.
+                    \end{itemize}
+                    \item Product Details Page (ProductDetail.js):
+                    \begin{itemize}
+                        \item Displays full product details, including stock availability.
+                        \item Users can add/remove items from the cart.\\
+    
+                    \end{itemize}
+                \end{itemize}
+            \end{itemize}
+
+        \item Shopping Cart UI \& Checkout\\
+        The cart and checkout sections provide an intuitive way for users to review their selected products, manage quantities, and complete purchases.
+            \begin{itemize}
+                \item Key Features 
+                \begin{itemize}
+                    \item Cart UI (Cart.js)
+                    \begin{itemize}
+                        \item Displays a list of selected products with prices and a ''Remove from Cart'' button.
+                        \item Updates total price dynamically based on the cart's contents.
+                        \item Navigates users to checkout when ready.
+                    \end{itemize}
+                    \item Checkout UI (CheckoutForm.js)
+                    \begin{itemize}
+                        \item Collects user details (name, email).
+                        \item Integrates Stripe and PayPal for secure payment processing.
+                        \item Uses emailjs to send order confirmation emails.
+                        \item Displays success messages with reference numbers for placed orders.\\
+                    \end{itemize}
+                \end{itemize}
+            \end{itemize}
+
+        \item Notifications\\
+        Notifications is crucial to enhancing the shopping experience. The app uses toast notifications and error messages to keep users informed.
+            \begin{itemize}
+                \item Key Features 
+                \begin{itemize}
+                    \item Toast Notifications (react-toastify)
+                    \begin{itemize}
+                        \item Displays success messages when products are added/removed from the cart.
+                        \item Shows error messages if something goes wrong (e.g., out-of-stock products, payment failures).\\
+                    \end{itemize}
+                \end{itemize}
+            \end{itemize}
     \end{enumerate}
+    
 \subsubsection{Application-Tier (Backend) - Business Logic}
 \paragraph{Technology Stack}
-\paragraph{Product Management}
-\paragraph{Order Management}
-\paragraph{Payment Processing}
-\paragraph{Inventery Management}
-\paragraph{Email Notification}
+    \begin{itemize}
+        \item FastAPI
+        \item SQLAlchemy with PostgreSQL
+        \item Asyncio
+    \end{itemize}
+
+\paragraph{Product Management} \leavevmode
+
+The Product Management module handles the lifecycle of products in the system. This includes operations for adding new products, updating product details, and retrieving product information. The core business logic ensures that products are categorized correctly, their stock levels are managed, and prices are updated as needed.
+    \begin{itemize}
+        \item Key Operations:
+        \begin{itemize}
+        \item Add, update, and delete products.
+        \item Manage product details such as descriptions, prices, and categories.
+        \item Track stock availability and reorder levels.
+        \item Calculate the public unit price and manage suppliers' pricing.
+        \end{itemize}   
+    \end{itemize}
+
+\paragraph{Order Management} \leavevmode
+
+The Order Management module manages customer orders, from order creation to order completion. It tracks the order status and ensures that orders are processed correctly, including payment validation, stock management, and shipping.
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}
+    \item Create and update orders with customer and product information.
+    \item Monitor order statuses (e.g., processing, dispatched, delivered).
+    \item Validate inventory and ensure product availability during order processing.
+    \item Handle refunds, cancellations, and partial shipments.
+    \end{itemize}   
+\end{itemize}
+
+\paragraph{Payment Processing} \leavevmode
+
+The Payment Processing module integrates with third-party payment gateways (e.g., Stripe) to securely process customer payments. This module validates payment details, checks for fraud, and ensures payment is successfully processed before confirming orders.
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}
+    \item Process payments securely through APIs like Stripe and PayPal.
+    \item Validate payment information (e.g., credit card details).
+    \item Handle refunds, cancellations, and partial shipments.
+    \end{itemize}   
+\end{itemize}
+
+\paragraph{Inventery Management} \leavevmode
+
+The Inventory Management module tracks the stock levels of all products, ensuring that inventory is updated in real-time based on orders placed and products received from suppliers. It also tracks reorder levels and alerts the system to restock low inventory.
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}   
+        \item Monitor and update product stock levels after each sale.
+        \item Track the supplier’s stock and delivery lead times.
+        \item Generate reports on product availability, low-stock items, and reorder recommendations.
+    \end{itemize}   
+\end{itemize}
+    
+
+
+\paragraph{Email Notification} \leavevmode
+
+The Email Notification module sends emails to customers and administrators for various events in the system, such as order confirmations, shipment tracking updates, and payment status notifications. It integrates with FastMail to send HTML-formatted emails with dynamic content.
+\begin{itemize}
+    \item Key Operations:
+    \begin{itemize}   
+        \item Send order confirmation emails to customers.
+        \item Notify customers of order status updates, such as dispatched or delivered.
+        \item Alert administrators of low stock levels and other system alerts.
+        \item Provide a user-friendly email template system for various types of notifications.
+    \end{itemize}   
+\end{itemize}
 
 \subsubsection{Data-Tier (Database) - Databases}
 \paragraph{Technology Stack}
@@ -270,7 +403,9 @@ Step-by-step account configuration and resource provisioning
 
 \subsubsection{Functional Test Cases}
 
-\begin{longtable}{|c|p{4.5cm}|p{4.5cm}|c|}
+\renewcommand{\arraystretch}{1.3} % Adjust row height for better readability
+
+\begin{longtable}{|c|>{\raggedright}p{6cm}|p{7cm}|p{2cm}|}
 \hline
 \textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
 \endfirsthead
@@ -278,24 +413,55 @@ Step-by-step account configuration and resource provisioning
 \textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
 \endhead
 TC-001 & Load homepage and verify product listing & Homepage loads with products displayed correctly. & \\ \hline
-TC-002 & Apply price filter (Ascending/Descending) & Products reorder correctly based on selected price. & \\ \hline
-TC-003 & Apply "Out of Stock" filter & Only out-of-stock items are displayed. & \\ \hline
-TC-004 & Apply "Fast Delivery" filter & Only products eligible for fast delivery show up. & \\ \hline
-TC-005 & Filter by category & Products are filtered correctly by selected category. & \\ \hline
-TC-006 & Search product by name or category & Products matching search are shown correctly. & \\ \hline
-TC-007 & Clear filter functionality & All filters are removed, showing the full product list. & \\ \hline
+TC-002 & Apply Price Filter (Ascending/Descending) & Products reorder correctly based on selected price. & \\ \hline
+TC-003 & Apply Out of Stock Filter & Only out-of-stock items are displayed. & \\ \hline
+TC-004 & Apply Fast Delivery Filter & Only products eligible for fast delivery show up. & \\ \hline
+TC-005 & Filter by Category & Products are filtered correctly by selected category. & \\ \hline
+TC-006 & Search Product by Name or Category & Products matching search are shown correctly. & \\ \hline
+TC-007 & Clear Filter functionality & All filters are removed, showing the full product list. & \\ \hline
 TC-008 & Product Detail Page - Click Product & Clicking a product opens its detailed page. & \\ \hline
-TC-009 & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & \\ \hline
-TC-010 & Add a product to cart & Product appears in cart with correct details. & \\ \hline
-TC-011 & Increase product quantity in cart & Quantity updates and is reflected in the cart. & \\ \hline
+TC-009 & Product Detail Page - Load Product Details & Product Details (name, description, price) are displayed. & \\ \hline
+TC-010 & Add a Product to Cart & Product appears in cart with correct details. & \\ \hline
+TC-011 & Increase Product Quantity in Cart & Quantity updates and is reflected in the cart. & \\ \hline
 TC-012 & Remove product from cart & Product is removed from the cart immediately. & \\ \hline
 TC-013 & Proceed to checkout & Checkout page loads with the correct order summary. & \\ \hline
 TC-014 & Select payment method - Stripe & Stripe payment option is selected and processed. & \\ \hline
 TC-015 & Select payment method - PayPal & PayPal payment option is selected and processed. & \\ \hline
-TC-016 & Complete order processing & Order confirmation message is displayed. & \\ \hline
-TC-017 & Order confirmation email is received & Email is sent after order is placed. & \\ \hline
-TC-018 & Shipment notification email is received & Email is sent when the order is shipped. & \\ \hline
+TC-016 & Complete Order Processing & Order confirmation message is displayed. & \\ \hline
+TC-017 & Order Confirmation Email is received & Email is sent after order is placed. & \\ \hline
+TC-018 & Shipment Notification Email is received & Email is sent when the order is shipped. & \\ \hline
 TC-019 & Toggle Dark/Light Theme & Application switches between themes successfully. & \\ \hline
+\end{longtable}
+
+\subsubsection{API Performance Testing (Backend Response Validation)}
+
+\renewcommand{\arraystretch}{1.3} % Adjust row height for better readability
+
+\begin{longtable}{|c|>{\raggedright}p{7.5cm}|p{5.5cm}|p{2cm}|}
+\hline
+\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
+\endfirsthead
+\hline
+\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
+\endhead
+API-001 & Fetch all products (`GET /products/`) & Returns a list of products with name, category, supplier, price, stock, and reorder level. & \\ \hline
+API-002 & Create a new product (`POST /products/`) & Successfully adds a product with details (name, category, supplier, price, etc.). & \\ \hline
+API-003 & Fetch a product by ID (`GET /products/\{id\}`) & Returns specific product details, including name, price, stock, and supplier info. & \\ \hline
+API-004 & Update a product (`PATCH /products/\{id\}`) & Updates product details such as price, stock, and description. & \\ \hline
+API-005 & Delete a product (`DELETE /products/\{id\}`) & Removes the product from the system and returns confirmation. & \\ \hline
+API-006 & Fetch all categories (`GET /categories/`) & Returns all available product categories. & \\ \hline
+API-007 & Fetch a category by ID (`GET /categories/\{id\}`) & Returns category details including name and description. & \\ \hline
+API-008 & Create a new category (`POST /categories/`) & Successfully adds a new category and returns its details. & \\ \hline
+API-009 & Update category (`PATCH /categories/\{id\}`) & Updates category details and returns confirmation. & \\ \hline
+API-010 & Fetch all orders (`GET /orders/`) & Returns a list of orders with customer details, order total, and tracking status. & \\ \hline
+API-011 & Create an order (`POST /orders/`) & Successfully places an order with customer info, payment method, and product list. & \\ \hline
+API-012 & Fetch all suppliers (`GET/suppliers/`) & Returns a list of suppliers with name, address, email, and phone. & \\ \hline
+API-013 & Fetch supplier by ID (`GET/suppliers/\{id\}`) & Returns supplier details including personal info and contact details. & \\ \hline
+API-014 & Create a new supplier (`POST/suppliers/`) & Successfully adds a supplier with name, address, and contact details. & \\ \hline
+API-015 & Update supplier details (`PATCH/suppliers/\{id\}`) & Updates supplier information and returns confirmation. & \\ \hline
+API-016 & Fetch stock details (`GET /stock/\{product\_id\}`) & Returns stock availability for a specific product. & \\ \hline
+API-017 & Update stock quantity (`PATCH/stock/\{product\_id\}`) & Updates stock levels and returns confirmation. & \\ \hline
+API-018 & Update order tracking status (`PATCH /tracking/\{order\_id\}`) & Updates order shipment status and returns updated tracking details. & \\ \hline
 \end{longtable}
 
 \subsection{Security Considerations}
