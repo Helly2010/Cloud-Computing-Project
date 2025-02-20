@@ -4,7 +4,6 @@ import Filters from "./Filters";
 import SingleProduct from "./SingleProduct";
 import { fetchCategories } from "../services/api/categories";
 import { fetchProducts } from "../services/api/products";
-import { toast } from "react-toastify";
 import "./styles.css";
 
 const Home = () => {

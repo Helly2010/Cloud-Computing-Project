@@ -19,3 +19,8 @@ resource "azurerm_postgresql_flexible_server" "postgresql_db" {
 
 
 }
+
+
+output "db_url" {
+  value = azurerm_postgresql_flexible_server.postgresql_db.fqdn
+}

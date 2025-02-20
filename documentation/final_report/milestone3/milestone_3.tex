@@ -140,22 +140,21 @@
 
 \maketitle              % typeset the title of the contribution
 
+\begin{abstract}
+    This report presents a summary of all the planification and execution of the LowTech GmbH Cloud Transformation Project.
+    The final objective is to develop a proof of concept of the proposed infrastructure of a Cloud Native application, in this case,
+    the Webshop. As detailed in milestone 2 the application will be hosted in Microsoft Azure. This report also discusses the advantages
+    in system reliability, security, and scalability offered by the proposed approach.
+    Moreover, we include a detailed description of the development techniques using tools like Terraform for infrastructure management and GitHub Actions for
+    continuous integration and deployment (CI/CD). Special attention is given to the advantages in development time and repeatability of such tools and techniques.
+    Furthermore, we evaluate the cost of the overall infrastructure identifying areas for optimization.
+    The report also discusses future scalability strategies, ensuring that the application can handle different types of loads and it actually makes sense in a cloud environment
+    Finally, the report provides a summary on the lessons learned and interesting findings while using the tools and techniques mentioned.
 
-\section*{Abstract}
-
-LowTech GmbH Cloud Transformation Project, building upon the previous analyses and migration strategies. In this phase,  
-the focus is on optimizing cloud operations, performance monitoring, and cost efficiency after the transition to Microsoft  
-Azure. The objective is to ensure system reliability, security, and scalability while fine-tuning the deployed infrastructure.  
-The report outlines key post-migration strategies, including performance assessment, security enhancements, and cost analysis.  
-It introduces automation techniques using tools like Terraform and Ansible for infrastructure management and GitHub Actions for  
-continuous integration and deployment (CI/CD). Special attention is given to monitoring solutions like Azure Monitor and Prometheus  
-to track system performance and detect potential issues in real time.  Furthermore, we evaluate cloud cost management techniques by analyzing usage patterns and identifying areas for optimization.  
-The report also discusses future scalability strategies, ensuring that LowTech GmbH is well-equipped to handle growing business demands.  
-This phase serves as the foundation for long-term cloud sustainability, enabling the company to leverage cloud-native solutions efficiently  
-while maintaining operational resilience.  
+\end{abstract}
 
 \section{Introduction}
-\subsection{Overview of the Project}
+
 LowTech GmbH, a medium-sized enterprise specializing in wooden furniture production, is modernizing its IT infrastructure as part of a comprehensive cloud transformation. Initially relying on traditional on-premises systems, the company faced challenges in scalability, security, and operational efficiency.
 
 The transformation began with a thorough assessment of the existing infrastructure, which revealed the following key challenges:
@@ -166,16 +165,183 @@ The transformation began with a thorough assessment of the existing infrastructu
     \item Lack of automation, requiring manual interventions for maintenance and scaling.
 \end{itemize}
 
-To address these challenges, a private cloud migration strategy was adopted, focusing on hyper-converged infrastructure (HCI) and virtualization using Proxmox and Ansible. The aim was to improve scalability, security, and cost-efficiency while ensuring minimal downtime and business continuity.
-The company transitioned its IT ecosystem to Microsoft Azure, leveraging a hybrid cloud architecture that integrates Azure IaaS, PaaS, and SaaS solutions. Key steps in the migration included:
+To address these challenges, a private cloud migration strategy was adopted. The aim was to improve scalability, security, and cost-efficiency while ensuring minimal downtime and business continuity.
+The company transitioned its Webshop as a cloud native application to Microsoft Azure. 
+
+\subsection{Overview of the Previous Milestones}
+
+\subsubsection{Starting point}
+LowTech GmbH, a small to medium-sized enterprise with 45 employees specializing in wooden furniture production, is facing a critical need for technological transformation.
+Initially relying on sales representatives, the company transitioned to an online store a few years ago, which has now become their primary selling platform.
+This shift has led to a significant increase in user numbers over the past two years, necessitating a modernization of their IT infrastructure.
+The CEO of LowTech GmbH, recognizing the need for modernization, has expressed interest in cloud computing to make the company future-ready.
+\subsubsection{Milestone 1:}
+
+The objective of the technological transformation for LowTech GmbH is to modernize its server and application infrastructure by migrating to a private cloud environment.
+This initiative aims to create a scalable, secure, and efficient IT framework that aligns with the company's growing needs, particularly in response to increased online sales and user traffic.
+By adopting a private cloud strategy, LowTech GmbH will retain control over its data while outsourcing hardware maintenance to a third-party provider.
+This transition will involve leveraging newer technologies to enhance performance and availability, ensuring compliance with security standards, and reducing operational costs.
+Ultimately, the transformation seeks to provide a future-ready infrastructure that supports the company's evolving business model and operational requirements.
+\paragraph{}
+This was our assessment of the original infrastructure:
+\subsubsection*{Scalability}
 \begin{itemize}
-    \item Migrating critical business applications such as Finance, HR, Operations, Webshop, and Warehouse.
-    \item Implementing DevOps pipelines using GitHub Actions for automated deployments.
-    \item Enhancing monitoring capabilities through Azure Monitor and Prometheus.
-    \item Optimizing cloud costs through resource scaling and usage analysis.
+    \item \textbf{Fixed Hardware \& Inflexible Infrastructure}:
+          \\
+          Current infrastructure consists of 7 on-premises servers housed in a single 19-inch rack,
+          along with 17 clients and 19 laptops all with predetermined, static configurations.
+          Moreover, the physical constraints of the on-premises setup, with no additional space for expansion, severely limit scaling options.
+          This inflexibility makes it challenging to accommodate growth or adapt to changing business needs.
+          \\
+    \item \textbf{Absence of Resource Utilization/pooling}:
+          \\
+          There's no apparent way to quickly scale resources up or down based on demand or user traffic fluctuation in the current infrastructure.
+          Each application typically runs on a dedicated server with fixed resources.
+          This approach leads to inefficient resource utilization, as some servers may be underutilized while others are overloaded which may lead to performance issues during peak times or resource waste during low-demand periods due to no dynamic resource allocation.
+          \\
+    \item \textbf{Manual Processes \& High Cost}:
+          \\
+          Any changes in capacity would likely require manual hardware upgrades or replacements including hardware installation,
+          and configuration, making the process time-consuming and potentially leading to downtime.
+          Replacement of hardware is not only tedious but also financially burdensome due to high costs of new hardware.
+
 \end{itemize}
 
-This strategic approach positions LowTech GmbH to adapt to business growth, enhance security, and optimize costs, all while leveraging cloud-native services for long-term sustainability.
+\subsubsection*{Availability}
+\begin{itemize}
+    \item \textbf{Obsolete Hardware/OS \& Runtime Environments}:
+          \\
+          Many components of the current infrastructure is based on very old hardware and outdated operating systems such as
+          Windows XP SP3 (Finance clients), Windows 7 SP3 (HR clients and Customer Service laptops), Debian 5.0 Lenny (Warehouse clients and server),
+          Ubuntu 16.04 LTS (Sales CRM Storage server) etc. Several applications are running on outdated software versions such as Java 1.7/1.8,
+          MySQL 5.5/5.7, PHP 5.3 and Firefox 3.6 etc. which makes this whole infrastructure more susceptible to failure.
+          \\
+    \item \textbf{Lack of Redundancy and Backup Mechanism}:
+          \\
+          There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
+          \\
+    \item \textbf{Manual Maintainance}:
+          \\It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations.
+          This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
+          \\
+\end{itemize}
+
+\subsubsection*{Security}
+\begin{itemize}
+    \item \textbf{Basic Windows Firewall}:
+          \\
+          It provides minimal outward traffic control, which may allow malware to interact easily.
+          Without additional tools, centralized administration is impossible to maintain consistent security rules across all 36 client devices (17 clients and 19 laptops).
+          It lacks advanced threat protection features, leaving the system vulnerable to sophisticated attacks.
+          \\
+    \item \textbf{pfSense for Network Packet Filtering}:
+          \\
+          There are no built-in antivirus features, which could let malicious payloads get through. Its effectiveness heavily relies on proper configuration, which may be challenging without dedicated IT staff.
+          Moreover, advanced intrusion detection requires additional setup and maintenance.
+          \\
+
+\end{itemize}
+
+As detailed in the analysis the infrastructure was becoming quite expensive and inefficient given the company objectives.
+
+\subsubsection*{Plan and execution based on the original requirements:}
+
+This milestone resulted in a migration and optimization plan for the entire infrastructure:
+\begin{itemize}
+
+    \item  Talk with server space providers, we need to stablish a contract and negotiate price and SLOs based on the server requirements
+    \item Gather all the installation information, binaries, licenses and documentation for all applications.
+    \item Configure a development environment to upload all artifacts such as configuration files and container images.
+    \item Create Ansible configuration files for each application, to automate the installation and replication process.
+    \item Develop scripts to automate application functionality and load testing. To determine if the configurations will be on par or better than the current infrastructure.
+    \item Provision and install the private cloud management software, including the networking configuration
+    \item Configure the storage
+    \item Create the virtual machines for the base hosts
+    \item Configure Prometheus to monitor the virtual machine installations
+    \item Establish the network links between the different virtual domains
+    \item Install all database servers
+    \item Develop a migration process to replicate the current data into the new database servers.
+    \item Review that data is up to parity with the legacy services
+    \item Create a proxy getaway for the services, so we can redirect the traffic from the old services to the new ones.
+    \item Deploy the new applications into the private cloud
+    \item Check that the data replication is working
+    \item Prepare the load shifting in sequence, and off hours
+    \item Shift load in sequence, starting from the most isolated applications first, then the ones with the most dependencies.
+          \begin{itemize}
+              \item Migrate finance and HR, since they are self-contained
+              \item Migrate operations
+              \item Migrate customer service
+              \item Migrate warehouse
+              \item Migrate webshop
+              \item Migrate sales
+          \end{itemize}
+\end{itemize}
+
+\subsubsection*{Optimization}
+
+\begin{itemize}
+    \item Measure the performance of the system using Prometheus metrics and create an assessment report of the migration.
+
+    \item Create documentation regarding the new deployment process, provisioning and scaling.
+
+    \item Assess potential improvement areas, and stablish follow up tasks if needed.
+
+    \item Once we have the virtualized applications, we could start thinking into improving elasticity by enabling either ProxMox autoscaling (Which provides additional resources to VMs on the fly) or install an orchestrator that will create new virtual machines and load balance them.
+
+    \item During optimization we also need to allocate time for training, and documenting the different processes such as: how to scale, deploy and provision new services.
+\end{itemize}
+
+\subsubsection{Milestone 2}
+
+Once the client for the project decided to actually migrate to a public cloud service provider, we developed a new strategy. 
+Given that the Webshop in particular was going to be developed from scratch following modern approaches with new technologies.\\
+We proposed a new standard for this kinds of applications:
+
+\subsubsection*{Webshop Infrastructure, Tools, and Services:}
+
+This application will be newly developed following the standard for new applications.
+As a special consideration, this application is the only public-facing application that needs to handle customer requests.
+Our standard for newly developed applications enables this critical piece of the business to easily scale and be secured with valid certificates with no extra configurations.\\
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Cloud Context} & \textbf{Products And Technologies} & \textbf{Service Models} \\
+        \hline
+        Public Cloud           & Azure App Service                  & PaaS or CaaS            \\
+        \hline
+        Public Cloud           & Azure Static Web App               & PaaS or CaaS            \\
+        \hline
+        Public Cloud           & Azure Database For PostgreSQL      & PaaS                    \\
+        \hline
+    \end{tabular}
+    \caption{Webshop: Website Deployment Strategy}
+\end{table}
+
+\subsubsection*{General Considerations:}
+
+Importantly, for all newly developed applications, we will:
+\begin{itemize}
+    \item Set up a private GitHub repository
+    \item Set up GitHub actions to enable continuous integration and continuous deployments in Azure
+    \item Set up an infrastructure folder to hold terraform files. These files will define the infrastructure and will allow for easy repeatability
+    \item Use Microsoft Entra ID in case of authentication with the organization is needed
+    \item Use Docker to package the application with containers that will be deployed in Azure App Service in case of the backend, and Azure Static Web Apps in case of the frontend
+\end{itemize}
+
+\subsubsection*{Standard For a Cloud Native Application:}
+When developing a cloud-native application Figure \ref{CloudStandard} shows the basic setup to integrate DevOps concepts into our workflow.
+The website is going to be developed under this standard.\\
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../diagrams/AppStandard.drawio.png}
+        \vspace{0.01\textwidth}
+        \caption{Standard Configuration To Deploy An Application}
+        \label{CloudStandard} % A unique label.
+    \end{center}
+\end{figure}
 
 
 \subsection{Objectives of the Cloud Implementation of Webshop}
@@ -212,11 +378,9 @@ Detailed description of the three-tier structure with CSP service mapping
 \subsubsection{Presentation-Tier (Frontend) - User Interface (UI)}
 \paragraph{Technology Stack}
 \begin{itemize}
-    \item Frontend Framework : React.js (JavaScript)
-    \item State Management : React Context API
-    \item Communication with Backend : FastAPI
-    \item Hosting \& Deployment : Azure Static Web Apps
- 
+    \item Frontend Framework: React.js (JavaScript)
+    \item State Management: React Context API
+    \item Hosting \& Deployment: Azure Static Web Apps
 \end{itemize}
 
 \paragraph{component-based architecture}
@@ -523,7 +687,6 @@ Step-by-step account configuration and resource provisioning
 \begin{itemize}
     \item Azure Load Balancer configuration
     \item Database replication setup
-    \item Blob storage integration patterns
 \end{itemize}
 
 \subsection{Development Challenges}
@@ -539,31 +702,31 @@ Step-by-step account configuration and resource provisioning
 \subsubsection{Functional Test Cases}
 
 \begin{longtable}{|c|p{4.5cm}|p{4.5cm}|c|}
-\hline
-\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
-\endfirsthead
-\hline
-\textbf{Test Case ID} & \textbf{Test Scenario} & \textbf{Expected Outcome} & \textbf{Status (Pass/Fail)} \\ \hline
-\endhead
-TC-001 & Load homepage and verify product listing & Homepage loads with products displayed correctly. & \\ \hline
-TC-002 & Apply price filter (Ascending/Descending) & Products reorder correctly based on selected price. & \\ \hline
-TC-003 & Apply "Out of Stock" filter & Only out-of-stock items are displayed. & \\ \hline
-TC-004 & Apply "Fast Delivery" filter & Only products eligible for fast delivery show up. & \\ \hline
-TC-005 & Filter by category & Products are filtered correctly by selected category. & \\ \hline
-TC-006 & Search product by name or category & Products matching search are shown correctly. & \\ \hline
-TC-007 & Clear filter functionality & All filters are removed, showing the full product list. & \\ \hline
-TC-008 & Product Detail Page - Click Product & Clicking a product opens its detailed page. & \\ \hline
-TC-009 & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & \\ \hline
-TC-010 & Add a product to cart & Product appears in cart with correct details. & \\ \hline
-TC-011 & Increase product quantity in cart & Quantity updates and is reflected in the cart. & \\ \hline
-TC-012 & Remove product from cart & Product is removed from the cart immediately. & \\ \hline
-TC-013 & Proceed to checkout & Checkout page loads with the correct order summary. & \\ \hline
-TC-014 & Select payment method - Stripe & Stripe payment option is selected and processed. & \\ \hline
-TC-015 & Select payment method - PayPal & PayPal payment option is selected and processed. & \\ \hline
-TC-016 & Complete order processing & Order confirmation message is displayed. & \\ \hline
-TC-017 & Order confirmation email is received & Email is sent after order is placed. & \\ \hline
-TC-018 & Shipment notification email is received & Email is sent when the order is shipped. & \\ \hline
-TC-019 & Toggle Dark/Light Theme & Application switches between themes successfully. & \\ \hline
+    \hline
+    \textbf{Test Case ID} & \textbf{Test Scenario}                     & \textbf{Expected Outcome}                                 & \textbf{Status (Pass/Fail)} \\ \hline
+    \endfirsthead
+    \hline
+    \textbf{Test Case ID} & \textbf{Test Scenario}                     & \textbf{Expected Outcome}                                 & \textbf{Status (Pass/Fail)} \\ \hline
+    \endhead
+    TC-001                & Load homepage and verify product listing   & Homepage loads with products displayed correctly.         &                             \\ \hline
+    TC-002                & Apply price filter (Ascending/Descending)  & Products reorder correctly based on selected price.       &                             \\ \hline
+    TC-003                & Apply "Out of Stock" filter                & Only out-of-stock items are displayed.                    &                             \\ \hline
+    TC-004                & Apply "Fast Delivery" filter               & Only products eligible for fast delivery show up.         &                             \\ \hline
+    TC-005                & Filter by category                         & Products are filtered correctly by selected category.     &                             \\ \hline
+    TC-006                & Search product by name or category         & Products matching search are shown correctly.             &                             \\ \hline
+    TC-007                & Clear filter functionality                 & All filters are removed, showing the full product list.   &                             \\ \hline
+    TC-008                & Product Detail Page - Click Product        & Clicking a product opens its detailed page.               &                             \\ \hline
+    TC-009                & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. &                             \\ \hline
+    TC-010                & Add a product to cart                      & Product appears in cart with correct details.             &                             \\ \hline
+    TC-011                & Increase product quantity in cart          & Quantity updates and is reflected in the cart.            &                             \\ \hline
+    TC-012                & Remove product from cart                   & Product is removed from the cart immediately.             &                             \\ \hline
+    TC-013                & Proceed to checkout                        & Checkout page loads with the correct order summary.       &                             \\ \hline
+    TC-014                & Select payment method - Stripe             & Stripe payment option is selected and processed.          &                             \\ \hline
+    TC-015                & Select payment method - PayPal             & PayPal payment option is selected and processed.          &                             \\ \hline
+    TC-016                & Complete order processing                  & Order confirmation message is displayed.                  &                             \\ \hline
+    TC-017                & Order confirmation email is received       & Email is sent after order is placed.                      &                             \\ \hline
+    TC-018                & Shipment notification email is received    & Email is sent when the order is shipped.                  &                             \\ \hline
+    TC-019                & Toggle Dark/Light Theme                    & Application switches between themes successfully.         &                             \\ \hline
 \end{longtable}
 
 \subsection{Security Considerations}

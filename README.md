@@ -54,3 +54,38 @@ To create a migration revision: `alembic revision --autogenerate -m "your migrat
 To run the database migrations: `alembic upgrade head`
 
 To seed the database run: `python -m scripts.seed_db` on the api folder
+
+
+## Additional commands to setup the infrastructure
+
+Install the azure CLI tool and terraform.
+
+Run `az account show`
+
+Run `az account set --subscription "{your subscription id}"`
+
+Run `az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/{your subscription id}"`
+
+Now populate a `terraforom.tfvars` file in the `/infra` folder like so:
+
+```terraform
+
+TF_AZURE_APP_ID          = ""
+TF_AZURE_DISPLAY_NAME    = ""
+TF_AZURE_PASSWORD        = ""
+TF_AZURE_TENANT          = ""
+TF_AZURE_SUBSCRIPTION_ID = ""
+POSTGRESQL_USERNAME      = ""
+POSTGRESQL_PASSWORD      = ""
+
+```
+
+Run `terraform init`
+
+Run `terraform plan -out=plan`
+
+Run `terraform apply "plan"`
+
+The services should be created.
+
+The github action should work, if it does not then change the name of the azure app and review the credentials.

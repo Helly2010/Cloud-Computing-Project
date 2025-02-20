@@ -1,13 +1,13 @@
 terraform {
   required_providers {
-    azurem = {
+    azurerm = {
       source  = "hashicorp/azurerm"
       version = "=4.18.0"
     }
   }
 }
 
-provider "azurem" {
+provider "azurerm" {
   features {}
 
   client_id       = var.TF_AZURE_APP_ID
@@ -60,7 +60,7 @@ resource "azurerm_subnet" "vn_subnet_backend" {
     service_delegation {
       name = "Microsoft.Web/serverFarms"
       actions = [
-        "Microsoft.Network/virtualNetworks/subnets/join/action",
+        "Microsoft.Network/virtualNetworks/subnets/action",
       ]
     }
   }
@@ -96,9 +96,22 @@ module "db" {
 
 
 module "backend" {
-  source     = "./appservice"
-  location   = azurerm_resource_group.main_rg.location
-  rg_name    = azurerm_resource_group.main_rg.name
-  subnet_id  = azurerm_subnet.vn_subnet_backend.id
-  depends_on = [module.db]
+  source                         = "./appservice"
+  location                       = azurerm_resource_group.main_rg.location
+  rg_name                        = azurerm_resource_group.main_rg.name
+  subnet_id                      = azurerm_subnet.vn_subnet_backend.id
+  db_url                         = "${var.POSTGRESQL_USERNAME}:${var.POSTGRESQL_PASSWORD}@${module.db.db_url}:5432"
+  mail_from                      = var.MAIL_FROM
+  mail_password                  = var.MAIL_PASSWORD
+  mail_port                      = var.MAIL_PORT
+  mail_server                    = var.MAIL_SERVER
+  mail_username                  = var.MAIL_USERNAME
+  scm_do_build_during_deployment = "1"
+  depends_on                     = [module.db]
+
+}
+
+module "frontend" {
+  source     = "./staticwebapp"
+  depends_on = [module.backend]
 }

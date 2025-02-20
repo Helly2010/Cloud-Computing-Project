@@ -36,3 +36,5 @@ terraform.rc
 # Local venv for localstack
 tflocal/
 .tflocal/
+
+plan
