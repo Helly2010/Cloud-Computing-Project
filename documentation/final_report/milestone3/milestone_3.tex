@@ -345,8 +345,7 @@ Key objectives for the Webshop's cloud-based deployment include:
           The Webshop follows cloud-native best practicesn such as infrastructure as code, and continuous deployments.
 \end{itemize}
 
-These objectives ensure that the Webshop is scalable, secure, and cost-effective.
-\section{Application Design And Development Process}
+\section{Application Design}
 \subsection{Architectural Overview}
 As requested by the project. This application wil have 3 tiers. The presentation or user interface, the backend or business logic, and the storage tier.
 By our plan in milestone II we will deploy each tier in a different azure service tailored for its needs.
@@ -394,7 +393,7 @@ integrate with payment providers and provide detailed information about products
 \end{enumerate}
 \paragraph{Key Features of the UI}
 \begin{enumerate}
-    \item UI Components \& Design \\
+    \item UI Components \& Design
           \begin{itemize}
               \item Key Features
                     \begin{itemize}
@@ -404,7 +403,7 @@ integrate with payment providers and provide detailed information about products
                     \end{itemize}
           \end{itemize}
 
-    \item Product Display \& Interaction \\
+    \item Product Display \& Interaction
           The UI displays products with details, allowing users to browse, select, and view product specifications before making a purchase.
           \begin{itemize}
               \item Key Features
@@ -419,13 +418,13 @@ integrate with payment providers and provide detailed information about products
                         \item Product Details Page (ProductDetail.js):
                               \begin{itemize}
                                   \item Displays full product details, including stock availability.
-                                  \item Users can add/remove items from the cart.\\
+                                  \item Users can add/remove items from the cart.
 
                               \end{itemize}
                     \end{itemize}
           \end{itemize}
 
-    \item Shopping Cart UI \& Checkout\\
+    \item Shopping Cart UI \& Checkout
           The cart and checkout sections provide a way for users to review their selected products and manage quantities.
           \begin{itemize}
               \item Key Features
@@ -445,7 +444,7 @@ integrate with payment providers and provide detailed information about products
                     \end{itemize}
           \end{itemize}
 
-    \item Notifications\\
+    \item Notifications
           The app uses toast notifications and error messages to keep users informed.
           \begin{itemize}
               \item Key Features
@@ -523,9 +522,9 @@ The Email Notification module sends emails to customers and administrators for v
     \item Alembic
     \item Azure Database for PostgreSQL
 \end{itemize}
-\paragraph{Data bases}
+\paragraph{Database}
 \begin{enumerate}
-    \item Product Data\\
+    \item Product Data
           \begin{itemize}
               \item Product
                     \begin{itemize}
@@ -560,7 +559,7 @@ The Email Notification module sends emails to customers and administrators for v
           \end{itemize}
 
 
-    \item Order Data\\
+    \item Order Data
           \begin{itemize}
               \item Order
                     \begin{itemize}
@@ -596,7 +595,7 @@ The Email Notification module sends emails to customers and administrators for v
                     \end{itemize}
           \end{itemize}
 
-    \item Inventory Data\\
+    \item Inventory Data
           \begin{itemize}
               \item Stocks
                     \begin{itemize}
@@ -610,7 +609,7 @@ The Email Notification module sends emails to customers and administrators for v
 
                               \end{itemize}
                     \end{itemize}
-              \item suppliers
+              \item Suppliers
                     \begin{itemize}
                         \item Manages supplier-related information and links to products for procurement.
                         \item Key Attributes:
@@ -624,7 +623,7 @@ The Email Notification module sends emails to customers and administrators for v
                               \end{itemize}
                     \end{itemize}
           \end{itemize}
-    \item  Database Migrations with Alembic \\
+    \item  Database Migrations with Alembic
           \begin{itemize}
               \item It allows us to track database changes, apply updates to production, and roll back changes when needed.
               \item Key Operations with Alembic:
@@ -636,7 +635,26 @@ The Email Notification module sends emails to customers and administrators for v
           \end{itemize}
 \end{enumerate}
 
-\subsection{System Diagrams}
+\subsection{Development Process}
+
+For the development of the application, the team created a Trello board. Using a kamban-like approach, we scoped, 
+divided, and prioritized all the necesary development and documentation tasks. Internally two teams were formed, frontend and backend.
+Each working in a different layer of the webshop. The backend team was also in charge of the data layer just for convenience. 
+The most important tasks were to upgrade the existing UI code to fit the new requirements and integrate with the backend, and to actually develop the backend.
+Frameworks like FastAPI were chosen due to the flexibility benefits, rapid development, and automatic documentation generation. Which allowed our team members to quickly review the spec and make the integration.
+During the development timeline, we scheduled weekly meetings to report progress and address concearns with the development environment.
+
+For example, we encountered issues while running the new `psycopg` libary in asynchronous mode in windows. Which caused some issues while configuring the development environment.
+This could have been an oportunity to build a docker image to standardize our development environments, but given the timeline, we decided against it and just changed to `asyncpg` in windows \\
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
+        \vspace{0.01\textwidth}
+        \caption{Trello Board}
+        \label{TrelloBoard} % A unique label.
+    \end{center}
+\end{figure}
+\section{System Diagrams}
 
 \section{Implementation Process}
 \subsection{Cloud Environment Setup}
