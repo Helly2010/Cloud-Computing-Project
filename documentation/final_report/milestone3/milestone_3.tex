@@ -166,7 +166,7 @@ The transformation began with a thorough assessment of the existing infrastructu
 \end{itemize}
 
 To address these challenges, a private cloud migration strategy was adopted. The aim was to improve scalability, security, and cost-efficiency while ensuring minimal downtime and business continuity.
-The company transitioned its Webshop as a cloud native application to Microsoft Azure. 
+The company transitioned its Webshop as a cloud native application to Microsoft Azure.
 
 \subsection{Overview of the Previous Milestones}
 
@@ -187,20 +187,16 @@ This was our assessment of the original infrastructure:
 \subsubsection*{Scalability}
 \begin{itemize}
     \item \textbf{Fixed Hardware \& Inflexible Infrastructure}:
-          \\
           Current infrastructure consists of 7 on-premises servers housed in a single 19-inch rack,
           along with 17 clients and 19 laptops all with predetermined, static configurations.
           Moreover, the physical constraints of the on-premises setup, with no additional space for expansion, severely limit scaling options.
           This inflexibility makes it challenging to accommodate growth or adapt to changing business needs.
-          \\
+
     \item \textbf{Absence of Resource Utilization/pooling}:
-          \\
           There's no apparent way to quickly scale resources up or down based on demand or user traffic fluctuation in the current infrastructure.
           Each application typically runs on a dedicated server with fixed resources.
           This approach leads to inefficient resource utilization, as some servers may be underutilized while others are overloaded which may lead to performance issues during peak times or resource waste during low-demand periods due to no dynamic resource allocation.
-          \\
     \item \textbf{Manual Processes \& High Cost}:
-          \\
           Any changes in capacity would likely require manual hardware upgrades or replacements including hardware installation,
           and configuration, making the process time-consuming and potentially leading to downtime.
           Replacement of hardware is not only tedious but also financially burdensome due to high costs of new hardware.
@@ -210,35 +206,27 @@ This was our assessment of the original infrastructure:
 \subsubsection*{Availability}
 \begin{itemize}
     \item \textbf{Obsolete Hardware/OS \& Runtime Environments}:
-          \\
           Many components of the current infrastructure is based on very old hardware and outdated operating systems such as
           Windows XP SP3 (Finance clients), Windows 7 SP3 (HR clients and Customer Service laptops), Debian 5.0 Lenny (Warehouse clients and server),
           Ubuntu 16.04 LTS (Sales CRM Storage server) etc. Several applications are running on outdated software versions such as Java 1.7/1.8,
           MySQL 5.5/5.7, PHP 5.3 and Firefox 3.6 etc. which makes this whole infrastructure more susceptible to failure.
-          \\
     \item \textbf{Lack of Redundancy and Backup Mechanism}:
-          \\
           There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
-          \\
+
     \item \textbf{Manual Maintainance}:
-          \\It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations.
+          It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations.
           This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
-          \\
 \end{itemize}
 
 \subsubsection*{Security}
 \begin{itemize}
     \item \textbf{Basic Windows Firewall}:
-          \\
           It provides minimal outward traffic control, which may allow malware to interact easily.
           Without additional tools, centralized administration is impossible to maintain consistent security rules across all 36 client devices (17 clients and 19 laptops).
           It lacks advanced threat protection features, leaving the system vulnerable to sophisticated attacks.
-          \\
     \item \textbf{pfSense for Network Packet Filtering}:
-          \\
           There are no built-in antivirus features, which could let malicious payloads get through. Its effectiveness heavily relies on proper configuration, which may be challenging without dedicated IT staff.
           Moreover, advanced intrusion detection requires additional setup and maintenance.
-          \\
 
 \end{itemize}
 
@@ -277,23 +265,10 @@ This milestone resulted in a migration and optimization plan for the entire infr
           \end{itemize}
 \end{itemize}
 
-\subsubsection*{Optimization}
-
-\begin{itemize}
-    \item Measure the performance of the system using Prometheus metrics and create an assessment report of the migration.
-
-    \item Create documentation regarding the new deployment process, provisioning and scaling.
-
-    \item Assess potential improvement areas, and stablish follow up tasks if needed.
-
-    \item Once we have the virtualized applications, we could start thinking into improving elasticity by enabling either ProxMox autoscaling (Which provides additional resources to VMs on the fly) or install an orchestrator that will create new virtual machines and load balance them.
-
-    \item During optimization we also need to allocate time for training, and documenting the different processes such as: how to scale, deploy and provision new services.
-\end{itemize}
 
 \subsubsection{Milestone 2}
 
-Once the client for the project decided to actually migrate to a public cloud service provider, we developed a new strategy. 
+Once the client for the project decided to actually migrate to a public cloud service provider, we developed a new strategy.
 Given that the Webshop in particular was going to be developed from scratch following modern approaches with new technologies.\\
 We proposed a new standard for this kinds of applications:
 
@@ -351,31 +326,38 @@ The Webshop is a critical component for LowTech GmbH, serving as the company’s
 Key objectives for the Webshop's cloud-based deployment include:
 
 \begin{itemize}
-    \item \textbf{Scalability and Performance Optimization:}  
-    The Webshop is deployed on Azure App Service with auto-scaling capabilities, enabling efficient traffic handling during peak periods. A load balancer ensures even traffic distribution across multiple instances.
-    \bigskip % Adds space before the next section
-    \item \textbf{High Availability and Reliability:}  
-    Azure Virtual Machine Scale Sets provide fault tolerance with automatic failover. Azure Blob Storage is used to securely store digital assets with high availability.
-    \bigskip % Adds space before the next section
-    \item \textbf{Security and Compliance:}  
-    The Webshop integrates with Microsoft Entra ID for user authentication and Azure Security Center for enhanced threat protection. Encryption and Role-Based Access Control (RBAC) are employed to safeguard sensitive customer data.
-    \bigskip % Adds space before the next section
-    \item \textbf{Continuous Deployment and DevOps Automation:}  
-    A CI/CD pipeline powered by GitHub Actions automates code deployments, improving deployment speed and reducing manual intervention.
-    \bigskip % Adds space before the next section
-    \item \textbf{Cost Efficiency and Resource Optimization:}  
-    The dynamic allocation of resources optimizes compute and storage usage, reducing operational expenses. Azure’s pay-as-you-go model aids in cost forecasting and budget management.
-    \bigskip % Adds space before the next section
-    \item \textbf{Future-Proofing and Cloud-Native Development:}  
-    The Webshop follows cloud-native best practices, utilizing Docker containers for portability and Azure Kubernetes Service (AKS) for container orchestration, positioning the Webshop for seamless integration with future cloud services.
+    \item \textbf{Scalability and Performance Optimization:}
+          The Webshop is deployed on Azure App Service with auto-scaling capabilities, enabling efficient traffic handling during peak periods. A load balancer ensures even traffic distribution across multiple instances.
+          \bigskip % Adds space before the next section
+    \item \textbf{High Availability and Reliability:}
+          Azure Virtual Machine Scale Sets provide fault tolerance with automatic failover. Azure Blob Storage is used to securely store digital assets with high availability.
+          \bigskip % Adds space before the next section
+    \item \textbf{Security and Compliance:}
+          The Webshop integrates with Microsoft Entra ID for user authentication and Azure Security Center for enhanced threat protection. Encryption and Role-Based Access Control (RBAC) are employed to safeguard sensitive customer data.
+          \bigskip % Adds space before the next section
+    \item \textbf{Continuous Deployment and DevOps Automation:}
+          A CI/CD pipeline powered by GitHub Actions automates code deployments, improving deployment speed and reducing manual intervention.
+          \bigskip % Adds space before the next section
+    \item \textbf{Cost Efficiency and Resource Optimization:}
+          The dynamic allocation of resources optimizes compute and storage usage, reducing operational expenses. Azure’s pay-as-you-go model aids in cost forecasting and budget management.
+          \bigskip % Adds space before the next section
+    \item \textbf{Future-Proofing and Cloud-Native Development:}
+          The Webshop follows cloud-native best practicesn such as infrastructure as code, and continuous deployments.
 \end{itemize}
 
-These objectives ensure that the Webshop is scalable, secure, and cost-effective, delivering a fast and reliable shopping experience while adapting to the evolving needs of the business.
-
-\section{Application Design}
+These objectives ensure that the Webshop is scalable, secure, and cost-effective.
+\section{Application Design And Development Process}
 \subsection{Architectural Overview}
-Detailed description of the three-tier structure with CSP service mapping
+As requested by the project. This application wil have 3 tiers. The presentation or user interface, the backend or business logic, and the storage tier.
+By our plan in milestone II we will deploy each tier in a different azure service tailored for its needs.
+Each of the services provides autoscaling features, and load balancing. Ensuring that we are leveraging the elasticity charactersitics of the cloud.
+
 \subsubsection{Presentation-Tier (Frontend) - User Interface (UI)}
+
+It is important to note that the majority of the presentation was forked from https://github.com/DebasmitaMallick/React-e-Commerce-Website.
+This allowed our team to focus on backend and cloud deployment tasks. The original project was modified to interact with our backend API,
+integrate with payment providers and provide detailed information about products.
+
 \paragraph{Technology Stack}
 \begin{itemize}
     \item Frontend Framework: React.js (JavaScript)
@@ -383,163 +365,142 @@ Detailed description of the three-tier structure with CSP service mapping
     \item Hosting \& Deployment: Azure Static Web Apps
 \end{itemize}
 
-\paragraph{component-based architecture}
+\paragraph{Functionality Overview}
 \begin{enumerate}
-    \item Navigation \& Routing 
-    Users can easily navigate between different sections of application, such as viewing product lists, accessing product details, and managing their shopping cart. React Router enables seamless client-side navigation, keeping your app as a single-page application (SPA).
-    \begin{itemize}
-        \item React Router Setup 
-        \begin{itemize}
-            \item React Router (react-router-dom) to handle the routing of different components, allowing users to navigate through pages like the homepage (/), product detail pages (/product/:id), and potentially a shopping cart or checkout page.
-            \item For product detail pages, you're using dynamic routes with product/:id to fetch and display specific product data based on the product’s unique id. For instance:
-            \item When a user clicks on a product in the catalog, the URL changes to something like /product/123, and the ProductDetail component is rendered with data for product 123.
-            \item This is achieved using useNavigate and useParams hooks provided by React Router to capture the dynamic part of the URL.
-        \end{itemize}
-        
-        \item Navigation Links
-        \begin{itemize}
-            \item On the homepage (Home component), displaying a list of products. Each product has an image and name that users can click. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function.\\
-        \end{itemize}
-    \end{itemize}
-    \item API Communication 
-    \begin{itemize}
-        \item API communication in app is responsible for sending and receiving data from the backend server. This includes fetching product data to populate catalog, handling cart actions (adding or removing items), and processing payments during checkout.
-        \item The app communicates with the backend to update the cart whenever an item is added or removed. When a user clicks ``Add to Cart'' or ``Remove from Cart,'' an API call might be made to update the user's cart data on the server. This interaction is handled by \texttt{CartContext}, which uses \texttt{dispatch} to update the cart state and might also send a request to the backend to keep the cart in sync.
-        \item For payment, we use PayPal to securely handle credit card transactions. The app makes API calls to PayPal's backend to process the payment once the user submits their payment details.\\
-    \end{itemize}
-    \item Data Fetching \\
-    Data fetching refers to the process of retrieving data from external sources (your backend API) to populate app with dynamic information, such as product details, cart contents, and order history.
-    \begin{itemize}
-        \item The product data, which includes the list of products with details such as images, names, prices, and categories, is fetched when the homepage or product catalog page loads. This is done using useEffect to trigger an API call and update the state with the fetched data.
-    \end{itemize}
+    \item Navigation \& Routing
+          Users can navigate between different sections of application, such as viewing product lists, accessing product details, and managing their shopping cart. React Router enables seamless client-side navigation.
+          \begin{itemize}
+              \item React Router Setup
+                    \begin{itemize}
+                        \item React Router (react-router-dom) to handle the routing of different components, allowing users to navigate through pages like the homepage (/), product detail pages (/product/:id), and potentially a shopping cart or checkout page.
+                        \item For product detail pages, you're using dynamic routes with product/:id to fetch and display specific product data based on the product’s unique id. For instance:
+                        \item When a user clicks on a product in the catalog, the URL changes to something like /product/123, and the ProductDetail component is rendered with data for product 123.
+                        \item This is achieved using useNavigate and useParams hooks provided by React Router to capture the dynamic part of the URL.
+                    \end{itemize}
+
+              \item Navigation Links
+                    \begin{itemize}
+                        \item On the homepage (Home.js component), displaying a list of products. Each product has an image and name that users can click. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function.\\
+                    \end{itemize}
+          \end{itemize}
+    \item API Communication
+          \begin{itemize}
+              \item The product data, which includes the list of products with details such as images, names, prices, and categories, is fetched when the homepage or product catalog page loads.
+                    This is done using useEffect to trigger an API call and update the state with the fetched data.
+              \item API communication in app is responsible for sending and receiving data from the backend server. This includes fetching product data to populate catalog, and creating orders after checkout.
+              \item For payment, we use PayPal and Stripe in a sandbox mode. As this is not the final product, we are just testing the actual integration with the providers.
+          \end{itemize}
+
 \end{enumerate}
 \paragraph{Key Features of the UI}
-    \begin{enumerate}
-        \item UI Components \& Design \\
-        The UI components in your app are designed to provide an intuitive and engaging shopping experience. Each component serves a specific role, ensuring modularity, reusability, and maintainability.
-        \begin{itemize}
-            \item Key Features 
-            \begin{itemize}
-                \item Reusable Components: Components like SingleProduct.js, ProductDetail.js, and Cart.js ensure a structured and modular UI. 
-                \item Bootstrap Integration: react-bootstrap is used to style UI components such as Card, Button, and Container, ensuring a consistent and responsive design.
-                \item Dark \& Light Theme Support: A theme context (ThemeContextProvider) dynamically adjusts UI styles based on user preference.\\
-            \end{itemize}
-        \end{itemize}
+\begin{enumerate}
+    \item UI Components \& Design \\
+          \begin{itemize}
+              \item Key Features
+                    \begin{itemize}
+                        \item Reusable Components: Components like SingleProduct.js, ProductDetail.js, and Cart.js.
+                        \item Bootstrap Integration: react-bootstrap is used to style UI components to enable responsive behavior.
+                        \item Dark \& Light Theme Support: A theme context (ThemeContextProvider) dynamically adjusts UI styles based on user preference.
+                    \end{itemize}
+          \end{itemize}
 
-        \item Product Display \& Interaction \\
-        The UI effectively displays products with details, allowing users to browse, select, and view product specifications before making a purchase.
-            \begin{itemize}
-                \item Key Features 
-                \begin{itemize}
-                    \item Product Catalog: Displays a grid of available products with images, names, and prices.
-                    \item Product Cards (SingleProduct.js):
+    \item Product Display \& Interaction \\
+          The UI displays products with details, allowing users to browse, select, and view product specifications before making a purchase.
+          \begin{itemize}
+              \item Key Features
                     \begin{itemize}
-                        \item Clickable product images navigate to the product details page.
-                        \item Shows product information such as name, category, description, and price.
-                        \item ``Add to Cart'' and ''Remove from Cart'' buttons enable quick cart management.
-                    \end{itemize}
-                    \item Product Details Page (ProductDetail.js):
-                    \begin{itemize}
-                        \item Displays full product details, including stock availability.
-                        \item Users can add/remove items from the cart.\\
-    
-                    \end{itemize}
-                \end{itemize}
-            \end{itemize}
+                        \item Product Catalog: Displays a grid of available products with images, names, and prices.
+                        \item Product Cards (SingleProduct.js):
+                              \begin{itemize}
+                                  \item Clickable product images navigate to the product details page.
+                                  \item Shows product information such as name, category, description, and price.
+                                  \item ``Add to Cart'' and ''Remove from Cart'' buttons enable quick cart management.
+                              \end{itemize}
+                        \item Product Details Page (ProductDetail.js):
+                              \begin{itemize}
+                                  \item Displays full product details, including stock availability.
+                                  \item Users can add/remove items from the cart.\\
 
-        \item Shopping Cart UI \& Checkout\\
-        The cart and checkout sections provide an intuitive way for users to review their selected products, manage quantities, and complete purchases.
-            \begin{itemize}
-                \item Key Features 
-                \begin{itemize}
-                    \item Cart UI (Cart.js)
-                    \begin{itemize}
-                        \item Displays a list of selected products with prices and a ''Remove from Cart'' button.
-                        \item Updates total price dynamically based on the cart's contents.
-                        \item Navigates users to checkout when ready.
+                              \end{itemize}
                     \end{itemize}
-                    \item Checkout UI (CheckoutForm.js)
-                    \begin{itemize}
-                        \item Collects user details (name, email).
-                        \item Integrates Stripe and PayPal for secure payment processing.
-                        \item Uses emailjs to send order confirmation emails.
-                        \item Displays success messages with reference numbers for placed orders.\\
-                    \end{itemize}
-                \end{itemize}
-            \end{itemize}
+          \end{itemize}
 
-        \item Notifications\\
-        Notifications is crucial to enhancing the shopping experience. The app uses toast notifications and error messages to keep users informed.
-            \begin{itemize}
-                \item Key Features 
-                \begin{itemize}
-                    \item Toast Notifications (react-toastify)
+    \item Shopping Cart UI \& Checkout\\
+          The cart and checkout sections provide a way for users to review their selected products and manage quantities.
+          \begin{itemize}
+              \item Key Features
                     \begin{itemize}
-                        \item Displays success messages when products are added/removed from the cart.
-                        \item Shows error messages if something goes wrong (e.g., out-of-stock products, payment failures).\\
+                        \item Cart UI (Cart.js)
+                              \begin{itemize}
+                                  \item Displays a list of selected products with prices and a ''Remove from Cart'' button.
+                                  \item Updates total price dynamically based on the cart's contents.
+                                  \item Navigates users to checkout when ready.
+                              \end{itemize}
+                        \item Checkout UI (CheckoutForm.js)
+                              \begin{itemize}
+                                  \item Collects user details (name, email, and shipping information).
+                                  \item Integrates Stripe and PayPal for secure payment processing.
+                                  \item Displays success messages with reference numbers for placed orders.
+                              \end{itemize}
                     \end{itemize}
-                \end{itemize}
-            \end{itemize}
-    \end{enumerate}
-    
+          \end{itemize}
+
+    \item Notifications\\
+          The app uses toast notifications and error messages to keep users informed.
+          \begin{itemize}
+              \item Key Features
+                    \begin{itemize}
+                        \item Toast Notifications (react-toastify)
+                              \begin{itemize}
+                                  \item Displays success messages when products are added/removed from the cart.
+                                  \item Shows error messages if something goes wrong (e.g., out-of-stock products, payment failures).
+                              \end{itemize}
+                    \end{itemize}
+          \end{itemize}
+\end{enumerate}
+
 \subsubsection{Application-Tier (Backend) - Business Logic}
 \paragraph{Technology Stack}
-    \begin{itemize}
-        \item FastAPI
-        \item SQLAlchemy with PostgreSQL
-        \item Asyncio
-    \end{itemize}
+\begin{itemize}
+    \item FastAPI
+    \item SQLAlchemy
+\end{itemize}
 
 \paragraph{Product Management} \leavevmode
 
 The Product Management module handles the lifecycle of products in the system. This includes operations for adding new products, updating product details, and retrieving product information. The core business logic ensures that products are categorized correctly, their stock levels are managed, and prices are updated as needed.
-    \begin{itemize}
-        \item Key Operations:
-        \begin{itemize}
-        \item Add, update, and delete products.
-        \item Manage product details such as descriptions, prices, and categories.
-        \item Track stock availability and reorder levels.
-        \item Calculate the public unit price and manage suppliers' pricing.
-        \end{itemize}   
-    \end{itemize}
+\begin{itemize}
+    \item Key Operations:
+          \begin{itemize}
+              \item Add, update, and delete products.
+              \item Manage product details such as descriptions, prices, and categories.
+              \item Track stock availability and reorder levels.
+          \end{itemize}
+\end{itemize}
 
 \paragraph{Order Management} \leavevmode
 
-The Order Management module manages customer orders, from order creation to order completion. It tracks the order status and ensures that orders are processed correctly, including payment validation, stock management, and shipping.
+The Order Management module manages customer orders, from order creation, and status changes. It tracks the order status and ensures that orders are processed correctly.
 \begin{itemize}
     \item Key Operations:
-    \begin{itemize}
-    \item Create and update orders with customer and product information.
-    \item Monitor order statuses (e.g., processing, dispatched, delivered).
-    \item Validate inventory and ensure product availability during order processing.
-    \item Handle refunds, cancellations, and partial shipments.
-    \end{itemize}   
+          \begin{itemize}
+              \item Create and update orders with customer and product information.
+              \item Monitor order statuses (e.g., processing, dispatched, delivered).
+              \item Validate inventory and ensure product availability during order processing.
+          \end{itemize}
 \end{itemize}
 
-\paragraph{Payment Processing} \leavevmode
+\paragraph{Inventory Management} \leavevmode
 
-The Payment Processing module integrates with third-party payment gateways (e.g., Stripe) to securely process customer payments. This module validates payment details, checks for fraud, and ensures payment is successfully processed before confirming orders.
+The Inventory Management module tracks the stock levels of all products, ensuring that inventory can be updated.
 \begin{itemize}
     \item Key Operations:
-    \begin{itemize}
-    \item Process payments securely through APIs like Stripe and PayPal.
-    \item Validate payment information (e.g., credit card details).
-    \item Handle refunds, cancellations, and partial shipments.
-    \end{itemize}   
+          \begin{itemize}
+              \item Monitor and update product stock levels after each sale.
+              \item Track the supplier’s stock.
+          \end{itemize}
 \end{itemize}
 
-\paragraph{Inventery Management} \leavevmode
-
-The Inventory Management module tracks the stock levels of all products, ensuring that inventory is updated in real-time based on orders placed and products received from suppliers. It also tracks reorder levels and alerts the system to restock low inventory.
-\begin{itemize}
-    \item Key Operations:
-    \begin{itemize}   
-        \item Monitor and update product stock levels after each sale.
-        \item Track the supplier’s stock and delivery lead times.
-        \item Generate reports on product availability, low-stock items, and reorder recommendations.
-    \end{itemize}   
-\end{itemize}
-    
 
 
 \paragraph{Email Notification} \leavevmode
@@ -547,135 +508,133 @@ The Inventory Management module tracks the stock levels of all products, ensurin
 The Email Notification module sends emails to customers and administrators for various events in the system, such as order confirmations, shipment tracking updates, and payment status notifications. It integrates with FastMail to send HTML-formatted emails with dynamic content.
 \begin{itemize}
     \item Key Operations:
-    \begin{itemize}   
-        \item Send order confirmation emails to customers.
-        \item Notify customers of order status updates, such as dispatched or delivered.
-        \item Alert administrators of low stock levels and other system alerts.
-        \item Provide a user-friendly email template system for various types of notifications.
-    \end{itemize}   
+          \begin{itemize}
+              \item Send order confirmation emails to customers.
+              \item Notify customers of order status updates, such as dispatched or delivered.
+              \item Alert suppliers of low stock levels and send reorder requests.
+              \item Provide a user-friendly email template system for various types of notifications.
+          \end{itemize}
 \end{itemize}
 
 \subsubsection{Data-Tier (Database) - Databases}
 \paragraph{Technology Stack}
-\begin{itemize}   
+\begin{itemize}
     \item PostgreSQL
-    \item SQLAlchemy ORM
-    \item Asyncio \& Asynchronous SQLAlchemy
     \item Alembic
     \item Azure Database for PostgreSQL
-\end{itemize}   
+\end{itemize}
 \paragraph{Data bases}
 \begin{enumerate}
     \item Product Data\\
-    \begin{itemize}
-        \item Product
-        \begin{itemize}
-            \item Stores the core product information and links to categories, suppliers, and inventory.
-            \item Key Attributes:
-            \begin{itemize}
-                \item id: Unique product identifier (Primary Key).
-                \item name: Product name.
-                \item description: Product description.
-                \item category\_id: Foreign Key linking to the Categories table.
-                \item supplier\_id: Foreign Key linking to the Suppliers table.
-                \item stock\_id: Links to the Stock table for inventory tracking.
-                \item public\_unit\_price: Price displayed to customers.
-                \item supplier\_unit\_price: Price from the supplier (for internal calculations).
-                \item ean\_code: Unique product code for identification.
-                \item reorder\_level: Threshold for restocking.
-                \item img\_link: URL to the product image.
-                \item extra\_info: JSON field to store additional product attributes. \\
-            \end{itemize}
-        \end{itemize}
-        \item Catagories
-        \begin{itemize}
-        \item This table categorizes products for better organization and searchability.
-        \item Key Attributes:
-        \begin{itemize}
-            \item id: Unique category identifier (Primary Key).
-            \item name: Product name.
-            \item description: Category description.
-            \item extra\_info: JSON field for additional metadata.\\
-        \end{itemize}
-    \end{itemize}
-    \end{itemize} 
+          \begin{itemize}
+              \item Product
+                    \begin{itemize}
+                        \item Stores the core product information and links to categories, suppliers, and inventory.
+                        \item Key Attributes:
+                              \begin{itemize}
+                                  \item id: Unique product identifier (Primary Key).
+                                  \item name: Product name.
+                                  \item description: Product description.
+                                  \item category\_id: Foreign Key linking to the Categories table.
+                                  \item supplier\_id: Foreign Key linking to the Suppliers table.
+                                  \item stock\_id: Links to the Stock table for inventory tracking.
+                                  \item public\_unit\_price: Price displayed to customers.
+                                  \item supplier\_unit\_price: Price from the supplier (for internal calculations).
+                                  \item ean\_code: Unique product code for identification.
+                                  \item reorder\_level: Threshold for restocking.
+                                  \item img\_link: URL to the product image.
+                                  \item extra\_info: JSON field to store additional product attributes. Like the ratings, or if the product has fast delivery.
+                              \end{itemize}
+                    \end{itemize}
+              \item Catagories
+                    \begin{itemize}
+                        \item This table categorizes products for better organization and searchability.
+                        \item Key Attributes:
+                              \begin{itemize}
+                                  \item id: Unique category identifier (Primary Key).
+                                  \item name: Product name.
+                                  \item description: Category description.
+                                  \item extra\_info: JSON field for additional metadata.
+                              \end{itemize}
+                    \end{itemize}
+          \end{itemize}
 
 
     \item Order Data\\
-    \begin{itemize}
-        \item Order 
-        \begin{itemize}
-            \item This table records general order details and customer information.
-            \item Key Attributes:
-            \begin{itemize}
-                \item id: Unique order identifier (Primary Key).
-                \item customer\_name: Name of the customer.
-                \item customer\_email: Customer's email address for notifications.
-                \item customer\_phone: Contact number.
-                \item order\_total: Total value of the order.
-                \item status: Enum representing the order state (e.g., ''active'', ''cancelled'').
-                \item tracking\_status: Enum tracking delivery progress (e.g., ''dispatched'', ''delivered'').
-                \item payment\_method: JSON field storing payment details (e.g., card type).
-                \item customer\_shipping\_info: JSON field for customer delivery address.
-                \item created\_at: Timestamp when the order was created.
-                \item updated\_at: Timestamp when the order was last updated.\\
-            \end{itemize}
-        \end{itemize}
-        \item Order Details
-        \begin{itemize}
-            \item This table provides itemized details of each product within an order.
-            \item Key Attributes:
-            \begin{itemize}
-                \item id: Unique identifier for each order detail record (Primary Key).
-                \item order\_id: Foreign Key linking to the Orders table.
-                \item product\_id: Foreign Key linking to the Products table.
-                \item quantity: Number of units of the product ordered.
-                \item product\_price: Unit price at the time of the order.
-                \item subtotal: Calculated subtotal for the item.\\
-                
-            \end{itemize}
-        \end{itemize}
-     \end{itemize}
+          \begin{itemize}
+              \item Order
+                    \begin{itemize}
+                        \item This table records general order details and customer information.
+                        \item Key Attributes:
+                              \begin{itemize}
+                                  \item id: Unique order identifier (Primary Key).
+                                  \item customer\_name: Name of the customer.
+                                  \item customer\_email: Customer's email address for notifications.
+                                  \item customer\_phone: Contact number.
+                                  \item order\_total: Total value of the order.
+                                  \item status: Enum representing the order state (e.g., ''active'', ''cancelled'').
+                                  \item tracking\_status: Enum tracking delivery progress (e.g., ''dispatched'', ''delivered'').
+                                  \item payment\_method: JSON field storing payment details (e.g., card type).
+                                  \item customer\_shipping\_info: JSON field for customer delivery address.
+                                  \item created\_at: Timestamp when the order was created.
+                                  \item updated\_at: Timestamp when the order was last updated.
+                              \end{itemize}
+                    \end{itemize}
+              \item Order Details
+                    \begin{itemize}
+                        \item This table provides itemized details of each product within an order.
+                        \item Key Attributes:
+                              \begin{itemize}
+                                  \item id: Unique identifier for each order detail record (Primary Key).
+                                  \item order\_id: Foreign Key linking to the Orders table.
+                                  \item product\_id: Foreign Key linking to the Products table.
+                                  \item quantity: Number of units of the product ordered.
+                                  \item product\_price: Unit price at the time of the order.
+                                  \item subtotal: Calculated subtotal for the item.
+
+                              \end{itemize}
+                    \end{itemize}
+          \end{itemize}
 
     \item Inventory Data\\
-    \begin{itemize}
-        \item Stocks 
-        \begin{itemize}
-            \item Monitors the available quantity of each product and manages restocking.
-            \item Key Attributes:
-            \begin{itemize}
-                \item id: Unique stock identifier (Primary Key).
-                \item quantity: Number of available units for a product.
-                \item updated\_at: Timestamp of the last stock update.
-                \item created\_at: Timestamp when the stock record was created.\\
-                
-            \end{itemize}
-        \end{itemize}
-        \item suppliers
-        \begin{itemize}
-            \item Manages supplier-related information and links to products for procurement.
-            \item Key Attributes:
-            \begin{itemize}
-                \item id: Unique supplier identifier (Primary Key).
-                \item name: Supplier name.
-                \item address: Supplier’s physical address.
-                \item phone: Contact number.
-                \item email: Contact email address.\\
-                
-            \end{itemize}
-        \end{itemize}
-    \end{itemize}
+          \begin{itemize}
+              \item Stocks
+                    \begin{itemize}
+                        \item Monitors the available quantity of each product and manages restocking.
+                        \item Key Attributes:
+                              \begin{itemize}
+                                  \item id: Unique stock identifier (Primary Key).
+                                  \item quantity: Number of available units for a product.
+                                  \item updated\_at: Timestamp of the last stock update.
+                                  \item created\_at: Timestamp when the stock record was created.
+
+                              \end{itemize}
+                    \end{itemize}
+              \item suppliers
+                    \begin{itemize}
+                        \item Manages supplier-related information and links to products for procurement.
+                        \item Key Attributes:
+                              \begin{itemize}
+                                  \item id: Unique supplier identifier (Primary Key).
+                                  \item name: Supplier name.
+                                  \item address: Supplier’s physical address.
+                                  \item phone: Contact number.
+                                  \item email: Contact email address.
+
+                              \end{itemize}
+                    \end{itemize}
+          \end{itemize}
     \item  Database Migrations with Alembic \\
-    \begin{itemize}
-        \item It allows us to track database changes, apply updates to production, and roll back changes when needed.
-        \item Key Operations with Alembic:
-        \begin{itemize}
-            \item \textit{Schema Migration:} Automatically generates migration scripts to apply changes to the database (e.g., adding new fields to a table).
-            \item \textit{Version Control:} Each migration is versioned, allowing us to track and audit changes.
-            \item \textit{Rollback Support:} Provides the ability to downgrade to previous schema versions if issues arise.\\  
-        \end{itemize}
-    \end{itemize}
-    \end{enumerate}
+          \begin{itemize}
+              \item It allows us to track database changes, apply updates to production, and roll back changes when needed.
+              \item Key Operations with Alembic:
+                    \begin{itemize}
+                        \item \textit{Schema Migration:} Automatically generates migration scripts to apply changes to the database (e.g., adding new fields to a table).
+                        \item \textit{Version Control:} Each migration is versioned, allowing us to track and audit changes.
+                        \item \textit{Rollback Support:} Provides the ability to downgrade to previous schema versions if issues arise.
+                    \end{itemize}
+          \end{itemize}
+\end{enumerate}
 
 \subsection{System Diagrams}
 
@@ -747,39 +706,39 @@ Trade-off discussion between containerized vs serverless approaches
 
 
 \begin{enumerate}
-    \item \textbf{Branching Strategy:} \newline 
-     The project follows a simple main branch strategy where all contributors work directly on the main branch.  
-    This ensures seamless integration without managing multiple branches. All changes should be committed with meaningful messages.  
-    Code should be reviewed and tested before pushing to the main branch.
+    \item \textbf{Branching Strategy:} \newline
+          The project follows a simple main branch strategy where all contributors work directly on the main branch.
+          This ensures seamless integration without managing multiple branches. All changes should be committed with meaningful messages.
+          Code should be reviewed and tested before pushing to the main branch.
 \end{enumerate}
 
 \begin{enumerate}
     \setcounter{enumi}{1}
-    \item \textbf{Continuous Integration/Continuous Deployment:}  
-    \begin{itemize}
-        \item \textbf{Continuous Integration (CI):}  
-        
-        Every code commit triggers an automated build and testing process. This includes:
-        \begin{itemize}
-            \item Running unit tests to validate individual components.
-            \item Performing integration tests to ensure compatibility between different modules.
-            \item Static code analysis for linting and security vulnerabilities.
-        \end{itemize}
+    \item \textbf{Continuous Integration/Continuous Deployment:}
+          \begin{itemize}
+              \item \textbf{Continuous Integration (CI):}
 
-        \bigskip % Adds space before the next section
-        \item \textbf{Continuous Deployment (CD):}  
-        
-        Once the CI stage passes successfully, the application is automatically deployed to the appropriate environment. This process includes:
-        \begin{itemize}
-            \item Deploying to a staging environment for final testing.
-            \item Running automated acceptance tests before production deployment.
-            \item Deploying to production with rollback mechanisms in case of failure.
-        \end{itemize}
+                    Every code commit triggers an automated build and testing process. This includes:
+                    \begin{itemize}
+                        \item Running unit tests to validate individual components.
+                        \item Performing integration tests to ensure compatibility between different modules.
+                        \item Static code analysis for linting and security vulnerabilities.
+                    \end{itemize}
 
-        \bigskip % Adds space before the next section
+                    \bigskip % Adds space before the next section
+              \item \textbf{Continuous Deployment (CD):}
 
-        \item \textbf{Documentation Standards}
-    \end{itemize}
+                    Once the CI stage passes successfully, the application is automatically deployed to the appropriate environment. This process includes:
+                    \begin{itemize}
+                        \item Deploying to a staging environment for final testing.
+                        \item Running automated acceptance tests before production deployment.
+                        \item Deploying to production with rollback mechanisms in case of failure.
+                    \end{itemize}
+
+                    \bigskip % Adds space before the next section
+
+              \item \textbf{Documentation Standards}
+          \end{itemize}
 \end{enumerate}
 
 
