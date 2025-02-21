@@ -14,7 +14,7 @@ const createOrder = async (orderData, products) => {
     customer_phone: `+49 ${orderData.phone}`,
     customer_email: orderData.email,
     payment_method: {
-      credit_card_number: `***** ${orderData.last4}`,
+      credit_card_number: `***** ${orderData.last4 || "" }`,
       payment_provider: orderData.paymentProvider,
     },
     products: products.map((product) => ({ product_id: product.id, amount: product.qty })),
