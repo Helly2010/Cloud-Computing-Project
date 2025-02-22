@@ -693,7 +693,44 @@ This could have been an oportunity to build a docker image to standardize our de
 \end{figure}
 \section{System Diagrams}
 
-\newpage
+\subsection{Context and Scope}
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
+        \vspace{0.01\textwidth}
+        \caption{Context and Scope Diagram}
+        \label{ContextandScope} % A unique label.
+    \end{center}
+\end{figure}
+\subsection{Building Block View}
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
+        \vspace{0.01\textwidth}
+        \caption{Building Block View Diagram}
+        \label{BuildingBlockView} % A unique label.
+    \end{center}
+\end{figure}
+\subsection{Runtime View}
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
+        \vspace{0.01\textwidth}
+        \caption{Runtime View Diagram}
+        \label{RuntimeView} % A unique label.
+    \end{center}
+\end{figure}
+\subsection{Deployment View}
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
+        \vspace{0.01\textwidth}
+        \caption{Deployment View Diagram}
+        \label{DeploymentView} % A unique label.
+    \end{center}
+\end{figure}
+
 
 \section{Implementation Process}
 
@@ -760,31 +797,30 @@ Once we had all resources created in Azure, the team had to perform further manu
     \hline
     \textbf{Test Case ID} & \textbf{Test Scenario}                     & \textbf{Expected Outcome}                                 & \textbf{Status (Pass/Fail)}            \\ \hline
     \endhead
-    TC-001                & Load Homepage and verify product listing   & Homepage loads with products displayed correctly.         & Pass, see \ref{fig:homepage_filters}   \\ \hline
-    TC-002                & Apply Price filter (Ascending/Descending)  & Products reorder correctly based on selected price.       & Pass, see \ref{fig:homepage_filters}   \\ \hline
-    TC-003                & Apply Out of Stock filter                  & Only out-of-stock items are displayed.                    & Pass, see \ref{fig:homepage_filters_2} \\ \hline
-    TC-004                & Apply Fast Delivery filter                 & Only products eligible for fast delivery show up.         & Pass, see \ref{fig:Webshop_4}          \\ \hline
-    TC-005                & Filter by Category                         & Products are filtered correctly by selected category.     & Pass, see \ref{fig:Webshop_5}          \\ \hline
-    TC-006                & Search Product by Name or Category         & Products matching search are shown correctly.             & Pass, see \ref{fig:Webshop_6}          \\ \hline
-    TC-007                & Clear Filter functionality                 & All filters are removed, showing the full product list.   & Pass, see \ref{fig:Webshop_7}          \\ \hline
-    TC-008                & Product Detail Page - Click Product        & Clicking a product opens its detailed page.               & Pass, see \ref{fig:Webshop_8}          \\ \hline
-    TC-009                & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & Pass, see \ref{fig:Webshop_9}          \\ \hline
-    TC-010                & Add a Product to Cart                      & Product appears in cart with correct details.             & Pass, see \ref{fig:Webshop_10}         \\ \hline
-    TC-011                & Increase product quantity in cart          & Quantity updates and is reflected in the cart.            & Pass, see \ref{fig:Webshop_}           \\ \hline
-    TC-012                & Remove product from cart                   & Product is removed from the cart immediately.             & Pass, see \ref{fig:Webshop_}           \\ \hline
-    TC-013                & Proceed to checkout                        & Checkout page loads with the correct order summary.       & Pass, see \ref{fig:Webshop_}           \\ \hline
-    TC-014                & Select payment method - Stripe             & Stripe payment option is selected and processed.          & Pass, see \ref{fig:Webshop_}           \\ \hline
-    TC-015                & Select payment method - PayPal             & PayPal payment option is selected and processed.          & Pass, see \ref{fig:Webshop_}           \\ \hline
-    TC-016                & Complete order processing                  & Order confirmation message is displayed.                  & Pass, see \ref{fig:Webshop_}           \\ \hline
-    TC-017                & Order confirmation email is received       & Email is sent after order is placed.                      & Pass, see \ref{fig:Webshop_}           \\ \hline
-    TC-018                & Shipment notification email is received    & Email is sent when the order is shipped.                  & Pass, see \ref{fig:Webshop_}           \\ \hline
-    TC-019                & Product Dispatched email is received       & Email is sent when the order is dispatched.               & Pass, see \ref{fig:Webshop_}           \\ \hline
-    TC-020                & Toggle Dark/Light Theme                    & Application switches between themes successfully.         & Pass, see \ref{fig:Webshop_}           \\ \hline
+    TC-001                & Load Homepage and verify product listing   & Homepage loads with products displayed correctly.         & Pass, see Figure \ref{fig:homepage_filters}   \\ \hline
+    TC-002                & Apply Price filter (Ascending/Descending)  & Products reorder correctly based on selected price.       & Pass, see Figure \ref{fig:homepage_filters}   \\ \hline
+    TC-003                & Apply Out of Stock filter                  & Only out-of-stock items are displayed.                    & Pass, see Figure \ref{fig:homepage_filters_2} \\ \hline
+    TC-004                & Apply Fast Delivery filter                 & Only products eligible for fast delivery show up.         & Pass, see Figure \ref{fig:Webshop_4}          \\ \hline
+    TC-005                & Filter by Category                         & Products are filtered correctly by selected category.     & Pass, see Figure \ref{fig:Webshop_5}          \\ \hline
+    TC-006                & Search Product by Name or Category         & Products matching search are shown correctly.             & Pass, see Figure \ref{fig:Webshop_6}          \\ \hline
+    TC-007                & Clear Filter functionality                 & All filters are removed, showing the full product list.   & Pass, see Figure \ref{fig:Webshop_7}          \\ \hline
+    TC-008                & Product Detail Page - Click Product        & Clicking a product opens its detailed page.               & Pass, see Figure \ref{fig:Webshop_8}          \\ \hline
+    TC-009                & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & Pass, see Figure \ref{fig:Webshop_9}          \\ \hline
+    TC-010                & Add a Product to Cart                      & Product appears in cart with correct details.             & Pass, see Figure \ref{fig:Webshop_10}         \\ \hline
+    TC-011                & Increase product quantity in cart          & Quantity updates and is reflected in the cart.            & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-012                & Remove product from cart                   & Product is removed from the cart immediately.             & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-013                & Proceed to checkout                        & Checkout page loads with the correct order summary.       & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-014                & Select payment method - Stripe             & Stripe payment option is selected and processed.          & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-015                & Select payment method - PayPal             & PayPal payment option is selected and processed.          & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-016                & Complete order processing                  & Order confirmation message is displayed.                  & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-017                & Order confirmation email is received       & Email is sent after order is placed.                      & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-018                & Shipment notification email is received    & Email is sent when the order is shipped.                  & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-019                & Product Dispatched email is received       & Email is sent when the order is dispatched.               & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
     \caption{Functional Test Cases for Webshop} \label{tab:functional-test-cases}
     % \vspace{-10mm}
 \end{longtable}
 
-\newpage
+
 
 \textbf{Screenshots of the webshop}\\
 \begin{figure}[htbp]
@@ -909,7 +945,7 @@ Once we had all resources created in Azure, the team had to perform further manu
                         \item Deploying to production with rollback mechanisms in case of failure.
                     \end{itemize}
 
-                    \bigskip % Adds space before the next section
+                    \bigskip 
 
               \item \textbf{Documentation Standards}
           \end{itemize}
