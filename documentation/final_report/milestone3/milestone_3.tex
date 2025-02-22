@@ -24,6 +24,7 @@
 \usepackage{array}
 \usepackage{makecell}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{ragged2e}
 \usepackage{longtable}
 \usepackage{ifpdf}
@@ -40,6 +41,7 @@
 \usepackage{url}
 \usepackage{caption}
 \usepackage{float}
+\usepackage{subfig}
 \setlength{\abovecaptionskip}{0pt} % Reduce space above the caption
 \setlength{\belowcaptionskip}{0pt} % Space between caption and table
 \captionsetup[table]{skip=5pt} % Adjust the value of '10pt' as needed
@@ -100,6 +102,26 @@
 \definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
 \definecolor{lightlightgray}{gray}{0.9}
 \definecolor{FrankfurtBlue}{HTML}{3333b2}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{gray}{0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstset{
+    % backgroundcolor=\color{backcolour},   % choose the background color
+    basicstyle=\ttfamily\footnotesize\tiny,       % size and family of fonts
+    keywordstyle=\color{blue}\bfseries,     % style of keywords
+    commentstyle=\itshape\color{codegray},  % style of comments
+    stringstyle=\color{codepurple},         % style of strings
+    showstringspaces=false,                 % do not mark spaces in strings
+    numbers=left,                           % where to put the line-numbers
+    numberstyle=\tiny\color{codegray},      % the style of the line-numbers
+    breaklines=true,                        % automatic line breaking only at whitespace
+    breakatwhitespace=true,                 % automatic line breaking at whitespace
+    tabsize=2,                              % the size of tabs
+    xleftmargin=.2\textwidth, xrightmargin=.2\textwidth
+}
 
 % Hier fängt das Dokument an!
 \begin{document}
@@ -379,7 +401,7 @@ integrate with payment providers and provide detailed information about products
 
               \item Navigation Links
                     \begin{itemize}
-                        \item On the homepage (Home.js component), displaying a list of products. Each product has an image and name that users can click. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function.\\
+                        \item On the homepage (Home.js component), displaying a list of products. Each product has an image and name that users can click. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function
                     \end{itemize}
           \end{itemize}
     \item API Communication
@@ -458,6 +480,13 @@ integrate with payment providers and provide detailed information about products
           \end{itemize}
 \end{enumerate}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../diagrams/componant diagram.drawio.png}
+    \caption{Component Diagram}
+    \label{fig:component_diagram}
+\end{figure}
+
 \subsubsection{Application-Tier (Backend) - Business Logic}
 \paragraph{Technology Stack}
 \begin{itemize}
@@ -499,8 +528,6 @@ The Inventory Management module tracks the stock levels of all products, ensurin
               \item Track the supplier’s stock.
           \end{itemize}
 \end{itemize}
-
-
 
 \paragraph{Email Notification} \leavevmode
 
@@ -557,7 +584,6 @@ The Email Notification module sends emails to customers and administrators for v
                               \end{itemize}
                     \end{itemize}
           \end{itemize}
-
 
     \item Order Data
           \begin{itemize}
@@ -635,17 +661,28 @@ The Email Notification module sends emails to customers and administrators for v
           \end{itemize}
 \end{enumerate}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../diagrams/webshop_erd.drawio.png}
+    \caption{ERD Diagram of the Webshop Database}
+    \label{fig:erd_webshop}
+\end{figure}
+
 \subsection{Development Process}
 
-For the development of the application, the team created a Trello board. Using a kamban-like approach, we scoped, 
+For the development of the application, the team created a Trello board. Using a kamban-like approach, we scoped,
 divided, and prioritized all the necesary development and documentation tasks. Internally two teams were formed, frontend and backend.
-Each working in a different layer of the webshop. The backend team was also in charge of the data layer just for convenience. 
+Each working in a different layer of the webshop. The backend team was also in charge of the data layer just for convenience.
 The most important tasks were to upgrade the existing UI code to fit the new requirements and integrate with the backend, and to actually develop the backend.
 Frameworks like FastAPI were chosen due to the flexibility benefits, rapid development, and automatic documentation generation. Which allowed our team members to quickly review the spec and make the integration.
 During the development timeline, we scheduled weekly meetings to report progress and address concearns with the development environment.
 
 For example, we encountered issues while running the new `psycopg` libary in asynchronous mode in windows. Which caused some issues while configuring the development environment.
-This could have been an oportunity to build a docker image to standardize our development environments, but given the timeline, we decided against it and just changed to `asyncpg` in windows \\
+This could have been an oportunity to build a docker image to standardize our development environments, but given the timeline, we decided against it and changed to `asyncpg` in windows \\
+
+
+
+
 \begin{figure}[htbp]
     \begin{center}
         \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
@@ -656,171 +693,236 @@ This could have been an oportunity to build a docker image to standardize our de
 \end{figure}
 \section{System Diagrams}
 
-\section{Implementation Process}
-\subsection{Cloud Environment Setup}
-Step-by-step account configuration and resource provisioning
+\subsection{Context and Scope}
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
+        \vspace{0.01\textwidth}
+        \caption{Context and Scope Diagram}
+        \label{ContextandScope} % A unique label.
+    \end{center}
+\end{figure}
+\subsection{Building Block View}
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
+        \vspace{0.01\textwidth}
+        \caption{Building Block View Diagram}
+        \label{BuildingBlockView} % A unique label.
+    \end{center}
+\end{figure}
+\subsection{Runtime View}
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
+        \vspace{0.01\textwidth}
+        \caption{Runtime View Diagram}
+        \label{RuntimeView} % A unique label.
+    \end{center}
+\end{figure}
+\subsection{Deployment View}
 
-\subsection{Service Integration}
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
+        \vspace{0.01\textwidth}
+        \caption{Deployment View Diagram}
+        \label{DeploymentView} % A unique label.
+    \end{center}
+\end{figure}
+
+
+\section{Implementation Process}
+
+To make the implementation easier and repeatable in the public cloud provider we used terraform.
+Each of the different services was encapsulated in a module, allowing us to make the main template readable.
+So far we did not setup any CI implementation for the infrastructure deploy, only for the code changes, since that the functionality was provided by Azure.
+
+In the following code snippets we can see the specific infrastructure template we used for our deploy.
+
 \begin{itemize}
-    \item Azure Load Balancer configuration
-    \item Database replication setup
+
+    \item Configuration of the azure terraform provider:
+          \lstinputlisting[lastline=19]{../../../infra/main.tf}
+    \item Creation of a general resource group in Germany West Central (This zone is allowed by the student subscription)
+          \lstinputlisting[firstline=20, lastline=24]{../../../infra/main.tf}
+    \item Creation of a virtual network to comunicate the database and backend. This is required by the postgresql flexible server
+          \lstinputlisting[firstline=25, lastline=68]{../../../infra/main.tf}
+    \item Creation of a private DNS zone for the database. This is required to get an internal DNS name avoiding the use of a single public IP.
+          \lstinputlisting[firstline=70, lastline=84]{../../../infra/main.tf}
+    \item Creation of the DB, frontend and backend modules. All necesary code is included in the /infra folder of the repository.
+          \lstinputlisting[firstline=84]{../../../infra/main.tf}
 \end{itemize}
+
+To get the appropriate credentials, we created a student account with 100USD in credits. Once we got the credentials,
+the team was able to populate the respective variables file. Finally we executed the terraform plan to create the infrastructure.\\
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{../images/terraform_plan.png}
+        \vspace{0.01\textwidth}
+        \caption{Terraform Plan Results}
+        \label{TerraformPlan} % A unique label.
+    \end{center}
+\end{figure}
+
+\subsection{Cloud Environment Setup}
+
+
+Once we had all resources created in Azure, the team had to perform further manual configurations to enable the CI pipelines in azure webapps and static websites.
+\begin{itemize}
+    \item To enable CI for the backend we used the provided azure functionality which created a GitHub actions file wich packages and uploads all changes once they are merged into main
+    \item To enable CI for the frontend we used the provided azure functionality, which esentially provides the same features as in the backend.
+    \item We also created an standalone virtual machine with access to the database, in this virtual machine we ran all migrations and seeded the database si all data was available for testing.
+\end{itemize}
+
 
 \subsection{Development Challenges}
 \begin{itemize}
-    \item State management in scaled environments
-    \item Database connection pooling
-    \item CSP-specific limitations encountered
+    \item Sometimes the azure terraform provider encountered race conditions and produced errors while creating or destroying the infrastructure.
+    \item Some functionalities are not available for the student subscription, so we had to change availavility zones until we got one that was allowed
+    \item By default our applications don't have any autoscaling configured, given the choico of SKUs and to save costs.
+          Nevertheless the functionallity can be enabled by changing one configuration in the dashboard
 \end{itemize}
 
-\section{Operational Characteristics}
-\subsection{Performance Metrics}
+\section{Application Functionality and Characteristics}
 
 \subsubsection{Functional Test Cases}
 
 \renewcommand{\arraystretch}{1.3}
 \begin{longtable}{|c|>{\raggedright}p{4.8cm}|p{6cm}|>{\centering\arraybackslash}p{2cm}|}
     \hline
-    \textbf{Test Case ID} & \textbf{Test Scenario}                     & \textbf{Expected Outcome}                                 & \textbf{Status (Pass/Fail)} \\ \hline
+    \textbf{Test Case ID} & \textbf{Test Scenario}                     & \textbf{Expected Outcome}                                 & \textbf{Status (Pass/Fail)}            \\ \hline
     \endfirsthead
     \hline
-    \textbf{Test Case ID} & \textbf{Test Scenario}                     & \textbf{Expected Outcome}                                 & \textbf{Status (Pass/Fail)} \\ \hline
+    \textbf{Test Case ID} & \textbf{Test Scenario}                     & \textbf{Expected Outcome}                                 & \textbf{Status (Pass/Fail)}            \\ \hline
     \endhead
-    TC-001                & Load Homepage and verify product listing   & Homepage loads with products displayed correctly.         &        Pass                 \\ \hline
-    TC-002                & Apply Price filter (Ascending/Descending)  & Products reorder correctly based on selected price.       &        Pass                 \\ \hline
-    TC-003                & Apply Out of Stock filter                  & Only out-of-stock items are displayed.                    &        Pass                 \\ \hline
-    TC-004                & Apply Fast Delivery filter                 & Only products eligible for fast delivery show up.         &        Pass                 \\ \hline
-    TC-005                & Filter by Category                         & Products are filtered correctly by selected category.     &        Pass                 \\ \hline
-    TC-006                & Search Product by Name or Category         & Products matching search are shown correctly.             &        Pass                 \\ \hline
-    TC-007                & Clear Filter functionality                 & All filters are removed, showing the full product list.   &        Pass                 \\ \hline
-    TC-008                & Product Detail Page - Click Product        & Clicking a product opens its detailed page.               &        Pass                 \\ \hline
-    TC-009                & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. &        Pass                 \\ \hline
-    TC-010                & Add a Product to Cart                      & Product appears in cart with correct details.             &        Pass                 \\ \hline
-    TC-011                & Increase product quantity in cart          & Quantity updates and is reflected in the cart.            &        Pass                 \\ \hline
-    TC-012                & Remove product from cart                   & Product is removed from the cart immediately.             &        Pass                 \\ \hline
-    TC-013                & Proceed to checkout                        & Checkout page loads with the correct order summary.       &        Pass                 \\ \hline
-    TC-014                & Select payment method - Stripe             & Stripe payment option is selected and processed.          &        Pass                 \\ \hline
-    TC-015                & Select payment method - PayPal             & PayPal payment option is selected and processed.          &        Pass                 \\ \hline
-    TC-016                & Complete order processing                  & Order confirmation message is displayed.                  &        Pass                 \\ \hline
-    TC-017                & Order confirmation email is received       & Email is sent after order is placed.                      &        Pass                 \\ \hline
-    TC-018                & Shipment notification email is received    & Email is sent when the order is shipped.                  &        Pass                 \\ \hline
-    TC-019                & Product Dispatched email is received       & Email is sent when the order is dispatched.               &        Pass                 \\ \hline
-    TC-020                & Toggle Dark/Light Theme                    & Application switches between themes successfully.         &        Pass                 \\ \hline
+    TC-001                & Load Homepage and verify product listing   & Homepage loads with products displayed correctly.         & Pass, see Figure \ref{fig:homepage_filters}   \\ \hline
+    TC-002                & Apply Price filter (Ascending/Descending)  & Products reorder correctly based on selected price.       & Pass, see Figure \ref{fig:homepage_filters}   \\ \hline
+    TC-003                & Apply Out of Stock filter                  & Only out-of-stock items are displayed.                    & Pass, see Figure \ref{fig:homepage_filters_2} \\ \hline
+    TC-004                & Apply Fast Delivery filter                 & Only products eligible for fast delivery show up.         & Pass, see Figure \ref{fig:Webshop_4}          \\ \hline
+    TC-005                & Filter by Category                         & Products are filtered correctly by selected category.     & Pass, see Figure \ref{fig:Webshop_5}          \\ \hline
+    TC-006                & Search Product by Name or Category         & Products matching search are shown correctly.             & Pass, see Figure \ref{fig:Webshop_6}          \\ \hline
+    TC-007                & Clear Filter functionality                 & All filters are removed, showing the full product list.   & Pass, see Figure \ref{fig:Webshop_7}          \\ \hline
+    TC-008                & Product Detail Page - Click Product        & Clicking a product opens its detailed page.               & Pass, see Figure \ref{fig:Webshop_8}          \\ \hline
+    TC-009                & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & Pass, see Figure \ref{fig:Webshop_9}          \\ \hline
+    TC-010                & Add a Product to Cart                      & Product appears in cart with correct details.             & Pass, see Figure \ref{fig:Webshop_10}         \\ \hline
+    TC-011                & Increase product quantity in cart          & Quantity updates and is reflected in the cart.            & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-012                & Remove product from cart                   & Product is removed from the cart immediately.             & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-013                & Proceed to checkout                        & Checkout page loads with the correct order summary.       & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-014                & Select payment method - Stripe             & Stripe payment option is selected and processed.          & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-015                & Select payment method - PayPal             & PayPal payment option is selected and processed.          & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-016                & Complete order processing                  & Order confirmation message is displayed.                  & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-017                & Order confirmation email is received       & Email is sent after order is placed.                      & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-018                & Shipment notification email is received    & Email is sent when the order is shipped.                  & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-019                & Product Dispatched email is received       & Email is sent when the order is dispatched.               & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    \caption{Functional Test Cases for Webshop} \label{tab:functional-test-cases}
+    % \vspace{-10mm}
 \end{longtable}
 
-\begin{center}
-    \setcounter{table}{1} % Ensure this table is labeled as Table 2
-    \captionsetup{justification=centering} % Ensure centered text
-    \captionof{table}{Functional Test Cases for Webshop} \label{tab:functional-test-cases}
-\end{center}
 
-\vspace{5mm}  % Space between two figures (adjust the value as needed)
 
-\begin{figure}[H]
+\textbf{Screenshots of the webshop}\\
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/HomePage_AppliedFilters.png}  % Change this to your image path
-    \vspace{3mm}  % Add 5mm space between image and caption
+    \includegraphics[width=0.8\textwidth]{../images/HomePage_AppliedFilters.png}
+    \vspace{0.01\textwidth}
     \caption{Homepage with All Filters Applied to Products}
     \label{fig:homepage_filters}
 \end{figure}
 
-\vspace{10mm}  % Space between two figures (adjust the value as needed)
+\vphantom{}\\
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/DarkTheme_Load.png}  % Change this to your image path
-    \vspace{3mm}  % Add 5mm space between image and caption
+    \includegraphics[width=0.8\textwidth]{../images/DarkTheme_Load.png}
+    \vspace{0.01\textwidth}
     \caption{Homepage with All Products Listed, Dark Theme Enabled, and Clear Filter Applied}
     \label{fig:homepage_filters_2}
 \end{figure}
 
-\vspace{10mm}  % Space between two figures (adjust the value as needed)
+\hphantom{}\\
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/Item_Added_Cart.png}  % Change this to your image path
-    \vspace{3mm}  % Add 5mm space between image and caption
+    \includegraphics[width=0.8\textwidth]{../images/Item_Added_Cart.png}
+    \vspace{0.01\textwidth}
     \caption{Product Added to Cart, Cart View Displayed with Selected Item}
     \label{fig:Webshop_3}
 \end{figure}
 
-\vspace{10mm}  % Space between two figures (adjust the value as needed)
-
-\begin{figure}[H]
+\hphantom{}\\
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/Cart_Item_Increase.png}  % Change this to your image path
-    \vspace{3mm}  % Add 5mm space between image and caption
+    \includegraphics[width=0.8\textwidth]{../images/Cart_Item_Increase.png}
+    \vspace{0.01\textwidth}
     \caption{Product Quantity Updated in Cart}
     \label{fig:Webshop_4}
 \end{figure}
-
-\begin{figure}[H]
+\hphantom{}\\
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{../images/Item_remove_from_cart.png}  % Change this to your image path
-    \vspace{3mm}  % Add 5mm space between image and caption
+    \includegraphics[width=0.4\textwidth]{../images/Item_remove_from_cart.png}
+    \vspace{0.01\textwidth}
     \caption{Product Removed from Cart Successfully}
     \label{fig:Webshop_5}
 \end{figure}
-\vspace{10mm}  % Space between two figures (adjust the value as needed)
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{../images/Paypal_Login.png}  % Change this to your image path
-    \vspace{3mm}  % Add 5mm space between image and caption
-    \caption{PayPal Login Page Loaded for Payment Processing}
-    \label{fig:Webshop_7}
-\end{figure}
-\vspace{10mm}  % Space between two figures (adjust the value as needed)
+\hphantom{}\\
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/Proceed_payment_Paypal.png}  % Change this to your image path
-    \vspace{3mm}  % Add 5mm space between image and caption
-    \caption{Card Information Added for PayPal Payment Processing (Mock Testing)}
-    \label{fig:Webshop_8}
-\end{figure}
-\vspace{10mm}  % Space between two figures (adjust the value as needed)
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{../images/Shipment_email.png}  % Change this to your image path
-    \vspace{3mm}  % Add 5mm space between image and caption
-    \caption{Shipment Notification Email Received for Order}
-    \label{fig:Webshop_9}
-\end{figure}
-\vspace{10mm}  % Space between two figures (adjust the value as needed)
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{../images/dispatched_email.png}  % Change this to your image path
-    \vspace{3mm}  % Add 5mm space between image and caption
-    \caption{Order Dispatched Email Received After Status Change}
-    \label{fig:Webshop_10}
-\end{figure}
-\vspace{10mm}  % Space between two figures (adjust the value as needed)
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{../images/Payment_Stripe.png}  % Change this to your image path
-    \vspace{3mm}  % Add 5mm space between image and caption
-    \caption{Order Placed with Stripe Payment Method}
+    \subfloat[\centering Page Load]{{\includegraphics[width=0.4\textwidth]{../images/Paypal_Login.png} }}
+    \qquad
+    \subfloat[\centering Credit Card Input]{{\includegraphics[width=0.5\textwidth]{../images/Proceed_payment_Paypal.png} }}
+    \vspace{0.01\textwidth}
+    \caption{Paypal Payment Processing}
     \label{fig:Webshop_6}
 \end{figure}
-\vspace{10mm}  % Space between two figures (adjust the value as needed)
 
-\begin{figure}[H]
+
+\hphantom{}\\
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/Get_Order_API.png}  % Change this to your image path
-    \vspace{3mm}  % Add 5mm space between image and caption
-    \caption{Order Data Retrieved Through Fast API for All Placed Orders}
-    \label{fig:Webshop_11}
+    \includegraphics[width=0.8\textwidth]{../images/Shipment_email.png}
+    \vspace{0.01\textwidth}
+    \caption{Shipment Notification Email Received for Order}
+    \label{fig:Webshop_7}
 \end{figure}
+
+\hphantom{}\\
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/dispatched_email.png}
+    \vspace{0.01\textwidth}
+    \caption{Order Dispatched Email Received After Status Change}
+    \label{fig:Webshop_8}
+\end{figure}
+
+\hphantom{}\\
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/Payment_Stripe.png}
+    \vspace{0.01\textwidth}
+    \caption{Order Placed with Stripe Payment Method}
+    \label{fig:Webshop_9}
+\end{figure}
+\hphantom{}\\
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/Get_Order_API.png}
+    \vspace{0.01\textwidth}
+    \caption{Order Data Retrieved Through Fast API for All Placed Orders}
+    \label{fig:Webshop_10}
+\end{figure}
+
+\newpage
 
 \section{Critical Analysis}
 \subsection{Cloud Service Evaluation}
-Cost-benefit analysis of selected Azure services
+
 \subsection{Architectural Decisions}
-Trade-off discussion between containerized vs serverless approaches
+
 
 \section{Repository Documentation}
 \subsection{GitHub Structure}
@@ -831,22 +933,9 @@ Trade-off discussion between containerized vs serverless approaches
           The project follows a simple main branch strategy where all contributors work directly on the main branch.
           This ensures seamless integration without managing multiple branches. All changes should be committed with meaningful messages.
           Code should be reviewed and tested before pushing to the main branch.
-\end{enumerate}
 
-\begin{enumerate}
-    \setcounter{enumi}{1}
     \item \textbf{Continuous Integration/Continuous Deployment:}
           \begin{itemize}
-              \item \textbf{Continuous Integration (CI):}
-
-                    Every code commit triggers an automated build and testing process. This includes:
-                    \begin{itemize}
-                        \item Running unit tests to validate individual components.
-                        \item Performing integration tests to ensure compatibility between different modules.
-                        \item Static code analysis for linting and security vulnerabilities.
-                    \end{itemize}
-
-                    \bigskip % Adds space before the next section
               \item \textbf{Continuous Deployment (CD):}
 
                     Once the CI stage passes successfully, the application is automatically deployed to the appropriate environment. This process includes:
@@ -856,7 +945,7 @@ Trade-off discussion between containerized vs serverless approaches
                         \item Deploying to production with rollback mechanisms in case of failure.
                     \end{itemize}
 
-                    \bigskip % Adds space before the next section
+                    \bigskip 
 
               \item \textbf{Documentation Standards}
           \end{itemize}
@@ -893,10 +982,22 @@ Trade-off discussion between containerized vs serverless approaches
 
 \section{Conclusion}
 \subsection{Project Outcomes}
-Summary of achieved objectives and demo capabilities
+
+At the end of the project we had a 3 tier cloud native application running.
+Furthermore, we have infrastructure templates to recreate this particular setup with minimal manual configuration.
+The team also implemented a database migration system to track changes to the tables and to actually seed the initial data without much effort.
+All services have the possibility to scale horizontally, and are easily configurable. Nevertheless the architecture of the project could have been much simpler.
+As it was pointed out in the critical analysis of our project, services like Azure static web apps offer the possibility to deploy all 3 layers in one single service.
+Some of them even include their own MySQL database. We believe that it could be a more cost effective way, but at the cost of flexibility.
+Since all the application will be tailored to a single service.
+
 
 \subsection{Future Enhancements}
-Potential improvements for production readiness
+For production readiness a lot of polish work is needed, specially in the order handling and tracking, not to mention security and user management.
+Nevertheless, in the infrastructure side, it is a matter of changing the SKUs and autoscaling configurations to something more appropriate depending on the expected load.
+Inherently the system runs in a private network inside the cloud provider, and it provides https certificates out of the box.
+If in the future the cost assesment reveals that the choice of servies was on the expensive side, we could at least consolidate the presentation and business logic layers in one service.
+
 
 \begin{thebibliography}{9}
 
