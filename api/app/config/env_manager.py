@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env")
 
     def get_db_url(self) -> str:
-        return f"postgresql+psycopg://{self.AZURE_DATABASE_URL}/webshopdb"
+        return f"postgresql+asyncpg://{self.AZURE_DATABASE_URL}/webshopdb"
 
 
 @lru_cache
