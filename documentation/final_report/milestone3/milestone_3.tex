@@ -759,7 +759,7 @@ In the following code snippets we can see the specific infrastructure template w
           \lstinputlisting[firstline=84]{../../../infra/main.tf}
 \end{itemize}
 
-To get the appropriate credentials, we created a student account with 100USD in credits, after running the 
+To get the appropriate credentials, we created a student account with 100USD in credits, after running the
 $\verb|az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<SUBSCRIPTION_ID>"|$ command
 the team was able to populate the respective variables file. Finally we executed the terraform plan to create the infrastructure.\\
 
@@ -791,6 +791,16 @@ Once we had all resources created in Azure, the team had to perform further manu
     \item We also created an standalone virtual machine with access to the database, in this virtual machine we ran all migrations and seeded the database si all data was available for testing.
 \end{itemize}
 
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{../diagrams/webapp_tf_azure.drawio.png}
+        \vspace{0.01\textwidth}
+        \caption{Terraform Plan Results}
+        \label{TerraformPlan} % A unique label.
+    \end{center}
+\end{figure}
+
+
 
 \subsection{Development Challenges}
 \begin{itemize}
@@ -815,22 +825,22 @@ Once we had all resources created in Azure, the team had to perform further manu
     TC-001                & Load Homepage and verify product listing   & Homepage loads with products displayed correctly.         & Pass, see Figure \ref{fig:homepage_filters}   \\ \hline
     TC-002                & Apply Price filter (Ascending/Descending)  & Products reorder correctly based on selected price.       & Pass, see Figure \ref{fig:homepage_filters}   \\ \hline
     TC-003                & Apply Out of Stock filter                  & Only out-of-stock items are displayed.                    & Pass, see Figure \ref{fig:homepage_filters_2} \\ \hline
-    TC-004                & Apply Fast Delivery filter                 & Only products eligible for fast delivery show up.         & Pass, see Figure \ref{fig:Webshop_4}          \\ \hline
-    TC-005                & Filter by Category                         & Products are filtered correctly by selected category.     & Pass, see Figure \ref{fig:Webshop_5}          \\ \hline
-    TC-006                & Search Product by Name or Category         & Products matching search are shown correctly.             & Pass, see Figure \ref{fig:Webshop_6}          \\ \hline
-    TC-007                & Clear Filter functionality                 & All filters are removed, showing the full product list.   & Pass, see Figure \ref{fig:Webshop_7}          \\ \hline
-    TC-008                & Product Detail Page - Click Product        & Clicking a product opens its detailed page.               & Pass, see Figure \ref{fig:Webshop_8}          \\ \hline
-    TC-009                & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & Pass, see Figure \ref{fig:Webshop_9}          \\ \hline
-    TC-010                & Add a Product to Cart                      & Product appears in cart with correct details.             & Pass, see Figure \ref{fig:Webshop_10}         \\ \hline
-    TC-011                & Increase product quantity in cart          & Quantity updates and is reflected in the cart.            & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
-    TC-012                & Remove product from cart                   & Product is removed from the cart immediately.             & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
-    TC-013                & Proceed to checkout                        & Checkout page loads with the correct order summary.       & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
-    TC-014                & Select payment method - Stripe             & Stripe payment option is selected and processed.          & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
-    TC-015                & Select payment method - PayPal             & PayPal payment option is selected and processed.          & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
-    TC-016                & Complete order processing                  & Order confirmation message is displayed.                  & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
-    TC-017                & Order confirmation email is received       & Email is sent after order is placed.                      & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
-    TC-018                & Shipment notification email is received    & Email is sent when the order is shipped.                  & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
-    TC-019                & Product Dispatched email is received       & Email is sent when the order is dispatched.               & Pass, see Figure \ref{fig:Webshop_}           \\ \hline
+    TC-004                & Apply Fast Delivery filter                 & Only products eligible for fast delivery show up.         & Pass, see demo video        \\ \hline
+    TC-005                & Filter by Category                         & Products are filtered correctly by selected category.     & Pass, see demo video       \\ \hline
+    TC-006                & Search Product by Name or Category         & Products matching search are shown correctly.             & Pass, see demo video        \\ \hline
+    TC-007                & Clear Filter functionality                 & All filters are removed, showing the full product list.   & Pass, see demo video        \\ \hline
+    TC-008                & Product Detail Page - Click Product        & Clicking a product opens its detailed page.               & Pass, see demo video        \\ \hline
+    TC-009                & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & Pass, see demo video         \\ \hline
+    TC-010                & Add a Product to Cart                      & Product appears in cart with correct details.             & Pass, see Figure \ref{fig:Webshop_3}         \\ \hline
+    TC-011                & Increase product quantity in cart          & Quantity updates and is reflected in the cart.            & Pass, see Figure \ref{fig:Webshop_4}           \\ \hline
+    TC-012                & Remove product from cart                   & Product is removed from the cart immediately.             & Pass, see Figure \ref{fig:Webshop_5}           \\ \hline
+    TC-013                & Proceed to checkout                        & Checkout page loads with the correct order summary.       & Pass, see demo video         \\ \hline
+    TC-014                & Select payment method - Stripe             & Stripe payment option is selected and processed.          & Pass, see Figure \ref{fig:Webshop_9}           \\ \hline
+    TC-015                & Select payment method - PayPal             & PayPal payment option is selected and processed.          & Pass, see Figure \ref{fig:Webshop_6}           \\ \hline
+    TC-016                & Complete order processing                  & Order confirmation message is displayed.                  & Pass, see demo video         \\ \hline
+    TC-017                & Order confirmation email is received       & Email is sent after order is placed.                      & Pass, see Figure \ref{fig:Webshop_9}           \\ \hline
+    TC-018                & Shipment notification email is received    & Email is sent when the order is shipped.                  & Pass, see Figure \ref{fig:Webshop_7}           \\ \hline
+    TC-019                & Product Dispatched email is received       & Email is sent when the order is dispatched.               & Pass, see Figure \ref{fig:Webshop_8}           \\ \hline
     \caption{Functional Test Cases for Webshop} \label{tab:functional-test-cases}
     % \vspace{-10mm}
 \end{longtable}
@@ -931,19 +941,18 @@ Once we had all resources created in Azure, the team had to perform further manu
     \label{fig:Webshop_10}
 \end{figure}
 
-\vphantom{ }\\
 
 \section{Critical Analysis}
 
 In general the application conforms to the specification of the client. Neverhteless, in hindsight, some areas of the code, infrastructure, and development process could have been improved.
 \begin{itemize}
-    \item The base project for the front end used vanila JavaScript and no state management library. Initially to get the store up and running fast is perfect. 
-    But, once we need to add more functionality and the state management becomes more complex, we could have beneffited from the inclusion of a stronger type system. And a dedicated state management solution.
-    Even on the first stages of integration, the lack of types makes it more difficult to integrate with the backend.
-    \item The choice of 3 different services to run the application might have been more complex than what was needed. 
-    In theory either Azure App Service and Static Web apps could have easily handled the entirety of the application.
-    \item Once we start scaling up, having three different services scaling independently even thouhg is more flexible, could result in bigger expenses, 
-    since all network traffic and DNS queries, even internally are billed. This is a situation that becomes less of a problem if all components are in a single service.
+    \item The base project for the front end used vanila JavaScript and no state management library. Initially to get the store up and running fast is perfect.
+          But, once we need to add more functionality and the state management becomes more complex, we could have beneffited from the inclusion of a stronger type system. And a dedicated state management solution.
+          Even on the first stages of integration, the lack of types makes it more difficult to integrate with the backend.
+    \item The choice of 3 different services to run the application might have been more complex than what was needed.
+          In theory either Azure App Service and Static Web apps could have easily handled the entirety of the application.
+    \item Once we start scaling up, having three different services scaling independently even thouhg is more flexible, could result in bigger expenses,
+          since all network traffic and DNS queries, even internally are billed. This is a situation that becomes less of a problem if all components are in a single service.
 
     \item The management of the database becomes more difficult once you host the server on a private virtual cloud. We had to create a virtual machine to act as a proxy for migrations and seeding the database.
 \end{itemize}
@@ -974,9 +983,9 @@ Another disadvantage is that it requires its own resource group and own subnet.\
 \subsubsection{Azure App Service}
 
 This service was used due to its versatility in deploying any type of web applications. To avoid extra costs associated to a private image registry,
- to handle deploys we are packaging all the code and artifacts in the github runner and publishing to our application.
+to handle deploys we are packaging all the code and artifacts in the github runner and publishing to our application.
 
- One of the disadvantages is the price, once we start using the more advanced features and more compute, the service scales rapidly in cost.\\
+One of the disadvantages is the price, once we start using the more advanced features and more compute, the service scales rapidly in cost.\\
 
 \begin{figure}[htbp]
     \centering
@@ -991,7 +1000,7 @@ This service was used due to its versatility in deploying any type of web applic
 
 This is one of the more reasonable options to deploy a database server in Azure, given that the Free tier is quite capable. It also offers automatic maintenance and backups.
 
-Again, one of the disadvantages is the access complexity if we decide to host it on a VPC and not have a public IP.\\
+In this case, one of the disadvantages is the access complexity if we decide to host it on a VPC and not have a public IP.\\
 
 \begin{figure}[htbp]
     \centering
@@ -1006,11 +1015,11 @@ Again, one of the disadvantages is the access complexity if we decide to host it
 
 \begin{itemize}
     \item The frontend application uses a really basic component driven approach and segregates all API comunication logic to its own folder.
-    \item In the backend we decided to have 2 simple layers, the database access layer, and the presentation layer i.e. The endpoints. 
-    Given the time constraints, and the scope of the project we did not divide the code further.
+    \item In the backend we decided to have 2 simple layers, the database access layer, and the presentation layer i.e. The endpoints.
+          Given the time constraints, and the scope of the project we did not divide the code further.
     \item We used FastAPI in the backend given its asynchronous nature, meaning a more efficient use of CPU resources, and the ability to schedule background tasks to send emails out of the box.
     \item In general this application is stil limited by the scale of the database, given that we are not using a microservice approach or have a database that supports sharding.
-    Nevertheless, we feel that for a webshop which needs to handle orders, transaction integrity is more important than data replication. Furthermore, given the flexible nature of the cloud, we could scale the server vertically if there is the need.
+          Nevertheless, we feel that for a webshop which needs to handle orders, transaction integrity is more important than data replication. Furthermore, given the flexible nature of the cloud, we could scale the server vertically if there is the need.
 
 \end{itemize}
 
@@ -1039,12 +1048,12 @@ The team configured the following repository: https://github.com/Helly2010/Cloud
 
           \end{itemize}
 \end{enumerate}
-\newpage
+
 
 \subsection{Contributions}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/contributions.png}
+    \includegraphics[width=0.7\textwidth]{../images/contributions.png}
     \vspace{0.01\textwidth}
     \caption{Contribution Stats in GitHub}
     \label{fig:contributions}
@@ -1061,8 +1070,8 @@ The team configured the following repository: https://github.com/Helly2010/Cloud
         Introduction and Objectives of Cloud Implementation  \newline
         add development.. & Priyanka Vadiwala         \\
         \hline
-        add \newline
-        add               & Wladymir Brborich-Herrera \\
+        Implementation Process  And Critical Analysis
+                       & Wladymir Brborich-Herrera \\
         \hline
         add \newline
         add               & Heer Vankawala            \\
@@ -1098,6 +1107,44 @@ If in the future the cost assesment reveals that the choice of servies was on th
 
 
 \begin{thebibliography}{9}
+
+    \bibitem{AppServiceplan}
+    Microsoft,
+    \emph{Azure App Service plan overview},
+    2024, Available:
+    \url{https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans}.
+
+    \bibitem{MicrosoftAzureSubscriptionLimits}
+    Microsoft,
+    \emph{Azure subscription and service limits, quotas, and constraints},
+    2024, Available:
+    \url{https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits}.
+
+    \bibitem{azurepricingcalculator}
+    Microsoft, Available:
+    \emph{Azure Pricing Calculator}, 2024,
+    \url{https://azure.microsoft.com/de-de/pricing/calculator/}.
+
+    \bibitem{MicrosoftAzurePythonConfig}
+    Microsoft,
+    \emph{Configure Linux Python apps - Azure App Service},
+    2024, Available:
+    \url{https://learn.microsoft.com/en-us/azure/app-service/configure-language-python}
+
+    \bibitem{azurestaticwebapps}
+    Microsoft,
+    \emph{What is Azure Static Web Apps?}, 2024,
+    Available: \url{https://learn.microsoft.com/en-us/azure/static-web-apps/overview}.
+
+    \bibitem{azuredatabase}
+    Microsoft,
+    \emph{Azure Database for PostgreSQL – Flexible Servers}, 2024,
+    Available: \url{https://learn.microsoft.com/de-de/azure/postgresql/flexible-server/overview}.
+
+    \bibitem{azurevirtualscale}
+    Microsoft,
+    \emph{What are Virtual Machine Scale Sets?}, 2024,
+    Available: \url{https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview}.
 
 \end{thebibliography}
 \end{document}
