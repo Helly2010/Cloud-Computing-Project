@@ -74,7 +74,7 @@
 \setlength{\itemsep}{0ex plus0.2ex}
 \sloppy                        % Auf jeden Fall die Seitenränder einhalten.
 
-\newcommand{\what}{Milestone 3: Practical Implementation of LowTech Gmbh Webshop in CSP Platform}
+\newcommand{\what}{Milestone 3: Practical Implementation of LowTech Gmbh Webshop in Azure}
 \newcommand{\who}{Group 23}
 \newcommand{\when}{WiSe 2024-2025}
 
@@ -759,8 +759,18 @@ In the following code snippets we can see the specific infrastructure template w
           \lstinputlisting[firstline=84]{../../../infra/main.tf}
 \end{itemize}
 
-To get the appropriate credentials, we created a student account with 100USD in credits. Once we got the credentials,
+To get the appropriate credentials, we created a student account with 100USD in credits, after running the 
+$\verb|az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<SUBSCRIPTION_ID>"|$ command
 the team was able to populate the respective variables file. Finally we executed the terraform plan to create the infrastructure.\\
+
+\begin{lstlisting}[language=Python,caption={Azure Credentials Example}]
+    {
+        "appId": "XXXXX-XXXX-XXX-XXX-XXXXXXX",
+        "displayName": "azure-cli-2025-02-09-15-07-35",
+        "password": "SECRET_PASSWORD",
+        "tenant": "TENANT_UUID"
+    }
+\end{lstlisting}
 
 \begin{figure}[htbp]
     \begin{center}
@@ -797,10 +807,10 @@ Once we had all resources created in Azure, the team had to perform further manu
 \renewcommand{\arraystretch}{1.3}
 \begin{longtable}{|c|>{\raggedright}p{4.8cm}|p{6cm}|>{\centering\arraybackslash}p{2cm}|}
     \hline
-    \textbf{Test Case ID} & \textbf{Test Scenario}                     & \textbf{Expected Outcome}                                 & \textbf{Status (Pass/Fail)}            \\ \hline
+    \textbf{Test Case ID} & \textbf{Test Scenario}                     & \textbf{Expected Outcome}                                 & \textbf{Status (Pass/Fail)}                   \\ \hline
     \endfirsthead
     \hline
-    \textbf{Test Case ID} & \textbf{Test Scenario}                     & \textbf{Expected Outcome}                                 & \textbf{Status (Pass/Fail)}            \\ \hline
+    \textbf{Test Case ID} & \textbf{Test Scenario}                     & \textbf{Expected Outcome}                                 & \textbf{Status (Pass/Fail)}                   \\ \hline
     \endhead
     TC-001                & Load Homepage and verify product listing   & Homepage loads with products displayed correctly.         & Pass, see Figure \ref{fig:homepage_filters}   \\ \hline
     TC-002                & Apply Price filter (Ascending/Descending)  & Products reorder correctly based on selected price.       & Pass, see Figure \ref{fig:homepage_filters}   \\ \hline
@@ -836,7 +846,7 @@ Once we had all resources created in Azure, the team had to perform further manu
     \label{fig:homepage_filters}
 \end{figure}
 
-\vphantom{}\\
+\vphantom{ }\\
 
 \begin{figure}[htbp]
     \centering
@@ -846,7 +856,7 @@ Once we had all resources created in Azure, the team had to perform further manu
     \label{fig:homepage_filters_2}
 \end{figure}
 
-\hphantom{}\\
+\vphantom{ }\\
 
 \begin{figure}[htbp]
     \centering
@@ -856,7 +866,7 @@ Once we had all resources created in Azure, the team had to perform further manu
     \label{fig:Webshop_3}
 \end{figure}
 
-\hphantom{}\\
+\vphantom{ }\\
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/Cart_Item_Increase.png}
@@ -864,7 +874,7 @@ Once we had all resources created in Azure, the team had to perform further manu
     \caption{Product Quantity Updated in Cart}
     \label{fig:Webshop_4}
 \end{figure}
-\hphantom{}\\
+\vphantom{ }\\
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{../images/Item_remove_from_cart.png}
@@ -873,7 +883,7 @@ Once we had all resources created in Azure, the team had to perform further manu
     \label{fig:Webshop_5}
 \end{figure}
 
-\hphantom{}\\
+\vphantom{ }\\
 
 \begin{figure}[htbp]
     \centering
@@ -886,7 +896,7 @@ Once we had all resources created in Azure, the team had to perform further manu
 \end{figure}
 
 
-\hphantom{}\\
+\vphantom{ }\\
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/Shipment_email.png}
@@ -895,7 +905,7 @@ Once we had all resources created in Azure, the team had to perform further manu
     \label{fig:Webshop_7}
 \end{figure}
 
-\hphantom{}\\
+\vphantom{ }\\
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/dispatched_email.png}
@@ -904,7 +914,7 @@ Once we had all resources created in Azure, the team had to perform further manu
     \label{fig:Webshop_8}
 \end{figure}
 
-\hphantom{}\\
+\vphantom{ }\\
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/Payment_Stripe.png}
@@ -912,7 +922,7 @@ Once we had all resources created in Azure, the team had to perform further manu
     \caption{Order Placed with Stripe Payment Method}
     \label{fig:Webshop_9}
 \end{figure}
-\hphantom{}\\
+\vphantom{ }\\
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/Get_Order_API.png}
@@ -921,12 +931,88 @@ Once we had all resources created in Azure, the team had to perform further manu
     \label{fig:Webshop_10}
 \end{figure}
 
-\newpage
+\vphantom{ }\\
 
 \section{Critical Analysis}
+
+In general the application conforms to the specification of the client. Neverhteless, in hindsight, some areas of the code, infrastructure, and development process could have been improved.
+\begin{itemize}
+    \item The base project for the front end used vanila JavaScript and no state management library. Initially to get the store up and running fast is perfect. 
+    But, once we need to add more functionality and the state management becomes more complex, we could have beneffited from the inclusion of a stronger type system. And a dedicated state management solution.
+    Even on the first stages of integration, the lack of types makes it more difficult to integrate with the backend.
+    \item The choice of 3 different services to run the application might have been more complex than what was needed. 
+    In theory either Azure App Service and Static Web apps could have easily handled the entirety of the application.
+    \item Once we start scaling up, having three different services scaling independently even thouhg is more flexible, could result in bigger expenses, 
+    since all network traffic and DNS queries, even internally are billed. This is a situation that becomes less of a problem if all components are in a single service.
+
+    \item The management of the database becomes more difficult once you host the server on a private virtual cloud. We had to create a virtual machine to act as a proxy for migrations and seeding the database.
+\end{itemize}
 \subsection{Cloud Service Evaluation}
 
+In general the configuration of the services was simple enough. Nevbertheless there were some setbvacks associated to the type of subscription we were using.
+All services have auto-scaling capabilities, which can be enabled on demand, and configured acording to the aplications needs.
+
+
+\subsubsection{Azure Static Web Apps}
+In this case we are using the Free SKU. The main disadvantage of the Free SKU is that is very limited in terms of throughput and connections to the client.
+Nevertheless this service can be upgraded to use "enterprise-grade ege" meaning that Azure will automatically cache the website on edge servers making it fast and easy to deliver to clients.
+
+This service does not support traditional autoscaling since we are not rendering on the server. The client connects to the backend using http.
+
+One of the disadvantages is thet even though it allows for integration options with APIs and even databases, it is clear that we will have to architect the application to only be tailored to use this services under Azyres paradigms.
+
+Another disadvantage is that it requires its own resource group and own subnet.\\
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/frontend_azure.png}
+    \vspace{0.01\textwidth}
+    \caption{Azure Static Web Apps Dashboard}
+    \label{fig:frontend_azure}
+\end{figure}
+
+
+\subsubsection{Azure App Service}
+
+This service was used due to its versatility in deploying any type of web applications. To avoid extra costs associated to a private image registry,
+ to handle deploys we are packaging all the code and artifacts in the github runner and publishing to our application.
+
+ One of the disadvantages is the price, once we start using the more advanced features and more compute, the service scales rapidly in cost.\\
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/backend_azure.png}
+    \vspace{0.01\textwidth}
+    \caption{Azure App Service Dashboard}
+    \label{fig:backend_azure}
+\end{figure}
+
+
+\subsubsection{Azure PostgreSQL Flexible Server}
+
+This is one of the more reasonable options to deploy a database server in Azure, given that the Free tier is quite capable. It also offers automatic maintenance and backups.
+
+Again, one of the disadvantages is the access complexity if we decide to host it on a VPC and not have a public IP.\\
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/database_azure.png}
+    \vspace{0.01\textwidth}
+    \caption{Azure PostgreSQL Flexible Server Dashboard}
+    \label{fig:database_azure}
+\end{figure}
+
+
 \subsection{Architectural Decisions}
+
+\begin{itemize}
+    \item The frontend application uses a really basic component driven approach and segregates all API comunication logic to its own folder.
+    \item In the backend we decided to have 2 simple layers, the database access layer, and the presentation layer i.e. The endpoints. 
+    Given the time constraints, and the scope of the project we did not divide the code further.
+    \item We used FastAPI in the backend given its asynchronous nature, meaning a more efficient use of CPU resources, and the ability to schedule background tasks to send emails out of the box.
+    \item In general this application is stil limited by the scale of the database, given that we are not using a microservice approach or have a database that supports sharding.
+    Nevertheless, we feel that for a webshop which needs to handle orders, transaction integrity is more important than data replication. Furthermore, given the flexible nature of the cloud, we could scale the server vertically if there is the need.
+
+\end{itemize}
 
 
 \section{Repository Documentation}
@@ -970,22 +1056,22 @@ The team configured the following repository: https://github.com/Helly2010/Cloud
 
     \begin{tabular}{|p{0.7\textwidth}|p{0.3\textwidth}|}
         \hline
-        \textbf{Topic}                                                              & \textbf{Contributor}                   \\ 
+        \textbf{Topic}    & \textbf{Contributor}      \\
         \hline
-        Introduction and Objectives of Cloud Implementation  \newline                       
-        add development..                                                           & Priyanka Vadiwala                      \\ 
-        \hline
-        add \newline
-        add                                                                         & Wladymir Brborich-Herrera              \\ 
+        Introduction and Objectives of Cloud Implementation  \newline
+        add development.. & Priyanka Vadiwala         \\
         \hline
         add \newline
-        add                                                                         & Heer Vankawala                         \\ 
+        add               & Wladymir Brborich-Herrera \\
         \hline
         add \newline
-        add                                                                         & Hellyben Shah                          \\ 
+        add               & Heer Vankawala            \\
         \hline
         add \newline
-        add                                                                         & Vishwaben Kakadiya                     \\ 
+        add               & Hellyben Shah             \\
+        \hline
+        add \newline
+        add               & Vishwaben Kakadiya        \\
         \hline
     \end{tabular}
     \caption{Contribution Table}
