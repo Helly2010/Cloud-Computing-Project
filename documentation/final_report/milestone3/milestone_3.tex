@@ -331,7 +331,7 @@ Importantly, for all newly developed applications, we will:
 When developing a cloud-native application Figure \ref{CloudStandard} shows the basic setup to integrate DevOps concepts into our workflow.
 The website is going to be developed under this standard.\\
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{../diagrams/AppStandard.drawio.png}
         \vspace{0.01\textwidth}
@@ -681,10 +681,7 @@ During the development timeline, we scheduled weekly meetings to report progress
 For example, we encountered issues while running the new `psycopg` libary in asynchronous mode in windows. Which caused some issues while configuring the development environment.
 This could have been an oportunity to build a docker image to standardize our development environments, but given the timeline, we decided against it and changed to `asyncpg` in windows \\
 
-
-
-
-\begin{figure}[htbp]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
         \vspace{0.01\textwidth}
@@ -695,39 +692,63 @@ This could have been an oportunity to build a docker image to standardize our de
 \section{System Diagrams}
 
 \subsection{Context and Scope}
-\begin{figure}[htbp]
+\begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.7\textwidth]{../diagrams/contextview.png}
+        \includegraphics[width=0.8\textwidth]{../diagrams/contextview.png}
         \vspace{0.01\textwidth}
         \caption{Context and Scope Diagram}
         \label{ContextandScope} % A unique label.
     \end{center}
 \end{figure}
 
-\vphantom{}\\
 \subsection{Building Block View}
-\begin{figure}[htbp]
+
+\begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
+        \includegraphics[width=0.9\textwidth]{../diagrams/block_diagram-Level1.drawio.png}
         \vspace{0.01\textwidth}
-        \caption{Building Block View Diagram}
-        \label{BuildingBlockView} % A unique label.
+        \caption{Building Block View Level 1}
+        \label{BuildingBlockView1}
     \end{center}
 \end{figure}
-\subsection{Runtime View}
-\begin{figure}[htbp]
+
+The building block view makes emphasis on the backend, since we have provided a component diagram for the frontend.\\
+
+
+\begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.7\textwidth]{../diagrams/runtimeview.png}
+        \includegraphics[width=0.9\textwidth]{../diagrams/block_diagram-Level2.drawio.png}
+        \vspace{0.01\textwidth}
+        \caption{Building Block View Level 2}
+        \label{BuildingBlockView2}
+    \end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{../diagrams/block_diagram-Level3.drawio.png}
+        \vspace{0.01\textwidth}
+        \caption{Building Block View Level 3}
+        \label{BuildingBlockView3}
+    \end{center}
+\end{figure}
+
+
+\subsection{Runtime View}
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{../diagrams/runtimeview.png}
         \vspace{0.01\textwidth}
         \caption{Runtime View Diagram}
         \label{RuntimeView} % A unique label.
     \end{center}
 \end{figure}
 
-\newpage
+
 \subsection{Deployment View}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.7\textwidth]{../diagrams/trello_board.png}
         \vspace{0.01\textwidth}
@@ -772,7 +793,7 @@ the team was able to populate the respective variables file. Finally we executed
     }
 \end{lstlisting}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.7\textwidth]{../images/terraform_plan.png}
         \vspace{0.01\textwidth}
@@ -788,15 +809,15 @@ Once we had all resources created in Azure, the team had to perform further manu
 \begin{itemize}
     \item To enable CI for the backend we used the provided azure functionality which created a GitHub actions file wich packages and uploads all changes once they are merged into main
     \item To enable CI for the frontend we used the provided azure functionality, which esentially provides the same features as in the backend.
-    \item We also created an standalone virtual machine with access to the database, in this virtual machine we ran all migrations and seeded the database si all data was available for testing.
+    \item We also created an standalone virtual machine with access to the database, in this virtual machine we ran all migrations and seeded the database si all data was available for testing.\\
 \end{itemize}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.7\textwidth]{../diagrams/webapp_tf_azure.drawio.png}
         \vspace{0.01\textwidth}
-        \caption{Terraform Plan Results}
-        \label{TerraformPlan} % A unique label.
+        \caption{Cloud Environment Setup Diagram}
+        \label{CloudSetup} % A unique label.
     \end{center}
 \end{figure}
 
@@ -848,7 +869,7 @@ Once we had all resources created in Azure, the team had to perform further manu
 
 
 \textbf{Screenshots of the webshop}\\
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/HomePage_AppliedFilters.png}
     \vspace{0.01\textwidth}
@@ -858,7 +879,7 @@ Once we had all resources created in Azure, the team had to perform further manu
 
 \vphantom{ }\\
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/DarkTheme_Load.png}
     \vspace{0.01\textwidth}
@@ -868,7 +889,7 @@ Once we had all resources created in Azure, the team had to perform further manu
 
 \vphantom{ }\\
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/Item_Added_Cart.png}
     \vspace{0.01\textwidth}
@@ -877,7 +898,7 @@ Once we had all resources created in Azure, the team had to perform further manu
 \end{figure}
 
 \vphantom{ }\\
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/Cart_Item_Increase.png}
     \vspace{0.01\textwidth}
@@ -885,7 +906,7 @@ Once we had all resources created in Azure, the team had to perform further manu
     \label{fig:Webshop_4}
 \end{figure}
 \vphantom{ }\\
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{../images/Item_remove_from_cart.png}
     \vspace{0.01\textwidth}
@@ -895,7 +916,7 @@ Once we had all resources created in Azure, the team had to perform further manu
 
 \vphantom{ }\\
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \subfloat[\centering Page Load]{{\includegraphics[width=0.4\textwidth]{../images/Paypal_Login.png} }}
     \qquad
@@ -907,7 +928,7 @@ Once we had all resources created in Azure, the team had to perform further manu
 
 
 \vphantom{ }\\
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/Shipment_email.png}
     \vspace{0.01\textwidth}
@@ -916,7 +937,7 @@ Once we had all resources created in Azure, the team had to perform further manu
 \end{figure}
 
 \vphantom{ }\\
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/dispatched_email.png}
     \vspace{0.01\textwidth}
@@ -925,7 +946,7 @@ Once we had all resources created in Azure, the team had to perform further manu
 \end{figure}
 
 \vphantom{ }\\
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/Payment_Stripe.png}
     \vspace{0.01\textwidth}
@@ -933,7 +954,7 @@ Once we had all resources created in Azure, the team had to perform further manu
     \label{fig:Webshop_9}
 \end{figure}
 \vphantom{ }\\
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/Get_Order_API.png}
     \vspace{0.01\textwidth}
@@ -971,7 +992,7 @@ This service does not support traditional autoscaling since we are not rendering
 One of the disadvantages is thet even though it allows for integration options with APIs and even databases, it is clear that we will have to architect the application to only be tailored to use this services under Azyres paradigms.
 
 Another disadvantage is that it requires its own resource group and own subnet.\\
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/frontend_azure.png}
     \vspace{0.01\textwidth}
@@ -987,7 +1008,7 @@ to handle deploys we are packaging all the code and artifacts in the github runn
 
 One of the disadvantages is the price, once we start using the more advanced features and more compute, the service scales rapidly in cost.\\
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/backend_azure.png}
     \vspace{0.01\textwidth}
@@ -1002,7 +1023,7 @@ This is one of the more reasonable options to deploy a database server in Azure,
 
 In this case, one of the disadvantages is the access complexity if we decide to host it on a VPC and not have a public IP.\\
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/database_azure.png}
     \vspace{0.01\textwidth}
