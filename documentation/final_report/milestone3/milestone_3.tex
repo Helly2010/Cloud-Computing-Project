@@ -11,7 +11,7 @@
 \usepackage{ngerman}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{makeidx}  % allows for indexgeneration
+\usepackage{makeidx}  % allows for index generation
 \usepackage{multirow}
 \usepackage{rotating}
 \usepackage{verbatim}
@@ -110,17 +110,17 @@
 
 \lstset{
     % backgroundcolor=\color{backcolour},   % choose the background color
-    basicstyle=\ttfamily\footnotesize\tiny,       % size and family of fonts
-    keywordstyle=\color{blue}\bfseries,     % style of keywords
-    commentstyle=\itshape\color{codegray},  % style of comments
-    stringstyle=\color{codepurple},         % style of strings
-    showstringspaces=false,                 % do not mark spaces in strings
-    numbers=left,                           % where to put the line-numbers
-    numberstyle=\tiny\color{codegray},      % the style of the line-numbers
-    breaklines=true,                        % automatic line breaking only at whitespace
-    breakatwhitespace=true,                 % automatic line breaking at whitespace
-    tabsize=2,                              % the size of tabs
-    xleftmargin=.2\textwidth, xrightmargin=.2\textwidth
+ basicstyle=\ttfamily\footnotesize\tiny,       % size and family of fonts
+ keywordstyle=\color{blue}\bfseries,     % style of keywords
+ commentstyle=\itshape\color{codegray},  % style of comments
+ stringstyle=\color{codepurple},         % style of strings
+ showstringspaces=false,                 % do not mark spaces in strings
+ numbers=left,                           % where to put the line-numbers
+ numberstyle=\tiny\color{codegray},      % the style of the line-numbers
+ breaklines=true,                        % automatic line breaking only at whitespace
+ breakatwhitespace=true,                 % automatic line breaking at whitespace
+ tabsize=2,                              % the size of tabs
+ xleftmargin=.2\textwidth, xrightmargin=.2\textwidth
 }
 
 % Hier fängt das Dokument an!
@@ -163,15 +163,15 @@
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
-    This report presents a summary of all the planification and execution of the LowTech GmbH Cloud Transformation Project hosted in  https://github.com/Helly2010/Cloud-Computing-Project.
+    This report presents a summary of all the planning and execution of the LowTech GmbH Cloud Transformation Project hosted at ttps://github.com/Helly2010/Cloud-Computing-Project.
     The final objective is to develop a proof of concept of the proposed infrastructure of a Cloud Native application, in this case,
     the Webshop. As detailed in milestone 2 the application will be hosted in Microsoft Azure. This report also discusses the advantages
     in system reliability, security, and scalability offered by the proposed approach.
     Moreover, we include a detailed description of the development techniques using tools like Terraform for infrastructure management and GitHub Actions for
     continuous integration and deployment (CI/CD). Special attention is given to the advantages in development time and repeatability of such tools and techniques.
     Furthermore, we evaluate the cost of the overall infrastructure identifying areas for optimization.
-    The report also discusses future scalability strategies, ensuring that the application can handle different types of loads and it actually makes sense in a cloud environment
-    Finally, the report provides a summary on the lessons learned and interesting findings while using the tools and techniques mentioned.
+    The report also discusses future scalability strategies, ensuring that the application can handle different types of loads and makes sense in a cloud environment.
+    Finally, the report provides a summary of the lessons learned and interesting findings while using the tools and techniques mentioned.
 
 \end{abstract}
 
@@ -188,13 +188,13 @@ The transformation began with a thorough assessment of the existing infrastructu
 \end{itemize}
 
 To address these challenges, a private cloud migration strategy was adopted. The aim was to improve scalability, security, and cost-efficiency while ensuring minimal downtime and business continuity.
-The company transitioned its Webshop as a cloud native application to Microsoft Azure.
+The company transitioned its Webshop as a cloud-native application to Microsoft Azure.
 
 \subsection{Overview of the Previous Milestones}
 
 \subsubsection{Starting point}
 LowTech GmbH, a small to medium-sized enterprise with 45 employees specializing in wooden furniture production, is facing a critical need for technological transformation.
-Initially relying on sales representatives, the company transitioned to an online store a few years ago, which has now become their primary selling platform.
+Initially relying on sales representatives, the company transitioned to an online store a few years ago, which has now become its primary selling platform.
 This shift has led to a significant increase in user numbers over the past two years, necessitating a modernization of their IT infrastructure.
 The CEO of LowTech GmbH, recognizing the need for modernization, has expressed interest in cloud computing to make the company future-ready.
 \subsubsection{Milestone 1:}
@@ -221,30 +221,30 @@ This was our assessment of the original infrastructure:
     \item \textbf{Manual Processes \& High Cost}:
           Any changes in capacity would likely require manual hardware upgrades or replacements including hardware installation,
           and configuration, making the process time-consuming and potentially leading to downtime.
-          Replacement of hardware is not only tedious but also financially burdensome due to high costs of new hardware.
+          Replacement of hardware is not only tedious but also financially burdensome due to the high costs of new hardware.
 
 \end{itemize}
 
 \subsubsection*{Availability}
 \begin{itemize}
     \item \textbf{Obsolete Hardware/OS \& Runtime Environments}:
-          Many components of the current infrastructure is based on very old hardware and outdated operating systems such as
+          Many components of the current infrastructure are based on very old hardware and outdated operating systems such as
           Windows XP SP3 (Finance clients), Windows 7 SP3 (HR clients and Customer Service laptops), Debian 5.0 Lenny (Warehouse clients and server),
           Ubuntu 16.04 LTS (Sales CRM Storage server) etc. Several applications are running on outdated software versions such as Java 1.7/1.8,
-          MySQL 5.5/5.7, PHP 5.3 and Firefox 3.6 etc. which makes this whole infrastructure more susceptible to failure.
+          MySQL 5.5/5.7, PHP 5.3, Firefox 3.6, etc. which makes this whole infrastructure more susceptible to failure.
     \item \textbf{Lack of Redundancy and Backup Mechanism}:
           There's no mention of redundant systems or data backup solutions which might lead to significant service disruptions as well as data loss in case of any system failure.
 
     \item \textbf{Manual Maintainance}:
           It is impossible to meet high availability requirements without a robust failover mechanism due to manual maintenance operations.
-          This increases the possiblity of human errors, leads to longer downtime and reduces overall reliability.
+          This increases the possibility of human errors, leads to longer downtime, and reduces overall reliability.
 \end{itemize}
 
 \subsubsection*{Security}
 \begin{itemize}
     \item \textbf{Basic Windows Firewall}:
           It provides minimal outward traffic control, which may allow malware to interact easily.
-          Without additional tools, centralized administration is impossible to maintain consistent security rules across all 36 client devices (17 clients and 19 laptops).
+          Without additional tools, centralized administration makes it impossible to maintain consistent security rules across all 36 client devices (17 clients and 19 laptops).
           It lacks advanced threat protection features, leaving the system vulnerable to sophisticated attacks.
     \item \textbf{pfSense for Network Packet Filtering}:
           There are no built-in antivirus features, which could let malicious payloads get through. Its effectiveness heavily relies on proper configuration, which may be challenging without dedicated IT staff.
@@ -252,15 +252,15 @@ This was our assessment of the original infrastructure:
 
 \end{itemize}
 
-As detailed in the analysis the infrastructure was becoming quite expensive and inefficient given the company objectives.
+As detailed in the analysis the infrastructure was becoming quite expensive and inefficient given the company's objectives.
 
 \subsubsection*{Plan and execution based on the original requirements:}
 
 This milestone resulted in a migration and optimization plan for the entire infrastructure:
 \begin{itemize}
 
-    \item  Talk with server space providers, we need to stablish a contract and negotiate price and SLOs based on the server requirements
-    \item Gather all the installation information, binaries, licenses and documentation for all applications.
+    \item Talk with server space providers, we need to establish a contract and negotiate prices and SLOs based on the server requirements
+    \item Gather all the installation information, binaries, licenses, and documentation for all applications.
     \item Configure a development environment to upload all artifacts such as configuration files and container images.
     \item Create Ansible configuration files for each application, to automate the installation and replication process.
     \item Develop scripts to automate application functionality and load testing. To determine if the configurations will be on par or better than the current infrastructure.
@@ -275,10 +275,10 @@ This milestone resulted in a migration and optimization plan for the entire infr
     \item Create a proxy getaway for the services, so we can redirect the traffic from the old services to the new ones.
     \item Deploy the new applications into the private cloud
     \item Check that the data replication is working
-    \item Prepare the load shifting in sequence, and off hours
+    \item Prepare the load shifting in sequence and off-hours
     \item Shift load in sequence, starting from the most isolated applications first, then the ones with the most dependencies.
           \begin{itemize}
-              \item Migrate finance and HR, since they are self-contained
+              \item Migrate finance and HR since they are self-contained
               \item Migrate operations
               \item Migrate customer service
               \item Migrate warehouse
@@ -290,9 +290,9 @@ This milestone resulted in a migration and optimization plan for the entire infr
 
 \subsubsection{Milestone 2}
 
-Once the client for the project decided to actually migrate to a public cloud service provider, we developed a new strategy.
+Once the client for the project decided to migrate to a public cloud service provider, we developed a new strategy.
 Given that the Webshop in particular was going to be developed from scratch following modern approaches with new technologies.\\
-We proposed a new standard for this kinds of applications:
+We proposed a new standard for this kind of application:
 
 \subsubsection*{Webshop Infrastructure, Tools, and Services:}
 
@@ -364,14 +364,14 @@ Key objectives for the Webshop's cloud-based deployment include:
           The dynamic allocation of resources optimizes compute and storage usage, reducing operational expenses. Azure’s pay-as-you-go model aids in cost forecasting and budget management.
           \bigskip % Adds space before the next section
     \item \textbf{Future-Proofing and Cloud-Native Development:}
-          The Webshop follows cloud-native best practicesn such as infrastructure as code, and continuous deployments.
+          The Webshop follows cloud-native best practices such as infrastructure as code, and continuous deployments.
 \end{itemize}
 
 \section{Application Design}
 \subsection{Architectural Overview}
-As requested by the project. This application wil have 3 tiers. The presentation or user interface, the backend or business logic, and the storage tier.
-By our plan in milestone II we will deploy each tier in a different azure service tailored for its needs.
-Each of the services provides autoscaling features, and load balancing. Ensuring that we are leveraging the elasticity charactersitics of the cloud.
+As requested by the project. This application will have 3 tiers. The presentation or user interface, the backend or business logic, and the storage tier.
+By our plan in milestone II, we will deploy each tier in a different Azure service tailored to its needs.
+Each of the services provides autoscaling features and load balancing. Ensuring that we are leveraging the elasticity characteristics of the cloud.
 
 \subsubsection{Presentation-Tier (Frontend) - User Interface (UI)}
 
@@ -389,26 +389,26 @@ integrate with payment providers and provide detailed information about products
 \paragraph{Functionality Overview}
 \begin{enumerate}
     \item Navigation \& Routing
-          Users can navigate between different sections of application, such as viewing product lists, accessing product details, and managing their shopping cart. React Router enables seamless client-side navigation.
+          Users can navigate between different sections of the application, such as viewing product lists, accessing product details, and managing their shopping cart. React Router enables seamless client-side navigation.
           \begin{itemize}
               \item React Router Setup
                     \begin{itemize}
                         \item React Router (react-router-dom) to handle the routing of different components, allowing users to navigate through pages like the homepage (/), product detail pages (/product/:id), and potentially a shopping cart or checkout page.
-                        \item For product detail pages, you're using dynamic routes with product/:id to fetch and display specific product data based on the product’s unique id. For instance:
+                        \item For product detail pages, you're using dynamic routes with product/:id to fetch and display specific product data based on the product’s unique ID. For instance:
                         \item When a user clicks on a product in the catalog, the URL changes to something like /product/123, and the ProductDetail component is rendered with data for product 123.
                         \item This is achieved using useNavigate and useParams hooks provided by React Router to capture the dynamic part of the URL.
                     \end{itemize}
 
               \item Navigation Links
                     \begin{itemize}
-                        \item On the homepage (Home.js component), displaying a list of products. Each product has an image and name that users can click. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function
+                        \item On the homepage (Home.js component), displaying a list of products. Each product has an image and name that users can click on. When clicked, the app navigates to the product detail page using the navigate(/product/\${prod.id}) function
                     \end{itemize}
           \end{itemize}
     \item API Communication
           \begin{itemize}
               \item The product data, which includes the list of products with details such as images, names, prices, and categories, is fetched when the homepage or product catalog page loads.
                     This is done using useEffect to trigger an API call and update the state with the fetched data.
-              \item API communication in app is responsible for sending and receiving data from the backend server. This includes fetching product data to populate catalog, and creating orders after checkout.
+              \item API communication in the app is responsible for sending and receiving data from the backend server. This includes fetching product data to populate the catalog and creating orders after checkout.
               \item For payment, we use PayPal and Stripe in a sandbox mode. As this is not the final product, we are just testing the actual integration with the providers.
           \end{itemize}
 
@@ -482,7 +482,7 @@ integrate with payment providers and provide detailed information about products
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{../diagrams/componant diagram.drawio.png}
+    \includegraphics[width=0.6\textwidth]{../diagrams/component diagram.drawio.png}
     \vspace{0.02\textwidth}
     \caption{Component Diagram}
     \label{fig:component_diagram}
@@ -598,7 +598,7 @@ The Email Notification module sends emails to customers and administrators for v
                                   \item customer\_email: Customer's email address for notifications.
                                   \item customer\_phone: Contact number.
                                   \item order\_total: Total value of the order.
-                                  \item status: Enum representing the order state (e.g., ''active'', ''cancelled'').
+                                  \item status: Enum representing the order state (e.g., ''active'', ''canceled'').
                                   \item tracking\_status: Enum tracking delivery progress (e.g., ''dispatched'', ''delivered'').
                                   \item payment\_method: JSON field storing payment details (e.g., card type).
                                   \item customer\_shipping\_info: JSON field for customer delivery address.
@@ -650,9 +650,9 @@ The Email Notification module sends emails to customers and administrators for v
                               \end{itemize}
                     \end{itemize}
           \end{itemize}
-    \item  Database Migrations with Alembic
+    \item Database Migrations with Alembic
           \begin{itemize}
-              \item It allows us to track database changes, apply updates to production, and roll back changes when needed.
+              \item It allows us to track database changes, apply updates to production and roll back changes when needed.
               \item Key Operations with Alembic:
                     \begin{itemize}
                         \item \textit{Schema Migration:} Automatically generates migration scripts to apply changes to the database (e.g., adding new fields to a table).
@@ -671,15 +671,15 @@ The Email Notification module sends emails to customers and administrators for v
 
 \subsection{Development Process}
 
-For the development of the application, the team created a Trello board. Using a kamban-like approach, we scoped,
-divided, and prioritized all the necesary development and documentation tasks. Internally two teams were formed, frontend and backend.
-Each working in a different layer of the webshop. The backend team was also in charge of the data layer just for convenience.
-The most important tasks were to upgrade the existing UI code to fit the new requirements and integrate with the backend, and to actually develop the backend.
+For the development of the application, the team created a Trello board. Using a Kamban-like approach, we scoped,
+divided, and prioritized all the necessary development and documentation tasks. Internally two teams were formed, frontend and backend.
+Each works in a different layer of the webshop. The backend team was also in charge of the data layer just for convenience.
+The most important tasks were to upgrade the existing UI code to fit the new requirements and integrate with the backend, and to develop the backend.
 Frameworks like FastAPI were chosen due to the flexibility benefits, rapid development, and automatic documentation generation. Which allowed our team members to quickly review the spec and make the integration.
-During the development timeline, we scheduled weekly meetings to report progress and address concearns with the development environment.
+During the development timeline, we scheduled weekly meetings to report progress and address concerns with the development environment.
 
-For example, we encountered issues while running the new `psycopg` libary in asynchronous mode in windows. Which caused some issues while configuring the development environment.
-This could have been an oportunity to build a docker image to standardize our development environments, but given the timeline, we decided against it and changed to `asyncpg` in windows \\
+For example, we encountered issues while running the new `psycopg` library in asynchronous mode in Windows. Which caused some issues while configuring the development environment.
+This could have been an opportunity to build a docker image to standardize our development environments, but given the timeline, we decided against it and changed to `asyncpg` in Windows \\
 
 \begin{figure}[H]
     \begin{center}
@@ -712,7 +712,7 @@ This could have been an oportunity to build a docker image to standardize our de
     \end{center}
 \end{figure}
 
-The building block view makes emphasis on the backend, since we have provided a component diagram for the frontend.\\
+The building block view emphasizes the backend since we have provided a component diagram for the front end.\\
 
 
 \begin{figure}[H]
@@ -760,37 +760,37 @@ The building block view makes emphasis on the backend, since we have provided a 
 
 \section{Implementation Process}
 
-To make the implementation easier and repeatable in the public cloud provider we used terraform.
+To make the implementation easier and repeatable in the public cloud provider we used Terraform.
 Each of the different services was encapsulated in a module, allowing us to make the main template readable.
-So far we did not setup any CI implementation for the infrastructure deploy, only for the code changes, since that the functionality was provided by Azure.
+So far we have not set up any CI implementation for the infrastructure deployment, only for the code changes, since the functionality was provided by Azure.
 
-In the following code snippets we can see the specific infrastructure template we used for our deploy.
+In the following code snippets, we can see the specific infrastructure template we used for our deployment.
 
 \begin{itemize}
 
-    \item Configuration of the azure terraform provider:
+    \item Configuration of the Azure Terraform provider:
           \lstinputlisting[lastline=19]{../../../infra/main.tf}
     \item Creation of a general resource group in Germany West Central (This zone is allowed by the student subscription)
           \lstinputlisting[firstline=20, lastline=24]{../../../infra/main.tf}
-    \item Creation of a virtual network to comunicate the database and backend. This is required by the postgresql flexible server
+    \item Creation of a virtual network to communicate the database and backend. This is required by the Postgresql flexible server
           \lstinputlisting[firstline=25, lastline=68]{../../../infra/main.tf}
     \item Creation of a private DNS zone for the database. This is required to get an internal DNS name avoiding the use of a single public IP.
           \lstinputlisting[firstline=70, lastline=84]{../../../infra/main.tf}
-    \item Creation of the DB, frontend and backend modules. All necesary code is included in the /infra folder of the repository.
+    \item Creation of the DB, frontend, and backend modules. All necessary code is included in the /infra folder of the repository.
           \lstinputlisting[firstline=84]{../../../infra/main.tf}
 \end{itemize}
 
 To get the appropriate credentials, we created a student account with 100USD in credits, after running the
 $\verb|az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<SUBSCRIPTION_ID>"|$ command
-the team was able to populate the respective variables file. Finally we executed the terraform plan to create the infrastructure.\\
+the team was able to populate the respective variables file. Finally, we executed the terraform plan to create the infrastructure.\\
 
 \begin{lstlisting}[language=Python,caption={Azure Credentials Example}]
-    {
-        "appId": "XXXXX-XXXX-XXX-XXX-XXXXXXX",
-        "displayName": "azure-cli-2025-02-09-15-07-35",
-        "password": "SECRET_PASSWORD",
-        "tenant": "TENANT_UUID"
-    }
+ {
+ "appId": "XXXXX-XXXX-XXX-XXX-XXXXXXX",
+ "displayName": "azure-cli-2025-02-09-15-07-35",
+ "password": "SECRET_PASSWORD",
+ "tenant": "TENANT_UUID"
+ }
 \end{lstlisting}
 
 \begin{figure}[H]
@@ -805,11 +805,11 @@ the team was able to populate the respective variables file. Finally we executed
 \subsection{Cloud Environment Setup}
 
 
-Once we had all resources created in Azure, the team had to perform further manual configurations to enable the CI pipelines in azure webapps and static websites.
+Once we had all resources created in Azure, the team had to perform further manual configurations to enable the CI pipelines in Azure web apps and static websites.
 \begin{itemize}
-    \item To enable CI for the backend we used the provided azure functionality which created a GitHub actions file wich packages and uploads all changes once they are merged into main
-    \item To enable CI for the frontend we used the provided azure functionality, which esentially provides the same features as in the backend.
-    \item We also created an standalone virtual machine with access to the database, in this virtual machine we ran all migrations and seeded the database si all data was available for testing.\\
+    \item To enable CI for the backend we used the provided Azure functionality which created a GitHub actions file that packages and uploads all changes once they are merged into the main
+    \item To enable CI for the front end we used the provided Azure functionality, which essentially provides the same features as in the backend.
+    \item We also created a standalone virtual machine with access to the database, in this virtual machine we ran all migrations and seeded the database so all data was available for testing.\\
 \end{itemize}
 
 \begin{figure}[H]
@@ -825,10 +825,10 @@ Once we had all resources created in Azure, the team had to perform further manu
 
 \subsection{Development Challenges}
 \begin{itemize}
-    \item Sometimes the azure terraform provider encountered race conditions and produced errors while creating or destroying the infrastructure.
-    \item Some functionalities are not available for the student subscription, so we had to change availavility zones until we got one that was allowed
-    \item By default our applications don't have any autoscaling configured, given the choico of SKUs and to save costs.
-          Nevertheless the functionallity can be enabled by changing one configuration in the dashboard
+    \item Sometimes the Azure terraform provider encountered race conditions and produced errors while creating or destroying the infrastructure.
+    \item Some functionalities are not available for the student subscription, so we had to change availability zones until we got one that was allowed
+    \item By default our applications don't have any autoscaling configured, given the choice of SKUs and to save costs.
+          Nevertheless, the functionality can be enabled by changing one configuration in the dashboard
 \end{itemize}
 
 \section{Application Functionality and Characteristics}
@@ -846,22 +846,22 @@ Once we had all resources created in Azure, the team had to perform further manu
     TC-001                & Load Homepage and verify product listing   & Homepage loads with products displayed correctly.         & Pass, see Figure \ref{fig:homepage_filters}   \\ \hline
     TC-002                & Apply Price filter (Ascending/Descending)  & Products reorder correctly based on selected price.       & Pass, see Figure \ref{fig:homepage_filters}   \\ \hline
     TC-003                & Apply Out of Stock filter                  & Only out-of-stock items are displayed.                    & Pass, see Figure \ref{fig:homepage_filters_2} \\ \hline
-    TC-004                & Apply Fast Delivery filter                 & Only products eligible for fast delivery show up.         & Pass, see demo video        \\ \hline
-    TC-005                & Filter by Category                         & Products are filtered correctly by selected category.     & Pass, see demo video       \\ \hline
-    TC-006                & Search Product by Name or Category         & Products matching search are shown correctly.             & Pass, see demo video        \\ \hline
-    TC-007                & Clear Filter functionality                 & All filters are removed, showing the full product list.   & Pass, see demo video        \\ \hline
-    TC-008                & Product Detail Page - Click Product        & Clicking a product opens its detailed page.               & Pass, see demo video        \\ \hline
-    TC-009                & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & Pass, see demo video         \\ \hline
-    TC-010                & Add a Product to Cart                      & Product appears in cart with correct details.             & Pass, see Figure \ref{fig:Webshop_3}         \\ \hline
-    TC-011                & Increase product quantity in cart          & Quantity updates and is reflected in the cart.            & Pass, see Figure \ref{fig:Webshop_4}           \\ \hline
-    TC-012                & Remove product from cart                   & Product is removed from the cart immediately.             & Pass, see Figure \ref{fig:Webshop_5}           \\ \hline
-    TC-013                & Proceed to checkout                        & Checkout page loads with the correct order summary.       & Pass, see demo video         \\ \hline
-    TC-014                & Select payment method - Stripe             & Stripe payment option is selected and processed.          & Pass, see Figure \ref{fig:Webshop_9}           \\ \hline
-    TC-015                & Select payment method - PayPal             & PayPal payment option is selected and processed.          & Pass, see Figure \ref{fig:Webshop_6}           \\ \hline
-    TC-016                & Complete order processing                  & Order confirmation message is displayed.                  & Pass, see demo video         \\ \hline
-    TC-017                & Order confirmation email is received       & Email is sent after order is placed.                      & Pass, see Figure \ref{fig:Webshop_9}           \\ \hline
-    TC-018                & Shipment notification email is received    & Email is sent when the order is shipped.                  & Pass, see Figure \ref{fig:Webshop_7}           \\ \hline
-    TC-019                & Product Dispatched email is received       & Email is sent when the order is dispatched.               & Pass, see Figure \ref{fig:Webshop_8}           \\ \hline
+    TC-004                & Apply Fast Delivery filter                 & Only products eligible for fast delivery show up.         & Pass, see demo video                          \\ \hline
+    TC-005                & Filter by Category                         & Products are filtered correctly by the selected category. & Pass, see demo video                          \\ \hline
+    TC-006                & Search Product by Name or Category         & Products matching search is shown correctly.              & Pass, see demo video                          \\ \hline
+    TC-007                & Clear Filter functionality                 & All filters are removed, showing the full product list.   & Pass, see demo video                          \\ \hline
+    TC-008                & Product Detail Page - Click Product        & Clicking a product opens its detailed page.               & Pass, see demo video                          \\ \hline
+    TC-009                & Product Detail Page - Load Product Details & Product details (name, description, price) are displayed. & Pass, see demo video                          \\ \hline
+    TC-010                & Add a Product to Cart                      & Product appears in cart with correct details.             & Pass, see Figure \ref{fig:Webshop_3}          \\ \hline
+    TC-011                & Increase product quantity in cart          & Quantity updates and is reflected in the cart.            & Pass, see Figure \ref{fig:Webshop_4}          \\ \hline
+    TC-012                & Remove the product from the cart           & Product is removed from the cart immediately.             & Pass, see Figure \ref{fig:Webshop_5}          \\ \hline
+    TC-013                & Proceed to checkout                        & Checkout page loads with the correct order summary.       & Pass, see demo video                          \\ \hline
+    TC-014                & Select payment method - Stripe             & Stripe payment option is selected and processed.          & Pass, see Figure \ref{fig:Webshop_9}          \\ \hline
+    TC-015                & Select payment method - PayPal             & PayPal payment options are selected and processed.        & Pass, see Figure \ref{fig:Webshop_6}          \\ \hline
+    TC-016                & Complete order processing                  & Order confirmation message is displayed.                  & Pass, see demo video                          \\ \hline
+    TC-017                & Order confirmation email is received       & Email is sent after order is placed.                      & Pass, see Figure \ref{fig:Webshop_9}          \\ \hline
+    TC-018                & Shipment notification email is received    & Email is sent when the order is shipped.                  & Pass, see Figure \ref{fig:Webshop_7}          \\ \hline
+    TC-019                & Product Dispatched email is received       & Email is sent when the order is dispatched.               & Pass, see Figure \ref{fig:Webshop_8}          \\ \hline
     \caption{Functional Test Cases for Webshop} \label{tab:functional-test-cases}
     % \vspace{-10mm}
 \end{longtable}
@@ -965,33 +965,33 @@ Once we had all resources created in Azure, the team had to perform further manu
 
 \section{Critical Analysis}
 
-In general the application conforms to the specification of the client. Neverhteless, in hindsight, some areas of the code, infrastructure, and development process could have been improved.
+In general, the application conforms to the specification of the client. Nevertheless, in hindsight, some areas of the code, infrastructure, and development process could have been improved.
 \begin{itemize}
-    \item The base project for the front end used vanila JavaScript and no state management library. Initially to get the store up and running fast is perfect.
-          But, once we need to add more functionality and the state management becomes more complex, we could have beneffited from the inclusion of a stronger type system. And a dedicated state management solution.
-          Even on the first stages of integration, the lack of types makes it more difficult to integrate with the backend.
+    \item The base project for the front end used vanilla JavaScript and no state management library. Initially to get the store up and running fast is perfect.
+          But, once we need to add more functionality and the state management becomes more complex, we could have benefited from the inclusion of a stronger type system. And a dedicated state management solution.
+          Even in the first stages of integration, the lack of types makes it more difficult to integrate with the backend.
     \item The choice of 3 different services to run the application might have been more complex than what was needed.
-          In theory either Azure App Service and Static Web apps could have easily handled the entirety of the application.
-    \item Once we start scaling up, having three different services scaling independently even thouhg is more flexible, could result in bigger expenses,
+          In theory, either Azure App Service or Static Web apps could have easily handled the entirety of the application.
+    \item Once we start scaling up, having three different services scaling independently even though is more flexible, could result in bigger expenses,
           since all network traffic and DNS queries, even internally are billed. This is a situation that becomes less of a problem if all components are in a single service.
 
     \item The management of the database becomes more difficult once you host the server on a private virtual cloud. We had to create a virtual machine to act as a proxy for migrations and seeding the database.
 \end{itemize}
 \subsection{Cloud Service Evaluation}
 
-In general the configuration of the services was simple enough. Nevbertheless there were some setbvacks associated to the type of subscription we were using.
-All services have auto-scaling capabilities, which can be enabled on demand, and configured acording to the aplications needs.
+In general, the configuration of the services was simple enough. Nevertheless, there were some setbacks associated with the type of subscription we were using.
+All services have auto-scaling capabilities, which can be enabled on demand, and configured according to the application's needs.
 
 
 \subsubsection{Azure Static Web Apps}
-In this case we are using the Free SKU. The main disadvantage of the Free SKU is that is very limited in terms of throughput and connections to the client.
-Nevertheless this service can be upgraded to use "enterprise-grade ege" meaning that Azure will automatically cache the website on edge servers making it fast and easy to deliver to clients.
+In this case, we are using the Free SKU. The main disadvantage of the Free SKU is that is very limited in terms of throughput and connections to the client.
+Nevertheless, this service can be upgraded to use "enterprise-grade edge" meaning that Azure will automatically cache the website on edge servers making it fast and easy to deliver to clients.
 
-This service does not support traditional autoscaling since we are not rendering on the server. The client connects to the backend using http.
+This service does not support traditional autoscaling since we are not rendering on the server. The client connects to the backend using HTTP.
 
-One of the disadvantages is thet even though it allows for integration options with APIs and even databases, it is clear that we will have to architect the application to only be tailored to use this services under Azyres paradigms.
+One of the disadvantages is that even though it allows for integration options with APIs and even databases, it is clear that we will have to architect the application to only be tailored to use these services under Azyres paradigms.
 
-Another disadvantage is that it requires its own resource group and own subnet.\\
+Another disadvantage is that it requires its resource group and own subnet.\\
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/frontend_azure.png}
@@ -1003,10 +1003,10 @@ Another disadvantage is that it requires its own resource group and own subnet.\
 
 \subsubsection{Azure App Service}
 
-This service was used due to its versatility in deploying any type of web applications. To avoid extra costs associated to a private image registry,
-to handle deploys we are packaging all the code and artifacts in the github runner and publishing to our application.
+This service was used due to its versatility in deploying any type of web application. To avoid extra costs associated with a private image registry,
+to handle deploys we are packaging all the code and artifacts in the GitHub runner and publishing to our application.
 
-One of the disadvantages is the price, once we start using the more advanced features and more compute, the service scales rapidly in cost.\\
+One of the disadvantages is the price, once we start using more advanced features and more computing, the service scales rapidly in cost.\\
 
 \begin{figure}[H]
     \centering
@@ -1035,12 +1035,12 @@ In this case, one of the disadvantages is the access complexity if we decide to 
 \subsection{Architectural Decisions}
 
 \begin{itemize}
-    \item The frontend application uses a really basic component driven approach and segregates all API comunication logic to its own folder.
+    \item The frontend application uses a really basic component-driven approach and segregates all API communication logic to its folder.
     \item In the backend we decided to have 2 simple layers, the database access layer, and the presentation layer i.e. The endpoints.
-          Given the time constraints, and the scope of the project we did not divide the code further.
+          Given the time constraints and the scope of the project, we did not divide the code further.
     \item We used FastAPI in the backend given its asynchronous nature, meaning a more efficient use of CPU resources, and the ability to schedule background tasks to send emails out of the box.
-    \item In general this application is stil limited by the scale of the database, given that we are not using a microservice approach or have a database that supports sharding.
-          Nevertheless, we feel that for a webshop which needs to handle orders, transaction integrity is more important than data replication. Furthermore, given the flexible nature of the cloud, we could scale the server vertically if there is the need.
+    \item In general this application is still limited by the scale of the database, given that we are not using a microservice approach or have a database that supports sharding.
+          Nevertheless, we feel that for a webshop that needs to handle orders, transaction integrity is more important than data replication. Furthermore, given the flexible nature of the cloud, we could scale the server vertically if there is a need.
 
 \end{itemize}
 
@@ -1054,7 +1054,7 @@ The team configured the following repository: https://github.com/Helly2010/Cloud
     \item \textbf{Branching Strategy:} \newline
           The project follows a simple main branch strategy where all contributors work directly on the main branch.
           This ensures seamless integration without managing multiple branches. All changes should be committed with meaningful messages.
-          Code should be reviewed and tested before pushing to the main branch.
+          The code should be reviewed and tested before pushing to the main branch.
 
     \item \textbf{Continuous Integration/Continuous Deployment:}
           \begin{itemize}
@@ -1086,21 +1086,21 @@ The team configured the following repository: https://github.com/Helly2010/Cloud
 
     \begin{tabular}{|p{0.7\textwidth}|p{0.3\textwidth}|}
         \hline
-        \textbf{Topic}    & \textbf{Contributor}      \\
+        \textbf{Topic}                                   & \textbf{Contributor}      \\
         \hline
         Introduction and Objectives of Cloud Implementation  \newline
         Repository Documentation and Presentation slides & Priyanka Vadiwala         \\
         \hline
         Implementation Process  And Critical Analysis
-                       & Wladymir Brborich-Herrera \\
+                                                         & Wladymir Brborich-Herrera \\
         \hline
-        Application Design    \newline          
-        System Diagrams & Vishwaben Kakadiya        \\
+        Application Design    \newline
+        System Diagrams                                  & Vishwaben Kakadiya        \\
         \hline
-        System Diagrams        & Hellyben Shah             \\
+        System Diagrams                                  & Hellyben Shah             \\
         \hline
         Application Functionality and Characteristics  \newline
-        Presentation slides And Project Demo     & Heer Vankawala            \\
+        Presentation slides And Project Demo             & Heer Vankawala            \\
         \hline
     \end{tabular}
     \caption{Contribution Table}
@@ -1110,20 +1110,20 @@ The team configured the following repository: https://github.com/Helly2010/Cloud
 \section{Conclusion}
 \subsection{Project Outcomes}
 
-At the end of the project we had a 3 tier cloud native application running.
+At the end of the project, we had a 3 tier cloud-native application running.
 Furthermore, we have infrastructure templates to recreate this particular setup with minimal manual configuration.
-The team also implemented a database migration system to track changes to the tables and to actually seed the initial data without much effort.
-All services have the possibility to scale horizontally, and are easily configurable. Nevertheless the architecture of the project could have been much simpler.
+The team also implemented a database migration system to track changes to the tables and to seed the initial data without much effort.
+All services have the possibility to scale horizontally and are easily configurable. Nevertheless, the architecture of the project could have been much simpler.
 As it was pointed out in the critical analysis of our project, services like Azure static web apps offer the possibility to deploy all 3 layers in one single service.
-Some of them even include their own MySQL database. We believe that it could be a more cost effective way, but at the cost of flexibility.
-Since all the application will be tailored to a single service.
+Some of them even include their own MySQL database. We believe that it could be a more cost-effective way but at the cost of flexibility.
+Since all the applications will be tailored to a single service.
 
 
 \subsection{Future Enhancements}
-For production readiness a lot of polish work is needed, specially in the order handling and tracking, not to mention security and user management.
-Nevertheless, in the infrastructure side, it is a matter of changing the SKUs and autoscaling configurations to something more appropriate depending on the expected load.
-Inherently the system runs in a private network inside the cloud provider, and it provides https certificates out of the box.
-If in the future the cost assesment reveals that the choice of servies was on the expensive side, we could at least consolidate the presentation and business logic layers in one service.
+For production readiness, a lot of polish work is needed, especially in order handling and tracking, not to mention security and user management.
+Nevertheless, on the infrastructure side, it is a matter of changing the SKUs and autoscaling configurations to something more appropriate depending on the expected load.
+Inherently the system runs in a private network inside the cloud provider, and it provides HTTPS certificates out of the box.
+If a future cost assessment reveals that the choice of service was expensive, we could at least consolidate the presentation and business logic layers into one service.
 
 
 \begin{thebibliography}{9}
