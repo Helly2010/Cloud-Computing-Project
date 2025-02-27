@@ -163,7 +163,7 @@
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
-    This report presents a summary of all the planning and execution of the LowTech GmbH Cloud Transformation Project hosted at ttps://github.com/Helly2010/Cloud-Computing-Project.
+    This report presents a summary of all the planning and execution of the LowTech GmbH Cloud Transformation Project hosted at https://github.com/Helly2010/Cloud-Computing-Project.
     The final objective is to develop a proof of concept of the proposed infrastructure of a Cloud Native application, in this case,
     the Webshop. As detailed in milestone 2 the application will be hosted in Microsoft Azure. This report also discusses the advantages
     in system reliability, security, and scalability offered by the proposed approach.
@@ -375,7 +375,7 @@ Each of the services provides autoscaling features and load balancing. Ensuring 
 
 \subsubsection{Presentation-Tier (Frontend) - User Interface (UI)}
 
-It is important to note that the majority of the presentation was forked from https://github.com/DebasmitaMallick/React-e-Commerce-Website.
+It is important to note that the majority of the presentation layer was forked from https://github.com/DebasmitaMallick/React-e-Commerce-Website\ref{Webshop}.
 This allowed our team to focus on backend and cloud deployment tasks. The original project was modified to interact with our backend API,
 integrate with payment providers and provide detailed information about products.
 
@@ -482,7 +482,7 @@ integrate with payment providers and provide detailed information about products
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{../diagrams/component diagram.drawio.png}
+    \includegraphics[width=0.6\textwidth]{../diagrams/component_diagram.drawio.png}
     \vspace{0.02\textwidth}
     \caption{Component Diagram}
     \label{fig:component_diagram}
@@ -985,7 +985,7 @@ All services have auto-scaling capabilities, which can be enabled on demand, and
 
 \subsubsection{Azure Static Web Apps}
 In this case, we are using the Free SKU. The main disadvantage of the Free SKU is that is very limited in terms of throughput and connections to the client.
-Nevertheless, this service can be upgraded to use "enterprise-grade edge" meaning that Azure will automatically cache the website on edge servers making it fast and easy to deliver to clients.
+Nevertheless, this service can be upgraded to use "enterprise-grade edge" meaning that Azure will automatically cache the website on edge servers making it fast and easy to deliver to clients\ref{azurestaticwebapps}.
 
 This service does not support traditional autoscaling since we are not rendering on the server. The client connects to the backend using HTTP.
 
@@ -1003,10 +1003,10 @@ Another disadvantage is that it requires its resource group and own subnet.\\
 
 \subsubsection{Azure App Service}
 
-This service was used due to its versatility in deploying any type of web application. To avoid extra costs associated with a private image registry,
+This service was used due to its versatility in deploying any type of web application\ref{MicrosoftAzurePythonConfig}. To avoid extra costs associated with a private image registry,
 to handle deploys we are packaging all the code and artifacts in the GitHub runner and publishing to our application.
 
-One of the disadvantages is the price, once we start using more advanced features and more computing, the service scales rapidly in cost.\\
+One of the disadvantages is the price, once we start using more advanced features and more computing, the service scales rapidly in cost\ref{AppServiceplan}.\\
 
 \begin{figure}[H]
     \centering
@@ -1019,7 +1019,7 @@ One of the disadvantages is the price, once we start using more advanced feature
 
 \subsubsection{Azure PostgreSQL Flexible Server}
 
-This is one of the more reasonable options to deploy a database server in Azure, given that the Free tier is quite capable. It also offers automatic maintenance and backups.
+This is one of the more reasonable options to deploy a database server in Azure, given that the Free tier is quite capable\ref{azuredatabase}. It also offers automatic maintenance and backups.
 
 In this case, one of the disadvantages is the access complexity if we decide to host it on a VPC and not have a public IP.\\
 
@@ -1134,17 +1134,13 @@ If a future cost assessment reveals that the choice of service was expensive, we
     2024, Available:
     \url{https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans}.
 
-    \bibitem{MicrosoftAzureSubscriptionLimits}
-    Microsoft,
-    \emph{Azure subscription and service limits, quotas, and constraints},
+    \bibitem{Webshop}
+    DebasmitaMallick,
+    \emph{React Webshop Repository},
     2024, Available:
-    \url{https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits}.
+    \url{https://github.com/DebasmitaMallick/React-e-Commerce-Website}.
 
-    \bibitem{azurepricingcalculator}
-    Microsoft, Available:
-    \emph{Azure Pricing Calculator}, 2024,
-    \url{https://azure.microsoft.com/de-de/pricing/calculator/}.
-
+    
     \bibitem{MicrosoftAzurePythonConfig}
     Microsoft,
     \emph{Configure Linux Python apps - Azure App Service},
@@ -1161,10 +1157,6 @@ If a future cost assessment reveals that the choice of service was expensive, we
     \emph{Azure Database for PostgreSQL – Flexible Servers}, 2024,
     Available: \url{https://learn.microsoft.com/de-de/azure/postgresql/flexible-server/overview}.
 
-    \bibitem{azurevirtualscale}
-    Microsoft,
-    \emph{What are Virtual Machine Scale Sets?}, 2024,
-    Available: \url{https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview}.
 
 \end{thebibliography}
 \end{document}
