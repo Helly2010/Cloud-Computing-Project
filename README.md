@@ -37,7 +37,7 @@ run `poetry install`
 
 run `poetry shell`
 
-Install Docker in not installed already
+Install Docker if not installed already
 
 To start the db with docker, run the below command in the project not in the api
 `docker compose --env-file=.env.docker --profile dev up`
@@ -46,8 +46,8 @@ Inside the virtual environment run `python runner.py`
 
 While running python runner.py, if Import error comes then try out below commands:
 
-'pip install --upgrade pip'
-'pip install "psycopg[binary,pool]'
+`pip install --upgrade pip`
+`pip install "psycopg[binary,pool]`
 
 To create a migration revision: `alembic revision --autogenerate -m "your migration title"`
 
